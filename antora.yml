@@ -1,4 +1,5 @@
 name: pytigergraph
+title: pyTigerGraph
 version: 1.0
 display_version: "1.0"
 start_page: intro:index.adoc
