@@ -1,0 +1,8 @@
+name: pytigergraph
+version: 1.0
+
+nav:
+- modules/intro/nav.adoc
+- modules/getting-started/nav.adoc
+- modules/authentication/nav.adoc
+- modules/core-functions/nav.adoc
