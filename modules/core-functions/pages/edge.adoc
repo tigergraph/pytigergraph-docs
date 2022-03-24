@@ -131,7 +131,7 @@ The name of the edge type.
 The name of the reverse edge, if specified.
 
 
-### getEdgeCountFrom(sourceVertexType: str = None, sourceVertexId: str = None,            edgeType: str = None, targetVertexType: str = None, targetVertexId: str = None,            where: str = "") -> dict:
+### getEdgeCountFrom(sourceVertexType: str = None, sourceVertexId: str = None,edgeType: str = None, targetVertexType: str = None, targetVertexId: str = None,where: str = "") -> dict:
 Returns the number of edges from a specific vertex.
 
 
@@ -221,7 +221,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#stat_edge_number
 
 
-### getEdgeCount(edgeType: str = "*", sourceVertexType: str = None,            targetVertexType: str = None) -> dict:
+### getEdgeCount(edgeType: str = "*", sourceVertexType: str = None,targetVertexType: str = None) -> dict:
 Returns the number of edges of an edge type.
 
 
@@ -252,7 +252,7 @@ A dictionary of <edge_type>:
 <edge_count> pairs.
 
 
-### upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str,            targetVertexType: str, targetVertexId: str, attributes: dict = None) -> int:
+### upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str,targetVertexType: str, targetVertexId: str, attributes: dict = None) -> int:
 Upserts an edge.
 
 
@@ -317,7 +317,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-### upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str,            edges: list) -> int:
+### upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str,edges: list) -> int:
 Upserts multiple edges (of the same type).
 
 
@@ -374,7 +374,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-### upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str,            targetVertexType: str, from_id: str = "", to_id: str = "",            attributes: dict = None) -> int:
+### upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str,targetVertexType: str, from_id: str = "", to_id: str = "",attributes: dict = None) -> int:
 Upserts edges from a Pandas DataFrame.
 
 
@@ -421,7 +421,7 @@ match the vertex's attribute names.
 The number of edges upserted.
 
 
-### getEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,            targetVertexType: str = None, targetVertexId: str = None, select: str = "",            where: str = "", limit: str = "", sort: str = "", fmt: str = "py", withId: bool = True,            withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]:
+### getEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,targetVertexType: str = None, targetVertexId: str = None, select: str = "",where: str = "", limit: str = "", sort: str = "", fmt: str = "py", withId: bool = True,withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]:
 Retrieves edges of the given edge type originating from a specific source vertex.
 
 
@@ -511,7 +511,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex
 
 
-### getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "",            targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "",            limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame:
+### getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "",targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame:
 Retrieves edges of the given edge type originating from a specific source vertex.
 
 
@@ -575,7 +575,7 @@ The (selected) details of the (matching) edge instances (sorted, limited) as dic
 JSON or pandas DataFrame.
 
 
-### getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True,            withType: bool = False) -> [dict, str, pd.DataFrame]:
+### getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True,withType: bool = False) -> [dict, str, pd.DataFrame]:
 Retrieves edges of the given edge type regardless the source vertex.
 
 
@@ -637,7 +637,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
 
 
-### delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,            targetVertexType: str = None, targetVertexId: str = None, where: str = "",            limit: str = "", sort: str = "", timeout: int = 0) -> dict:
+### delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,targetVertexType: str = None, targetVertexId: str = None, where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> dict:
 Deletes edges from the graph.
 
 
@@ -703,7 +703,7 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge
 
 
-### edgeSetToDataFrame(edgeSet: list, withId: bool = True,            withType: bool = False) -> pd.DataFrame:
+### edgeSetToDataFrame(edgeSet: list, withId: bool = True,withType: bool = False) -> pd.DataFrame:
 Converts an edge set to Pandas DataFrame
 
 Edge sets contain instances of the same edge type. Edge sets are not generated "naturally"
