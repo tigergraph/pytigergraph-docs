@@ -1,7 +1,5 @@
 = Core Functions
 
-Core functions are functions that ...
-
 Core functions are divided into the following categories:
 
 * Schema functions

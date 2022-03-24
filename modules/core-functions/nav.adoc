@@ -1,1 +1,4 @@
 * xref:index.adoc[]
+** xref:vertex.adoc[]
+** xref:edge.adoc[]
+** xref:schema.adoc[]
