@@ -1,381 +1,653 @@
 = Vertex Functions
 
 ### getVertexTypes(force: bool = False) -> list:
-        Returns the list of vertex type names of the graph.
+Returns the list of vertex type names of the graph.
 
-        Args:
-            force:
-                If `True`, forces the retrieval the schema metadata again, otherwise returns a
-                cached copy of vertex type details (if they were already fetched previously).
 
-        Returns:
-            The list of vertex types defined in the the current graph.
+*Paramters:*
+
+force:
+
+If `True`, forces the retrieval the schema metadata again, otherwise returns a
+cached copy of vertex type details (if they were already fetched previously).
+
+
+*Returns:*
+
+The list of vertex types defined in the the current graph.
+
 
 ### getVertexType(vertexType: str, force: bool = False) -> dict:
-        Returns the details of the specified vertex type.
+Returns the details of the specified vertex type.
 
-        Args:
-            vertexType:
-                The name of of the vertex type.
-            force:
-                If `True`, forces the retrieval the schema metadata again, otherwise returns a
-                cached copy of vertex type details (if they were already fetched previously).
 
-        Returns:
-            The metadata of the vertex type.
+*Paramters:*
+
+vertexType:
+
+The name of of the vertex type.
+
+force:
+
+If `True`, forces the retrieval the schema metadata again, otherwise returns a
+cached copy of vertex type details (if they were already fetched previously).
+
+
+*Returns:*
+
+The metadata of the vertex type.
+
 
 ### getVertexCount(vertexType: str, where: str = "") -> dict:
-        Returns the number of vertices of the specified type.
+Returns the number of vertices of the specified type.
 
-        Uses:
-            If ``vertexType`` == "*": vertex count of all vertex types (`where` cannot be specified
-                in this case).
-            If ``vertexType`` is specified only: vertex count of the given type.
-            If ``vertexType`` and ``where`` are specified: vertex count of the given type after
-                filtered by ``where`` condition(s).
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            where:
-                A comma separated list of conditions that are all applied on each vertex's
-                attributes. The conditions are in logical conjunction (i.e. they are "AND'ed"
-                together).
-                See: filter at https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#parameters-15
+Uses:
 
-        Returns:
-             A dictionary of <vertex_type>: <vertex_count> pairs.
+If ``vertexType`` == "*":
+vertex count of all vertex types (`where` cannot be specified
 
-        Endpoint:
-            GET /graph/{graph_name}/vertices
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-vertices
+in this case).
 
-        Endpoint:
-            POST /builtins
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
+If ``vertexType`` is specified only:
+vertex count of the given type.
+
+If ``vertexType`` and ``where`` are specified:
+vertex count of the given type after
+
+filtered by ``where`` condition(s).
+
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+where:
+
+A comma separated list of conditions that are all applied on each vertex's
+attributes. The conditions are in logical conjunction (i.e. they are "AND'ed"
+together).
+
+See:
+filter at https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#parameters-15
+
+
+*Returns:*
+
+A dictionary of <vertex_type>:
+<vertex_count> pairs.
+
+
+Endpoint:
+
+GET /graph/{graph_name}/vertices
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-vertices
+
+
+Endpoint:
+
+POST /builtins
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
+
 
 ### upsertVertex(vertexType: str, vertexId: str, attributes: dict = None) -> int:
-        Upserts a vertex.
+Upserts a vertex.
 
-        Data is upserted:
-            If vertex is not yet present in graph, it will be created.
-            If it's already in the graph, its attributes are updated with the values specified in
-                the request. An optional operator controls how the attributes are updated.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            vertexId:
-                The primary ID of the vertex to be upserted.
-            attributes:
-                The attributes of the vertex to be upserted; a dictionary in this format:
-                    {<attribute_name>: <attribute_value>|(<attribute_name>, <operator>), …}
-                Example:
-                    {"name": "Thorin", points: (10, "+"), "bestScore": (67, "max")}
-                For valid values of <operator> see:
-                    https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
+Data is upserted:
 
-        Returns:
-             A single number of accepted (successfully upserted) vertices (0 or 1).
+If vertex is not yet present in graph, it will be created.
 
-        Endpoint:
-            POST /graph/{graph_name}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
+If it's already in the graph, its attributes are updated with the values specified in
+the request. An optional operator controls how the attributes are updated.
+
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+vertexId:
+
+The primary ID of the vertex to be upserted.
+
+attributes:
+
+The attributes of the vertex to be upserted; a dictionary in this format:
+
+{<attribute_name>:
+<attribute_value>|(<attribute_name>, <operator>), …}
+
+Example:
+
+{"name":
+"Thorin", points:
+(10, "+"), "bestScore":
+(67, "max")}
+
+For valid values of <operator> see:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
+
+
+*Returns:*
+
+A single number of accepted (successfully upserted) vertices (0 or 1).
+
+
+Endpoint:
+
+POST /graph/{graph_name}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
+
 
 ### upsertVertices(vertexType: str, vertices: list) -> int:
-        Upserts multiple vertices (of the same type).
+Upserts multiple vertices (of the same type).
 
-        See the description of ``upsertVertex`` for generic information.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            vertices:
-                A list of tuples in this format:
-                    [
-                        (<vertex_id>, {<attribute_name>, <attribute_value>, …}),
-                        (<vertex_id>, {<attribute_name>, (<attribute_name>, <operator>), …}),
-                        ⋮
-                    ]
-                Example:
-                    [
-                        (2, {"name": "Balin", "points": (10, "+"), "bestScore": (67, "max")}),
-                        (3, {"name": "Dwalin", "points": (7, "+"), "bestScore": (35, "max")})
-                    ]
-                For valid values of <operator> see:
-                    https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
+See the description of ``upsertVertex`` for generic information.
 
-        Returns:
-            A single number of accepted (successfully upserted) vertices (0 or positive integer).
 
-        Endpoint:
-            POST /graph/{graph_name}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+vertices:
+
+A list of tuples in this format:
+
+[
+(<vertex_id>, {<attribute_name>, <attribute_value>, …}),
+(<vertex_id>, {<attribute_name>, (<attribute_name>, <operator>), …}),
+⋮
+]
+Example:
+
+[
+(2, {"name":
+"Balin", "points":
+(10, "+"), "bestScore":
+(67, "max")}),
+
+(3, {"name":
+"Dwalin", "points":
+(7, "+"), "bestScore":
+(35, "max")})
+
+]
+For valid values of <operator> see:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
+
+
+*Returns:*
+
+A single number of accepted (successfully upserted) vertices (0 or positive integer).
+
+
+Endpoint:
+
+POST /graph/{graph_name}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
+
 
 ### upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None,            attributes: dict = "") -> int:
-        Upserts vertices from a Pandas DataFrame.
+Upserts vertices from a Pandas DataFrame.
 
-        Args:
-            df:
-                The DataFrame to upsert.
-            vertexType:
-                The type of vertex to upsert data to.
-            v_id:
-                The field name where the vertex primary id is given. If omitted the dataframe index
-                would be used instead.
-            attributes:
-                A dictionary in the form of {target: source} where source is the column name in the
-                dataframe and target is the attribute name in the graph vertex. When omitted, all
-                columns would be upserted with their current names. In this case column names must
-                match the vertex's attribute names.
 
-        Returns:
-            The number of vertices upserted.
+*Paramters:*
+
+df:
+
+The DataFrame to upsert.
+
+vertexType:
+
+The type of vertex to upsert data to.
+
+v_id:
+
+The field name where the vertex primary id is given. If omitted the dataframe index
+would be used instead.
+
+attributes:
+
+A dictionary in the form of {target:
+source} where source is the column name in the
+
+dataframe and target is the attribute name in the graph vertex. When omitted, all
+columns would be upserted with their current names. In this case column names must
+match the vertex's attribute names.
+
+
+*Returns:*
+
+The number of vertices upserted.
+
 
 ### getVertices(vertexType: str, select: str = "", where: str = "",            limit: [int, str] = None, sort: str = "", fmt: str = "py", withId: bool = True,            withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]:
-        Retrieves vertices of the given vertex type.
+Retrieves vertices of the given vertex type.
 
-        Notes:
-            The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
-            ``select``, ``where`` or ``sort`` parameters (unless the
-            ``WITH primary_id_as_attribute`` clause was used when the vertex type was created).
-            Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            select:
-                Comma separated list of vertex attributes to be retrieved.
-            where:
-                Comma separated list of conditions that are all applied on each vertex' attributes.
-                The conditions are in logical conjunction (i.e. they are "AND'ed" together).
-            sort:
-                Comma separated list of attributes the results should be sorted by.
-                Must be used with `limit`.
-            limit:
-                Maximum number of vertex instances to be returned (after sorting).
-                Must be used with `sort`.
-            fmt:
-                Format of the results:
-                    "py":   Python objects
-                    "json": JSON document
-                    "df":   pandas DataFrame
-            withId:
-                (If the output format is "df") should the vertex ID be included in the dataframe?
-            withType:
-                (If the output format is "df") should the vertex type be included in the dataframe?
-            timeout:
-                Time allowed for successful execution (0 = no limit, default).
+Notes:
 
-        Returns:
-            The (selected) details of the (matching) vertex instances (sorted, limited) as
-            dictionary, JSON or pandas DataFrame.
+The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
+``select``, ``where`` or ``sort`` parameters (unless the
+``WITH primary_id_as_attribute`` clause was used when the vertex type was created).
 
-        Endpoint:
-            GET /graph/{graph_name}/vertices/{vertex_type}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-vertices
+Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
+
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+select:
+
+Comma separated list of vertex attributes to be retrieved.
+
+where:
+
+Comma separated list of conditions that are all applied on each vertex' attributes.
+
+The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+
+sort:
+
+Comma separated list of attributes the results should be sorted by.
+
+Must be used with `limit`.
+
+limit:
+
+Maximum number of vertex instances to be returned (after sorting).
+
+Must be used with `sort`.
+
+fmt:
+
+Format of the results:
+
+"py":
+Python objects
+
+"json":
+JSON document
+
+"df":
+pandas DataFrame
+
+withId:
+
+(If the output format is "df") should the vertex ID be included in the dataframe?
+withType:
+
+(If the output format is "df") should the vertex type be included in the dataframe?
+timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+The (selected) details of the (matching) vertex instances (sorted, limited) as
+dictionary, JSON or pandas DataFrame.
+
+
+Endpoint:
+
+GET /graph/{graph_name}/vertices/{vertex_type}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-vertices
+
 
 ### getVertexDataframe(vertexType: str, select: str = "", where: str = "",            limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame:
-        Retrieves vertices of the given vertex type and returns them as pandas DataFrame.
+Retrieves vertices of the given vertex type and returns them as pandas DataFrame.
 
-        This is a shortcut to ``getVertices(..., fmt="df", withId=True, withType=False)``.
 
-        Notes:
-            The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
-            ``select``, ``where`` or ``sort`` parameters (unless the
-            ``WITH primary_id_as_attribute`` clause was used when the vertex type was created).
-            Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
+This is a shortcut to ``getVertices(..., fmt="df", withId=True, withType=False)``.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            select:
-                Comma separated list of vertex attributes to be retrieved.
-            where:
-                Comma separated list of conditions that are all applied on each vertex' attributes.
-                The conditions are in logical conjunction (i.e. they are "AND'ed" together).
-            sort:
-                Comma separated list of attributes the results should be sorted by.
-                Must be used with 'limit'.
-            limit:
-                Maximum number of vertex instances to be returned (after sorting).
-                Must be used with `sort`.
-            timeout:
-                Time allowed for successful execution (0 = no limit, default).
 
-        Returns:
-            The (selected) details of the (matching) vertex instances (sorted, limited) as pandas
-            DataFrame.
+Notes:
+
+The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
+``select``, ``where`` or ``sort`` parameters (unless the
+``WITH primary_id_as_attribute`` clause was used when the vertex type was created).
+
+Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
+
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+select:
+
+Comma separated list of vertex attributes to be retrieved.
+
+where:
+
+Comma separated list of conditions that are all applied on each vertex' attributes.
+
+The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+
+sort:
+
+Comma separated list of attributes the results should be sorted by.
+
+Must be used with 'limit'.
+
+limit:
+
+Maximum number of vertex instances to be returned (after sorting).
+
+Must be used with `sort`.
+
+timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+The (selected) details of the (matching) vertex instances (sorted, limited) as pandas
+DataFrame.
+
 
 ### getVerticesById(vertexType: str, vertexIds: [int, str, list], select: str = "",            fmt: str = "py", withId: bool = True, withType: bool = False,            timeout: int = 0) -> [dict, str, pd.DataFrame]:
-        Retrieves vertices of the given vertex type, identified by their ID.
+Retrieves vertices of the given vertex type, identified by their ID.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            vertexIds:
-                A single vertex ID or a list of vertex IDs.
-            select:
-                Comma separated list of vertex attributes to be retrieved.
-            fmt:
-                Format of the results:
-                    "py":   Python objects
-                    "json": JSON document
-                    "df":   pandas DataFrame
-            withId:
-                (If the output format is "df") should the vertex ID be included in the dataframe?
-            withType:
-                (If the output format is "df") should the vertex type be included in the dataframe?
-            timeout:
-                Time allowed for successful execution (0 = no limit, default).
 
-        Returns:
-            The (selected) details of the (matching) vertex instances as dictionary, JSON or pandas
-            DataFrame.
+*Paramters:*
 
-        Endpoint:
-            GET /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#retrieve-a-vertex
+vertexType:
+
+The name of the vertex type.
+
+vertexIds:
+
+A single vertex ID or a list of vertex IDs.
+
+select:
+
+Comma separated list of vertex attributes to be retrieved.
+
+fmt:
+
+Format of the results:
+
+"py":
+Python objects
+
+"json":
+JSON document
+
+"df":
+pandas DataFrame
+
+withId:
+
+(If the output format is "df") should the vertex ID be included in the dataframe?
+withType:
+
+(If the output format is "df") should the vertex type be included in the dataframe?
+timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+The (selected) details of the (matching) vertex instances as dictionary, JSON or pandas
+DataFrame.
+
+
+Endpoint:
+
+GET /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#retrieve-a-vertex
+
 
 ### getVertexDataframeById(vertexType: str, vertexIds: [int, str, list],            select: str = "") -> pd.DataFrame:
-        Retrieves vertices of the given vertex type, identified by their ID.
+Retrieves vertices of the given vertex type, identified by their ID.
 
-        This is a shortcut to ``getVerticesById(..., fmt="df", withId=True, withType=False)``.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            vertexIds:
-                A single vertex ID or a list of vertex IDs.
-            select:
-                Comma separated list of vertex attributes to be retrieved.
+This is a shortcut to ``getVerticesById(..., fmt="df", withId=True, withType=False)``.
 
-        Returns:
-            The (selected) details of the (matching) vertex instances as pandas DataFrame.
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+vertexIds:
+
+A single vertex ID or a list of vertex IDs.
+
+select:
+
+Comma separated list of vertex attributes to be retrieved.
+
+
+*Returns:*
+
+The (selected) details of the (matching) vertex instances as pandas DataFrame.
+
 
 ### getVertexStats(vertexTypes: [str, list], skipNA: bool = False) -> dict:
-        Returns vertex attribute statistics.
+Returns vertex attribute statistics.
 
-        Args:
-            vertexTypes:
-                A single vertex type name or a list of vertex types names or "*" for all vertex
-                types.
-            skipNA:
-                Skip those non-applicable vertices that do not have attributes or none of their
-                attributes have statistics gathered.
 
-        Returns:
-            A dictionary of various vertex stats for each vertex type specified.
+*Paramters:*
 
-        Endpoint:
-            POST /builtins/{graph_name}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
+vertexTypes:
+
+A single vertex type name or a list of vertex types names or "*" for all vertex
+types.
+
+skipNA:
+
+Skip those non-applicable vertices that do not have attributes or none of their
+attributes have statistics gathered.
+
+
+*Returns:*
+
+A dictionary of various vertex stats for each vertex type specified.
+
+
+Endpoint:
+
+POST /builtins/{graph_name}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
+
 
 ### delVertices(vertexType: str, where: str = "", limit: str = "", sort: str = "",            permanent: bool = False, timeout: int = 0) -> int:
-        Deletes vertices from graph.
+Deletes vertices from graph.
 
-        Notes:
-            The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
-            ``where`` or ``sort`` parameters (unless the ``WITH primary_id_as_attribute`` clause was
-            used when the vertex type was created).
-            Use ``delVerticesById`` if you need to delete by vertex ID.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            where:
-                Comma separated list of conditions that are all applied on each vertex' attributes.
-                The conditions are in logical conjunction (i.e. they are "AND'ed" together).
-            sort:
-                Comma separated list of attributes the results should be sorted by.
-                Must be used with `limit`.
-            limit:
-                Maximum number of vertex instances to be returned (after sorting).
-                Must be used with `sort`.
-            permanent:
-                If true, the deleted vertex IDs can never be inserted back, unless the graph is
-                dropped or the graph store is cleared.
-           timeout:
-                Time allowed for successful execution (0 = no limit, default).
+Notes:
 
-        Returns:
-             A single number of vertices deleted.
+The primary ID of a vertex instance is NOT an attribute, thus cannot be used in
+``where`` or ``sort`` parameters (unless the ``WITH primary_id_as_attribute`` clause was
+used when the vertex type was created).
 
-        The primary ID of a vertex instance is NOT an attribute, thus cannot be used in above
-            arguments.
+Use ``delVerticesById`` if you need to delete by vertex ID.
 
-        Endpoint:
-            DELETE /graph/{graph_name}/vertices/{vertex_type}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-vertices
+
+*Paramters:*
+
+vertexType:
+
+The name of the vertex type.
+
+where:
+
+Comma separated list of conditions that are all applied on each vertex' attributes.
+
+The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+
+sort:
+
+Comma separated list of attributes the results should be sorted by.
+
+Must be used with `limit`.
+
+limit:
+
+Maximum number of vertex instances to be returned (after sorting).
+
+Must be used with `sort`.
+
+permanent:
+
+If true, the deleted vertex IDs can never be inserted back, unless the graph is
+dropped or the graph store is cleared.
+
+ timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+ A single number of vertices deleted.
+
+
+The primary ID of a vertex instance is NOT an attribute, thus cannot be used in above
+arguments.
+
+
+Endpoint:
+
+DELETE /graph/{graph_name}/vertices/{vertex_type}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-vertices
+
 
 ### delVerticesById(vertexType: str, vertexIds: [int, str, list], permanent: bool = False,            timeout: int = 0) -> int:
-        Deletes vertices from graph identified by their ID.
+Deletes vertices from graph identified by their ID.
 
-        Args:
-            vertexType:
-                The name of the vertex type.
-            vertexIds:
-                A single vertex ID or a list of vertex IDs.
-            permanent:
-                If true, the deleted vertex IDs can never be inserted back, unless the graph is
-                dropped or the graph store is cleared.
-            timeout:
-                Time allowed for successful execution (0 = no limit, default).
 
-        Returns:
-            A single number of vertices deleted.
+*Paramters:*
 
-        Endpoint:
-            DELETE /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}
-        Documentation:
-            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-a-vertex
+vertexType:
+
+The name of the vertex type.
+
+vertexIds:
+
+A single vertex ID or a list of vertex IDs.
+
+permanent:
+
+If true, the deleted vertex IDs can never be inserted back, unless the graph is
+dropped or the graph store is cleared.
+
+timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+A single number of vertices deleted.
+
+
+Endpoint:
+
+DELETE /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-a-vertex
+
 
 ### delVerticesByType(vertexType: str, permanent: bool = False):    # TODO Implementation    def vertexSetToDataFrame(self, vertexSet: list, withId: bool = True,            withType: bool = False) -> pd.DataFrame:
-        Converts a vertex set to Pandas DataFrame.
+Converts a vertex set to Pandas DataFrame.
 
-        Vertex sets are used for both the input and output of ``SELECT`` statements. They contain
-        instances of vertices of the same type.
-        For each vertex instance the vertex ID, the vertex type and the (optional) attributes are
-        present (under ``v_id``, ``v_type`` and ``attributes`` keys, respectively).
-        See an example in ``edgeSetToDataFrame()``.
 
-        A vertex set has this structure (when serialised as JSON):
+Vertex sets are used for both the input and output of ``SELECT`` statements. They contain
+instances of vertices of the same type.
 
-        [
-            {
-                "v_id": <vertex_id>,
-                "v_type": <vertex_type_name>,
-                "attributes":
-                    {
-                        "attr1": <value1>,
-                        "attr2": <value2>,
-                         ⋮
-                    }
-            },
-                ⋮
-        ]
+For each vertex instance the vertex ID, the vertex type and the (optional) attributes are
+present (under ``v_id``, ``v_type`` and ``attributes`` keys, respectively).
 
-        Documentation:
-            https://docs.tigergraph.com/gsql-ref/current/querying/declaration-and-assignment-statements#_vertex_set_variables
-            https://docs.tigergraph.com/gsql-ref/current/querying/output-statements-and-file-objects#_examples_of_printing_various_data_types
+See an example in ``edgeSetToDataFrame()``.
 
-        Args:
-            vertexSet:
-                A JSON array containing a vertex set in the format returned by queries (see below).
-            withId:
-                Include vertex primary ID as a column?
-            withType:
-                Include vertex type info as a column?
 
-        Returns:
-            A pandas DataFrame containing the vertex attributes (and optionally the vertex primary
-            ID and type).
+A vertex set has this structure (when serialised as JSON):
+
+
+[
+{
+"v_id":
+<vertex_id>,
+
+"v_type":
+<vertex_type_name>,
+
+"attributes":
+
+{
+"attr1":
+<value1>,
+
+"attr2":
+<value2>,
+
+ ⋮
+}
+},
+⋮
+]
+
+Documentation:
+
+https://docs.tigergraph.com/gsql-ref/current/querying/declaration-and-assignment-statements#_vertex_set_variables
+
+https://docs.tigergraph.com/gsql-ref/current/querying/output-statements-and-file-objects#_examples_of_printing_various_data_types
+
+
+*Paramters:*
+
+vertexSet:
+
+A JSON array containing a vertex set in the format returned by queries (see below).
+
+withId:
+
+Include vertex primary ID as a column?
+withType:
+
+Include vertex type info as a column?
+
+*Returns:*
+
+A pandas DataFrame containing the vertex attributes (and optionally the vertex primary
+ID and type).
+
 

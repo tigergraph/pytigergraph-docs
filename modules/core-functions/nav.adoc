@@ -2,3 +2,4 @@
 ** xref:vertex.adoc[]
 ** xref:edge.adoc[]
 ** xref:schema.adoc[]
+** xref: query.adoc[]
