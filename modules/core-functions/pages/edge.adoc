@@ -637,7 +637,73 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
 
 
-### delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,            targetVertexType: str = None, targetVertexId: str = None, where: str = "",            limit: str = "", sort: str = "", timeout: int = 0):        """Deletes edges from the graph.        Only ``sourceVertexType`` and ``sourceVertexId`` are required.        If ``targetVertexId`` is specified, then ``targetVertexType`` must also be specified.        If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.        Args:            sourceVertexType:                The name of the source vertex type.            sourceVertexId:                The primary ID value of the source vertex instance.            edgeType:                The name of the edge type.            targetVertexType:                The name of the target vertex type.            targetVertexId:                The primary ID value of the target vertex instance.            where:                Comma separated list of conditions that are all applied on each edge's attributes.                The conditions are in logical conjunction (i.e. they are "AND'ed" together).            limit:                Maximum number of edge instances to be returned (after sorting).            sort:                Comma separated list of attributes the results should be sorted by.            timeout:                Time allowed for successful execution (0 = no limit, default).        Returns:             A dictionary of <edge_type>: <deleted_edge_count> pairs.        Endpoint:            DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}        Documentation:            https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge        """        if not sourceVertexType or not sourceVertexId:            raise TigerGraphException("Both sourceVertexType and sourceVertexId must be provided.",                None)        url = self.restppUrl + "/graph/" + self.graphname + "/edges/" + sourceVertexType + "/" + str(            sourceVertexId)        if edgeType:            url += "/" + edgeType            if targetVertexType:                url += "/" + targetVertexType                if targetVertexId:                    url += "/" + str(targetVertexId)        isFirst = True        if where:            url += ("?" if isFirst else "&") + "filter=" + where            isFirst = False        if limit and sort:  # These two must be provided together            url += ("?" if isFirst else "&") + "limit=" + str(limit) + "&sort=" + sort            isFirst = False        if timeout and timeout > 0:            url += ("?" if isFirst else "&") + "timeout=" + str(timeout)        res = self._delete(url)        ret = {}        for r in res:            ret[r["e_type"]] = r["deleted_edges"]        return ret    def edgeSetToDataFrame(self, edgeSet: list, withId: bool = True,            withType: bool = False) -> pd.DataFrame:
+### delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,            targetVertexType: str = None, targetVertexId: str = None, where: str = "",            limit: str = "", sort: str = "", timeout: int = 0) -> dict:
+Deletes edges from the graph.
+
+
+Only ``sourceVertexType`` and ``sourceVertexId`` are required.
+
+If ``targetVertexId`` is specified, then ``targetVertexType`` must also be specified.
+
+If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
+
+
+*Paramters:*
+
+sourceVertexType:
+
+The name of the source vertex type.
+
+sourceVertexId:
+
+The primary ID value of the source vertex instance.
+
+edgeType:
+
+The name of the edge type.
+
+targetVertexType:
+
+The name of the target vertex type.
+
+targetVertexId:
+
+The primary ID value of the target vertex instance.
+
+where:
+
+Comma separated list of conditions that are all applied on each edge's attributes.
+
+The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+
+limit:
+
+Maximum number of edge instances to be returned (after sorting).
+
+sort:
+
+Comma separated list of attributes the results should be sorted by.
+
+timeout:
+
+Time allowed for successful execution (0 = no limit, default).
+
+
+*Returns:*
+
+ A dictionary of <edge_type>:
+<deleted_edge_count> pairs.
+
+
+Endpoint:
+
+DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}
+Documentation:
+
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge
+
+
+### edgeSetToDataFrame(edgeSet: list, withId: bool = True,            withType: bool = False) -> pd.DataFrame:
 Converts an edge set to Pandas DataFrame
 
 Edge sets contain instances of the same edge type. Edge sets are not generated "naturally"
