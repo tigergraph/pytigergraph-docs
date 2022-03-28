@@ -1,8 +1,8 @@
 = Query Functions
 
-### getInstalledQueries(fmt: str = "py") -> [dict, json, pd.DataFrame]:
+## getInstalledQueries(fmt: str = "py") -> [dict, json, pd.DataFrame]:
 
-### runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None,sizeLimit: int = None, usePost: bool = False) -> list:
+## runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None,sizeLimit: int = None, usePost: bool = False) -> list:
 Runs an installed query.
 
 
@@ -12,7 +12,7 @@ Use ``getEndpoints(dynamic=True)`` or GraphStudio to find out the generated endp
 the query, but only the query name needs to be specified here.
 
 
-#### Parameters:
+### Parameters:
 
 queryName:
 The name of the query to be executed.
@@ -36,7 +36,7 @@ The RESTPP accepts a maximum URL length of 8192 characters. Use POST if params c
 you to exceed this limit.
 
 
-#### Returns:
+### Returns:
 
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
@@ -58,7 +58,7 @@ TODO Specify replica: GSQL-REPLICA
 TODO Specify thread limit: GSQL-THREAD-LIMIT
 TODO Detached mode
 
-### runInterpretedQuery(queryText: str, params: [str, dict] = None) -> list:
+## runInterpretedQuery(queryText: str, params: [str, dict] = None) -> list:
 Runs an interpreted query.
 
 
@@ -66,7 +66,7 @@ Use ``@graphname@`` in the ``FOR GRAPH`` clause to avoid hard-coding it; it will
 by the actual graph name.
 
 
-#### Parameters:
+### Parameters:
 
 queryText:
 The text of the GSQL query:
@@ -84,12 +84,12 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-an-interpreted-query
 
 
-### parseQueryOutput(output: list, graphOnly: bool = True) -> dict:
+## parseQueryOutput(output: list, graphOnly: bool = True) -> dict:
 Parses query output and separates vertex and edge data (and optionally other output) for
 easier use.
 
 
-#### Parameters:
+### Parameters:
 
 output:
 The data structure returned by `runInstalledQuery()` or `runInterpretedQuery()`.
@@ -101,7 +101,7 @@ other output (e.g. values of variables or accumulators, or plain text printed) b
 captured as well.
 
 
-#### Returns:
+### Returns:
 
 A dictionary with two (or three) keys: "vertices", "edges" and optionally "output".
 
@@ -128,11 +128,11 @@ The output of this function can be used e.g. with the `vertexSetToDataFrame()` a
 visualisation component.
 
 
-### getStatistics(seconds: int = 10, segments: int = 10) -> dict:
+## getStatistics(seconds: int = 10, segments: int = 10) -> dict:
 Retrieves real-time query performance statistics over the given time period.
 
 
-#### Parameters:
+### Parameters:
 
 seconds:
 The duration of statistic collection period (the last n seconds before the function
