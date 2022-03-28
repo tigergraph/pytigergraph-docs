@@ -1,8 +1,12 @@
 = Query Functions
 
-## getInstalledQueries(fmt: str = "py") -> [dict, json, pd.DataFrame]:
+## getInstalledQueries
+``getInstalledQueries(fmt: str = "py") -> [dict, json, pd.DataFrame]``
 
-## runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None,sizeLimit: int = None, usePost: bool = False) -> list:
+
+## runInstalledQuery
+``runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None,sizeLimit: int = None, usePost: bool = False) -> list``
+
 Runs an installed query.
 
 
@@ -63,7 +67,9 @@ TODO Specify replica: GSQL-REPLICA
 TODO Specify thread limit: GSQL-THREAD-LIMIT
 TODO Detached mode
 
-## runInterpretedQuery(queryText: str, params: [str, dict] = None) -> list:
+## runInterpretedQuery
+``runInterpretedQuery(queryText: str, params: [str, dict] = None) -> list``
+
 Runs an interpreted query.
 
 
@@ -95,7 +101,9 @@ POST /gsqlserver/interpreted_query
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-an-interpreted-query
 
 
-## parseQueryOutput(output: list, graphOnly: bool = True) -> dict:
+## parseQueryOutput
+``parseQueryOutput(output: list, graphOnly: bool = True) -> dict``
+
 Parses query output and separates vertex and edge data (and optionally other output) for
 easier use.
 
@@ -141,7 +149,9 @@ The output of this function can be used e.g. with the `vertexSetToDataFrame()` a
 visualisation component.
 
 
-## getStatistics(seconds: int = 10, segments: int = 10) -> dict:
+## getStatistics
+``getStatistics(seconds: int = 10, segments: int = 10) -> dict``
+
 Retrieves real-time query performance statistics over the given time period.
 
 

@@ -1,6 +1,8 @@
 = Vertex Functions
 
-## getVertexTypes(force: bool = False) -> list:
+## getVertexTypes
+``getVertexTypes(force: bool = False) -> list``
+
 Returns the list of vertex type names of the graph.
 
 
@@ -17,7 +19,9 @@ cached copy of vertex type details (if they were already fetched previously).
 The list of vertex types defined in the the current graph.
 
 
-## getVertexType(vertexType: str, force: bool = False) -> dict:
+## getVertexType
+``getVertexType(vertexType: str, force: bool = False) -> dict``
+
 Returns the details of the specified vertex type.
 
 
@@ -38,7 +42,9 @@ cached copy of vertex type details (if they were already fetched previously).
 The metadata of the vertex type.
 
 
-## getVertexCount(vertexType: str, where: str = "") -> dict:
+## getVertexCount
+``getVertexCount(vertexType: str, where: str = "") -> dict``
+
 Returns the number of vertices of the specified type.
 
 
@@ -85,7 +91,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
 
 
-## upsertVertex(vertexType: str, vertexId: str, attributes: dict = None) -> int:
+## upsertVertex
+``upsertVertex(vertexType: str, vertexId: str, attributes: dict = None) -> int``
+
 Upserts a vertex.
 
 
@@ -130,7 +138,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-## upsertVertices(vertexType: str, vertices: list) -> int:
+## upsertVertices
+``upsertVertices(vertexType: str, vertices: list) -> int``
+
 Upserts multiple vertices (of the same type).
 
 
@@ -174,7 +184,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-## upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None,attributes: dict = "") -> int:
+## upsertVertexDataFrame
+``upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None,attributes: dict = "") -> int``
+
 Upserts vertices from a Pandas DataFrame.
 
 
@@ -209,7 +221,9 @@ match the vertex's attribute names.
 The number of vertices upserted.
 
 
-## getVertices(vertexType: str, select: str = "", where: str = "",limit: [int, str] = None, sort: str = "", fmt: str = "py", withId: bool = True,withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]:
+## getVertices
+``getVertices(vertexType: str, select: str = "", where: str = "",limit: [int, str] = None, sort: str = "", fmt: str = "py", withId: bool = True,withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]``
+
 Retrieves vertices of the given vertex type.
 
 
@@ -279,7 +293,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-vertices
 
 
-## getVertexDataframe(vertexType: str, select: str = "", where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame:
+## getVertexDataframe
+``getVertexDataframe(vertexType: str, select: str = "", where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame``
+
 Retrieves vertices of the given vertex type and returns them as pandas DataFrame.
 
 
@@ -333,7 +349,9 @@ The (selected) details of the (matching) vertex instances (sorted, limited) as p
 DataFrame.
 
 
-## getVerticesById(vertexType: str, vertexIds: [int, str, list], select: str = "",fmt: str = "py", withId: bool = True, withType: bool = False,timeout: int = 0) -> [dict, str, pd.DataFrame]:
+## getVerticesById
+``getVerticesById(vertexType: str, vertexIds: [int, str, list], select: str = "",fmt: str = "py", withId: bool = True, withType: bool = False,timeout: int = 0) -> [dict, str, pd.DataFrame]``
+
 Retrieves vertices of the given vertex type, identified by their ID.
 
 
@@ -381,7 +399,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#retrieve-a-vertex
 
 
-## getVertexDataframeById(vertexType: str, vertexIds: [int, str, list],select: str = "") -> pd.DataFrame:
+## getVertexDataframeById
+``getVertexDataframeById(vertexType: str, vertexIds: [int, str, list],select: str = "") -> pd.DataFrame``
+
 Retrieves vertices of the given vertex type, identified by their ID.
 
 
@@ -408,7 +428,9 @@ Comma separated list of vertex attributes to be retrieved.
 The (selected) details of the (matching) vertex instances as pandas DataFrame.
 
 
-## getVertexStats(vertexTypes: [str, list], skipNA: bool = False) -> dict:
+## getVertexStats
+``getVertexStats(vertexTypes: [str, list], skipNA: bool = False) -> dict``
+
 Returns vertex attribute statistics.
 
 
@@ -436,7 +458,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
 
 
-## delVertices(vertexType: str, where: str = "", limit: str = "", sort: str = "",permanent: bool = False, timeout: int = 0) -> int:
+## delVertices
+``delVertices(vertexType: str, where: str = "", limit: str = "", sort: str = "",permanent: bool = False, timeout: int = 0) -> int``
+
 Deletes vertices from graph.
 
 
@@ -497,7 +521,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-vertices
 
 
-## delVerticesById(vertexType: str, vertexIds: [int, str, list], permanent: bool = False,timeout: int = 0) -> int:
+## delVerticesById
+``delVerticesById(vertexType: str, vertexIds: [int, str, list], permanent: bool = False,timeout: int = 0) -> int``
+
 Deletes vertices from graph identified by their ID.
 
 
@@ -532,7 +558,9 @@ Documentation:
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-a-vertex
 
 
-## delVerticesByType(vertexType: str, permanent: bool = False):# TODO Implementationdef vertexSetToDataFrame(self, vertexSet: list, withId: bool = True,withType: bool = False) -> pd.DataFrame:
+## delVerticesByType
+``delVerticesByType(vertexType: str, permanent: bool = False):# TODO Implementationdef vertexSetToDataFrame(self, vertexSet: list, withId: bool = True,withType: bool = False) -> pd.DataFrame``
+
 Converts a vertex set to Pandas DataFrame.
 
 
