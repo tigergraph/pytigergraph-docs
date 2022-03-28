@@ -1,0 +1,111 @@
+= Path Functions
+
+## shortestPath
+``shortestPath(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list],maxLength: int = None, vertexFilters: [list, dict] = None,edgeFilters: [list, dict] = None, allShortestPaths: bool = False) -> dict``
+
+Find the shortest path (or all shortest paths) between the source and target vertex sets.
+
+
+See:
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_input_parameters_and_output_format_for_path_finding
+
+
+A vertex set is a dict that has three top-level keys: v_type, v_id, attributes (a dict).
+
+
+#### Parameters:
+
+``sourceVertices``:
+
+A vertex set (a list of vertices) or a list of (vertexType, vertexID) tuples;
+the source vertices of the shortest paths sought.
+
+``targetVertices``:
+
+A vertex set (a list of vertices) or a list of (vertexType, vertexID) tuples;
+the target vertices of the shortest paths sought.
+
+``maxLength``:
+
+The maximum length of a shortest path. Optional, default is 6.
+
+``vertexFilters``:
+
+An optional list of (vertexType, condition) tuples or
+{"type": <str>, "condition": <str>} dictionaries.
+
+``edgeFilters``:
+
+An optional list of (edgeType, condition) tuples or
+{"type": <str>, "condition": <str>} dictionaries.
+
+``allShortestPaths``:
+
+If true, the endpoint will return all shortest paths between the source and target.
+
+Default is false, meaning that the endpoint will return only one path.
+
+
+#### Returns:
+
+The shortest path between the source and the target.
+
+
+Endpoint:
+POST /shortestpath/{graphName}
+Documentation:
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_shortest_path
+
+
+## allPaths
+``allPaths(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list],maxLength: int, vertexFilters: [list, dict] = None,edgeFilters: [list, dict] = None) -> dict``
+
+Find all possible paths up to a given maximum path length between the source and target
+vertex sets.
+
+
+See:
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_input_parameters_and_output_format_for_path_finding
+
+
+A vertex set is a dict that has three top-level keys: v_type, v_id, attributes (a dict).
+
+
+#### Parameters:
+
+``sourceVertices``:
+
+A vertex set (a list of vertices) or a list of (vertexType, vertexID) tuples;
+the source vertices of the shortest paths sought.
+
+``targetVertices``:
+
+A vertex set (a list of vertices) or a list of (vertexType, vertexID) tuples;
+the target vertices of the shortest paths sought.
+
+``maxLength``:
+
+The maximum length of the paths.
+
+``vertexFilters``:
+
+An optional list of (vertexType, condition) tuples or
+{"type": <str>, "condition": <str>} dictionaries.
+
+``edgeFilters``:
+
+An optional list of (edgeType, condition) tuples or
+{"type": <str>, "condition": <str>} dictionaries.
+
+
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#input-parameters-and-output-format-for-path-finding for information on filters.
+
+
+``Endpoint``:
+
+POST /allpaths/{graphName}
+``Documentation``:
+
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_all_paths
+
+

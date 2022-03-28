@@ -8,7 +8,7 @@ Returns the list of vertex type names of the graph.
 
 #### Parameters:
 
-``force:``
+``force``:
 
 If `True`, forces the retrieval the schema metadata again, otherwise returns a
 cached copy of vertex type details (if they were already fetched previously).
@@ -27,11 +27,11 @@ Returns the details of the specified vertex type.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of of the vertex type.
 
-``force:``
+``force``:
 
 If `True`, forces the retrieval the schema metadata again, otherwise returns a
 cached copy of vertex type details (if they were already fetched previously).
@@ -60,11 +60,11 @@ filtered by ``where`` condition(s).
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``where:``
+``where``:
 
 A comma separated list of conditions that are all applied on each vertex's
 attributes. The conditions are in logical conjunction (i.e. they are "AND'ed"
@@ -106,23 +106,23 @@ the request. An optional operator controls how the attributes are updated.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``vertexId:``
+``vertexId``:
 
 The primary ID of the vertex to be upserted.
 
-``attributes:``
+``attributes``:
 
-``The attributes of the vertex to be upserted; a dictionary in this format:``
+``The attributes of the vertex to be upserted; a dictionary in this format``:
 
 {<attribute_name>: <attribute_value>|(<attribute_name>, <operator>), …}
-``Example:``
+``Example``:
 
 {"name": "Thorin", points: (10, "+"), "bestScore": (67, "max")}
-``For valid values of <operator> see:``
+``For valid values of <operator> see``:
 
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
 
@@ -149,26 +149,26 @@ See the description of ``upsertVertex`` for generic information.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``vertices:``
+``vertices``:
 
-``A list of tuples in this format:``
+``A list of tuples in this format``:
 
 [
 (<vertex_id>, {<attribute_name>, <attribute_value>, …}),
 (<vertex_id>, {<attribute_name>, (<attribute_name>, <operator>), …}),
 ⋮
 ]
-``Example:``
+``Example``:
 
 [
 (2, {"name": "Balin", "points": (10, "+"), "bestScore": (67, "max")}),
 (3, {"name": "Dwalin", "points": (7, "+"), "bestScore": (35, "max")})
 ]
-``For valid values of <operator> see:``
+``For valid values of <operator> see``:
 
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
 
@@ -192,21 +192,21 @@ Upserts vertices from a Pandas DataFrame.
 
 #### Parameters:
 
-``df:``
+``df``:
 
 The DataFrame to upsert.
 
-``vertexType:``
+``vertexType``:
 
 The type of vertex to upsert data to.
 
-``v_id:``
+``v_id``:
 
 The field name where the vertex primary id is given. If omitted the dataframe index
 
 would be used instead.
 
-``attributes:``
+``attributes``:
 
 A dictionary in the form of {target: source} where source is the column name in the
 dataframe and target is the attribute name in the graph vertex. When omitted, all
@@ -237,46 +237,46 @@ Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``select:``
+``select``:
 
 Comma separated list of vertex attributes to be retrieved.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each vertex' attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
 Must be used with `limit`.
 
-``limit:``
+``limit``:
 
 Maximum number of vertex instances to be returned (after sorting).
 
 Must be used with `sort`.
 
-``fmt:``
+``fmt``:
 
-``Format of the results:``
+``Format of the results``:
 
 "py": Python objects
 "json": JSON document
 "df": pandas DataFrame
-``withId:``
+``withId``:
 
 (If the output format is "df") should the vertex ID be included in the dataframe?
-``withType:``
+``withType``:
 
 (If the output format is "df") should the vertex type be included in the dataframe?
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -312,33 +312,33 @@ Use ``getVerticesById()`` if you need to retrieve vertices by their primary ID.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``select:``
+``select``:
 
 Comma separated list of vertex attributes to be retrieved.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each vertex' attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
 Must be used with 'limit'.
 
-``limit:``
+``limit``:
 
 Maximum number of vertex instances to be returned (after sorting).
 
 Must be used with `sort`.
 
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -357,32 +357,32 @@ Retrieves vertices of the given vertex type, identified by their ID.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``vertexIds:``
+``vertexIds``:
 
 A single vertex ID or a list of vertex IDs.
 
-``select:``
+``select``:
 
 Comma separated list of vertex attributes to be retrieved.
 
-``fmt:``
+``fmt``:
 
-``Format of the results:``
+``Format of the results``:
 
 "py": Python objects
 "json": JSON document
 "df": pandas DataFrame
-``withId:``
+``withId``:
 
 (If the output format is "df") should the vertex ID be included in the dataframe?
-``withType:``
+``withType``:
 
 (If the output format is "df") should the vertex type be included in the dataframe?
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -410,15 +410,15 @@ This is a shortcut to ``getVerticesById(..., fmt="df", withId=True, withType=Fal
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``vertexIds:``
+``vertexIds``:
 
 A single vertex ID or a list of vertex IDs.
 
-``select:``
+``select``:
 
 Comma separated list of vertex attributes to be retrieved.
 
@@ -436,12 +436,12 @@ Returns vertex attribute statistics.
 
 #### Parameters:
 
-``vertexTypes:``
+``vertexTypes``:
 
 A single vertex type name or a list of vertex types names or "*" for all vertex
 types.
 
-``skipNA:``
+``skipNA``:
 
 Skip those non-applicable vertices that do not have attributes or none of their
 attributes have statistics gathered.
@@ -474,34 +474,34 @@ Use ``delVerticesById`` if you need to delete by vertex ID.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each vertex' attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
 Must be used with `limit`.
 
-``limit:``
+``limit``:
 
 Maximum number of vertex instances to be returned (after sorting).
 
 Must be used with `sort`.
 
-``permanent:``
+``permanent``:
 
 If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
 
-`` timeout:``
+`` timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -529,20 +529,20 @@ Deletes vertices from graph identified by their ID.
 
 #### Parameters:
 
-``vertexType:``
+``vertexType``:
 
 The name of the vertex type.
 
-``vertexIds:``
+``vertexIds``:
 
 A single vertex ID or a list of vertex IDs.
 
-``permanent:``
+``permanent``:
 
 If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
 
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -598,14 +598,14 @@ https://docs.tigergraph.com/gsql-ref/current/querying/output-statements-and-file
 
 #### Parameters:
 
-``vertexSet:``
+``vertexSet``:
 
 A JSON array containing a vertex set in the format returned by queries (see below).
 
-``withId:``
+``withId``:
 
 Include vertex primary ID as a column?
-``withType:``
+``withType``:
 
 Include vertex type info as a column?
 

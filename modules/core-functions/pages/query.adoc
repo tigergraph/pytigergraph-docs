@@ -18,27 +18,27 @@ the query, but only the query name needs to be specified here.
 
 #### Parameters:
 
-``queryName:``
+``queryName``:
 
 The name of the query to be executed.
 
-``params:``
+``params``:
 
 Query parameters. A string of param1=value1&param2=value2 format or a dictionary.
 
-``timeout:``
+``timeout``:
 
 Maximum duration for successful query execution (in milliseconds).
 
 See: https://docs.tigergraph.com/dev/restpp-api/intro#gsql-query-timeout
 
-``sizeLimit:``
+``sizeLimit``:
 
 Maximum size of response (in bytes).
 
 See: https://docs.tigergraph.com/dev/restpp-api/intro#response-size
 
-``usePost:``
+``usePost``:
 
 The RESTPP accepts a maximum URL length of 8192 characters. Use POST if params cause
 
@@ -79,24 +79,24 @@ by the actual graph name.
 
 #### Parameters:
 
-``queryText:``
+``queryText``:
 
-``The text of the GSQL query:``
+``The text of the GSQL query``:
 
-``You must provide the query text in this format:``
+``You must provide the query text in this format``:
 
 INTERPRET QUERY (<params>) FOR GRAPH <graph_name> {
 <statements>
 }
-``params:``
+``params``:
 
 A string of param1=value1&param2=value2 format or a dictionary.
 
 
-``Endpoint:``
+``Endpoint``:
 
 POST /gsqlserver/interpreted_query
-``Documentation:``
+``Documentation``:
 
 https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-an-interpreted-query
 
@@ -110,11 +110,11 @@ easier use.
 
 #### Parameters:
 
-``output:``
+``output``:
 
 The data structure returned by `runInstalledQuery()` or `runInterpretedQuery()`.
 
-``graphOnly:``
+``graphOnly``:
 
 Should output be restricted to vertices and edges (True, default) or should any
 other output (e.g. values of variables or accumulators, or plain text printed) be
@@ -157,12 +157,12 @@ Retrieves real-time query performance statistics over the given time period.
 
 #### Parameters:
 
-``seconds:``
+``seconds``:
 
 The duration of statistic collection period (the last n seconds before the function
 call).
 
-``segments:``
+``segments``:
 
 The number of segments of the latency distribution (shown in results as
 LatencyPercentile). By default, segments is 10, meaning the percentile range 0-100%
@@ -172,10 +172,10 @@ will be divided into ten equal segments: 0%-10%, 11%-20%, etc.
 Segments must be [1, 100].
 
 
-``Endpoint:``
+``Endpoint``:
 
 GET /statistics/{graph_name}
-``Documentation:``
+``Documentation``:
 
 https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_query_performance
 

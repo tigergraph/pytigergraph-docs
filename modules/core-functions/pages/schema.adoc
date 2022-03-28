@@ -1,0 +1,89 @@
+= Schema Functions
+
+## getSchema
+``getSchema(udts: bool = True, force: bool = False) -> dict``
+
+Retrieves the schema metadata (of all vertex and edge type and – if not disabled – the
+User Defined Type details) of the graph.
+
+
+#### Parameters:
+
+``udts``:
+
+If `True`, calls `_getUDTs()`, i.e. includes User Defined Types in the schema
+
+details.
+
+``force``:
+
+If `True`, retrieves the schema metadata again, otherwise returns a cached copy of
+the schema metadata (if they were already fetched previously).
+
+
+#### Returns:
+
+The schema metadata.
+
+
+Endpoint:
+GET /gsqlserver/gsql/schema
+Documentation:
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#show-graph-schema-metadata
+
+
+## upsertData
+``upsertData(data: [str, object]) -> dict``
+
+Upserts data (vertices and edges) from a JSON document or equivalent object structure.
+
+
+#### Parameters:
+
+``data``:
+
+The data of vertex and edge instances, in a specific format.
+
+
+#### Returns:
+
+The result of upsert (number of vertices and edges accepted/upserted).
+
+
+Endpoint:
+POST /graph
+Documentation:
+https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
+
+
+## getEndpoints
+``getEndpoints(builtin: bool = False, dynamic: bool = False,static: bool = False) -> dict``
+
+Lists the REST++ endpoints and their parameters.
+
+
+#### Parameters:
+
+``builtin``:
+
+List TigerGraph provided REST++ endpoints.
+
+``dynamic``:
+
+List endpoints for user installed queries.
+
+``static``:
+
+List static endpoints.
+
+
+If none of the above arguments are specified, all endpoints are listed
+
+``Endpoint``:
+
+GET /endpoints/{graph_name}
+``Documentation``:
+
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_all_endpoints
+
+

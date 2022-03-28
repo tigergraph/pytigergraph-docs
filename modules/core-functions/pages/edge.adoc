@@ -8,7 +8,7 @@ Returns the list of edge type names of the graph.
 
 #### Parameters:
 
-``force:``
+``force``:
 
 If `True`, forces the retrieval the schema details again, otherwise returns a cached
 copy of edge type metadata (if they were already fetched previously).
@@ -27,11 +27,11 @@ Returns the details of vertex type.
 
 #### Parameters:
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``force:``
+``force``:
 
 If `True`, forces the retrieval the schema details again, otherwise returns a cached
 copy of edge type details (if they were already fetched previously).
@@ -85,7 +85,7 @@ Returns the type(s) of the edge type's target vertex.
 
 #### Parameters:
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
@@ -119,7 +119,7 @@ Is the specified edge type directed?
 
 #### Parameters:
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
@@ -137,7 +137,7 @@ Returns the name of the reverse edge of the specified edge type, if applicable.
 
 #### Parameters:
 
-`` edgeType:``
+`` edgeType``:
 
 The name of the edge type.
 
@@ -155,27 +155,27 @@ Returns the number of edges from a specific vertex.
 
 #### Parameters:
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``sourceVertexId:``
+``sourceVertexId``:
 
 The primary ID value of the source vertex instance.
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
-``targetVertexId:``
+``targetVertexId``:
 
 The primary ID value of the target vertex instance.
 
-``where:``
+``where``:
 
 A comma separated list of conditions that are all applied on each edge's attributes.
 
@@ -236,15 +236,15 @@ See documentation of `getEdgeCountFrom` above for more details.
 
 #### Parameters:
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
@@ -273,32 +273,32 @@ vertices' attributes (if any) will be created with default values.
 
 #### Parameters:
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``sourceVertexId:``
+``sourceVertexId``:
 
 The primary ID value of the source vertex instance.
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
-``targetVertexId:``
+``targetVertexId``:
 
 The primary ID value of the target vertex instance.
 
-``attributes:``
+``attributes``:
 
-``A dictionary in this format:``
+``A dictionary in this format``:
 
 {<attribute_name>, <attribute_value>|(<attribute_name>, <operator>), …}
-``Example:``
+``Example``:
 
 {"visits": (1482, "+"), "max_duration": (371, "max")}
 For valid values of <operator> see: https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
@@ -363,35 +363,35 @@ Upserts edges from a Pandas DataFrame.
 
 #### Parameters:
 
-``df:``
+``df``:
 
 The DataFrame to upsert.
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The type of source vertex for the edge.
 
-``edgeType:``
+``edgeType``:
 
 The type of edge to upsert data to.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The type of target vertex for the edge.
 
-``from_id:``
+``from_id``:
 
 The field name where the source vertex primary id is given. If omitted, the
 
 dataframe index would be used instead.
 
-``to_id:``
+``to_id``:
 
 The field name where the target vertex primary id is given. If omitted, the
 
 dataframe index would be used instead.
 
-``attributes:``
+``attributes``:
 
 A dictionary in the form of {target: source} where source is the column name in the
 dataframe and target is the attribute name in the graph vertex. When omitted, all
@@ -421,59 +421,59 @@ If `targetVertexType` is specified, then `edgeType` must also be specified.
 
 #### Parameters:
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``sourceVertexId:``
+``sourceVertexId``:
 
 The primary ID value of the source vertex instance.
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
-``targetVertexId:``
+``targetVertexId``:
 
 The primary ID value of the target vertex instance.
 
-``select:``
+``select``:
 
 Comma separated list of edge attributes to be retrieved or omitted.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each edge's attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
-``limit:``
+``limit``:
 
 Maximum number of edge instances to be returned (after sorting).
 
-``fmt:``
+``fmt``:
 
-``Format of the results:``
+``Format of the results``:
 
 "py": Python objects
 "json": JSON document
 "df": pandas DataFrame
-``withId:``
+``withId``:
 
 (If the output format is "df") should the source and target vertex types and IDs be
 included in the dataframe?
-``withType:``
+``withType``:
 
 (If the output format is "df") should the edge type be included in the dataframe?
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no time limit, default).
 
@@ -507,45 +507,45 @@ If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 
 #### Parameters:
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``sourceVertexId:``
+``sourceVertexId``:
 
 The primary ID value of the source vertex instance.
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
-``targetVertexId:``
+``targetVertexId``:
 
 The primary ID value of the target vertex instance.
 
-``select:``
+``select``:
 
 Comma separated list of edge attributes to be retrieved or omitted.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each edge's attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
-``limit:``
+``limit``:
 
 Maximum number of edge instances to be returned (after sorting).
 
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -564,22 +564,22 @@ Retrieves edges of the given edge type regardless the source vertex.
 
 #### Parameters:
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``fmt:``
+``fmt``:
 
-``Format of the results:``
+``Format of the results``:
 
 "py": Python objects
 "json": JSON document
 "df": pandas DataFrame
-``withId:``
+``withId``:
 
 (If the output format is "df") should the source and target vertex types and IDs be
 included in the dataframe?
-``withType:``
+``withType``:
 
 (If the output format is "df") should the edge type be included in the dataframe?
 
@@ -593,11 +593,11 @@ Returns edge attribute statistics.
 
 #### Parameters:
 
-``edgeTypes:``
+``edgeTypes``:
 
 A single edge type name or a list of edges types names or '*' for all edges types.
 
-``skipNA:``
+``skipNA``:
 
 Skip those edges that do not have attributes or none of their attributes have
 statistics gathered.
@@ -629,41 +629,41 @@ If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 
 #### Parameters:
 
-``sourceVertexType:``
+``sourceVertexType``:
 
 The name of the source vertex type.
 
-``sourceVertexId:``
+``sourceVertexId``:
 
 The primary ID value of the source vertex instance.
 
-``edgeType:``
+``edgeType``:
 
 The name of the edge type.
 
-``targetVertexType:``
+``targetVertexType``:
 
 The name of the target vertex type.
 
-``targetVertexId:``
+``targetVertexId``:
 
 The primary ID value of the target vertex instance.
 
-``where:``
+``where``:
 
 Comma separated list of conditions that are all applied on each edge's attributes.
 
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
-``limit:``
+``limit``:
 
 Maximum number of edge instances to be returned (after sorting).
 
-``sort:``
+``sort``:
 
 Comma separated list of attributes the results should be sorted by.
 
-``timeout:``
+``timeout``:
 
 Time allowed for successful execution (0 = no limit, default).
 
@@ -737,14 +737,14 @@ https://docs.tigergraph.com/gsql-ref/current/querying/declaration-and-assignment
 
 #### Parameters:
 
-``edgeSet:``
+``edgeSet``:
 
 A JSON array containing an edge set in the format returned by queries (see below).
 
-``withId:``
+``withId``:
 
 Include the type and primary ID of source and target vertices as a columns?
-``withType:``
+``withType``:
 
 Include edge type info as a column?
 

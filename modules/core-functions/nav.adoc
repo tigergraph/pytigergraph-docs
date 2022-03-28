@@ -2,3 +2,7 @@
 ** xref:vertex.adoc[]
 ** xref:edge.adoc[]
 ** xref:query.adoc[]
+** xref:gsql.adoc[]
+** xref:loading.adoc[]
+** xref:path.adoc[]
+** xref:schema.adoc[]
