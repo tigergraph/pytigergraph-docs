@@ -1,0 +1,98 @@
+= Utility Functions
+
+## echo
+``echo(usePost: bool = False) -> str``
+
+Pings the database.
+
+
+#### Parameters:
+
+``usePost``:
+
+Use POST instead of GET
+
+#### Returns:
+
+"Hello GSQL" if everything was OK.
+
+
+Endpoint:
+GET /echo
+POST /echo
+Documentation:
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_echo
+
+
+TODO Implement POST
+
+## getVersion
+``getVersion(raw: bool = False) -> [str, list]``
+
+Retrieves the git versions of all components of the system.
+
+
+#### Parameters:
+
+``raw``:
+
+Return unprocessed version info string, or extract version info for each components
+into a list.
+
+
+#### Returns:
+
+Either an unprocessed string containing the version info details, or a list with version
+info for each components.
+
+
+Endpoint:
+GET /version
+Documentation:
+https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_component_versions
+
+
+## getVer
+``getVer(component: str = "product", full: bool = False) -> str``
+
+Gets the version information of specific component.
+
+
+#### Parameters:
+
+``component``:
+
+One of TigerGraph's components (e.g. product, gpe, gse).
+
+``full``:
+
+Return the full version string (with timestamp, etc.) or just X.Y.Z.
+
+
+#### Returns:
+
+Version info for specified component.
+
+
+Raises:
+TigerGraphException if invalid/non-existent component is specified.
+
+
+Get the full list of components using `getVersion`.
+
+
+## getLicenseInfo
+``getLicenseInfo(self) -> dict``
+
+Returns the expiration date and remaining days of the license.
+
+
+#### Returns:
+
+In case of evaluation/trial deployment, an information message and -1 remaining days are
+returned; otherwise the license details.
+
+
+TODO Check if this endpoint was still available.
+
+
