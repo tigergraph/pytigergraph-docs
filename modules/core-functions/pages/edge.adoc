@@ -1,757 +1,488 @@
-= Edge Functions
+= Edge-specific functions
 
-## getEdgeTypes
-``getEdgeTypes(force: bool = False) -> list``
+== getEdgeTypes
+`getEdgeTypes(force: bool = False) -> : list`
 
 Returns the list of edge type names of the graph.
 
+=== Parameter:
+* `force`: If `True`, forces the retrieval the schema metadata again, otherwise returns a
+cached copy of edge type metadata (if they were already fetched previously).
 
-#### Parameters:
-
-``force``:
-
-If `True`, forces the retrieval the schema details again, otherwise returns a cached
-copy of edge type metadata (if they were already fetched previously).
-
-
-#### Returns:
-
-The list of edge types defined in the the current graph.
+=== Returns:
+The list of edge types defined in the current graph.
 
 
-## getEdgeType
-``getEdgeType(edgeType: str, force: bool = False) -> dict``
+== getEdgeType
+`getEdgeType(edgeType: str, force: bool = False) -> : dict`
 
 Returns the details of vertex type.
 
-
-#### Parameters:
-
-``edgeType``:
-
-The name of the edge type.
-
-``force``:
-
-If `True`, forces the retrieval the schema details again, otherwise returns a cached
+=== Parameters:
+* `edgeType`: The name of the edge type.
+* `force`: If `True`, forces the retrieval the schema details again, otherwise returns a cached
 copy of edge type details (if they were already fetched previously).
 
-
-#### Returns:
-
+=== Returns:
 The metadata of the edge type.
 
 
-## getEdgeSourceVertexType
-``getEdgeSourceVertexType(edgeType: str) -> [str, set]``
+== getEdgeSourceVertexType
+`getEdgeSourceVertexType(edgeType: str) -> : [str, set]`
 
 Returns the type(s) of the edge type's source vertex.
 
+=== Parameter:
+* `edgeType`: The name of the edge type.
 
-#### Parameters:
-
-edgeType: The name of the edge type.
-
-
-#### Returns:
-
-A single source vertex type name string if the edge has a single source vertex type.
-
-"*" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
-
+=== Returns:
+- A single source vertex type name string if the edge has a single source vertex type.
+- "&#42;" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
 versions).
-
-See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type
-
-A set of vertex type name strings (unique values) if the edge has multiple source vertex
-types (notation used in 3.0 and later versions).
-
-Even if the source vertex types were defined as "*", the REST API will list them as
-pairs (i.e. not as "*" in 2.6.1 and earlier versions), just like as if there were
-
+ +
+See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[documentation] for more details.
+- A set of vertex type name strings (unique values) if the edge has multiple source
+vertex types (notation used in 3.0 and later versions). +
+Even if the source vertex types were defined as "&#42;", the REST API will list them as
+pairs (i.e. not as "&#42;" in 2.6.1 and earlier versions), just like as if there were
 defined one by one (e.g. `FROM v1, TO v2 | FROM v3, TO v4 | …`).
 
-The returned set contains all source vertex types, but does not certainly mean that the
-edge is defined between all source and all target vertex types. You need to look at
+The returned set contains all source vertex types, but it does not certainly mean that
+the edge is defined between all source and all target vertex types. You need to look
+at the individual source/target pairs to find out which combinations are
+valid/defined.
 
-the individual source/target pairs to find out which combinations are valid/defined.
 
-
-## getEdgeTargetVertexType
-``getEdgeTargetVertexType(edgeType: str) -> [str, set]``
+== getEdgeTargetVertexType
+`getEdgeTargetVertexType(edgeType: str) -> : [str, set]`
 
 Returns the type(s) of the edge type's target vertex.
 
+=== Parameter:
+* `edgeType`: The name of the edge type.
 
-#### Parameters:
-
-``edgeType``:
-
-The name of the edge type.
-
-
-#### Returns:
-
-A single target vertex type name string if the edge has a single target vertex type.
-
-"*" if the edge can end in any vertex type (notation used in 2.6.1 and earlier versions).
-
-See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type
-
-A set of vertex type name strings (unique values) if the edge has multiple target vertex
-types (notation used in 3.0 and later versions).
-
-Even if the target vertex types were defined as "*", the REST API will list them as
-pairs (i.e. not as "*" in 2.6.1 and earlier versions), just like as if there were
-
+=== Returns:
+- A single target vertex type name string if the edge has a single target vertex type.
+- "&#42;" if the edge can end in any vertex type (notation used in 2.6.1 and earlier
+versions).
+ +
+See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[documentation] for more details.
+- A set of vertex type name strings (unique values) if the edge has multiple target
+vertex types (notation used in 3.0 and later versions). +
+Even if the target vertex types were defined as "&#42;", the REST API will list them as
+pairs (i.e. not as "&#42;" in 2.6.1 and earlier versions), just like as if there were
 defined one by one (e.g. `FROM v1, TO v2 | FROM v3, TO v4 | …`).
 
 The returned set contains all target vertex types, but does not certainly mean that the
 edge is defined between all source and all target vertex types. You need to look at
-
 the individual source/target pairs to find out which combinations are valid/defined.
 
 
-## isDirected
-``isDirected(edgeType: str) -> bool``
+== isDirected
+`isDirected(edgeType: str) -> : bool`
 
 Is the specified edge type directed?
 
-#### Parameters:
+=== Parameter:
+* `edgeType`: The name of the edge type.
 
-``edgeType``:
-
-The name of the edge type.
-
-
-#### Returns:
-
-`True` if the edge is directed.
+=== Returns:
+`True`, if the edge is directed.
 
 
-## getReverseEdge
-``getReverseEdge(edgeType: str) -> str``
+== getReverseEdge
+`getReverseEdge(edgeType: str) -> : str`
 
 Returns the name of the reverse edge of the specified edge type, if applicable.
 
+=== Parameter:
+* `edgeType`: The name of the edge type.
 
-#### Parameters:
-
-`` edgeType``:
-
-The name of the edge type.
-
-
-#### Returns:
-
-The name of the reverse edge, if specified.
+=== Returns:
+The name of the reverse edge, if it was defined.
 
 
-## getEdgeCountFrom
-``getEdgeCountFrom(sourceVertexType: str = None, sourceVertexId: str = None,edgeType: str = None, targetVertexType: str = None, targetVertexId: str = None,where: str = "") -> dict``
+== getEdgeCountFrom
+`getEdgeCountFrom(sourceVertexType: str = "", sourceVertexId: [str, int] = None, edgeType: str = "", targetVertexType: str = "", targetVertexId: [str, int] = None, where: str = "") -> : dict`
 
 Returns the number of edges from a specific vertex.
 
-
-#### Parameters:
-
-``sourceVertexType``:
-
-The name of the source vertex type.
-
-``sourceVertexId``:
-
-The primary ID value of the source vertex instance.
-
-``edgeType``:
-
-The name of the edge type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
-
-``targetVertexId``:
-
-The primary ID value of the target vertex instance.
-
-``where``:
-
-A comma separated list of conditions that are all applied on each edge's attributes.
-
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `sourceVertexId`: The primary ID value of the source vertex instance.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `targetVertexId`: The primary ID value of the target vertex instance.
+* `where`: A comma separated list of conditions that are all applied on each edge's attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
+=== Returns:
+A dictionary of `edge_type: edge_count` pairs.
 
-#### Returns:
-
-A dictionary of <edge_type>: <edge_count> pairs.
-
-
-Uses:
-If `edgeType` = "*": edge count of all edge types (no other arguments can be specified
+=== Uses:
+- If `edgeType` = "&#42;": edge count of all edge types (no other arguments can be specified
 in this case).
-
-If `edgeType` is specified only: edge count of the given edge type.
-
-If `sourceVertexType`, `edgeType`, `targetVertexType` are specified: edge count of the
+- If `edgeType` is specified only: edge count of the given edge type.
+- If `sourceVertexType`, `edgeType`, `targetVertexType` are specified: edge count of the
 given edge type between source and target vertex types.
-
-If `sourceVertexType`, `sourceVertexId` are specified: edge count of all edge types from
-the given vertex instance.
-
-If `sourceVertexType`, `sourceVertexId`, `edgeType` are specified: edge count of all
+- If `sourceVertexType`, `sourceVertexId` are specified: edge count of all edge types
+from the given vertex instance.
+- If `sourceVertexType`, `sourceVertexId`, `edgeType` are specified: edge count of all
 edge types from the given vertex instance.
-
-If `sourceVertexType`, `sourceVertexId`, `edgeType`, `where` are specified: the edge
+- If `sourceVertexType`, `sourceVertexId`, `edgeType`, `where` are specified: the edge
 count of the given edge type after filtered by `where` condition.
+- If `targetVertexId` is specified, then `targetVertexType` must also be specified.
+- If `targetVertexType` is specified, then `edgeType` must also be specified.
 
-If `targetVertexId` is specified, then `targetVertexType` must also be specified.
-
-If `targetVertexType` is specified, then `edgeType` must also be specified.
-
-
-Endpoint:
-GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex
-
-
-Endpoint:
-POST /builtins/{graph_name}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#stat_edge_number
+=== Endpoints:
+- `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
+ +
+See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_edges_of_a_vertex[documentation] for more details.
+- `POST /builtins/{graph_name}`
+ +
+See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_built_in_functions_on_graph[documentation] for more details.
 
 
-## getEdgeCount
-``getEdgeCount(edgeType: str = "*", sourceVertexType: str = None,targetVertexType: str = None) -> dict``
+== getEdgeCount
+`getEdgeCount(edgeType: str = "*", sourceVertexType: str = "", targetVertexType: str = "") -> : dict`
 
 Returns the number of edges of an edge type.
 
-
 This is a simplified version of ``getEdgeCountFrom()``, to be used when the total number of
 edges of a given type is needed, regardless which vertex instance they are originated from.
-
 See documentation of `getEdgeCountFrom` above for more details.
 
+=== Parameters:
+* `edgeType`: The name of the edge type.
+* `sourceVertexType`: The name of the source vertex type.
+* `targetVertexType`: The name of the target vertex type.
 
-#### Parameters:
-
-``edgeType``:
-
-The name of the edge type.
-
-``sourceVertexType``:
-
-The name of the source vertex type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
+=== Returns:
+A dictionary of `edge_type: edge_count` pairs.
 
 
-#### Returns:
-
-A dictionary of <edge_type>: <edge_count> pairs.
-
-
-## upsertEdge
-``upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str,targetVertexType: str, targetVertexId: str, attributes: dict = None) -> int``
+== upsertEdge
+`upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str, targetVertexType: str, targetVertexId: str, attributes: dict = None) -> : int`
 
 Upserts an edge.
 
-
 Data is upserted:
-If edge is not yet present in graph, it will be created (see special case below).
 
-If it's already in the graph, it is updated with the values specified in the request.
-
-If operator is "vertex_must_exist" then edge will only be created if both vertex exists
+- If edge is not yet present in graph, it will be created (see special case below).
+- If it's already in the graph, it is updated with the values specified in the request.
+- If `vertex_must_exist` is True then edge will only be created if both vertex exists
 in graph. Otherwise missing vertices are created with the new edge; the newly created
-
 vertices' attributes (if any) will be created with default values.
 
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `sourceVertexId`: The primary ID value of the source vertex instance.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `targetVertexId`: The primary ID value of the target vertex instance.
+* `attributes`: A dictionary in this format: +
 
-#### Parameters:
++
+[source,indent=0]
+----
+        {<attribute_name>, <attribute_value>|(<attribute_name>, <operator>), …}
+----
 
-``sourceVertexType``:
++
+Example:
++
+[source,indent=0]
+----
+        {"visits": (1482, "+"), "max_duration": (371, "max")}
+----
 
-The name of the source vertex type.
+For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
-``sourceVertexId``:
-
-The primary ID value of the source vertex instance.
-
-``edgeType``:
-
-The name of the edge type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
-
-``targetVertexId``:
-
-The primary ID value of the target vertex instance.
-
-``attributes``:
-
-``A dictionary in this format``:
-
-{<attribute_name>, <attribute_value>|(<attribute_name>, <operator>), …}
-``Example``:
-
-{"visits": (1482, "+"), "max_duration": (371, "max")}
-For valid values of <operator> see: https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
-
-
-#### Returns:
-
+=== Returns:
 A single number of accepted (successfully upserted) edges (0 or 1).
 
+=== Endpoint:
+- `POST /graph/{graph_name}`
+ +
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
 
-Endpoint:
-POST /graph/{graph_name}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-## upsertEdges
-``upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str,edges: list) -> int``
+== upsertEdges
+`upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str, edges: list) -> : int`
 
 Upserts multiple edges (of the same type).
 
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `edges`: A list in of tuples in this format: +
 
-sourceVertexType:
-The name of the source vertex type.
++
+[source,indent=0]
+----
+        [
+            (<source_vertex_id>, <target_vertex_id>, {<attribute_name>: <attribute_value>, …}),
+            (<source_vertex_id>, <target_vertex_id>, {<attribute_name>: (<attribute_value>, <operator>), …})
+            ⋮
+        ]
+----
 
-edgeType:
-The name of the edge type.
-
-targetVertexType:
-The name of the target vertex type.
-
-edges:
-A list in of tuples in this format:
-[
-(<source_vertex_id>, <target_vertex_id>, {<attribute_name>: <attribute_value>, …})
-(<source_vertex_id>, <target_vertex_id>, {<attribute_name>: (<attribute_name>, <operator>), …})
-⋮
-]
++
 Example:
-[
-(17, "home_page", {"visits": (35, "+"), "max_duration": (93, "max")}),
-(42, "search", {"visits": (17, "+"), "max_duration": (41, "max")}),
-]
-For valid values of <operator> see: https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes
++
+[source,indent=0]
+----
+        [
+            (17, "home_page", {"visits": (35, "+"), "max_duration": (93, "max")}),
+            (42, "search", {"visits": (17, "+"), "max_duration": (41, "max")})
+        ]
+----
 
+For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
-Returns
+=== Returns:
 A single number of accepted (successfully upserted) edges (0 or positive integer).
 
+=== Endpoint:
+- `POST /graph/{graph_name}`
+ +
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
 
-Endpoint:
-POST /graph/{graph_name}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph
 
 
-## upsertEdgeDataFrame
-``upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str,targetVertexType: str, from_id: str = "", to_id: str = "",attributes: dict = None) -> int``
+== upsertEdgeDataFrame
+`upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str, targetVertexType: str, from_id: str = "", to_id: str = "", attributes: dict = None) -> : int`
 
 Upserts edges from a Pandas DataFrame.
 
-
-#### Parameters:
-
-``df``:
-
-The DataFrame to upsert.
-
-``sourceVertexType``:
-
-The type of source vertex for the edge.
-
-``edgeType``:
-
-The type of edge to upsert data to.
-
-``targetVertexType``:
-
-The type of target vertex for the edge.
-
-``from_id``:
-
-The field name where the source vertex primary id is given. If omitted, the
-
+=== Parameters:
+* `df`: The DataFrame to upsert.
+* `sourceVertexType`: The type of source vertex for the edge.
+* `edgeType`: The type of edge to upsert data to.
+* `targetVertexType`: The type of target vertex for the edge.
+* `from_id`: The field name where the source vertex primary id is given. If omitted, the
 dataframe index would be used instead.
-
-``to_id``:
-
-The field name where the target vertex primary id is given. If omitted, the
-
+* `to_id`: The field name where the target vertex primary id is given. If omitted, the
 dataframe index would be used instead.
+* `attributes`: A dictionary in the form of `{target: source}` where source is the column name in
+the dataframe and target is the attribute name in the graph vertex. When omitted,
+all columns would be upserted with their current names. In this case column names
+must match the vertex's attribute names.
 
-``attributes``:
-
-A dictionary in the form of {target: source} where source is the column name in the
-dataframe and target is the attribute name in the graph vertex. When omitted, all
-
-columns would be upserted with their current names. In this case column names must
-
-match the vertex's attribute names.
-
-
-#### Returns:
-
+=== Returns:
 The number of edges upserted.
 
 
-## getEdges
-``getEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,targetVertexType: str = None, targetVertexId: str = None, select: str = "",where: str = "", limit: str = "", sort: str = "", fmt: str = "py", withId: bool = True,withType: bool = False, timeout: int = 0) -> [dict, str, pd.DataFrame]``
+== getEdges
+`getEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: [int, str] = None, sort: str = "", fmt: str = "py", withId: bool = True, withType: bool = False, timeout: int = 0) -> : [dict, str, pd.DataFrame]`
 
 Retrieves edges of the given edge type originating from a specific source vertex.
-
 
 Only `sourceVertexType` and `sourceVertexId` are required.
-
 If `targetVertexId` is specified, then `targetVertexType` must also be specified.
-
 If `targetVertexType` is specified, then `edgeType` must also be specified.
 
-
-#### Parameters:
-
-``sourceVertexType``:
-
-The name of the source vertex type.
-
-``sourceVertexId``:
-
-The primary ID value of the source vertex instance.
-
-``edgeType``:
-
-The name of the edge type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
-
-``targetVertexId``:
-
-The primary ID value of the target vertex instance.
-
-``select``:
-
-Comma separated list of edge attributes to be retrieved or omitted.
-
-``where``:
-
-Comma separated list of conditions that are all applied on each edge's attributes.
-
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `sourceVertexId`: The primary ID value of the source vertex instance.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `targetVertexId`: The primary ID value of the target vertex instance.
+* `select`: Comma separated list of edge attributes to be retrieved or omitted.
+* `where`: Comma separated list of conditions that are all applied on each edge's attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+* `sort`: Comma separated list of attributes the results should be sorted by.
+* `limit`: Maximum number of edge instances to be returned (after sorting).
+* `fmt`: Format of the results returned: +
+- "py":   Python objects
+- "json": JSON document
+- "df":   pandas DataFrame
+* `withId`: (When the output format is "df") Should the source and target vertex types and IDs
+be included in the dataframe?
+* `withType`: (When the output format is "df") Should the edge type be included in the dataframe?
+* `timeout`: Time allowed for successful execution (0 = no time limit, default).
 
-``sort``:
-
-Comma separated list of attributes the results should be sorted by.
-
-``limit``:
-
-Maximum number of edge instances to be returned (after sorting).
-
-``fmt``:
-
-``Format of the results``:
-
-"py": Python objects
-"json": JSON document
-"df": pandas DataFrame
-``withId``:
-
-(If the output format is "df") should the source and target vertex types and IDs be
-included in the dataframe?
-``withType``:
-
-(If the output format is "df") should the edge type be included in the dataframe?
-``timeout``:
-
-Time allowed for successful execution (0 = no time limit, default).
-
-
-#### Returns:
-
+=== Returns:
 The (selected) details of the (matching) edge instances (sorted, limited) as dictionary,
 JSON or pandas DataFrame.
 
+=== Endpoint:
+- `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
+ +
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex[documentation] for more details.
 
-Endpoint:
-GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex
 
-
-## getEdgesDataframe
-``getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "",targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame``
+== getEdgesDataFrame
+`getEdgesDataFrame(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> : pd.DataFrame`
 
 Retrieves edges of the given edge type originating from a specific source vertex.
 
-
 This is a shortcut to ``getEdges(..., fmt="df", withId=True, withType=False)``.
-
 Only ``sourceVertexType`` and ``sourceVertexId`` are required.
-
 If ``targetVertexId`` is specified, then ``targetVertexType`` must also be specified.
-
 If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 
-
-#### Parameters:
-
-``sourceVertexType``:
-
-The name of the source vertex type.
-
-``sourceVertexId``:
-
-The primary ID value of the source vertex instance.
-
-``edgeType``:
-
-The name of the edge type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
-
-``targetVertexId``:
-
-The primary ID value of the target vertex instance.
-
-``select``:
-
-Comma separated list of edge attributes to be retrieved or omitted.
-
-``where``:
-
-Comma separated list of conditions that are all applied on each edge's attributes.
-
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `sourceVertexId`: The primary ID value of the source vertex instance.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `targetVertexId`: The primary ID value of the target vertex instance.
+* `select`: Comma separated list of edge attributes to be retrieved or omitted.
+* `where`: Comma separated list of conditions that are all applied on each edge's attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+* `sort`: Comma separated list of attributes the results should be sorted by.
+* `limit`: Maximum number of edge instances to be returned (after sorting).
+* `timeout`: Time allowed for successful execution (0 = no limit, default).
 
-``sort``:
-
-Comma separated list of attributes the results should be sorted by.
-
-``limit``:
-
-Maximum number of edge instances to be returned (after sorting).
-
-``timeout``:
-
-Time allowed for successful execution (0 = no limit, default).
-
-
-#### Returns:
-
+=== Returns:
 The (selected) details of the (matching) edge instances (sorted, limited) as dictionary,
 JSON or pandas DataFrame.
 
 
-## getEdgesByType
-``getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True,withType: bool = False) -> [dict, str, pd.DataFrame]``
+== getEdgesDataframe
+`getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> : pd.DataFrame`
+
+DEPRECATED
+
+Use `getEdgesDataFrame()` instead.
+
+
+
+== getEdgesByType
+`getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True, withType: bool = False) -> : [dict, str, pd.DataFrame]`
 
 Retrieves edges of the given edge type regardless the source vertex.
 
+=== Parameters:
+* `edgeType`: The name of the edge type.
+* `fmt`: Format of the results returned: +
+- "py":   Python objects
+- "json": JSON document
+- "df":   pandas DataFrame
+* `withId`: (When the output format is "df") Should the source and target vertex types and IDs
+be included in the dataframe?
+* `withType`: (When the output format is "df") should the edge type be included in the dataframe?
 
-#### Parameters:
+=== Returns:
+The details of the edge instances of the given edge type as dictionary, JSON or pandas
+DataFrame.
 
-``edgeType``:
 
-The name of the edge type.
 
-``fmt``:
-
-``Format of the results``:
-
-"py": Python objects
-"json": JSON document
-"df": pandas DataFrame
-``withId``:
-
-(If the output format is "df") should the source and target vertex types and IDs be
-included in the dataframe?
-``withType``:
-
-(If the output format is "df") should the edge type be included in the dataframe?
-
-TODO Add limit parameter
-
-## getEdgeStats
-``getEdgeStats(edgeTypes: [str, list], skipNA: bool = False) -> dict``
+== getEdgeStats
+`getEdgeStats(edgeTypes: [str, list], skipNA: bool = False) -> : dict`
 
 Returns edge attribute statistics.
 
-
-#### Parameters:
-
-``edgeTypes``:
-
-A single edge type name or a list of edges types names or '*' for all edges types.
-
-``skipNA``:
-
-Skip those edges that do not have attributes or none of their attributes have
+=== Parameters:
+* `edgeTypes`: A single edge type name or a list of edges types names or '*' for all edges types.
+* `skipNA`: Skip those edges that do not have attributes or none of their attributes have
 statistics gathered.
 
-
-#### Returns:
-
+=== Returns:
 Attribute statistics of edges; a dictionary of dictionaries.
 
+=== Endpoint:
+- `POST /builtins/{graph_name}`
+ +
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph[documentation] for more details.
 
-Endpoint:
-POST /builtins/{graph_name}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph
 
-
-## delEdges
-``delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = None,targetVertexType: str = None, targetVertexId: str = None, where: str = "",limit: str = "", sort: str = "", timeout: int = 0) -> dict``
+== delEdges
+`delEdges(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> `
 
 Deletes edges from the graph.
 
-
 Only ``sourceVertexType`` and ``sourceVertexId`` are required.
-
 If ``targetVertexId`` is specified, then ``targetVertexType`` must also be specified.
-
 If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 
-
-#### Parameters:
-
-``sourceVertexType``:
-
-The name of the source vertex type.
-
-``sourceVertexId``:
-
-The primary ID value of the source vertex instance.
-
-``edgeType``:
-
-The name of the edge type.
-
-``targetVertexType``:
-
-The name of the target vertex type.
-
-``targetVertexId``:
-
-The primary ID value of the target vertex instance.
-
-``where``:
-
-Comma separated list of conditions that are all applied on each edge's attributes.
-
+=== Parameters:
+* `sourceVertexType`: The name of the source vertex type.
+* `sourceVertexId`: The primary ID value of the source vertex instance.
+* `edgeType`: The name of the edge type.
+* `targetVertexType`: The name of the target vertex type.
+* `targetVertexId`: The primary ID value of the target vertex instance.
+* `where`: Comma separated list of conditions that are all applied on each edge's attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
+* `limit`: Maximum number of edge instances to be returned (after sorting).
+* `sort`: Comma separated list of attributes the results should be sorted by.
+* `timeout`: Time allowed for successful execution (0 = no limit, default).
 
-``limit``:
+=== Returns:
+A dictionary of `edge_type: deleted_edge_count`>` pairs.
 
-Maximum number of edge instances to be returned (after sorting).
-
-``sort``:
-
-Comma separated list of attributes the results should be sorted by.
-
-``timeout``:
-
-Time allowed for successful execution (0 = no limit, default).
-
-
-#### Returns:
-
- A dictionary of <edge_type>: <deleted_edge_count> pairs.
+=== Endpoint:
+- `DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}`
+ +
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge[documentation] for more details.
 
 
-Endpoint:
-DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}
-Documentation:
-https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge
-
-
-## edgeSetToDataFrame
-``edgeSetToDataFrame(edgeSet: list, withId: bool = True,withType: bool = False) -> pd.DataFrame``
+== edgeSetToDataFrame
+`edgeSetToDataFrame(edgeSet: list, withId: bool = True, withType: bool = False) -> : pd.DataFrame`
 
 Converts an edge set to Pandas DataFrame
 
 Edge sets contain instances of the same edge type. Edge sets are not generated "naturally"
+like vertex sets, you need to collect edges in (global) accumulators, for example when you
+want to visualise them in GraphStudio or by other tools.
 
-like vertex sets, you need to collect edges in (global) accumulators, e.g. in case you want
+Example:
 
-to visualise them in GraphStudio or by other tools.
-
-
-For example:
+[source,indent=0]
+----
 SetAccum<EDGE> @@edges;
 
-start = {Country.*};
-
+start = {country.*};
 
 result =
-SELECT t
-FROM start:s -(PROVINCE_IN_COUNTRY:e)- Province:t
-ACCUM@@edges += e;
+    SELECT trg
+    FROM   start:src -(city_in_country:e)- city:trg
+    ACCUM  @@edges += e;
 
 PRINT start, result, @@edges;
+----
 
-The ``@@edges`` is an edge set.
 
+The `@@edges` is an edge set.
 It contains for each edge instance the source and target vertex type and ID, the edge type,
-an directedness indicator and the (optional) attributes.
-
-Note: ``start`` and ``result`` are vertex sets.
-
+a directedness indicator and the (optional) attributes. +
+Note: `start` and `result` are vertex sets.
 
 An edge set has this structure (when serialised as JSON):
+
+[source,indent=0]
+----
 [
-{
-"e_type": <edge_type_name>,
-"from_type": <source_vertex_type_name>,
-"from_id": <source_vertex_id>,
-"to_type": <target_vertex_type_name>,
-"to_id": <targe_vertex_id>,
-"directed": <true_or_false>,
-"attributes":
-{
-"attr1": <value1>,
-"attr2": <value2>,
- ⋮
-}
-},
-⋮
+    {
+        "e_type": <edge_type_name>,
+        "from_type": <source_vertex_type_name>,
+        "from_id": <source_vertex_id>,
+        "to_type": <target_vertex_type_name>,
+        "to_id": <targe_vertex_id>,
+        "directed": <true_or_false>,
+        "attributes":
+            {
+                "attr1": <value1>,
+                "attr2": <value2>,
+                 ⋮
+            }
+    },
+        ⋮
 ]
-
-Documentation:
-https://docs.tigergraph.com/gsql-ref/current/querying/declaration-and-assignment-statements#_vertex_set_variables
+----
 
 
-#### Parameters:
+=== Parameters:
+* `edgeSet`: A JSON array containing an edge set in the format returned by queries (see below).
+* `withId`: Include the type and primary ID of source and target vertices as a columns?
+* `withType`: Include edge type info as a column?
 
-``edgeSet``:
-
-A JSON array containing an edge set in the format returned by queries (see below).
-
-``withId``:
-
-Include the type and primary ID of source and target vertices as a columns?
-``withType``:
-
-Include edge type info as a column?
-
-#### Returns:
-
+=== Returns:
 A pandas DataFrame containing the edge attributes (and optionally the type and primary
 ID or source and target vertices, and the edge type).
-
 
 
