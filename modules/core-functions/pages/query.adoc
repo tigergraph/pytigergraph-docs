@@ -1,7 +1,7 @@
 = Query-specific functions
 
 == getInstalledQueries
-`getInstalledQueries(fmt: str = "py") -> : [dict, json, pd.DataFrame]`
+`getInstalledQueries(fmt: str = "py") -> [dict, json, pd.DataFrame]`
 
 Returns a list of installed queries.
 
@@ -17,7 +17,7 @@ The names of the installed queries.
 
 
 == runInstalledQuery
-`runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None, sizeLimit: int = None, usePost: bool = False) -> : list`
+`runInstalledQuery(queryName: str, params: [str, dict] = None, timeout: int = None, sizeLimit: int = None, usePost: bool = False) -> list`
 
 Runs an installed query.
 
@@ -82,7 +82,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 == runInterpretedQuery
-`runInterpretedQuery(queryText: str, params: [str, dict] = None) -> : list`
+`runInterpretedQuery(queryText: str, params: [str, dict] = None) -> list`
 
 Runs an interpreted query.
 
@@ -144,7 +144,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 == parseQueryOutput
-`parseQueryOutput(output: list, graphOnly: bool = True) -> : dict`
+`parseQueryOutput(output: list, graphOnly: bool = True) -> dict`
 
 Parses query output and separates vertex and edge data (and optionally other output) for
 easier use.
@@ -174,7 +174,7 @@ visualisation component.
 
 
 == getStatistics
-`getStatistics(seconds: int = 10, segments: int = 10) -> : dict`
+`getStatistics(seconds: int = 10, segments: int = 10) -> dict`
 
 Retrieves real-time query performance statistics over the given time period.
 

@@ -4,7 +4,6 @@ import re
 
 
 def processFunctionDocstring(docstring, adocFile, argNum):
-    # adocFile.write(docstring + "\n\n" + ("~" * 100) + "\n\n")
     lines = docstring.split("\n")
 
     mode = "none"
@@ -41,7 +40,8 @@ def processFunctionDocstring(docstring, adocFile, argNum):
                 if lis.startswith("```"):
                     if not codeMode:
                         codeMode = True
-                    adocFile.write(lis.replace("```", ("\n+" if mode == "param" else "") + "\n[source,indent=0]\n----\n"))
+                    adocFile.write(lis.replace("```",
+                        ("\n+" if mode == "param" else "") + "\n[source,indent=0]\n----\n"))
                 elif lis.startswith("`") and lis.endswith("`"):
                     if mode == "params":
                         adocFile.write(" +\n" + lis + " +\n +\n")
@@ -54,7 +54,8 @@ def processFunctionDocstring(docstring, adocFile, argNum):
                     if mode != "code":
                         li = li.lstrip()
                     if "See https://docs.tigergraph.com" in li:
-                        li = re.sub(r"See (https[^ ]+)", r" +\nSee the \1[documentation] for more details.", li)
+                        li = re.sub(r"See (https[^ ]+)",
+                            r" +\nSee the \1[documentation] for more details.", li)
                     if "see https://docs.tigergraph.com" in li:
                         li = re.sub(r"see (https[^ ]+)", r"see the \1[documentation]", li)
                     if '"*"' in li:
@@ -62,7 +63,12 @@ def processFunctionDocstring(docstring, adocFile, argNum):
                     adocFile.write(li + "\n")
     adocFile.write("\n\n")
 
-def processTypes(node) -> str:
+
+def processTypes(node, colon: bool = True) -> str:
+    if colon:
+        cln = ": "
+    else:
+        cln = ""
     if isinstance(node, _ast.List):
         typeList = ""
         for t in node.elts:
@@ -73,22 +79,23 @@ def processTypes(node) -> str:
                 if isinstance(t2, _ast.Name):
                     typeList += t2.id + ("." + str(t.attr if t.attr else "")) + ", "
                 else:
-                    typeList += ": ???1 " + str(type(t2))
+                    typeList += cln + "???1 " + str(type(t2))
             else:
-                typeList += ": ???2 " + str(type(t)) + ", "
-        return ": [" + typeList[:-2] + "]"
+                typeList += cln + "???2 " + str(type(t)) + ", "
+        return cln + "[" + typeList[:-2] + "]"
     elif isinstance(node, _ast.Name):
-        return ": " + node.id
+        return cln + node.id
     elif isinstance(node, _ast.Attribute):
         v = node.value
         if isinstance(v, _ast.Name):
-            return ": " + v.id + ("." + str(node.attr if node.attr else ""))
+            return cln + v.id + ("." + str(node.attr if node.attr else ""))
         else:
-            return ": ???3 " + str(type(v))
+            return cln + "???3 " + str(type(v))
     elif str(type(node)) == "<class 'NoneType'>":
         return ""
     else:
-        return ": ???4 " + str(type(node))
+        return cln + "???4 " + str(type(node))
+
 
 def processFunction(node, adocFile):
     if node.name.startswith("_"):
@@ -122,7 +129,7 @@ def processFunction(node, adocFile):
     argList = argList[:-2]
 
     # Return type(s)
-    retList = str(processTypes(node.returns))
+    retList = str(processTypes(node.returns, False))
 
     adocFile.write("`{}({}) -> {}`\n\n".format(node.name, argList, retList))
 
@@ -144,7 +151,7 @@ def processClass(node, adocFile):
 
 def main():
     srcPath = "/Users/szilardbarany/GitHub/pyTigerGraph/pyTigerGraph/"
-    srcName = "pyTigerGraphEdge.py"
+    srcName = "pyTigerGraphGSQL.py"
 
     adocPath = "/Users/szilardbarany/GitHub/pytigergraph-docs/modules/core-functions/pages/"
     adocName = srcName.replace("pyTigerGraph", "").lower().replace("py", "adoc")

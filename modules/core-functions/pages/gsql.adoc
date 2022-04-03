@@ -1,7 +1,7 @@
 = pyTigerGraph GSQL interface
 
 == initGsql
-`initGsql(certLocation: str = "~/.gsql/my-cert.txt") -> : bool`
+`initGsql(certLocation: str = "~/.gsql/my-cert.txt") -> bool`
 
 Initialises the GSQL support.
 
@@ -16,7 +16,7 @@ Exception if initialisation was unsuccessful.
 
 
 == gsql
-`gsql(query: str, graphname: str = None, options = None) -> : [str, dict]`
+`gsql(query: str, graphname: str = None, options = None) -> [str, dict]`
 
 Runs a GSQL query and process the output.
 
