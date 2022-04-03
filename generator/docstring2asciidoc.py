@@ -4,6 +4,7 @@ import re
 
 
 def processFunctionDocstring(docstring, adocFile, argNum):
+    print(docstring)
     lines = docstring.split("\n")
 
     mode = "none"
@@ -21,7 +22,8 @@ def processFunctionDocstring(docstring, adocFile, argNum):
         elif li == "Args:":
             adocFile.write("=== Parameter" + ("s" if argNum > 1 else "") + ":\n")
             mode = "param"
-        elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:"]:
+        elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:",
+            "Example:", "Examples:"]:
             adocFile.write("=== {}\n".format(li))
             mode = "none"
         else:
@@ -116,7 +118,6 @@ def processFunction(node, adocFile):
     # Arguments
     for a in args:
         if a.arg != "self":
-            # argList += a.arg + ", "
             argList += a.arg + processTypes(a.annotation)
             if i >= defOffset:
                 de = defs[i - defOffset].value
@@ -151,7 +152,7 @@ def processClass(node, adocFile):
 
 def main():
     srcPath = "/Users/szilardbarany/GitHub/pyTigerGraph/pyTigerGraph/"
-    srcName = "pyTigerGraphGSQL.py"
+    srcName = "pyTigerGraphBase.py"
 
     adocPath = "/Users/szilardbarany/GitHub/pytigergraph-docs/modules/core-functions/pages/"
     adocName = srcName.replace("pyTigerGraph", "").lower().replace("py", "adoc")

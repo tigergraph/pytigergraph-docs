@@ -430,7 +430,7 @@ Edge sets contain instances of the same edge type. Edge sets are not generated "
 like vertex sets, you need to collect edges in (global) accumulators, for example when you
 want to visualise them in GraphStudio or by other tools.
 
-Example:
+For example:
 
 [source,indent=0]
 ----
