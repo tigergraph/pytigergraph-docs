@@ -1,10 +1,11 @@
 import _ast
 import ast
+import json
+import os
 import re
 
 
 def processFunctionDocstring(docstring, adocFile, argNum):
-    print(docstring)
     lines = docstring.split("\n")
 
     mode = "none"
@@ -151,25 +152,56 @@ def processClass(node, adocFile):
 
 
 def main():
-    srcPath = "/Users/szilardbarany/GitHub/pyTigerGraph/pyTigerGraph/"
-    srcName = "pyTigerGraphBase.py"
+    cfgFile = "docstring2asciidoc_cfg.json"
 
-    adocPath = "/Users/szilardbarany/GitHub/pytigergraph-docs/modules/core-functions/pages/"
-    adocName = srcName.replace("pyTigerGraph", "").lower().replace("py", "adoc")
+    if not os.path.exists(cfgFile):
+        print(f"Error: configuration file {cfgFile} was not found!")
+        exit(1)
 
-    srcFile = open(srcPath + srcName, "r")
-    src = srcFile.read()
-    srcFile.close()
+    cfg = {}
+    try:
+        cfg = json.load(open(cfgFile, "r"))
+    except OSError as e:
+        print("Error: {}".format(e))
+        exit(2)
 
-    adocFile = open(adocPath + adocName, "w")
+    if "source_root" not in cfg:
+        print("Error: source code root folder is not specified!")
+        exit(3)
 
-    node = ast.parse(src, srcName, "exec")
+    if not cfg["source_root"].endswith("/"):
+        cfg["source_root"] += "/"
 
-    for child in ast.iter_child_nodes(node):
-        if isinstance(child, _ast.ClassDef):
-            processClass(child, adocFile)
+    if "doc_root" not in cfg:
+        print("Error: documentation root folder is not specified!")
+        exit(4)
 
-    adocFile.close()
+    if not cfg["doc_root"].endswith("/"):
+        cfg["doc_root"] += "/"
+
+    if "mapping" not in cfg or len(cfg["mapping"]) == 0:
+        print("Error: documentation mapings are not specified!")
+        exit(5)
+
+    for s, d in cfg["mapping"].items():
+        srcFilePath = cfg["source_root"] + s
+        docFilePath = cfg["doc_root"] + d
+
+        print("Processing " + s + " -> " + d)
+
+        srcFile = open(srcFilePath, "r")
+        src = srcFile.read()
+        srcFile.close()
+
+        adocFile = open(docFilePath, "w")
+
+        node = ast.parse(src, "<irrelevant>", "exec")
+
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, _ast.ClassDef):
+                processClass(child, adocFile)
+
+        adocFile.close()
 
 
 if __name__ == '__main__':

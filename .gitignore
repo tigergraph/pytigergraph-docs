@@ -1,3 +1,4 @@
 .vscode/
 .idea/*
 *.pyc
+generator/docstring2asciidoc_cfg.json

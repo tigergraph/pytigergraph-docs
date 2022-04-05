@@ -1,0 +1,16 @@
+{
+  "source_root": "/Users/username/GitHub/pyTigerGraph",
+  "doc_root": "/Users/username/GitHub/pytigergraph-docs",
+  "mapping": {
+    "pyTigerGraph/pyTigerGraphAuth.py": "modules/authentication/pages/auth.adoc",
+    "pyTigerGraph/pyTigerGraphEdge.py": "modules/core-functions/pages/edge.adoc",
+    "pyTigerGraph/pyTigerGraphGSQL.py": "modules/core-functions/pages/gsql.adoc",
+    "pyTigerGraph/pyTigerGraphLoading.py": "modules/core-functions/pages/loading.adoc",
+    "pyTigerGraph/pyTigerGraphPath.py": "modules/core-functions/pages/path.adoc",
+    "pyTigerGraph/pyTigerGraphQuery.py": "modules/core-functions/pages/query.adoc",
+    "pyTigerGraph/pyTigerGraphSchema.py": "modules/core-functions/pages/schema.adoc",
+    "pyTigerGraph/pyTigerGraphUDT.py": "modules/core-functions/pages/udt.adoc",
+    "pyTigerGraph/pyTigerGraphUtils.py": "modules/core-functions/pages/utils.adoc",
+    "pyTigerGraph/pyTigerGraphVertex.py": "modules/core-functions/pages/vertex.adoc"
+  }
+}
