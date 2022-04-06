@@ -1,12 +1,18 @@
 = pyTigerGraph
 :description: Overview of pyTigerGraph.
 
-pyTigerGraph is a Python package for connecting to TigerGraph databases. We offer two versions of the package:
-`pyTigerGraph` and `pyTigerGraph[gds]`. `pyTigerGraph` is the default version and contains the core functionality of pyTigerGraph, which includes:
-* Vertex functions
-* Edge functions
-* Schema functions
-* Query functions
-* Miscellaneous functions
+pyTigerGraph is a Python package for connecting to TigerGraph databases. We offer two versions of the package: _pyTigerGraph_ and _pyTigerGraph[gds]_.
 
-The `pyTigerGraph[gds]` version of pyTigerGraph is a drop-in replacement for `pyTigerGraph`, but adds support for Graph Data Science and Graph ML capabilities.
+_pyTigerGraph_ is the default version and contains the core functionality of pyTigerGraph, which includes:
+
+* Data manipulation functions: working with vertices and edges (insert/update/upsert, delete
+  and retrieve)
+* Query functions: running (and managing) queries (≈ stored procedures) inside the TigerGraph
+  database
+* Metadata functions: fetching details of graphs/schemas, vertex and edge types, and other
+  schema objects and object types
+* Authentication and authorisation functions
+* Miscellaneous/utility functions
+
+The _pyTigerGraph[gds]_ version of pyTigerGraph is a drop-in replacement for _pyTigerGraph_,
+but adds support for Graph Data Science and Graph ML capabilities.

@@ -101,10 +101,10 @@ def processTypes(node, colon: bool = True) -> str:
 
 
 def processFunction(node, adocFile):
-    if node.name.startswith("_"):
+    if node.name.startswith("_") and node.name != "__init__":  # TODO cfg for __init__?
         return
 
-    adocFile.write("== {}\n".format(node.name))
+    adocFile.write("== {}\n".format(node.name if node.name != "__init__" else "Constructor"))
 
     argList = ""
 
@@ -133,7 +133,10 @@ def processFunction(node, adocFile):
     # Return type(s)
     retList = str(processTypes(node.returns, False))
 
-    adocFile.write("`{}({}) -> {}`\n\n".format(node.name, argList, retList))
+    if retList:
+        adocFile.write("`{}({}) -> {}`\n\n".format(node.name, argList, retList))
+    else:
+        adocFile.write("`{}({})`\n\n".format(node.name, argList))
 
     processFunctionDocstring(ast.get_docstring(node), adocFile, argNum - 1)
 

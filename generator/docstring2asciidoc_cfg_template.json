@@ -3,6 +3,7 @@
   "doc_root": "/Users/username/GitHub/pytigergraph-docs",
   "mapping": {
     "pyTigerGraph/pyTigerGraphAuth.py": "modules/authentication/pages/auth.adoc",
+    "pyTigerGraph/pyTigerGraphBase.py": "modules/authentication/pages/base.adoc",
     "pyTigerGraph/pyTigerGraphEdge.py": "modules/core-functions/pages/edge.adoc",
     "pyTigerGraph/pyTigerGraphGSQL.py": "modules/core-functions/pages/gsql.adoc",
     "pyTigerGraph/pyTigerGraphLoading.py": "modules/core-functions/pages/loading.adoc",
