@@ -1,4 +1,4 @@
-= Utility pyTigerGraph functions
+= Utility Functions
 
 == echo
 `echo(usePost: bool = False) -> str`

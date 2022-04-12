@@ -1,4 +1,4 @@
-= Vertex-specific functions
+= Vertex Functions
 
 == getVertexTypes
 `getVertexTypes(force: bool = False) -> list`

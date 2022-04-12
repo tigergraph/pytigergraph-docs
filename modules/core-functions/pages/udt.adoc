@@ -1,4 +1,4 @@
-= User Defined Type (UDT) specific pyTigerGraph functions
+= User Defined Type (UDT) Functions
 
 == getUDTs
 `getUDTs() -> list`
