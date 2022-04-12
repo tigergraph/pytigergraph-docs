@@ -5,10 +5,12 @@
 
 Returns the list of edge type names of the graph.
 
+[discrete]
 === Parameter:
 * `force`: If `True`, forces the retrieval the schema metadata again, otherwise returns a
 cached copy of edge type metadata (if they were already fetched previously).
 
+[discrete]
 === Returns:
 The list of edge types defined in the current graph.
 
@@ -18,11 +20,13 @@ The list of edge types defined in the current graph.
 
 Returns the details of vertex type.
 
+[discrete]
 === Parameters:
 * `edgeType`: The name of the edge type.
 * `force`: If `True`, forces the retrieval the schema details again, otherwise returns a cached
 copy of edge type details (if they were already fetched previously).
 
+[discrete]
 === Returns:
 The metadata of the edge type.
 
@@ -32,9 +36,11 @@ The metadata of the edge type.
 
 Returns the type(s) of the edge type's source vertex.
 
+[discrete]
 === Parameter:
 * `edgeType`: The name of the edge type.
 
+[discrete]
 === Returns:
 - A single source vertex type name string if the edge has a single source vertex type.
 - "&#42;" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
@@ -58,9 +64,11 @@ valid/defined.
 
 Returns the type(s) of the edge type's target vertex.
 
+[discrete]
 === Parameter:
 * `edgeType`: The name of the edge type.
 
+[discrete]
 === Returns:
 - A single target vertex type name string if the edge has a single target vertex type.
 - "&#42;" if the edge can end in any vertex type (notation used in 2.6.1 and earlier
@@ -83,9 +91,11 @@ the individual source/target pairs to find out which combinations are valid/defi
 
 Is the specified edge type directed?
 
+[discrete]
 === Parameter:
 * `edgeType`: The name of the edge type.
 
+[discrete]
 === Returns:
 `True`, if the edge is directed.
 
@@ -95,9 +105,11 @@ Is the specified edge type directed?
 
 Returns the name of the reverse edge of the specified edge type, if applicable.
 
+[discrete]
 === Parameter:
 * `edgeType`: The name of the edge type.
 
+[discrete]
 === Returns:
 The name of the reverse edge, if it was defined.
 
@@ -107,6 +119,7 @@ The name of the reverse edge, if it was defined.
 
 Returns the number of edges from a specific vertex.
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `sourceVertexId`: The primary ID value of the source vertex instance.
@@ -116,9 +129,11 @@ Returns the number of edges from a specific vertex.
 * `where`: A comma separated list of conditions that are all applied on each edge's attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 
+[discrete]
 === Returns:
 A dictionary of `edge_type: edge_count` pairs.
 
+[discrete]
 === Uses:
 - If `edgeType` = "&#42;": edge count of all edge types (no other arguments can be specified
 in this case).
@@ -134,6 +149,7 @@ count of the given edge type after filtered by `where` condition.
 - If `targetVertexId` is specified, then `targetVertexType` must also be specified.
 - If `targetVertexType` is specified, then `edgeType` must also be specified.
 
+[discrete]
 === Endpoints:
 - `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
  +
@@ -152,11 +168,13 @@ This is a simplified version of `getEdgeCountFrom()`, to be used when the total 
 edges of a given type is needed, regardless which vertex instance they are originated from.
 See documentation of `getEdgeCountFrom` above for more details.
 
+[discrete]
 === Parameters:
 * `edgeType`: The name of the edge type.
 * `sourceVertexType`: The name of the source vertex type.
 * `targetVertexType`: The name of the target vertex type.
 
+[discrete]
 === Returns:
 A dictionary of `edge_type: edge_count` pairs.
 
@@ -174,6 +192,7 @@ Data is upserted:
 in graph. Otherwise missing vertices are created with the new edge; the newly created
 vertices' attributes (if any) will be created with default values.
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `sourceVertexId`: The primary ID value of the source vertex instance.
@@ -198,9 +217,11 @@ Example:
 
 For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
+[discrete]
 === Returns:
 A single number of accepted (successfully upserted) edges (0 or 1).
 
+[discrete]
 === Endpoint:
 - `POST /graph/{graph_name}`
  +
@@ -213,6 +234,7 @@ See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-dat
 
 Upserts multiple edges (of the same type).
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `edgeType`: The name of the edge type.
@@ -242,9 +264,11 @@ Example:
 
 For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
+[discrete]
 === Returns:
 A single number of accepted (successfully upserted) edges (0 or positive integer).
 
+[discrete]
 === Endpoint:
 - `POST /graph/{graph_name}`
  +
@@ -257,6 +281,7 @@ See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-dat
 
 Upserts edges from a Pandas DataFrame.
 
+[discrete]
 === Parameters:
 * `df`: The DataFrame to upsert.
 * `sourceVertexType`: The type of source vertex for the edge.
@@ -271,6 +296,7 @@ the dataframe and target is the attribute name in the graph vertex. When omitted
 all columns would be upserted with their current names. In this case column names
 must match the vertex's attribute names.
 
+[discrete]
 === Returns:
 The number of edges upserted.
 
@@ -284,6 +310,7 @@ Only `sourceVertexType` and `sourceVertexId` are required.
 If `targetVertexId` is specified, then `targetVertexType` must also be specified.
 If `targetVertexType` is specified, then `edgeType` must also be specified.
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `sourceVertexId`: The primary ID value of the source vertex instance.
@@ -304,10 +331,12 @@ be included in the dataframe?
 * `withType`: (When the output format is "df") Should the edge type be included in the dataframe?
 * `timeout`: Time allowed for successful execution (0 = no time limit, default).
 
+[discrete]
 === Returns:
 The (selected) details of the (matching) edge instances (sorted, limited) as dictionary,
 JSON or pandas DataFrame.
 
+[discrete]
 === Endpoint:
 - `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
  +
@@ -324,6 +353,7 @@ Only ``sourceVertexType`` and ``sourceVertexId`` are required.
 If ``targetVertexId`` is specified, then ``targetVertexType`` must also be specified.
 If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `sourceVertexId`: The primary ID value of the source vertex instance.
@@ -337,6 +367,7 @@ The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 * `limit`: Maximum number of edge instances to be returned (after sorting).
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
+[discrete]
 === Returns:
 The (selected) details of the (matching) edge instances (sorted, limited) as dictionary,
 JSON or pandas DataFrame.
@@ -356,6 +387,7 @@ Use `getEdgesDataFrame()` instead.
 
 Retrieves edges of the given edge type regardless the source vertex.
 
+[discrete]
 === Parameters:
 * `edgeType`: The name of the edge type.
 * `fmt`: Format of the results returned: +
@@ -366,6 +398,7 @@ Retrieves edges of the given edge type regardless the source vertex.
 be included in the dataframe?
 * `withType`: (When the output format is "df") should the edge type be included in the dataframe?
 
+[discrete]
 === Returns:
 The details of the edge instances of the given edge type as dictionary, JSON or pandas
 DataFrame.
@@ -377,14 +410,17 @@ DataFrame.
 
 Returns edge attribute statistics.
 
+[discrete]
 === Parameters:
 * `edgeTypes`: A single edge type name or a list of edges types names or '*' for all edges types.
 * `skipNA`: Skip those edges that do not have attributes or none of their attributes have
 statistics gathered.
 
+[discrete]
 === Returns:
 Attribute statistics of edges; a dictionary of dictionaries.
 
+[discrete]
 === Endpoint:
 - `POST /builtins/{graph_name}`
  +
@@ -400,6 +436,7 @@ Only `sourceVertexType` and `sourceVertexId` are required.
 If `targetVertexId` is specified, then `targetVertexType` must also be specified.
 If `targetVertexType` is specified, then `edgeType` must also be specified.
 
+[discrete]
 === Parameters:
 * `sourceVertexType`: The name of the source vertex type.
 * `sourceVertexId`: The primary ID value of the source vertex instance.
@@ -412,9 +449,11 @@ The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 * `sort`: Comma separated list of attributes the results should be sorted by.
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
+[discrete]
 === Returns:
 A dictionary of `edge_type: deleted_edge_count` pairs.
 
+[discrete]
 === Endpoint:
 - `DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}`
  +
@@ -476,11 +515,13 @@ An edge set has this structure (when serialised as JSON):
 ----
 
 
+[discrete]
 === Parameters:
 * `edgeSet`: A JSON array containing an edge set in the format returned by queries (see below).
 * `withId`: Include the type and primary ID of source and target vertices as a columns?
 * `withType`: Include edge type info as a column?
 
+[discrete]
 === Returns:
 A pandas DataFrame containing the edge attributes (and optionally the type and primary
 ID or source and target vertices, and the edge type).

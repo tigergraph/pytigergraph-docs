@@ -6,14 +6,17 @@
 Retrieves the schema metadata (of all vertex and edge type and – if not disabled – the
 User Defined Type details) of the graph.
 
+[discrete]
 === Parameters:
 * `udts`: If `True`, the output includes User Defined Types in the schema details.
 * `force`: If `True`, retrieves the schema metadata again, otherwise returns a cached copy of
 the schema metadata (if they were already fetched previously).
 
+[discrete]
 === Returns:
 The schema metadata.
 
+[discrete]
 === Endpoint:
 - `GET /gsqlserver/gsql/schema`
  +
@@ -25,12 +28,15 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 Upserts data (vertices and edges) from a JSON document or equivalent object structure.
 
+[discrete]
 === Parameter:
 * `data`: The data of vertex and edge instances, in a specific format.
 
+[discrete]
 === Returns:
 The result of upsert (number of vertices and edges accepted/upserted).
 
+[discrete]
 === Endpoint:
 - `POST /graph`
  +
@@ -42,6 +48,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 Lists the REST++ endpoints and their parameters.
 
+[discrete]
 === Parameters:
 * `builtin`: List TigerGraph provided REST++ endpoints.
 * `dynamic`: List endpoints for user installed queries.
@@ -49,6 +56,7 @@ Lists the REST++ endpoints and their parameters.
 
 If none of the above arguments are specified, all endpoints are listed
 
+[discrete]
 === Endpoint:
 - `GET /endpoints/{graph_name}`
  +

@@ -5,12 +5,15 @@
 
 Pings the database.
 
+[discrete]
 === Parameter:
 * `usePost`: Use POST instead of GET
 
+[discrete]
 === Returns:
 "Hello GSQL" if everything was OK.
 
+[discrete]
 === Endpoint:
 - `GET /echo`
 - `POST /echo`
@@ -24,14 +27,17 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 Retrieves the git versions of all components of the system.
 
+[discrete]
 === Parameter:
 * `raw`: Return unprocessed version info string, or extract version info for each components
 into a list.
 
+[discrete]
 === Returns:
 Either an unprocessed string containing the version info details, or a list with version
 info for each components.
 
+[discrete]
 === Endpoint:
 - `GET /version`
  +
@@ -45,13 +51,16 @@ Gets the version information of specific component.
 
 Get the full list of components using `getVersion()`.
 
+[discrete]
 === Parameters:
 * `component`: One of TigerGraph's components (e.g. product, gpe, gse).
 * `full`: Return the full version string (with timestamp, etc.) or just X.Y.Z.
 
+[discrete]
 === Returns:
 Version info for specified component.
 
+[discrete]
 === Raises:
 `TigerGraphException` if invalid/non-existent component is specified.
 
@@ -61,6 +70,7 @@ Version info for specified component.
 
 Returns the expiration date and remaining days of the license.
 
+[discrete]
 === Returns:
 In case of evaluation/trial deployment, an information message and -1 remaining days are
 returned; otherwise the license details.

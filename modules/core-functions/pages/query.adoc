@@ -5,12 +5,14 @@
 
 Returns a list of installed queries.
 
+[discrete]
 === Parameter:
 * `fmt`: Format of the results: +
 - "py":   Python objects (default)
 - "json": JSON document
 - "df":   pandas DataFrame
 
+[discrete]
 === Returns:
 The names of the installed queries.
 
@@ -25,6 +27,7 @@ The query must be already created and installed in the graph.
 Use ``getEndpoints(dynamic=True)`` or GraphStudio to find out the generated endpoint URL of
 the query, but only the query name needs to be specified here.
 
+[discrete]
 === Parameters:
 * `queryName`: The name of the query to be executed.
 * `params`: Query parameters. A string of param1=value1&param2=value2 format or a dictionary.
@@ -38,10 +41,12 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/#_response_siz
 * `usePost`: The RESTPP accepts a maximum URL length of 8192 characters. Use POST if params cause
 you to exceed this limit.
 
+[discrete]
 === Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 
+[discrete]
 === Notes:
 When specifying parameter values in a dictionary:
 
@@ -71,6 +76,7 @@ When specifying parameter values in a dictionary:
 +
 
 
+[discrete]
 === Endpoints:
 - `GET /query/{graph_name}/{query_name}`
  +
@@ -89,6 +95,7 @@ Runs an interpreted query.
 Use ``$graphname`` or ``@graphname@`` in the ``FOR GRAPH`` clause to avoid hard coding the
 name of the graph in your app; it will be replaced by the actual graph name.
 
+[discrete]
 === Parameters:
 * `queryText`: The text of the GSQL query that must be provided in this format: +
 
@@ -103,10 +110,12 @@ name of the graph in your app; it will be replaced by the actual graph name.
 * `params`: A string of `param1=value1&param2=value2...` format or a dictionary.
 See below for special rules for dictionaries.
 
+[discrete]
 === Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 
+[discrete]
 === Notes:
 When specifying parameter values in a dictionary:
 
@@ -136,6 +145,7 @@ When specifying parameter values in a dictionary:
 +
 
 
+[discrete]
 === Endpoint:
 - `POST /gsqlserver/interpreted_query`
  +
@@ -149,12 +159,14 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 Parses query output and separates vertex and edge data (and optionally other output) for
 easier use.
 
+[discrete]
 === Parameters:
 * `output`: The data structure returned by `runInstalledQuery()` or `runInterpretedQuery()`.
 * `graphOnly`: Should output be restricted to vertices and edges (True, default) or should any
 other output (e.g. values of variables or accumulators, or plain text printed) be
 captured as well.
 
+[discrete]
 === Returns:
 A dictionary with two (or three) keys: "vertices", "edges" and optionally "output".
 First two refer to another dictionary containing keys for each vertex and edge types
@@ -178,6 +190,7 @@ visualisation component.
 
 Retrieves real-time query performance statistics over the given time period.
 
+[discrete]
 === Parameters:
 * `seconds`: The duration of statistic collection period (the last n seconds before the function
 call).
@@ -186,6 +199,7 @@ LatencyPercentile). By default, segments is 10, meaning the percentile range 0-1
 will be divided into ten equal segments: 0%-10%, 11%-20%, etc.
 Segments must be [1, 100].
 
+[discrete]
 === Endpoint:
 - `GET /statistics/{graph_name}`
  +
