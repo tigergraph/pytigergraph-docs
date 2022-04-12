@@ -9,3 +9,4 @@ nav:
 - modules/getting-started/nav.adoc
 - modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
+- modules/gds/nav.adoc
