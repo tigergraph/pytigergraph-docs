@@ -1,4 +1,4 @@
-= Graph Data Science Functions
+= Graph Data Science
 
 In order to use the Graph Data Science Functions, make sure that you have installed one of these options:
 
