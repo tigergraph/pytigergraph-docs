@@ -1,0 +1,47 @@
+= Base Dataloader
+
+== Constructor
+`__init__(graph: ???4 <class 'ast.Constant'>, loaderID: str = None, numBatches: int = 1, bufferSize: int = 4, outputFormat: str = "dataframe", kafkaAddress: str = "", KafkaMaxMsgSize: int = 104857600, kafkaNumPartitions: int = 1, kafkaReplicaFactor: int = 1, kafkaRetentionMS: int = 60000, kafkaAutoDelTopic: bool = True, kafkaAddressForConsumer: str = None, kafkaAddressForProducer: str = None, timeout: int = 300000) -> ???4 <class 'ast.Constant'>`
+
+Base Class for data loaders.
+
+The job of a data loader is to stream data from the TigerGraph database to the client.
+Kafka is used as the data streaming pipeline. Hence, for the data loader to work,
+a running Kafka cluster is required.
+
+**Note**: For the first time you initialize the loader on a graph in TigerGraph,
+the initialization might take a minute as it installs the corresponding
+query to the database and optimizes it. However, the query installation only
+needs to be done once, so it will take no time when you initialize the loader
+on the same TG graph again.
+
+[discrete]
+=== Parameters:
+graph (TigerGraphConnection): Connection to the TigerGraph database.
+loaderID (str): An identifier of the loader which can be any string. It is
+also used as the Kafka topic name. If `None`, a random string
+will be generated for it. Defaults to None.
+numBatches (int): Number of batches to divide the desired data into. Defaults to 1.
+bufferSize (int): Number of data batches to prefetch and store in memory. Defaults to 4.
+outputFormat (str): Format of the output data of the loader. Defaults to dataframe.
+kafkaAddress (str): Address of the kafka broker. Defaults to localhost:9092.
+maxKafkaMsgSize (int, optional): Maximum size of a Kafka message in bytes.
+Defaults to 104857600.
+kafkaNumPartitions (int, optional): Number of partitions for the topic created by this loader.
+Defaults to 1.
+kafkaReplicaFactor (int, optional): Number of replications for the topic created by this
+loader. Defaults to 1.
+kafkaRetentionMS (int, optional): Retention time for messages in the topic created by this
+loader in milliseconds. Defaults to 60000.
+kafkaAutoDelTopic (bool, optional): Whether to delete the Kafka topic once the 
+loader finishes pulling data. Defaults to True.
+kafkaAddressForConsumer (str, optional): Address of the kafka broker that a consumer
+should use. Defaults to be the same as `kafkaAddress`.
+kafkaAddressForProducer (str, optional): Address of the kafka broker that a producer
+should use. Defaults to be the same as `kafkaAddress`.
+timeout (int, optional): Timeout value for GSQL queries, in ms. Defaults to 300000.
+
+
+== data
+`data()`
+

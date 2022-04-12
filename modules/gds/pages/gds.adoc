@@ -140,18 +140,15 @@ multiple batches of data to load, it will return the loader again.
 
 [discrete]
 === Parameters:
-batch_size (int, optional): 
-Number of edges in each batch.
+* `batch_size (int, optional)`: Number of edges in each batch.
 Defaults to None.
 * `num_batches (int, optional)`: Number of batches to split the edges.
 Defaults to 1.
-shuffle (bool, optional): 
-Whether to shuffle the edges before loading data.
+* `shuffle (bool, optional)`: Whether to shuffle the edges before loading data.
 Defaults to False.
 * `filter_by (str, optional)`: A boolean attribute used to indicate which edges
 are included. Defaults to None.
-output_format (str, optional)
-Format of the output data of the loader. Only
+* `output_format (str, optional)`: Format of the output data of the loader. Only
 "dataframe" is supported. Defaults to "dataframe".
 * `loader_id (str, optional)`: An identifier of the loader which can be any string. It is
 also used as the Kafka topic name. If `None`, a random string will be generated
