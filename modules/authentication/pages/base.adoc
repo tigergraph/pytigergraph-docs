@@ -1,4 +1,4 @@
-= Low(est) level HTTP(s) communication functions
+= pyTigerGraph basic functionality
 
 == Constructor
 `__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", username: str = "tigergraph", password: str = "tigergraph", restppPort: [int, str] = "9000", gsPort: [int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = True, certPath: str = None, debug: bool = False, sslPort: [int, str] = "443", gcp: bool = False)`
@@ -15,8 +15,8 @@ Initiate a connection object.
 * `gsPort`: The port of all other queries.
 * `gsqlVersion`: The version of the GSQL client to be used. Effectively the version of the database
 being connected to.
-* `version`: DEPRECATED; use gsqlVersion.
-* `apiToken`: DEPRECATED; use getToken() with a secret to get a session token.
+* `version`: DEPRECATED; use `gsqlVersion()`.
+* `apiToken`: DEPRECATED; use `getToken()` with a secret to get a session token.
 * `useCert`: DEPRECATED; the need for CA certificate is now determined by URL scheme.
 * `certPath`: The filesystem path to the CA certificate. Required in case of https connections.
 * `debug`: Enable debug messages.
