@@ -1,0 +1,11 @@
+= Graph Data Science Functions
+
+In order to use the Graph Data Science Functions, make sure that you have installed one of these options:
+
+`pyTigerGraph[gds]`: Will install both `torch_geometric` and `dgl` libraries.
+
+`pyTigerGraph[gds-pyg]`: Will install `torch_geometric` and its dependencies.
+
+`pyTigerGraph[gds-dgl]`: Will install `dgl`.
+
+`pyTigerGraph[gds-lite]`: Will not install a graph machine learning framework.
