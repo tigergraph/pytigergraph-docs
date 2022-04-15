@@ -1,2 +1,4 @@
 * xref:index.adoc[]
 ** xref:gds.adoc[]
+** xref:dataloaders.adoc[]
+** xref:featurizer.adoc[]

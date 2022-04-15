@@ -12,6 +12,9 @@
     "pyTigerGraph/pyTigerGraphSchema.py": "modules/core-functions/pages/schema.adoc",
     "pyTigerGraph/pyTigerGraphUDT.py": "modules/core-functions/pages/udt.adoc",
     "pyTigerGraph/pyTigerGraphUtils.py": "modules/core-functions/pages/utils.adoc",
-    "pyTigerGraph/pyTigerGraphVertex.py": "modules/core-functions/pages/vertex.adoc"
+    "pyTigerGraph/pyTigerGraphVertex.py": "modules/core-functions/pages/vertex.adoc",
+    "pyTigerGraph/gds/gds.py": "modules/gds/pages/gds.adoc",
+    "pyTigerGraph/gds/dataloaders.py": "modules/gds/pages/dataloaders.adoc",
+    "pyTigerGraph/gds/featurizer.py": "modules/gds/pages/featurizer.adoc"
   }
 }
