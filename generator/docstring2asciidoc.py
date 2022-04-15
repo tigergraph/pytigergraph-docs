@@ -22,12 +22,12 @@ def processFunctionDocstring(docstring, adocFile, argNum):
             mode = "todo"
         elif li == "Args:":
             adocFile.write("[discrete]\n")
-            adocFile.write("=== Parameter" + ("s" if argNum > 1 else "") + ":\n")
+            adocFile.write("==== Parameter" + ("s" if argNum > 1 else "") + ":\n")
             mode = "param"
         elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:",
             "Example:", "Examples:"]:
             adocFile.write("[discrete]\n")
-            adocFile.write("=== {}\n".format(li))
+            adocFile.write("==== {}\n".format(li))
             mode = "none"
         else:
             if mode == "todo":
@@ -121,7 +121,7 @@ def processFunction(node, adocFile):
     if node.name.startswith("_") and node.name != "__init__":  # TODO cfg for __init__?
         return
 
-    adocFile.write("== {}\n".format(node.name if node.name != "__init__" else "Constructor"))
+    adocFile.write("=== {}\n".format(node.name if node.name != "__init__" else "Constructor"))
 
     argList = ""
 
@@ -140,9 +140,9 @@ def processFunction(node, adocFile):
             if i >= defOffset:
                 de = defs[i - defOffset].value
                 if isinstance(de, str):
-                    argList += " = \"" + de + "\""
+                    argList += " == \"" + de + "\""
                 else:
-                    argList += " = " + str(de)
+                    argList += " == " + str(de)
             argList += ", "
         i += 1
     argList = argList[:-2]

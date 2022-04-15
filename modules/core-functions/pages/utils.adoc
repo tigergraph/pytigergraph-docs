@@ -1,20 +1,20 @@
 = Utility Functions
 
-== echo
-`echo(usePost: bool = False) -> str`
+=== echo
+`echo(usePost: bool == False) -> str`
 
 Pings the database.
 
 [discrete]
-=== Parameter:
+==== Parameter:
 * `usePost`: Use POST instead of GET
 
 [discrete]
-=== Returns:
+==== Returns:
 "Hello GSQL" if everything was OK.
 
 [discrete]
-=== Endpoint:
+==== Endpoint:
 - `GET /echo`
 - `POST /echo`
  +
@@ -22,56 +22,56 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 
-== getVersion
-`getVersion(raw: bool = False) -> [str, list]`
+=== getVersion
+`getVersion(raw: bool == False) -> [str, list]`
 
 Retrieves the git versions of all components of the system.
 
 [discrete]
-=== Parameter:
+==== Parameter:
 * `raw`: Return unprocessed version info string, or extract version info for each components
 into a list.
 
 [discrete]
-=== Returns:
+==== Returns:
 Either an unprocessed string containing the version info details, or a list with version
 info for each components.
 
 [discrete]
-=== Endpoint:
+==== Endpoint:
 - `GET /version`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_component_versions[documentation] for more details.
 
 
-== getVer
-`getVer(component: str = "product", full: bool = False) -> str`
+=== getVer
+`getVer(component: str == "product", full: bool == False) -> str`
 
 Gets the version information of specific component.
 
 Get the full list of components using `getVersion()`.
 
 [discrete]
-=== Parameters:
+==== Parameters:
 * `component`: One of TigerGraph's components (e.g. product, gpe, gse).
 * `full`: Return the full version string (with timestamp, etc.) or just X.Y.Z.
 
 [discrete]
-=== Returns:
+==== Returns:
 Version info for specified component.
 
 [discrete]
-=== Raises:
+==== Raises:
 `TigerGraphException` if invalid/non-existent component is specified.
 
 
-== getLicenseInfo
+=== getLicenseInfo
 `getLicenseInfo() -> dict`
 
 Returns the expiration date and remaining days of the license.
 
 [discrete]
-=== Returns:
+==== Returns:
 In case of evaluation/trial deployment, an information message and -1 remaining days are
 returned; otherwise the license details.
 

@@ -1,55 +1,55 @@
 = Schema Functions
 
-== getSchema
-`getSchema(udts: bool = True, force: bool = False) -> dict`
+=== getSchema
+`getSchema(udts: bool == True, force: bool == False) -> dict`
 
 Retrieves the schema metadata (of all vertex and edge type and – if not disabled – the
 User Defined Type details) of the graph.
 
 [discrete]
-=== Parameters:
+==== Parameters:
 * `udts`: If `True`, the output includes User Defined Types in the schema details.
 * `force`: If `True`, retrieves the schema metadata again, otherwise returns a cached copy of
 the schema metadata (if they were already fetched previously).
 
 [discrete]
-=== Returns:
+==== Returns:
 The schema metadata.
 
 [discrete]
-=== Endpoint:
+==== Endpoint:
 - `GET /gsqlserver/gsql/schema`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_graph_schema_metadata[documentation] for more details.
 
 
-== upsertData
+=== upsertData
 `upsertData(data: [str, object]) -> dict`
 
 Upserts data (vertices and edges) from a JSON document or equivalent object structure.
 
 [discrete]
-=== Parameter:
+==== Parameter:
 * `data`: The data of vertex and edge instances, in a specific format.
 
 [discrete]
-=== Returns:
+==== Returns:
 The result of upsert (number of vertices and edges accepted/upserted).
 
 [discrete]
-=== Endpoint:
+==== Endpoint:
 - `POST /graph`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_upsert_data_to_graph[documentation] for more details.
 
 
-== getEndpoints
-`getEndpoints(builtin: bool = False, dynamic: bool = False, static: bool = False) -> dict`
+=== getEndpoints
+`getEndpoints(builtin: bool == False, dynamic: bool == False, static: bool == False) -> dict`
 
 Lists the REST++ endpoints and their parameters.
 
 [discrete]
-=== Parameters:
+==== Parameters:
 * `builtin`: List TigerGraph provided REST++ endpoints.
 * `dynamic`: List endpoints for user installed queries.
 * `static`: List static endpoints.
@@ -57,7 +57,7 @@ Lists the REST++ endpoints and their parameters.
 If none of the above arguments are specified, all endpoints are listed
 
 [discrete]
-=== Endpoint:
+==== Endpoint:
 - `GET /endpoints/{graph_name}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_all_endpoints[documentation] for more details.
