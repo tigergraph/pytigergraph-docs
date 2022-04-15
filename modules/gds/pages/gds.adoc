@@ -1,7 +1,7 @@
 = Graph Data Science Functions
 
 == Constructor
-`__init__(conn: ???4 <class 'ast.Constant'>) -> ???4 <class 'ast.Constant'>`
+`__init__(conn: TigerGraphConnection) -> None`
 
 Initiate a GDS object.
 [discrete]
@@ -13,7 +13,7 @@ None
 
 
 == neighborLoader
-`neighborLoader(v_in_feats: ???4 <class 'ast.Subscript'> = None, v_out_labels: ???4 <class 'ast.Subscript'> = None, v_extra_feats: ???4 <class 'ast.Subscript'> = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
+`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Get a graph loader that performs neighbor sampling as introduced in the
 [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
@@ -159,7 +159,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 == vertexLoader
-`vertexLoader(attributes: ???4 <class 'ast.Subscript'> = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> VertexLoader`
+`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> VertexLoader`
 
 Get a data loader that pulls batches of vertices from database.
 
@@ -222,7 +222,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 == graphLoader
-`graphLoader(v_in_feats: ???4 <class 'ast.Subscript'> = None, v_out_labels: ???4 <class 'ast.Subscript'> = None, v_extra_feats: ???4 <class 'ast.Subscript'> = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
+`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
 
 Get a data loader that pulls batches of vertices and edges from database.
 

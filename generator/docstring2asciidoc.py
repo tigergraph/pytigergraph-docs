@@ -98,7 +98,22 @@ def processTypes(node, colon: bool = True) -> str:
             return cln + "???3 " + str(type(v))
     elif str(type(node)) == "<class 'NoneType'>":
         return ""
+    elif str(node.value) == "TigerGraphConnection":
+        return cln + "TigerGraphConnection"
+    elif isinstance(node, ast.Constant):
+            if node.value == "None":
+                return cln + "None"
+    elif node.value.id == "Union":
+        partial = "Union["
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, ast.Tuple):
+                for t in child.elts:
+                    partial += processTypes(t, False) + ", "
+        return cln + partial[:-2] + "]"
     else:
+        print(node.value.id)
+        for child in ast.iter_child_nodes(node):
+            print(child)
         return cln + "???4 " + str(type(node))
 
 
