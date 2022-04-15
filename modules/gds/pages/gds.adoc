@@ -1,4 +1,4 @@
-= Graph Data Science Functions
+== Graph Data Science Functions
 
 === Constructor
 `__init__(conn: TigerGraphConnection) -> None`

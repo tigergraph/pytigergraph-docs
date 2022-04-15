@@ -1,4 +1,4 @@
-= pyTigerGraph Base Functionality
+== pyTigerGraph Base Functionality
 
 === Constructor
 `__init__(host: str == "http://127.0.0.1", graphname: str == "MyGraph", username: str == "tigergraph", password: str == "tigergraph", restppPort: [int, str] == "9000", gsPort: [int, str] == "14240", gsqlVersion: str == "", version: str == "", apiToken: str == "", useCert: bool == True, certPath: str == None, debug: bool == False, sslPort: [int, str] == "443", gcp: bool == False)`

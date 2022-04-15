@@ -1,4 +1,4 @@
-= GSQL Interface
+== GSQL Interface
 
 === initGsql
 `initGsql(certLocation: str == "~/.gsql/my-cert.txt") -> bool`

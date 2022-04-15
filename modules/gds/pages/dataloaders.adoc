@@ -1,4 +1,4 @@
-= Base Dataloader Class
+== Base Dataloader Class
 
 === Constructor
 `__init__(graph: TigerGraphConnection, loaderID: str == None, numBatches: int == 1, bufferSize: int == 4, outputFormat: str == "dataframe", kafkaAddress: str == "", KafkaMaxMsgSize: int == 104857600, kafkaNumPartitions: int == 1, kafkaReplicaFactor: int == 1, kafkaRetentionMS: int == 60000, kafkaAutoDelTopic: bool == True, kafkaAddressForConsumer: str == None, kafkaAddressForProducer: str == None, timeout: int == 300000) -> None`
@@ -58,7 +58,7 @@ Fetch the specific data instances for inference/prediction.
 payload (dict): The JSON payload to send to the API.
 
 
-= Neighbor Loader
+== Neighbor Loader
 
 === Constructor
 `__init__(graph: TigerGraphConnection, v_in_feats: Union[list, dict] == None, v_out_labels: Union[list, dict] == None, v_extra_feats: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, num_neighbors: int == 10, num_hops: int == 2, shuffle: bool == False, filter_by: str == None, output_format: str == "PyG", add_self_loop: bool == False, loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> None`
@@ -139,7 +139,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
-= Edge Loader
+== Edge Loader
 
 === Constructor
 `__init__(graph: TigerGraphConnection, batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "dataframe", loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> None`
@@ -205,7 +205,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
-= Vertex Loader
+== Vertex Loader
 
 === Constructor
 `__init__(graph: TigerGraphConnection, attributes: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "dataframe", loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> None`
@@ -270,7 +270,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
-= Graph Loader
+== Graph Loader
 
 === Constructor
 `__init__(graph: TigerGraphConnection, v_in_feats: Union[list, dict] == None, v_out_labels: Union[list, dict] == None, v_extra_feats: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "PyG", add_self_loop: bool == False, loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> None`

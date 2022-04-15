@@ -159,7 +159,7 @@ def processFunction(node, adocFile):
 
 
 def processClassDocstring(node, adocFile):
-    adocFile.write("= {}\n\n".format(ast.get_docstring(node).strip(".")))
+    adocFile.write("== {}\n\n".format(ast.get_docstring(node).strip(".")))
 
 
 def processClass(node, adocFile):

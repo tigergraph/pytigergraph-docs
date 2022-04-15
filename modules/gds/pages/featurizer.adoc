@@ -1,4 +1,4 @@
-= Featurizer Functions
+== Featurizer Functions
 
 === Constructor
 `__init__(conn: TigerGraphConnection)`
