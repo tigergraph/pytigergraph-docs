@@ -1,4 +1,4 @@
-== pyTigerGraph GSQL interface
+== GSQL Interface
 
 === initGsql
 `initGsql(certLocation: str == "~/.gsql/my-cert.txt") -> bool`

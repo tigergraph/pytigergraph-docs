@@ -70,11 +70,8 @@ Array of true labels.
 
 Get accuracy score.
 [discrete]
-==== Parameter:
-None
-[discrete]
 ==== Returns:
-Accuracy score.
+Accuracy score (float).
 
 
 == Object that calculates and tracks recall between predictions and true labels.
@@ -103,11 +100,8 @@ Array of true labels.
 
 Get recall score.
 [discrete]
-==== Parameter:
-None
-[discrete]
 ==== Returns:
-Recall score.
+Recall score (float).
 
 
 == Object that calculates and tracks precision between predictions and true labels.
@@ -136,10 +130,7 @@ Array of true labels.
 
 Get precision score.
 [discrete]
-==== Parameter:
-None
-[discrete]
 ==== Returns:
-Precision score.
+Precision score (float).
 
 

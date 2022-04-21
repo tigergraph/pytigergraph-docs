@@ -1,4 +1,4 @@
-== Query-specific functions
+== Query Functions
 
 === getInstalledQueries
 `getInstalledQueries(fmt: str == "py") -> [dict, json, pd.DataFrame]`
