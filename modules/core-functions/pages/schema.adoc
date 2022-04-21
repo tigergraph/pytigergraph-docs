@@ -1,4 +1,4 @@
-== Schema Functions
+== Schema-specific pyTigerGraph functions
 
 === getSchema
 `getSchema(udts: bool == True, force: bool == False) -> dict`

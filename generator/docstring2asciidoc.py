@@ -154,12 +154,17 @@ def processFunction(node, adocFile):
         adocFile.write("`{}({}) -> {}`\n\n".format(node.name, argList, retList))
     else:
         adocFile.write("`{}({})`\n\n".format(node.name, argList))
-
-    processFunctionDocstring(ast.get_docstring(node), adocFile, argNum - 1)
+    try:
+        processFunctionDocstring(ast.get_docstring(node), adocFile, argNum - 1)
+    except:
+        raise(Exception("Error processing docstring for function {}".format(node.name)))
 
 
 def processClassDocstring(node, adocFile):
-    adocFile.write("== {}\n\n".format(ast.get_docstring(node).strip(".")))
+    try:
+        adocFile.write("== {}\n\n".format(ast.get_docstring(node).strip(".")))
+    except:
+        raise(Exception("No docstring for class {}".format(node.name)))
 
 
 def processClass(node, adocFile):

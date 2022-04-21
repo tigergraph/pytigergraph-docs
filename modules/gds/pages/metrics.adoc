@@ -1,0 +1,145 @@
+== Object that stores running sum and count.
+
+Usage:
+- Call the update function to add a value.
+- Get running average by accessing the mean proporty, running sum by the total property, and
+number of values by the count property
+
+=== Constructor
+`__init__() -> None`
+
+Initialize the accumulator.
+
+
+=== update
+`update(value: float, count: int == 1) -> None`
+
+Add a value to the running sum.
+
+[discrete]
+==== Parameters:
+value (float): 
+The value to be added.
+count (int, optional): 
+The input value is by default treated as a single value.
+If it is a sum of multiple values, the number of values can be specified by this
+length argument, so that the running average can be calculated correctly. Defaults to 1.
+
+
+=== mean
+`mean() -> float`
+
+Get running average.
+
+
+=== total
+`total() -> float`
+
+Get running sum.
+
+
+=== count
+`count() -> int`
+
+Get running count
+
+
+== Object that calculates and tracks accuracy between predictions and true labels.
+
+Accuracy = sum(preds == labels) / len(labels)
+
+Usage:
+- Call the update function to add predictions and labels.
+- Get accuracy score at any point by accessing the value proporty
+
+=== update
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value
+`value() -> float`
+
+Get accuracy score.
+[discrete]
+==== Parameter:
+None
+[discrete]
+==== Returns:
+Accuracy score.
+
+
+== Object that calculates and tracks recall between predictions and true labels.
+
+Recall = sum(preds * labels) / sum(labels)
+
+Usage:
+- Call the update function to add predictions and labels.
+- Get recall score at any point by accessing the value proporty
+
+=== update
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value
+`value() -> float`
+
+Get recall score.
+[discrete]
+==== Parameter:
+None
+[discrete]
+==== Returns:
+Recall score.
+
+
+== Object that calculates and tracks precision between predictions and true labels.
+
+Precision = sum(preds * labels) / sum(preds)
+
+Usage:
+- Call the update function to add predictions and labels.
+- Get precision score at any point by accessing the value proporty
+
+=== update
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value
+`value() -> float`
+
+Get precision score.
+[discrete]
+==== Parameter:
+None
+[discrete]
+==== Returns:
+Precision score.
+
+

@@ -2,3 +2,4 @@
 ** xref:gds.adoc[Graph Data Science Functions]
 ** xref:dataloaders.adoc[Data Loaders]
 ** xref:featurizer.adoc[Featurizer]
+** xref:metrics.adoc[Metrics]

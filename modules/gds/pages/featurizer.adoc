@@ -1,7 +1,7 @@
-== Featurizer Functions
+== Featurizer Object
 
 === Constructor
-`__init__(conn: TigerGraphConnection)`
+`__init__(conn: TigerGraphConnection) -> None`
 
 Class for Feature Extraction.
 The job of a feature extracter is to install and run the current algorithms in graph data science libarary.

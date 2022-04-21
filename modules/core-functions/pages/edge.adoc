@@ -1,4 +1,4 @@
-== Edge Functions
+== Edge-specific functions
 
 === getEdgeTypes
 `getEdgeTypes(force: bool == False) -> list`

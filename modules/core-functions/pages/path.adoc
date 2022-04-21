@@ -1,4 +1,4 @@
-== Path Finding Functions
+== Path finding algorithms
 
 === shortestPath
 `shortestPath(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int == None, vertexFilters: [list, dict] == None, edgeFilters: [list, dict] == None, allShortestPaths: bool == False) -> dict`

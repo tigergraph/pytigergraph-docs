@@ -1,4 +1,4 @@
-== Authentication and Access Control Functions
+== Authentication and access control specific functions
 
 === getSecrets
 `getSecrets() -> dict`
