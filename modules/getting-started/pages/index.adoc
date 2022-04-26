@@ -9,6 +9,27 @@ pip3 install pyTigerGraph
 ----
 in the command line or use the appropriate tool of your development environment (anaconda, PyCharm, etc.).
 
+If you wish to utilize the Graph Data Science functionality in the xref:gds:index.adoc[GDS] section, you will need to download a flavor of the GDS packages. The options are:
+```
+pip3 install pyTigerGraph[gds]
+```
+will install all GDS requirements, including PyTorch, PyTorch Geometric, and DGL.
+
+```
+pip3 install pyTigerGraph[gds-pyg]
+```
+will install GDS requirements, but only support the PyTorch Geometric Graph Neural Network framework.
+
+```
+pip3 install pyTigerGraph[gds-dgl]
+```
+will install GDS requirements, but only support the DGL Graph Neural Network framework.
+
+```
+pip3 install pyTigerGraph[gds-lite]
+```
+will only install GDS requirments without PyTorch Geometric or DGL support. The dataloaders in this case will output Pandas DataFrames.
+
 Once the package is installed, you just import it:
 [source:python]
 ----

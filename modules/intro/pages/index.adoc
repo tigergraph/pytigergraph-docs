@@ -17,6 +17,18 @@ _pyTigerGraph_ is the default version and contains the core functionality of pyT
 The _pyTigerGraph[gds]_ version of pyTigerGraph is a drop-in replacement for _pyTigerGraph_,
 but adds support for Graph Data Science and Graph ML capabilities. This includes:
 
-* Graph feature engineering using algorithms from the GSQL Graph Data Science Library
-* Dataloaders for training and inference of Graph Neural Network models using PyTorch Geometric and DGL
-* Machine learning utilities for splitting 
+* Graph feature engineering using algorithms from the GSQL Graph Data Science Library.
+* Dataloaders for training and inference of Graph Neural Network models using PyTorch Geometric and DGL.
+* Machine learning utilities for splitting vertices into training, validation, and testing sets.
+
+== Getting Started
+Checkout the xref:getting-started:index.adoc[Getting Started] section for a quick introduction to pyTigerGraph. It contains instructions on how to install the package and connect to a TigerGraph database, as well as a few examples.
+
+== pyTigerGraph Community
+There are many community resources that you can use for help and support using pyTigerGraph:
+* TigerGraph Community Forum: https://dev.tigergraph.com/forum/
+* TigerGraph Discord: https://discord.gg/XM7Cn9w 
+* pyTigerGraph GitHub Issues: 
+
+== Contributing
+Checkout the xref:contributing:index.adoc[Contributing] section for instructions on how to contribute. pyTigerGraph was started as an open-source community project, and we welcome contributions from the community.

@@ -1,9 +1,9 @@
 {
-  "source_root": "/Users/username/GitHub/pyTigerGraph",
-  "doc_root": "/Users/username/GitHub/pytigergraph-docs",
+  "source_root": "/Users/username/pyTigerGraph",
+  "doc_root": "/Users/username/pytigergraph-docs",
   "mapping": {
-    "pyTigerGraph/pyTigerGraphAuth.py": "modules/authentication/pages/auth.adoc",
-    "pyTigerGraph/pyTigerGraphBase.py": "modules/authentication/pages/base.adoc",
+    "pyTigerGraph/pyTigerGraphAuth.py": "modules/core-functions/pages/auth.adoc",
+    "pyTigerGraph/pyTigerGraphBase.py": "modules/getting-started/pages/connection.adoc",
     "pyTigerGraph/pyTigerGraphEdge.py": "modules/core-functions/pages/edge.adoc",
     "pyTigerGraph/pyTigerGraphGSQL.py": "modules/core-functions/pages/gsql.adoc",
     "pyTigerGraph/pyTigerGraphLoading.py": "modules/core-functions/pages/loading.adoc",
@@ -15,6 +15,7 @@
     "pyTigerGraph/pyTigerGraphVertex.py": "modules/core-functions/pages/vertex.adoc",
     "pyTigerGraph/gds/gds.py": "modules/gds/pages/gds.adoc",
     "pyTigerGraph/gds/dataloaders.py": "modules/gds/pages/dataloaders.adoc",
-    "pyTigerGraph/gds/featurizer.py": "modules/gds/pages/featurizer.adoc"
+    "pyTigerGraph/gds/featurizer.py": "modules/gds/pages/featurizer.adoc",
+    "pyTigerGraph/gds/metrics.py": "modules/gds/pages/metrics.adoc"
   }
 }

@@ -1,0 +1,50 @@
+= Contributing to pyTigerGraph
+
+== Download the Repository
+You can download the repository from GitHub by:
+```sh
+git clone https://github.com/tigergraph/pyTigerGraph.git
+```
+
+== Install the Local Version of the Package
+Once downloaded, you can install the local version of the package (without GDS support) by:
+```sh
+pip install '.'
+```
+Within the `pyTigerGraph` directory, you can run the following command to install the GDS version of the package:
+```sh
+pip install '.[gds]'
+```
+
+== Make Changes
+Make the changes you want to make to the package. Make sure to document your changes in the code with docstrings and comments. The docstrings should be formatted as follows:
+```py
+def getVertexType(self, vertexType: str, force: bool = False) -> dict:
+    """Returns the details of the specified vertex type.
+
+    Args:
+        vertexType:
+            The name of of the vertex type.
+        force:
+            If `True`, forces the retrieval the schema metadata again, otherwise returns a
+            cached copy of vertex type details (if they were already fetched previously).
+
+    Returns:
+        The metadata of the vertex type.
+    """
+```
+
+Additionally, all function definitions should have type hinting for both the arguments and the return value. 
+
+Finally, unit tests should be written to test the funcitonality of the change. See the xref:contributing:tests.adoc[testing documentation] for more information.
+
+== Submit a Pull Request
+Once you have made the changes you want to make, you can submit a pull request to the repository. The pull request will be evaluated by our team and must have three parts:
+
+1) Unit tests written in the `tests` directory.
+
+2) Documentation in the form of docstrings and comments in the code.
+
+3) A short writeup of the changes you are making and why (this is what will be displayed on the pull request page).
+
+After that, we may reach out with further changes or suggestions to improve your pull request. Once your pull request is accepted, it will be merged into the master branch for deployment in the next release of the package. Steps 1 and 2 may be skipped when making changes such as fixing typos or improving documentation, although existing unittests will be ran against your changes to ensure they pass.
