@@ -10,3 +10,4 @@ nav:
 - modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
+- modules/contributing/nav.adoc
