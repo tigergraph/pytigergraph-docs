@@ -1,4 +1,5 @@
 = pyTigerGraph GDS Metrics.
+
 Utility for gathering metrics for GNN predictions.
 
 == Base Metric Accumulator.

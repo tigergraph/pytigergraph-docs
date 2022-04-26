@@ -1,4 +1,5 @@
 = pyTigerGraph Connection.
+
 Offers low(est) level HTTP(S) communication used by all other modules (directly or indirectly).
 
 == pyTigerGraph Basic Functionality

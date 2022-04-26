@@ -1,4 +1,5 @@
 = Schema Functions
+
 Get schema information about the graph.
 
 == Schema Functions

@@ -1,4 +1,5 @@
 = Vertex Functions
+
 Get and upsert vertex data.
 
 == Vertex Functions

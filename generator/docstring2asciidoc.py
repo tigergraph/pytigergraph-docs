@@ -231,7 +231,7 @@ def main():
         description = "\n".join(header.split("\n")[1:])
         src = "\n".join(srcList[endOfHeader+1:])
         adocFile = open(docFilePath, "w")
-        adocFile.write("= {}\n".format(title))
+        adocFile.write("= {}\n\n".format(title))
         adocFile.write(description+"\n\n")
         node = ast.parse(src, "<irrelevant>", "exec")
 

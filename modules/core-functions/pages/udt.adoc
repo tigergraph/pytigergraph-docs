@@ -1,4 +1,5 @@
 = User Defined Type (UDT) Functions
+
 Get user defined function informations for the graph.
 
 == User Defined Type (UDT) Functions
