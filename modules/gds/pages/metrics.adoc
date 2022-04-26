@@ -1,4 +1,4 @@
-== Object that stores running sum and count.
+== Base Metric Accumulator.
 
 Usage:
 - Call the update function to add a value.
@@ -12,12 +12,12 @@ Initialize the accumulator.
 
 
 === update
-`update(value: float, count: int == 1) -> None`
+`update(value: float, count: int = 1) -> None`
 
 Add a value to the running sum.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 value (float): 
 The value to be added.
 count (int, optional): 
@@ -44,7 +44,7 @@ Get running sum.
 Get running count
 
 
-== Object that calculates and tracks accuracy between predictions and true labels.
+== Accuracy Metric.
 
 Accuracy = sum(preds == labels) / len(labels)
 
@@ -58,7 +58,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -70,11 +70,11 @@ Array of true labels.
 
 Get accuracy score.
 [discrete]
-==== Returns:
+==== **Returns:**
 Accuracy score (float).
 
 
-== Object that calculates and tracks recall between predictions and true labels.
+== Recall Metric.
 
 Recall = sum(preds * labels) / sum(labels)
 
@@ -88,7 +88,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -100,11 +100,11 @@ Array of true labels.
 
 Get recall score.
 [discrete]
-==== Returns:
+==== **Returns:**
 Recall score (float).
 
 
-== Object that calculates and tracks precision between predictions and true labels.
+== Precision Metric.
 
 Precision = sum(preds * labels) / sum(preds)
 
@@ -118,7 +118,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -130,7 +130,7 @@ Array of true labels.
 
 Get precision score.
 [discrete]
-==== Returns:
+==== **Returns:**
 Precision score (float).
 
 

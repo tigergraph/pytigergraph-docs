@@ -5,15 +5,15 @@
 
 Initiate a GDS object.
 [discrete]
-==== Parameter:
+==== **Parameter:**
 * `conn (TigerGraphConnection)`: Accept a TigerGraphConnection to run queries with
 [discrete]
-==== Returns:
+==== **Returns:**
 None
 
 
 === neighborLoader
-`neighborLoader(v_in_feats: Union[list, dict] == None, v_out_labels: Union[list, dict] == None, v_extra_feats: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, num_neighbors: int == 10, num_hops: int == 2, shuffle: bool == False, filter_by: str == None, output_format: str == "PyG", add_self_loop: bool == False, loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> NeighborLoader`
+`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Get a graph loader that performs neighbor sampling as introduced in the
 [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
@@ -47,7 +47,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 v_in_feats (list, optional): 
 Vertex attributes to be used as input features.
 Only numeric and boolean attributes are allowed. The type of an attrbiute
@@ -97,7 +97,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 === edgeLoader
-`edgeLoader(batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "dataframe", loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> EdgeLoader`
+`edgeLoader(batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeLoader`
 
 Get a graph loader that pulls batches of edges from database.
 Edge attributes are not supported.
@@ -125,7 +125,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader again.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 * `batch_size (int, optional)`: Number of edges in each batch.
 Defaults to None.
 * `num_batches (int, optional)`: Number of batches to split the edges.
@@ -158,7 +158,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 === vertexLoader
-`vertexLoader(attributes: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "dataframe", loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> VertexLoader`
+`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> VertexLoader`
 
 Get a data loader that pulls batches of vertices from database.
 
@@ -185,7 +185,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader again.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 * `attributes (list, optional)`: Vertex attributes to be included. Defaults to None.
 * `batch_size (int, optional)`: Number of vertices in each batch.
 Defaults to None.
@@ -220,7 +220,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 === graphLoader
-`graphLoader(v_in_feats: Union[list, dict] == None, v_out_labels: Union[list, dict] == None, v_extra_feats: Union[list, dict] == None, batch_size: int == None, num_batches: int == 1, shuffle: bool == False, filter_by: str == None, output_format: str == "PyG", add_self_loop: bool == False, loader_id: str == None, buffer_size: int == 4, kafka_address: str == None, kafka_max_msg_size: int == 104857600, kafka_num_partitions: int == 1, kafka_replica_factor: int == 1, kafka_retention_ms: int == 60000, kafka_auto_del_topic: bool == True, kafka_address_consumer: str == None, kafka_address_producer: str == None, timeout: int == 300000) -> GraphLoader`
+`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
 
 Get a data loader that pulls batches of vertices and edges from database.
 
@@ -245,7 +245,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 * `v_in_feats (list, optional)`: Vertex attributes to be used as input features.
 Only numeric and boolean attributes are allowed. The type of an attrbiute
 is automatically determined from the database schema. Defaults to None.
@@ -292,12 +292,12 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 Get a featurizer.
 [discrete]
-==== Returns:
+==== **Returns:**
 Featurizer
 
 
 === vertexSplitter
-`vertexSplitter(timeout: int == 600000)`
+`vertexSplitter(timeout: int = 600000)`
 
 Get a vertex splitter that splits vertices into at most 3 parts randomly. 
 
@@ -331,7 +331,7 @@ another random 20% of vertices will have their attribute "attr_name3" set to Tru
 The three parts are disjoint.
 
 [discrete]
-==== Parameter:
+==== **Parameter:**
 timeout (int, optional): 
 Timeout value for the operation. Defaults to 600000.
 

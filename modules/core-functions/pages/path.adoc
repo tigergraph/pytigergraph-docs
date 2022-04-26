@@ -1,14 +1,14 @@
 == Path Finding Functions
 
 === shortestPath
-`shortestPath(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int == None, vertexFilters: [list, dict] == None, edgeFilters: [list, dict] == None, allShortestPaths: bool == False) -> dict`
+`shortestPath(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int = None, vertexFilters: [list, dict] = None, edgeFilters: [list, dict] = None, allShortestPaths: bool = False) -> dict`
 
 Find the shortest path (or all shortest paths) between the source and target vertex sets.
 
 A vertex set is a dict that has three top-level keys: `v_type`, `v_id`, `attributes` (a dict).
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 * `sourceVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
 the source vertices of the shortest paths sought.
 * `targetVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
@@ -22,13 +22,13 @@ the target vertices of the shortest paths sought.
 Default is `False`, meaning that the endpoint will return only one path.
 
 [discrete]
-==== Returns:
+==== **Returns:**
 The shortest path between the source and the target.
 The returned value is a subgraph: all vertices and edges that are part of the path(s);
 i.e. not a (list of individual) path(s).
 
 [discrete]
-==== Examples:
+==== **Examples:**
 
 [source,indent=0]
 ----
@@ -40,14 +40,14 @@ i.e. not a (list of individual) path(s).
 
 
 [discrete]
-==== Endpoint:
+==== **Endpoint:**
 - `POST /shortestpath/{graphName}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_shortest_path[documentation] for more details.
 
 
 === allPaths
-`allPaths(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int, vertexFilters: [list, dict] == None, edgeFilters: [list, dict] == None) -> dict`
+`allPaths(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int, vertexFilters: [list, dict] = None, edgeFilters: [list, dict] = None) -> dict`
 
 Find all possible paths up to a given maximum path length between the source and target
 vertex sets.
@@ -55,7 +55,7 @@ vertex sets.
 A vertex set is a dict that has three top-level keys: v_type, v_id, attributes (a dict).
 
 [discrete]
-==== Parameters:
+==== **Parameters:**
 * `sourceVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
 the source vertices of the shortest paths sought.
 * `targetVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
@@ -67,13 +67,13 @@ the target vertices of the shortest paths sought.
 `{"type": <str>, "condition": <str>}` dictionaries.
 
 [discrete]
-==== Returns:
+==== **Returns:**
 All paths between a source vertex (or vertex set) and target vertex (or vertex set).
 The returned value is a subgraph: all vertices and edges that are part of the path(s);
 i.e. not a (list of individual) path(s).
 
 [discrete]
-==== Example:
+==== **Example:**
 
 [source,indent=0]
 ----
@@ -84,7 +84,7 @@ i.e. not a (list of individual) path(s).
 
 
 [discrete]
-==== Endpoint:
+==== **Endpoint:**
 - `POST /allpaths/{graphName}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_all_paths[documentation] for more details.

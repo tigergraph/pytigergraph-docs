@@ -22,12 +22,12 @@ def processFunctionDocstring(docstring, adocFile, argNum):
             mode = "todo"
         elif li == "Args:":
             adocFile.write("[discrete]\n")
-            adocFile.write("==== Parameter" + ("s" if argNum > 1 else "") + ":\n")
+            adocFile.write("==== **Parameter" + ("s" if argNum > 1 else "") + ":**\n")
             mode = "param"
         elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:",
             "Example:", "Examples:"]:
             adocFile.write("[discrete]\n")
-            adocFile.write("==== {}\n".format(li))
+            adocFile.write("==== **{}**\n".format(li))
             mode = "none"
         else:
             if mode == "todo":
@@ -103,6 +103,8 @@ def processTypes(node, colon: bool = True) -> str:
     elif isinstance(node, ast.Constant):
             if node.value == "None":
                 return cln + "None"
+            else:
+                return cln + str(node.value)
     elif node.value.id == "Union":
         partial = "Union["
         for child in ast.iter_child_nodes(node):
@@ -140,9 +142,9 @@ def processFunction(node, adocFile):
             if i >= defOffset:
                 de = defs[i - defOffset].value
                 if isinstance(de, str):
-                    argList += " == \"" + de + "\""
+                    argList += " = \"" + de + "\""
                 else:
-                    argList += " == " + str(de)
+                    argList += " = " + str(de)
             argList += ", "
         i += 1
     argList = argList[:-2]
