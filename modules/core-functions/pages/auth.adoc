@@ -1,7 +1,5 @@
 = pyTigerGraph Authentication
-
 Provides functions for authenticating and managing permissions with TigerGraph.
-
 == Authentication and Access Control Functions
 
 === getSecrets

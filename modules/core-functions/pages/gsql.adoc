@@ -1,7 +1,5 @@
 = GSQL Interface
-
 Use GSQL within pyTigerGraph.
-
 == GSQL Interface
 
 === initGsql

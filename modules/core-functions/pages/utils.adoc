@@ -1,7 +1,5 @@
 = Utility Functions
-
 Utility functions for pyTigerGraph.
-
 == Utility Functions
 
 === echo
