@@ -1,3 +1,7 @@
+= Utility Functions
+
+Utility functions for pyTigerGraph.
+
 == Utility Functions
 
 === echo
@@ -23,7 +27,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 === getVersion
-`getVersion(raw: bool = False) -> [str, list]`
+`getVersion(raw: bool = False) -> Union[str, list]`
 
 Retrieves the git versions of all components of the system.
 

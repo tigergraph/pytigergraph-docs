@@ -1,3 +1,7 @@
+= GSQL Interface
+
+Use GSQL within pyTigerGraph.
+
 == GSQL Interface
 
 === initGsql
@@ -19,7 +23,7 @@ Exception if initialisation was unsuccessful.
 
 
 === gsql
-`gsql(query: str, graphname: str = None, options = None) -> [str, dict]`
+`gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
 Runs a GSQL query and process the output.
 

@@ -1,3 +1,7 @@
+= Schema Functions
+
+Get schema information about the graph.
+
 == Schema Functions
 
 === getSchema
@@ -24,7 +28,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 === upsertData
-`upsertData(data: [str, object]) -> dict`
+`upsertData(data: Union[str, object]) -> dict`
 
 Upserts data (vertices and edges) from a JSON document or equivalent object structure.
 

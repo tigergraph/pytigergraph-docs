@@ -1,7 +1,11 @@
+= Path Finding Functions
+
+Find paths between vertices within the graph.
+
 == Path Finding Functions
 
 === shortestPath
-`shortestPath(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int = None, vertexFilters: [list, dict] = None, edgeFilters: [list, dict] = None, allShortestPaths: bool = False) -> dict`
+`shortestPath(sourceVertices: Union[dict, tuple, list], targetVertices: Union[dict, tuple, list], maxLength: int = None, vertexFilters: Union[list, dict] = None, edgeFilters: Union[list, dict] = None, allShortestPaths: bool = False) -> dict`
 
 Find the shortest path (or all shortest paths) between the source and target vertex sets.
 
@@ -47,7 +51,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 
 
 === allPaths
-`allPaths(sourceVertices: [dict, tuple, list], targetVertices: [dict, tuple, list], maxLength: int, vertexFilters: [list, dict] = None, edgeFilters: [list, dict] = None) -> dict`
+`allPaths(sourceVertices: Union[dict, tuple, list], targetVertices: Union[dict, tuple, list], maxLength: int, vertexFilters: Union[list, dict] = None, edgeFilters: Union[list, dict] = None) -> dict`
 
 Find all possible paths up to a given maximum path length between the source and target
 vertex sets.

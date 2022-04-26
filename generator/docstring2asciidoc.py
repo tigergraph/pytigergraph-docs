@@ -220,8 +220,19 @@ def main():
         src = srcFile.read()
         srcFile.close()
 
+        srcList = src.split("\n")
+        endOfHeader = 0
+        for i in range(len(srcList)):
+            if srcList[i] == '"""':
+                endOfHeader = i
+                break
+        header = "\n".join(srcList[:endOfHeader]).split('"""')[1]
+        title = header.split("\n")[0]
+        description = "\n".join(header.split("\n")[1:])
+        src = "\n".join(srcList[endOfHeader+1:])
         adocFile = open(docFilePath, "w")
-
+        adocFile.write("= {}\n\n".format(title))
+        adocFile.write(description+"\n\n")
         node = ast.parse(src, "<irrelevant>", "exec")
 
         for child in ast.iter_child_nodes(node):
