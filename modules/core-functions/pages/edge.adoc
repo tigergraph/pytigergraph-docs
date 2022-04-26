@@ -1,5 +1,6 @@
 = Edge Functions
 Get and upsert edges to TigerGraph.
+
 == Edge Functions
 
 === getEdgeTypes

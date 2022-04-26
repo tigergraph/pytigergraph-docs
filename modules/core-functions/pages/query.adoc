@@ -1,5 +1,6 @@
 = Query Functions
 Run installed and interpreted queries in TigerGraph.
+
 == Query Functions
 
 === getInstalledQueries

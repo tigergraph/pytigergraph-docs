@@ -1,5 +1,6 @@
 = Path Finding Functions
 Find paths between vertices within the graph.
+
 == Path Finding Functions
 
 === shortestPath
