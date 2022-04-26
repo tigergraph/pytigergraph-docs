@@ -1,6 +1,6 @@
 = Getting Started
 
-== Deploying _pyTigerGraph_ and _pyTigerGraph[gds]_
+== Downloading _pyTigerGraph_ and _pyTigerGraph[gds]_
 
 To download _pyTigerGraph_, simply run
 [source:shell]
@@ -67,15 +67,14 @@ TigerGraph instance can be this simple:
 conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery")
 ----
 
-Or even this, if e.g. you are running locally a virtual machine or a container with port mapping and you
-are using the default graph "MyGraph":
+Or even this, if e.g. you are running locally a virtual machine or a container with default port mapping and you are using the default graph "MyGraph":
 
 [source:python]
 ----
 conn = tg.TigerGraphConnection()
 ----
 
-For more connection options, see the complete parameter list of the xref:authentication:base.adoc[ constructor] of the `TigerGraphConnection` class.
+For more connection options, see the complete parameter list of the xref:getting-started:connection.adoc[ constructor] of the `TigerGraphConnection` class.
 
 Once you have established the connection you can start using pyTigerGraph, e.g.
 

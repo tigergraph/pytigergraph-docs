@@ -1,2 +1,3 @@
-* xref:index.adoc[]
-** xref:connection.adoc[]
+* xref:index.adoc[Getting Started]
+** xref:connection.adoc[pyTigerGraph Connection]
+** xref:examples.adoc[Examples]
