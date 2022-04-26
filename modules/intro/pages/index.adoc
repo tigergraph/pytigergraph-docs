@@ -28,7 +28,7 @@ Checkout the xref:getting-started:index.adoc[Getting Started] section for a quic
 There are many community resources that you can use for help and support using pyTigerGraph:
 * TigerGraph Community Forum: https://dev.tigergraph.com/forum/
 * TigerGraph Discord: https://discord.gg/XM7Cn9w 
-* pyTigerGraph GitHub Issues: 
+* pyTigerGraph GitHub Issues: https://github.com/tigergraph/pyTigerGraph/issues
 
 == Contributing
 Checkout the xref:contributing:index.adoc[Contributing] section for instructions on how to contribute. pyTigerGraph was started as an open-source community project, and we welcome contributions from the community.
