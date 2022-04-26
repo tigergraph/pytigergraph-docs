@@ -11,8 +11,12 @@ _pyTigerGraph_ is the default version and contains the core functionality of pyT
   database
 * Metadata functions: fetching details of graphs/schemas, vertex and edge types, and other
   schema objects and object types
-* Authentication and authorisation functions
+* Authentication and authorization functions
 * Miscellaneous/utility functions
 
 The _pyTigerGraph[gds]_ version of pyTigerGraph is a drop-in replacement for _pyTigerGraph_,
-but adds support for Graph Data Science and Graph ML capabilities.
+but adds support for Graph Data Science and Graph ML capabilities. This includes:
+
+* Graph feature engineering using algorithms from the GSQL Graph Data Science Library
+* Dataloaders for training and inference of Graph Neural Network models using PyTorch Geometric and DGL
+* Machine learning utilities for splitting 
