@@ -101,19 +101,17 @@ def processTypes(node, colon: bool = True) -> str:
     elif str(node.value) == "TigerGraphConnection":
         return cln + "TigerGraphConnection"
     elif isinstance(node, ast.Constant):
-            if node.value == "None":
-                return cln + "None"
-            else:
-                return cln + str(node.value)
-    elif node.value.id == "Union":
-        partial = "Union["
-        for child in ast.iter_child_nodes(node):
-            if isinstance(child, ast.Tuple):
-                for t in child.elts:
-                    partial += processTypes(t, False) + ", "
-        return cln + partial[:-2] + "]"
+        if node.value == "None":
+            return cln + "None"
+        else:
+            return cln + str(node.value)
+    elif isinstance(node, _ast.Subscript):
+        if node.value.id == "Union":
+            partial = ""
+            for t in node.slice.value.elts:
+                partial += processTypes(t, False) + ", "
+            return cln + "Union[" + partial[:-2] + "]"
     else:
-        print(node.value.id)
         for child in ast.iter_child_nodes(node):
             print(child)
         return cln + "???4 " + str(type(node))
@@ -159,23 +157,54 @@ def processFunction(node, adocFile):
     try:
         processFunctionDocstring(ast.get_docstring(node), adocFile, argNum - 1)
     except:
-        raise(Exception("Error processing docstring for function {}".format(node.name)))
+        raise (Exception("Error processing docstring for function {}".format(node.name)))
 
 
-def processClassDocstring(node, adocFile):
+def processClassDocstring(node, adocFile, hasFileHeader):
     try:
-        adocFile.write("== {}\n\n".format(ast.get_docstring(node).strip(".")))
+        ds = ast.get_docstring(node)
+        title = ds.split("\n")[0].rstrip(".")
+        description = "\n".join(ds.split("\n")[1:])
+
+        adocFile.write(("=" if hasFileHeader else "") + "= {}\n".format(title))
+        adocFile.write("{}\n\n".format(description))
     except:
-        raise(Exception("No docstring for class {}".format(node.name)))
+        raise Exception("No docstring for class {}".format(node.name))
 
 
-def processClass(node, adocFile):
-    processClassDocstring(node, adocFile)
+def processClass(node, adocFile, hasFileHeader):
+    processClassDocstring(node, adocFile, hasFileHeader)
 
     for child in ast.iter_child_nodes(node):
         if isinstance(child, _ast.FunctionDef):
             processFunction(child, adocFile)
             # return
+
+
+def processFileHeader(src, adocFile) -> bool:
+    srcList = src.split("\n")
+
+    if not srcList[0].startswith('"""'):  # No file level docstring (single-class file, perhaps?)
+        return False
+
+    if srcList[0].startswith('"""') and srcList[0].endswith('"""'):  # Single-line docstring
+        title = srcList[0].strip('"""').rstrip(".")
+        description = ""
+    else:  # Multi-line docstring
+        endOfHeader = 0
+        for i in range(len(srcList)):
+            if srcList[i] == '"""':
+                endOfHeader = i
+                break
+        header = "\n".join(srcList[:endOfHeader]).lstrip('"""')
+        title = header.split("\n")[0].rstrip(".")
+        description = "\n".join(header.split("\n")[1:])
+
+    adocFile.write("= {}\n\n".format(title))
+    if description:
+        adocFile.write(description + "\n\n")
+
+    return True
 
 
 def main():
@@ -211,6 +240,8 @@ def main():
         exit(5)
 
     for s, d in cfg["mapping"].items():
+        if s.startswith("#"):  # Skip this mapping
+            continue
         srcFilePath = cfg["source_root"] + s
         docFilePath = cfg["doc_root"] + d
 
@@ -220,24 +251,15 @@ def main():
         src = srcFile.read()
         srcFile.close()
 
-        srcList = src.split("\n")
-        endOfHeader = 0
-        for i in range(len(srcList)):
-            if srcList[i] == '"""':
-                endOfHeader = i
-                break
-        header = "\n".join(srcList[:endOfHeader]).split('"""')[1]
-        title = header.split("\n")[0]
-        description = "\n".join(header.split("\n")[1:])
-        src = "\n".join(srcList[endOfHeader+1:])
         adocFile = open(docFilePath, "w")
-        adocFile.write("= {}\n\n".format(title))
-        adocFile.write(description+"\n\n")
+
+        hasFileHeader = processFileHeader(src, adocFile)
+
         node = ast.parse(src, "<irrelevant>", "exec")
 
         for child in ast.iter_child_nodes(node):
             if isinstance(child, _ast.ClassDef):
-                processClass(child, adocFile)
+                processClass(child, adocFile, hasFileHeader)
 
         adocFile.close()
 

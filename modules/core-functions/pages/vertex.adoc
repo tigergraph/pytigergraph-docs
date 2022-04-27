@@ -1,8 +1,6 @@
 = Vertex Functions
 
-Get and upsert vertex data.
-
-== Vertex Functions
+Provides functions to upsert, retrieve and delete vertices.
 
 === getVertexTypes
 `getVertexTypes(force: bool = False) -> list`

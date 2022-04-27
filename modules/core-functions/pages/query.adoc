@@ -2,8 +2,6 @@
 
 Run installed and interpreted queries in TigerGraph.
 
-== Query Functions
-
 === getInstalledQueries
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
 
@@ -78,7 +76,6 @@ When specifying parameter values in a dictionary:
  +
 `"key": [(primary_id1, "vertex_type1"), (primary_id2, "vertex_type2"), ...]`
 +
-
 
 [discrete]
 ==== **Endpoints:**

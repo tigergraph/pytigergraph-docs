@@ -1,8 +1,6 @@
 = User Defined Type (UDT) Functions
 
-Get user defined function informations for the graph.
-
-== User Defined Type (UDT) Functions
+Get information about User Defined Function for the graph.
 
 === getUDTs
 `getUDTs() -> list`

@@ -2,8 +2,6 @@
 
 Use GSQL within pyTigerGraph.
 
-== GSQL Interface
-
 === initGsql
 `initGsql(certLocation: str = "~/.gsql/my-cert.txt") -> bool`
 

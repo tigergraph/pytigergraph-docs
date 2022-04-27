@@ -1,8 +1,6 @@
 = Edge Functions
 
-Get and upsert edges to TigerGraph.
-
-== Edge Functions
+Provides functions to upsert, retrieve and delete edges.
 
 === getEdgeTypes
 `getEdgeTypes(force: bool = False) -> list`
