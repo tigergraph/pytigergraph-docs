@@ -1,5 +1,6 @@
 = Core Functions
 
+Core functions allow you to use the core features of the TigerGraph database such as
 Core functions are divided into the following categories:
 
 * Schema functions

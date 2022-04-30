@@ -1,33 +1,66 @@
-= pyTigerGraph basic functionality
+= Connecting to TigerGraph
+:description: Instructions on connecting to TigerGraph instances using pyTigerGraph.
 
-Offers low(est) level HTTP(S) communication used by all other modules (directly or indirectly).
+Having installed pyTigerGraph, the next step is to connect to a running TigerGraph instance to access and make changes to your graph data.
 
-=== Constructor
-`__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", username: str = "tigergraph", password: str = "tigergraph", restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = True, certPath: str = None, debug: bool = False, sslPort: Union[int, str] = "443", gcp: bool = False)`
+== Prerequisites
+* pyTigerGraph is installed on your machine.
+* You have access to a running TigerGraph instance.
 
-Initiate a connection object.
+== Connect to a secured TigerGraph instance
 
-[discrete]
-==== **Parameters:**
-* `host`: The host name or IP address of the TigerGraph server.
-* `graphname`: The default graph for running queries.
-* `username`: The username on the TigerGraph server.
-* `password`: The password for that user.
-* `restppPort`: The port for REST++ queries.
-* `gsPort`: The port of all other queries.
-* `gsqlVersion`: The version of the GSQL client to be used. Effectively the version of the database
-being connected to.
-* `version`: DEPRECATED; use `gsqlVersion()`.
-* `apiToken`: DEPRECATED; use `getToken()` with a secret to get a session token.
-* `useCert`: DEPRECATED; the need for CA certificate is now determined by URL scheme.
-* `certPath`: The filesystem path to the CA certificate. Required in case of https connections.
-* `debug`: Enable debug messages.
-* `sslPort`: Port for fetching SSL certificate in case of firewall.
-* `gcp`: Is firewall used?
+_pyTigerGraph_ connects to the TigerGraph database through various REST API endpoints.
+Some endpoints use https://datatracker.ietf.org/doc/html/rfc7617[basic] (username/password)
+authentication; others use https://datatracker.ietf.org/doc/html/rfc6750[bearer token] authentication.
+Therefore, to access a
+xref:tigergraph-server:API:authentication.adoc[secured] TigerGraph instance, you need to provide credentials for both authentication scheme:
 
-[discrete]
-==== **Raises:**
-TigerGraphException: In case on invalid URL scheme.
+[source.wrap,python]
+----
+conn = tg.TigerGraphConnection(host="<hostname>", graphname="<graph_name>", username="<username>", password="<password>") <1>
+conn.getToken(<secret>) <2>
+----
+<1> The username and password is provided via the constructor of the `TigerGraphConnection` class (see below).
+<2> The token for the bearer authentication scheme is not provided directly. Instead, you need a
+xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] to get a session token.
+Secrets are unique strings that serve as a user’s credentials in certain circumstances.
 
+In addition to these, you need to provide the hostname or IP address of the TigerGraph instance
+and the name of a _graph_.
 
+The graph in this context is a logical container that consists of object type (vertex and edge type, UDT, data sources, etc.) definitions and the instances of these object types.
+A TigerGraph instance can contain multiple of graphs, so you need to specify which one you want to use.
 
+For example:
+
+[source.wrap,python]
+----
+conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery", "hsolo", "f4lc0n")
+conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5')
+----
+
+== Connect to an unsecured instance
+
+If your instance does not have user authentication enabled, then you do not need to specify a username, password, or authentication token:
+
+[source.wrap,python]
+----
+conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery")
+----
+
+If you are running locally a virtual machine or a container with default port mapping, and you are using the default graph `MyGraph`, you can omit all arguments when calling the constructor:
+
+[source,python]
+----
+conn = tg.TigerGraphConnection()
+----
+
+For more connection options, see the complete parameter list of the xref:getting-started:connection.adoc[constructor] of the `TigerGraphConnection` class.
+
+Once you have established the connection, you can start using all functions offered by pyTigerGraph:
+
+[source.wrap,python]
+----
+veggies = conn.getVertices("products", where="category=vegetable"))
+results = conn.runInstalledQuery("shortest_delivery", {"warehouse": 1234, "store": 5678})
+----
