@@ -5,24 +5,6 @@ Use GSQL within pyTigerGraph.
 == GSQL Interface
 
 
-=== initGsql
-`initGsql(certLocation: str = "~/.gsql/my-cert.txt") -> bool`
-
-Initialises the GSQL support.
-
-[discrete]
-==== **Parameter:**
-* `certLocation`: The path and file of the CA certificate.
-
-[discrete]
-==== **Returns:**
-`True` if initialisation was successful.
-
-[discrete]
-==== **Raises:**
-Exception if initialisation was unsuccessful.
-
-
 === gsql
 `gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
