@@ -2,6 +2,9 @@
 
 Utility functions for pyTigerGraph.
 
+== Utility Functions
+
+
 === echo
 `echo(usePost: bool = False) -> str`
 

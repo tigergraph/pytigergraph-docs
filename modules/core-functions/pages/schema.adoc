@@ -2,6 +2,9 @@
 
 Get schema information about the graph.
 
+== Schema Functions
+
+
 === getSchema
 `getSchema(udts: bool = True, force: bool = False) -> dict`
 

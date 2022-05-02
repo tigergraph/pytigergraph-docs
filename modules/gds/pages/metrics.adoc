@@ -1,13 +1,13 @@
-= pyTigerGraph GDS Metrics.
+= pyTigerGraph GDS Metrics
 
 Utility for gathering metrics for GNN predictions.
 
-== Base Metric Accumulator.
+== Base Metric Accumulator
 
 Usage:
 - Call the update function to add a value.
 - Get running average by accessing the mean proporty, running sum by the total property, and
-number of values by the count property
+number of values by the count property.
 
 === Constructor
 `__init__() -> None`
@@ -48,13 +48,13 @@ Get running sum.
 Get running count
 
 
-== Accuracy Metric.
+== Accuracy Metric
 
 Accuracy = sum(preds == labels) / len(labels)
 
 Usage:
 - Call the update function to add predictions and labels.
-- Get accuracy score at any point by accessing the value proporty
+- Get accuracy score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -78,13 +78,13 @@ Get accuracy score.
 Accuracy score (float).
 
 
-== Recall Metric.
+== Recall Metric
 
 Recall = sum(preds * labels) / sum(labels)
 
 Usage:
 - Call the update function to add predictions and labels.
-- Get recall score at any point by accessing the value proporty
+- Get recall score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -108,13 +108,13 @@ Get recall score.
 Recall score (float).
 
 
-== Precision Metric.
+== Precision Metric
 
 Precision = sum(preds * labels) / sum(preds)
 
 Usage:
 - Call the update function to add predictions and labels.
-- Get precision score at any point by accessing the value proporty
+- Get precision score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`

@@ -5,6 +5,7 @@ In order to use these functions, confirm that the appropriate prerequisites are 
 
 == Graph Data Science Functions
 
+
 === Constructor
 `__init__(conn: TigerGraphConnection) -> None`
 
@@ -18,7 +19,7 @@ None
 
 
 === neighborLoader
-`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
+`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Get a graph loader that performs neighbor sampling as introduced in the
 [Inductive Representation Learning on Large Graphs](https://arxiv.org/abs/1706.02216)
@@ -53,14 +54,19 @@ multiple batches of data to load, it will return the loader itself.
 
 [discrete]
 ==== **Parameters:**
-v_in_feats (list, optional): 
-Vertex attributes to be used as input features.
+* `v_in_feats (list, optional)`: Vertex attributes to be used as input features.
 Only numeric and boolean attributes are allowed. The type of an attrbiute
 is automatically determined from the database schema. Defaults to None.
-v_out_labels (list, optional): 
-Vertex attributes to be used as labels for
+* `v_out_labels (list, optional)`: Vertex attributes to be used as labels for
 prediction. Only numeric and boolean attributes are allowed. Defaults to None.
 * `v_extra_feats (list, optional)`: Other attributes to get such as indicators of
+train/test data. All types of attributes are allowed. Defaults to None.
+* `e_in_feats (list, optional)`: Edge attributes to be used as input features.
+Only numeric and boolean attributes are allowed. The type of an attrbiute
+is automatically determined from the database schema. Defaults to None.
+* `e_out_labels (list, optional)`: Edge attributes to be used as labels for
+prediction. Only numeric and boolean attributes are allowed. Defaults to None.
+* `e_extra_feats (list, optional)`: Other edge attributes to get such as indicators of
 train/test data. All types of attributes are allowed. Defaults to None.
 * `batch_size (int, optional)`: Number of vertices as seeds in each batch.
 Defaults to None.
@@ -77,8 +83,7 @@ Defaults to False.
 can be included as seeds. Defaults to None.
 * `output_format (str, optional)`: Format of the output data of the loader. Only
 "PyG", "DGL" and "dataframe" are supported. Defaults to "PyG".
-add_self_loop (bool, optional): 
-Whether to add self-loops to the graph. Defaults to False.
+* `add_self_loop (bool, optional)`: Whether to add self-loops to the graph. Defaults to False.
 * `loader_id (str, optional)`: An identifier of the loader which can be any string. It is
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
@@ -102,7 +107,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 === edgeLoader
-`edgeLoader(batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeLoader`
+`edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeLoader`
 
 Get a graph loader that pulls batches of edges from database.
 Edge attributes are not supported.
@@ -131,6 +136,7 @@ multiple batches of data to load, it will return the loader again.
 
 [discrete]
 ==== **Parameters:**
+* `attributes (list, optional)`: Edge attributes to be included. Defaults to None.
 * `batch_size (int, optional)`: Number of edges in each batch.
 Defaults to None.
 * `num_batches (int, optional)`: Number of batches to split the edges.
@@ -211,7 +217,7 @@ for it. Defaults to None.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
 Defaults to 1.
-* `kafka_replica_factor (int, optional)`: Number of replications for the topic created by this loader. 
+* `kafka_replica_factor (int, optional)`: Number of replications for the topic created by this loader.
 Defaults to 1.
 * `kafka_retention_ms (int, optional)`: Retention time for messages in the topic created by this
 loader in milliseconds. Defaults to 60000.
@@ -225,7 +231,7 @@ should use. Defaults to be the same as `kafkaAddress`.
 
 
 === graphLoader
-`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
+`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
 
 Get a data loader that pulls batches of vertices and edges from database.
 
@@ -254,22 +260,28 @@ multiple batches of data to load, it will return the loader itself.
 * `v_in_feats (list, optional)`: Vertex attributes to be used as input features.
 Only numeric and boolean attributes are allowed. The type of an attrbiute
 is automatically determined from the database schema. Defaults to None.
-* `v_out_labels (list, optional)`: Vertex attributes to be used as labels for prediction. 
+* `v_out_labels (list, optional)`: Vertex attributes to be used as labels for prediction.
 Only numeric and boolean attributes are allowed. Defaults to None.
-* `v_extra_feats (list, optional)`: Other attributes to get such as indicators of train/test data. 
+* `v_extra_feats (list, optional)`: Other attributes to get such as indicators of train/test data.
 All types of attributes are allowed. Defaults to None.
+* `e_in_feats (list, optional)`: Edge attributes to be used as input features.
+Only numeric and boolean attributes are allowed. The type of an attrbiute
+is automatically determined from the database schema. Defaults to None.
+* `e_out_labels (list, optional)`: Edge attributes to be used as labels for
+prediction. Only numeric and boolean attributes are allowed. Defaults to None.
+* `e_extra_feats (list, optional)`: Other edge attributes to get such as indicators of
+train/test data. All types of attributes are allowed. Defaults to None.
 * `batch_size (int, optional)`: Number of edges in each batch.
 Defaults to None.
 * `num_batches (int, optional)`: Number of batches to split the edges.
 Defaults to 1.
 * `shuffle (bool, optional)`: Whether to shuffle the data before loading.
 Defaults to False.
-* `filter_by (str, optional)`: A boolean attribute used to indicate which edges can be included. 
+* `filter_by (str, optional)`: A boolean attribute used to indicate which edges can be included.
 Defaults to None.
-* `output_format (str, optional)`: Format of the output data of the loader. 
+* `output_format (str, optional)`: Format of the output data of the loader.
 Only "PyG", "DGL" and "dataframe" are supported. Defaults to "dataframe".
-add_self_loop (bool, optional): 
-Whether to add self-loops to the graph. Defaults to False.
+* `add_self_loop (bool, optional)`: Whether to add self-loops to the graph. Defaults to False.
 * `loader_id (str, optional)`: An identifier of the loader which can be any string. It is
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
@@ -304,7 +316,7 @@ Featurizer
 === vertexSplitter
 `vertexSplitter(timeout: int = 600000)`
 
-Get a vertex splitter that splits vertices into at most 3 parts randomly. 
+Get a vertex splitter that splits vertices into at most 3 parts randomly.
 
 The split results are stored in the provided vertex attributes. Each boolean attribute
 indicates which part a vertex belongs to.
@@ -317,22 +329,61 @@ Usage:
  +
 `splitter.run()`
 +
-A random 60% of vertices will have their attribute "attr_name" set to True, and 
+A random 60% of vertices will have their attribute "attr_name" set to True, and
 others False. `attr_name` can be any attribute that exists in the database (same below).
 2. `splitter = conn.gds.vertexSplitter(conn, timeout, attr_name=0.6, attr_name2=0.2)`
  +
 `splitter.run()`
 +
-A random 60% of vertices will have their attribute "attr_name" set to True, and a 
-random 20% of vertices will have their attribute "attr_name2" set to True. The two 
-parts are disjoint. 
+A random 60% of vertices will have their attribute "attr_name" set to True, and a
+random 20% of vertices will have their attribute "attr_name2" set to True. The two
+parts are disjoint.
 3. `splitter = conn.gds.vertexSplitter(conn, timeout, attr_name=0.6, attr_name2=0.2, attr_name3=0.2)`
  +
 `splitter.run()`
 +
-A random 60% of vertices will have their attribute "attr_name" set to True, a 
-random 20% of vertices will have their attribute "attr_name2" set to True, and 
-another random 20% of vertices will have their attribute "attr_name3" set to True. 
+A random 60% of vertices will have their attribute "attr_name" set to True, a
+random 20% of vertices will have their attribute "attr_name2" set to True, and
+another random 20% of vertices will have their attribute "attr_name3" set to True.
+The three parts are disjoint.
+
+[discrete]
+==== **Parameter:**
+* `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
+
+
+=== edgeSplitter
+`edgeSplitter(timeout: int = 600000)`
+
+Get an edge splitter that splits edges into at most 3 parts randomly. 
+
+The split results are stored in the provided edge attributes. Each boolean attribute
+indicates which part an edge belongs to.
+
+Usage:
+1. `conn = TigerGraphConnection(...)`
+ +
+`splitter = conn.gds.edgeSplitter(timeout, attr_name=0.6)`
++
+ +
+`splitter.run()`
++
+A random 60% of edges will have their attribute "attr_name" set to True, and 
+others False. `attr_name` can be any attribute that exists in the database (same below).
+2. `splitter = conn.gds.edgeSplitter(conn, timeout, attr_name=0.6, attr_name2=0.2)`
+ +
+`splitter.run()`
++
+A random 60% of edges will have their attribute "attr_name" set to True, and a 
+random 20% of edges will have their attribute "attr_name2" set to True. The two 
+parts are disjoint. 
+3. `splitter = conn.gds.edgeSplitter(conn, timeout, attr_name=0.6, attr_name2=0.2, attr_name3=0.2)`
+ +
+`splitter.run()`
++
+A random 60% of edges will have their attribute "attr_name" set to True, a 
+random 20% of edges will have their attribute "attr_name2" set to True, and 
+another random 20% of edges will have their attribute "attr_name3" set to True. 
 The three parts are disjoint.
 
 [discrete]

@@ -2,6 +2,9 @@
 
 Run installed and interpreted queries in TigerGraph.
 
+== Query Functions
+
+
 === getInstalledQueries
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
 

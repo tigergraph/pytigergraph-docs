@@ -2,13 +2,15 @@
 
 Find paths between vertices within the graph.
 
+== Path Finding Functions
+
+
 === shortestPath
 `shortestPath(sourceVertices: Union[dict, tuple, list], targetVertices: Union[dict, tuple, list], maxLength: int = None, vertexFilters: Union[list, dict] = None, edgeFilters: Union[list, dict] = None, allShortestPaths: bool = False) -> dict`
 
 Find the shortest path (or all shortest paths) between the source and target vertex sets.
 
-A vertex set is a set of dictionaries that each has three top-level keys: `v_type`, `v_id`,
-and `attributes` (also a dictionary).
+A vertex set is a dict that has three top-level keys: `v_type`, `v_id`, `attributes` (a dict).
 
 [discrete]
 ==== **Parameters:**

@@ -5,6 +5,7 @@ See https://docs.tigergraph.com/tigergraph-server/current/user-access/access-con
 
 == Featurizer Functions
 
+
 === Constructor
 `__init__(conn: TigerGraphConnection)`
 

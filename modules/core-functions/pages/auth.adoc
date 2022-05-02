@@ -1,6 +1,9 @@
-= Authentication and Access Control Functions
+= pyTigerGraph Authentication
 
-Provides functions for authentication and managing permissions with TigerGraph.
+Provides functions for authenticating and managing permissions with TigerGraph.
+
+== Authentication and Access Control Functions
+
 
 === getSecrets
 `getSecrets() -> dict`
