@@ -2,7 +2,9 @@
 Learning by example is a great way to learn pyTigerGraph. We have quite a few examples and tutorials to help you get started.
 
 == Getting Started with Core Functions
+video::2BcC3C-qfX4[youtube]
 
+Is a good starting place for learning the core functions of pyTigerGraph. https://colab.research.google.com/drive/1JhYcnGVWT51KswcXZzyPzKqCoPP5htcC[This Google Colab notebook] is the companion notebook to the video.
 
 == Getting Started with Graph Data Science
 
