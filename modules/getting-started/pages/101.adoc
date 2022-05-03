@@ -1,0 +1,19 @@
+= pyTigerGraph Tutorial Notebook
+:description: A Google Colab notebook that walk through all core pyTigerGraph functions.
+
+This Google Colab notebook walks you through performing all core features of pyTigerGraph, including the following:
+
+* Connecting to TigerGraph
+* Performing CRUD operations on graph
+* Creating, installing and running queries
+
+== Before you begin
+* Install pyTigerGraph in your environment
+* Ensure you have access to a running TigerGraph instance
+
+== Follow notebook
+
+Notebook URL:
+https://colab.research.google.com/drive/1fJpcv-q0NLfHj3X1k6Lbwddp8gVVcfES#scrollTo=kCaZh0DO3HNP
+
+

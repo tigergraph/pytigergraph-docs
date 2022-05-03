@@ -1,11 +1,24 @@
 = Core Functions
+:description: Overview of pyTigerGraph core functions.
 
-Core functions allow you to use the core features of the TigerGraph database.
+Core functions allow you to use the following core features of the TigerGraph database through pyTigerGraph:
+
+* Managing secrets and securing your connection to TigerGraph instances
+* Retrieving graph schema
+* Run loading jobs
+* Upserting vertices and edges
+* Installing and running queries
+* Executing GSQL code
+* Retrieve version and license information
+
 Core functions are divided into the following categories:
 
-* Schema functions
-* Vertex functions
-* Edge functions
-* Query functions
-* Auth functions
-* Other functions
+* xref:schema.adoc[]
+* xref:loading.adoc[]
+* xref:vertex.adoc[]
+* xref:edge.adoc[]
+* xref:query.adoc[]
+* xref:udt.adoc[]
+* xref:gsql.adoc[]
+* xref:utils.adoc[]
+* xref:path.adoc[]

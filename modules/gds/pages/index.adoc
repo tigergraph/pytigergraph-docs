@@ -1,11 +1,18 @@
-= Graph Data Science
+= GDS Functions
+:description: Reference for GDS functions.
 
-In order to use the Graph Data Science Functions, make sure that you have installed one of these options:
+Graph Data Science (GDS) functions perform machine learning tasks such as the following:
 
-`pyTigerGraph[gds]`: Will install both `torch_geometric` and `dgl` libraries.
+* Loading data from a TigerGraph database in batches
+* xref:uSplitting vertices into training, test, and validation sets
+* Gathering metrics for Graph Neural Network (GNN) predictions
+* Installing and running Graph Data Science algorithms
 
-`pyTigerGraph[gds-pyg]`: Will install `torch_geometric` and its dependencies.
 
-`pyTigerGraph[gds-dgl]`: Will install `dgl`.
+In order to use the Graph Data Science Functions, make sure that you have installed one of the following pyTigerGraph :
 
-`pyTigerGraph[gds-lite]`: Will not install a graph machine learning framework.
+* `pyTigerGraph[gds]`: Will install both `torch_geometric` and `dgl` libraries.
+* `pyTigerGraph[gds-pyg]`: Will install `torch_geometric` and its dependencies.
+* `pyTigerGraph[gds-dgl]`: Will install `dgl`.
+* `pyTigerGraph[gds-lite]`: Will not install a graph machine learning framework.
+

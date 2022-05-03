@@ -2,7 +2,8 @@
 
 The Getting Started sequence walks you through the following:
 
-* Installing pyTigerGraph
-* Connect to TigerGraph instance
+* xref:install.adoc[]
+* xref:connection.adoc[]
+* xref:examples.adoc[]
 
 At the conclusion of the Getting Started sequence, you’ll have reached an excellent starting point for further, more detail-driven activities.
