@@ -33,13 +33,13 @@ pip3 install pyTigerGraph[gds]
 ----
 pip3 install pyTigerGraph[gds-pyg]
 ----
-* To use the GDS functions with the option of producing output in the format supported by the Deep Graph Library (GDL) framework, run the following command:
+* To use the GDS functions with the option of producing output in the format supported by the *Deep Graph Library* (DGL) framework, run the following command:
 +
 ----
 pip3 install pyTigerGraph[gds-dgl]
 ----
 * To use the GDS functions without needing to produce output in the format supported by PyTorch Geometric or DGL.
-This makes the data loaders output Pandas dataframes:
+This makes the data loaders output *Pandas dataframes*:
 +
 ----
 pip3 install pyTigerGraph[gds-lite]
