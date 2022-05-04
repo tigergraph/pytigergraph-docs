@@ -53,7 +53,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 See the following documentation for more details about the Neighbor Loader arguments:
-xref:dataloaders.adoc#_neighbor_loader
+xref:dataloaders.adoc#_neighbor_loader[]
 
 
 === edgeLoader
@@ -85,7 +85,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader again.
 
 See the following documentation for more details about the Edge Loader arguments:
-xref:dataloaders.adoc#_edge_loader
+xref:dataloaders.adoc#_edge_loader[]
 
 
 === vertexLoader
@@ -116,7 +116,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader again.
 
 See the following documentation for more details about the Vertex Loader arguments:
-xref:dataloaders.adoc#_vertex_loader
+xref:dataloaders.adoc#_vertex_loader[]
 
 
 === graphLoader
@@ -145,7 +145,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 See the following documentation for more details about the Graph Loader arguments:
-xref:dataloaders.adoc#_graph_loader
+xref:dataloaders.adoc#_graph_loader[]
 
 
 === featurizer
