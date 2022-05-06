@@ -2,9 +2,6 @@
 
 Run loading jobs on the TigerGraph server.
 
-== Loading Job Functions
-
-
 === runLoadingJobWithFile
 `runLoadingJobWithFile(filePath: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> dict`
 
@@ -14,7 +11,7 @@ The file will first be uploaded to the tigergraph server and the value of the ap
 FILENAME definition will be updated to point to the freshly uploaded file.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `filePath`: File variable name or file path for the file containing the data.
 * `fileTag`: The name of file variable in the loading job (DEFINE FILENAME <fileTag>).
 * `jobName`: The name of the loading job.
@@ -26,7 +23,7 @@ special case "\r\n". The default value is "\n"
 * `sizeLimit`: Maximum size for input file in bytes.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /ddl/{graph_name}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_a_loading_job[documentation] for more details.

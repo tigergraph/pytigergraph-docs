@@ -5,8 +5,9 @@ Utility for gathering metrics for GNN predictions.
 == Base Metric Accumulator
 
 Usage:
-- Call the update function to add a value.
-- Get running average by accessing the mean proporty, running sum by the total property, and
+
+* Call the update function to add a value.
+* Get running average by accessing the mean proporty, running sum by the total property, and
 number of values by the count property.
 
 === Constructor
@@ -21,7 +22,7 @@ Initialize the accumulator.
 Add a value to the running sum.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 value (float): 
 The value to be added.
 count (int, optional): 
@@ -53,8 +54,9 @@ Get running count
 Accuracy = sum(preds == labels) / len(labels)
 
 Usage:
-- Call the update function to add predictions and labels.
-- Get accuracy score at any point by accessing the value proporty.
+
+* Call the update function to add predictions and labels.
+* Get accuracy score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -62,7 +64,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -74,17 +76,18 @@ Array of true labels.
 
 Get accuracy score.
 [discrete]
-==== **Returns:**
+==== Returns:
 Accuracy score (float).
 
 
 == Recall Metric
 
-Recall = sum(preds * labels) / sum(labels)
+Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
 
 Usage:
-- Call the update function to add predictions and labels.
-- Get recall score at any point by accessing the value proporty.
+
+* Call the update function to add predictions and labels.
+* Get recall score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -92,7 +95,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -104,17 +107,18 @@ Array of true labels.
 
 Get recall score.
 [discrete]
-==== **Returns:**
+==== Returns:
 Recall score (float).
 
 
 == Precision Metric
 
-Precision = sum(preds * labels) / sum(preds)
+Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
 
 Usage:
-- Call the update function to add predictions and labels.
-- Get precision score at any point by accessing the value proporty.
+
+* Call the update function to add predictions and labels.
+* Get precision score at any point by accessing the value proporty.
 
 === update
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -122,7 +126,7 @@ Usage:
 Add predictions and labels to be compared.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 preds (ndarray): 
 Array of predicted labels.
 labels (ndarray): 
@@ -134,7 +138,7 @@ Array of true labels.
 
 Get precision score.
 [discrete]
-==== **Returns:**
+==== Returns:
 Precision score (float).
 
 

@@ -2,23 +2,20 @@
 
 Use GSQL within pyTigerGraph.
 
-== GSQL Interface
-
-
 === gsql
 `gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
 Runs a GSQL query and process the output.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `query`: The text of the query to run as one string. The query is one or more GSQL statement.
 * `graphname`: The name of the graph to attach to. If not specified, the graph name provided at the
 time of establishing the connection will be used.
 * `options`: DEPRECATED
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the statement(s) executed.
 
 

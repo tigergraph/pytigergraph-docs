@@ -2,23 +2,20 @@
 
 Run installed and interpreted queries in TigerGraph.
 
-== Query Functions
-
-
 === getInstalledQueries
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
 
 Returns a list of installed queries.
 
 [discrete]
-==== **Parameter:**
+==== Parameters:
 * `fmt`: Format of the results: +
 - "py":   Python objects (default)
 - "json": JSON document
 - "df":   pandas DataFrame
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The names of the installed queries.
 
 
@@ -33,7 +30,7 @@ Use ``getEndpoints(dynamic=True)`` or GraphStudio to find out the generated endp
 the query, but only the query name needs to be specified here.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `queryName`: The name of the query to be executed.
 * `params`: Query parameters. A string of param1=value1&param2=value2 format or a dictionary.
 See below for special rules for dictionaries.
@@ -47,12 +44,12 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/#_response_siz
 you to exceed this limit.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 
 [discrete]
-==== **Notes:**
+==== Notes:
 When specifying parameter values in a dictionary:
 
 - For primitive parameter types use
@@ -81,7 +78,7 @@ When specifying parameter values in a dictionary:
 +
 
 [discrete]
-==== **Endpoints:**
+==== Endpoints:
 - `GET /query/{graph_name}/{query_name}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_an_installed_query_get[documentation] for more details.
@@ -100,7 +97,7 @@ Use ``$graphname`` or ``@graphname@`` in the ``FOR GRAPH`` clause to avoid hard 
 name of the graph in your app; it will be replaced by the actual graph name.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `queryText`: The text of the GSQL query that must be provided in this format: +
 
 +
@@ -115,12 +112,12 @@ name of the graph in your app; it will be replaced by the actual graph name.
 See below for special rules for dictionaries.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 
 [discrete]
-==== **Notes:**
+==== Notes:
 When specifying parameter values in a dictionary:
 
 - For primitive parameter types use
@@ -150,7 +147,7 @@ When specifying parameter values in a dictionary:
 
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /gsqlserver/interpreted_query`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_an_interpreted_query[documentation] for more details.
@@ -164,14 +161,14 @@ Parses query output and separates vertex and edge data (and optionally other out
 easier use.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `output`: The data structure returned by `runInstalledQuery()` or `runInterpretedQuery()`.
 * `graphOnly`: Should output be restricted to vertices and edges (True, default) or should any
 other output (e.g. values of variables or accumulators, or plain text printed) be
 captured as well.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A dictionary with two (or three) keys: "vertices", "edges" and optionally "output".
 First two refer to another dictionary containing keys for each vertex and edge types
 found, and the instances of those vertex and edge types. "output" is a list of
@@ -195,7 +192,7 @@ visualisation component.
 Retrieves real-time query performance statistics over the given time period.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `seconds`: The duration of statistic collection period (the last n seconds before the function
 call).
 * `segments`: The number of segments of the latency distribution (shown in results as
@@ -204,7 +201,7 @@ will be divided into ten equal segments: 0%-10%, 11%-20%, etc.
 Segments must be [1, 100].
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /statistics/{graph_name}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_query_performance[documentation] for more details.

@@ -1,9 +1,6 @@
 = Vertex Functions
 
-Get and upsert vertex data.
-
-== Vertex Functions
-
+Provides functions to upsert, retrieve and delete vertices.
 
 === getVertexTypes
 `getVertexTypes(force: bool = False) -> list`
@@ -11,12 +8,12 @@ Get and upsert vertex data.
 Returns the list of vertex type names of the graph.
 
 [discrete]
-==== **Parameter:**
+==== Parameters:
 * `force`: If `True`, forces the retrieval the schema metadata again, otherwise returns a
 cached copy of vertex type metadata (if they were already fetched previously).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The list of vertex types defined in the the current graph.
 
 
@@ -26,13 +23,13 @@ The list of vertex types defined in the the current graph.
 Returns the details of the specified vertex type.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of of the vertex type.
 * `force`: If `True`, forces the retrieval the schema metadata again, otherwise returns a
 cached copy of vertex type details (if they were already fetched previously).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The metadata of the vertex type.
 
 
@@ -42,18 +39,18 @@ The metadata of the vertex type.
 Returns the number of vertices of the specified type.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `where`: A comma separated list of conditions that are all applied on each vertex's
 attributes. The conditions are in logical conjunction (i.e. they are "AND'ed"
 together).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A dictionary of <vertex_type>: <vertex_count> pairs.
 
 [discrete]
-==== **Uses:**
+==== Uses:
 - If `vertexType` == "&#42;": the count of the instances of all vertex types (`where` cannot
 be specified in this case).
 - If `vertexType` is specified only: count of the instances of the given vertex type.
@@ -61,12 +58,12 @@ be specified in this case).
 type after being filtered by `where` condition(s).
 
 [discrete]
-==== **Raises:**
+==== Raises:
 `TigerGraphException` when "&#42;" is specified as vertex type and a `where` condition is
 provided; or when invalid vertex type name is specified.
 
 [discrete]
-==== **Endpoints:**
+==== Endpoints:
 - `GET /graph/{graph_name}/vertices`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_vertices[documentation] for more details.
@@ -87,7 +84,7 @@ Data is upserted:
 the request. An optional operator controls how the attributes are updated.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `vertexId`: The primary ID of the vertex to be upserted.
 * `attributes`: The attributes of the vertex to be upserted; a dictionary in this format: +
@@ -99,7 +96,7 @@ the request. An optional operator controls how the attributes are updated.
 ----
 
 +
-Example:
+Example
 +
 [source,indent=0]
 ----
@@ -109,11 +106,11 @@ Example:
 For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A single number of accepted (successfully upserted) vertices (0 or 1).
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /graph/{graph_name}`
  +
 See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
@@ -127,7 +124,7 @@ Upserts multiple vertices (of the same type).
 See the description of ``upsertVertex`` for generic information.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `vertices`: A list of tuples in this format: +
 
@@ -142,7 +139,7 @@ See the description of ``upsertVertex`` for generic information.
 ----
 
 +
-Example:
+Example
 +
 [source,indent=0]
 ----
@@ -155,11 +152,11 @@ Example:
 For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A single number of accepted (successfully upserted) vertices (0 or positive integer).
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /graph/{graph_name}`
  +
 See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
@@ -171,7 +168,7 @@ See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-dat
 Upserts vertices from a Pandas DataFrame.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `df`: The DataFrame to upsert.
 * `vertexType`: The type of vertex to upsert data to.
 * `v_id`: The field name where the vertex primary id is given. If omitted the dataframe index
@@ -182,7 +179,7 @@ all columns would be upserted with their current names. In this case column name
 must match the vertex's attribute names.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The number of vertices upserted.
 
 
@@ -198,7 +195,7 @@ was used when the vertex type was created). +
 Use `getVerticesById()` if you need to retrieve vertices by their primary ID.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `select`: Comma separated list of vertex attributes to be retrieved.
 * `where`: Comma separated list of conditions that are all applied on each vertex' attributes.
@@ -216,12 +213,12 @@ Must be used with `sort`.
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The (selected) details of the (matching) vertex instances (sorted, limited) as
 dictionary, JSON or pandas DataFrame.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /graph/{graph_name}/vertices/{vertex_type}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_vertices[documentation] for more details.
@@ -241,7 +238,7 @@ was used when the vertex type was created). +
 Use `getVerticesById()` if you need to retrieve vertices by their primary ID.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `select`: Comma separated list of vertex attributes to be retrieved.
 * `where`: Comma separated list of conditions that are all applied on each vertex' attributes.
@@ -253,7 +250,7 @@ Must be used with `sort`.
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The (selected) details of the (matching) vertex instances (sorted, limited) as pandas
 DataFrame.
 
@@ -273,7 +270,7 @@ Use `getVertexDataFrame()` instead.
 Retrieves vertices of the given vertex type, identified by their ID.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `select`: Comma separated list of vertex attributes to be retrieved.
@@ -286,12 +283,12 @@ Retrieves vertices of the given vertex type, identified by their ID.
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The (selected) details of the (matching) vertex instances as dictionary, JSON or pandas
 DataFrame.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_retrieve_a_vertex[documentation] for more details.
@@ -306,13 +303,13 @@ Retrieves vertices of the given vertex type, identified by their ID.
 This is a shortcut to ``getVerticesById(..., fmt="df", withId=True, withType=False)``.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `select`: Comma separated list of vertex attributes to be retrieved.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The (selected) details of the (matching) vertex instances as pandas DataFrame.
 
 
@@ -331,18 +328,18 @@ Use `getVertexDataFrameById()` instead.
 Returns vertex attribute statistics.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexTypes`: A single vertex type name or a list of vertex types names or "&#42;" for all vertex
 types.
 * `skipNA`: Skip those non-applicable vertices that do not have attributes or none of their
 attributes have statistics gathered.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A dictionary of various vertex stats for each vertex type specified.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /builtins/{graph_name}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_built_in_functions_on_graph[documentation] for more details.
@@ -360,7 +357,7 @@ was used when the vertex type was created). +
 Use `delVerticesById()` if you need to retrieve vertices by their primary ID.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `where`: Comma separated list of conditions that are all applied on each vertex' attributes.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
@@ -374,14 +371,14 @@ timeout:
 Time allowed for successful execution (0 = no limit, default).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A single number of vertices deleted.
 
 The primary ID of a vertex instance is NOT an attribute, thus cannot be used in above
 arguments.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `DELETE /graph/{graph_name}/vertices/{vertex_type}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_delete_vertices[documentation] for more details.
@@ -393,7 +390,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpo
 Deletes vertices from graph identified by their ID.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexType`: The name of the vertex type.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
@@ -401,11 +398,11 @@ dropped or the graph store is cleared.
 * `timeout`: Time allowed for successful execution (0 = no limit, default).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A single number of vertices deleted.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `DELETE /graph/{graph_name}/vertices/{vertex_type}/{vertex_id}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_delete_a_vertex[documentation] for more details.
@@ -444,13 +441,13 @@ A vertex set has this structure (when serialised as JSON):
 For more information on vertex sets see the https://docs.tigergraph.com/gsql-ref/current/querying/declaration-and-assignment-statements#_vertex_set_variables[documentation] .
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `vertexSet`: A JSON array containing a vertex set in the format returned by queries (see below).
 * `withId`: Include vertex primary ID as a column?
 * `withType`: Include vertex type info as a column?
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A pandas DataFrame containing the vertex attributes (and optionally the vertex primary
 ID and type).
 

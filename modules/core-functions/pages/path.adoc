@@ -2,18 +2,16 @@
 
 Find paths between vertices within the graph.
 
-== Path Finding Functions
-
-
 === shortestPath
 `shortestPath(sourceVertices: Union[dict, tuple, list], targetVertices: Union[dict, tuple, list], maxLength: int = None, vertexFilters: Union[list, dict] = None, edgeFilters: Union[list, dict] = None, allShortestPaths: bool = False) -> dict`
 
 Find the shortest path (or all shortest paths) between the source and target vertex sets.
 
-A vertex set is a dict that has three top-level keys: `v_type`, `v_id`, `attributes` (a dict).
+A vertex set is a set of dictionaries that each has three top-level keys: `v_type`, `v_id`,
+and `attributes` (also a dictionary).
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `sourceVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
 the source vertices of the shortest paths sought.
 * `targetVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
@@ -27,13 +25,13 @@ the target vertices of the shortest paths sought.
 Default is `False`, meaning that the endpoint will return only one path.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The shortest path between the source and the target.
 The returned value is a subgraph: all vertices and edges that are part of the path(s);
 i.e. not a (list of individual) path(s).
 
 [discrete]
-==== **Examples:**
+==== Examples:
 
 [source,indent=0]
 ----
@@ -45,7 +43,7 @@ i.e. not a (list of individual) path(s).
 
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /shortestpath/{graphName}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_shortest_path[documentation] for more details.
@@ -60,7 +58,7 @@ vertex sets.
 A vertex set is a dict that has three top-level keys: v_type, v_id, attributes (a dict).
 
 [discrete]
-==== **Parameters:**
+==== Parameters:s
 * `sourceVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
 the source vertices of the shortest paths sought.
 * `targetVertices`: A vertex set (a list of vertices) or a list of `(vertexType, vertexID)` tuples;
@@ -72,13 +70,13 @@ the target vertices of the shortest paths sought.
 `{"type": <str>, "condition": <str>}` dictionaries.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 All paths between a source vertex (or vertex set) and target vertex (or vertex set).
 The returned value is a subgraph: all vertices and edges that are part of the path(s);
 i.e. not a (list of individual) path(s).
 
 [discrete]
-==== **Example:**
+==== Example:
 
 [source,indent=0]
 ----
@@ -89,7 +87,7 @@ i.e. not a (list of individual) path(s).
 
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /allpaths/{graphName}`
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_find_all_paths[documentation] for more details.

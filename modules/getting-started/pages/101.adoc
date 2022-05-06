@@ -1,5 +1,6 @@
 = pyTigerGraph Tutorial Notebook
 :description: A Google Colab notebook that walk through all core pyTigerGraph functions.
+:stem: latex
 
 This Google Colab notebook walks you through performing all core features of pyTigerGraph, including the following:
 
@@ -15,5 +16,7 @@ This Google Colab notebook walks you through performing all core features of pyT
 
 Notebook URL:
 https://colab.research.google.com/drive/1fJpcv-q0NLfHj3X1k6Lbwddp8gVVcfES#scrollTo=kCaZh0DO3HNP
+
+In the notebook, you are asked to
 
 
