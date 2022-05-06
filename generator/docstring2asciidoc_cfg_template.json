@@ -1,9 +1,9 @@
 {
-  "source_root": "/Users/username/pyTigerGraph",
-  "doc_root": "/Users/username/pytigergraph-docs",
+  "source_root": "/Users/lenny.chen/playground/pyTigerGraph",
+  "doc_root": "/Users/lenny.chen/workstation/pytigergraph-docs",
   "mapping": {
     "pyTigerGraph/pyTigerGraphAuth.py": "modules/core-functions/pages/auth.adoc",
-    "pyTigerGraph/pyTigerGraphBase.py": "modules/functions-core/pages/base.adoc",
+    "pyTigerGraph/pyTigerGraphBase.py": "modules/core-functions/pages/base.adoc",
     "pyTigerGraph/pyTigerGraphEdge.py": "modules/core-functions/pages/edge.adoc",
     "pyTigerGraph/pyTigerGraphGSQL.py": "modules/core-functions/pages/gsql.adoc",
     "pyTigerGraph/pyTigerGraphLoading.py": "modules/core-functions/pages/loading.adoc",

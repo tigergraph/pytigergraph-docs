@@ -22,12 +22,12 @@ def processFunctionDocstring(docstring, adocFile, argNum):
             mode = "todo"
         elif li == "Args:":
             adocFile.write("[discrete]\n")
-            adocFile.write("==== **Parameter" + ("s" if argNum > 1 else "") + ":**\n")
+            adocFile.write("==== Parameters:" + ("s" if argNum > 1 else "") + "\n")
             mode = "param"
         elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:",
             "Example:", "Examples:", "Usage:"]:
             adocFile.write("[discrete]\n")
-            adocFile.write("==== **{}**\n".format(li))
+            adocFile.write("==== {}\n".format(li))
             mode = "none"
         else:
             if mode == "todo":
@@ -38,7 +38,7 @@ def processFunctionDocstring(docstring, adocFile, argNum):
                     adocFile.write("* `{}`: ".format(li.strip(" :'")))
                 else:
                     if lis == "Example:":
-                        adocFile.write("+\nExample:")
+                        adocFile.write("+\nExample")
                     else:
                         adocFile.write("{} +\n".format(lis))
             else:
@@ -215,7 +215,7 @@ def processFileHeader(src, adocFile) -> bool:
 
 
 def main():
-    cfgFile = "docstring2asciidoc_cfg.json"
+    cfgFile = "/Users/lenny.chen/workstation/pytigergraph-docs/generator/docstring2asciidoc_cfg_template.json"
 
     if not os.path.exists(cfgFile):
         print(f"Error: configuration file {cfgFile} was not found!")
@@ -243,7 +243,7 @@ def main():
         cfg["doc_root"] += "/"
 
     if "mapping" not in cfg or len(cfg["mapping"]) == 0:
-        print("Error: documentation mapings are not specified!")
+        print("Error: documentation mappings are not specified!")
         exit(5)
 
     for s, d in cfg["mapping"].items():
