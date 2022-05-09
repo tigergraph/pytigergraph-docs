@@ -128,11 +128,16 @@ def processFunction(node, adocFile, h2s = False):
             return
     except:
         raise(Exception("No docstring for {}".format(node.name))) 
-
+    
     if h2s:
-        adocFile.write("== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
+        adocFile.write("== {}".format(node.name if node.name != "__init__" else "\\__init__"))
     else:
-        adocFile.write("=== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
+        adocFile.write("=== {}".format(node.name if node.name != "__init__" else "\\__init__"))
+
+    if node.name == "data":
+        adocFile.write("\n")
+    else:
+        adocFile.write("()\n")
 
     argList = ""
 
@@ -160,8 +165,9 @@ def processFunction(node, adocFile, h2s = False):
 
     # Return type(s)
     retList = str(processTypes(node.returns, False))
-
-    if retList:
+    if node.name == "data" and retList:
+        adocFile.write("`{} -> {}`\n\n".format(node.name, retList))
+    elif retList:
         adocFile.write("`{}({}) -> {}`\n\n".format(node.name, argList, retList))
     else:
         adocFile.write("`{}({})`\n\n".format(node.name, argList))
@@ -179,7 +185,7 @@ def processClassDocstring(node, adocFile, hasFileHeader):
         title = ds.split("\n")[0].rstrip(".")
         description = "\n".join(ds.split("\n")[1:])
 
-        adocFile.write(("=" if hasFileHeader else "") + "= {}\n".format(title))
+        adocFile.write(("=" if hasFileHeader else "") + "= {}\n".format(node.name))
         adocFile.write("{}\n\n".format(description))
         return 0
     except:

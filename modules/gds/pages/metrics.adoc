@@ -2,13 +2,13 @@
 
 Utility for gathering metrics for GNN predictions.
 
-== Accuracy Metric
+== Accuracy
 
 Accuracy = sum(preds == labels) / len(labels)
 
 Usage:
 - Call the update function to add predictions and labels.
-- Get accuracy score at any point by accessing the value proporty.
+- Get accuracy score at any point by accessing the value property.
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -32,13 +32,13 @@ Get accuracy score.
 Accuracy score (float).
 
 
-== Recall Metric
+== Recall
 
 Recall = sum(preds * labels) / sum(labels)
 
 Usage:
     Call the update function to add predictions and labels.
-    Get recall score at any point by accessing the value proporty.
+    Get recall score at any point by accessing the value property.
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -62,13 +62,13 @@ Get recall score.
 Recall score (float).
 
 
-== Precision Metric
+== Precision
 
 Precision = sum(preds * labels) / sum(preds)
 
 Usage:
     Call the update function to add predictions and labels.
-    Get precision score at any point by accessing the value proporty.
+    Get precision score at any point by accessing the value property.
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`

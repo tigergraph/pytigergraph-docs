@@ -17,6 +17,6 @@
     "pyTigerGraph/gds/dataloaders.py": "modules/gds/pages/dataloaders.adoc",
     "pyTigerGraph/gds/featurizer.py": "modules/gds/pages/featurizer.adoc",
     "pyTigerGraph/gds/metrics.py": "modules/gds/pages/metrics.adoc",
-    "pyTigerGraph/gds/utilities.py": "modules/gds/pages/utilities.adoc"
+    "pyTigerGraph/gds/splitters.py": "modules/gds/pages/splitters.adoc"
   }
 }
