@@ -119,7 +119,7 @@ def processTypes(node, colon: bool = True) -> str:
         return cln + "???4 " + str(type(node))
 
 
-def processFunction(node, adocFile):
+def processFunction(node, adocFile, h2s = False):
     if node.name.startswith("_") and node.name != "__init__":  # TODO cfg for __init__?
         return
     try:
@@ -129,8 +129,10 @@ def processFunction(node, adocFile):
     except:
         raise(Exception("No docstring for {}".format(node.name))) 
 
-
-    adocFile.write("=== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
+    if h2s:
+        adocFile.write("== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
+    else:
+        adocFile.write("=== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
 
     argList = ""
 
@@ -173,7 +175,7 @@ def processClassDocstring(node, adocFile, hasFileHeader):
     try:
         ds = ast.get_docstring(node)
         if "NO DOC" in ds:
-            return 1
+            return 2
         title = ds.split("\n")[0].rstrip(".")
         description = "\n".join(ds.split("\n")[1:])
 
@@ -181,16 +183,19 @@ def processClassDocstring(node, adocFile, hasFileHeader):
         adocFile.write("{}\n\n".format(description))
         return 0
     except:
-        return 0
+        return 1
         #raise Exception("No docstring for class {}".format(node.name))
 
 
 def processClass(node, adocFile, hasFileHeader):
     ret_code = processClassDocstring(node, adocFile, hasFileHeader)
-    if ret_code == 0:
+    if ret_code == 0 or ret_code == 1:
         for child in ast.iter_child_nodes(node):
             if isinstance(child, _ast.FunctionDef):
-                processFunction(child, adocFile)
+                if ret_code == 0:
+                    processFunction(child, adocFile)
+                else:
+                    processFunction(child, adocFile, h2s = True)
                 # return
     else:
         return
