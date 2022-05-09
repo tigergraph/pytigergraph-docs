@@ -1,8 +1,9 @@
 = Utility Functions
 
+
 Utility functions for pyTigerGraph.
 
-=== echo()
+== echo()
 `echo(usePost: bool = False) -> str`
 
 Pings the database.
@@ -23,7 +24,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_echo[Echo]
 
 
 
-=== getVersion()
+== getVersion()
 `getVersion(raw: bool = False) -> Union[str, list]`
 
 Retrieves the git versions of all components of the system.
@@ -44,7 +45,7 @@ info for each component.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_component_versions[Show component versions]
 
 
-=== getVer()
+== getVer()
 `getVer(component: str = "product", full: bool = False) -> str`
 
 Gets the version information of a specific component.
@@ -65,7 +66,7 @@ Version info for specified component.
 `TigerGraphException` if invalid/non-existent component is specified.
 
 
-=== getLicenseInfo()
+== getLicenseInfo()
 `getLicenseInfo() -> dict`
 
 Returns the expiration date and remaining days of the license.

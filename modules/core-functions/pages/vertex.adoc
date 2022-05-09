@@ -1,8 +1,9 @@
 = Vertex Functions
 
-Provides functions to upsert, retrieve and delete vertices.
 
-=== getVertexTypes()
+    Provides functions to upsert, retrieve and delete vertices.
+
+== getVertexTypes()
 `getVertexTypes(force: bool = False) -> list`
 
 Returns the list of vertex type names of the graph.
@@ -17,7 +18,7 @@ cached copy of vertex type metadata (if they were already fetched previously).
 The list of vertex types defined in the the current graph.
 
 
-=== getVertexType()
+== getVertexType()
 `getVertexType(vertexType: str, force: bool = False) -> dict`
 
 Returns the details of the specified vertex type.
@@ -33,7 +34,7 @@ cached copy of vertex type details (if they were already fetched previously).
 The metadata of the vertex type.
 
 
-=== getVertexCount()
+== getVertexCount()
 `getVertexCount(vertexType: Union[str, list], where: str = "") -> Union[int, dict]`
 
 Returns the number of vertices of the specified type.
@@ -70,7 +71,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_list_vertices[List verti
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_built_in_functions_on_graph[Run built-in functions]
 
 
-=== upsertVertex()
+== upsertVertex()
 `upsertVertex(vertexType: str, vertexId: str, attributes: dict = None) -> int`
 
 Upserts a vertex.
@@ -113,7 +114,7 @@ A single number of accepted (successfully upserted) vertices (0 or 1).
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Upsert data to graph]
 
 
-=== upsertVertices()
+== upsertVertices()
 `upsertVertices(vertexType: str, vertices: list) -> int`
 
 Upserts multiple vertices (of the same type).
@@ -156,7 +157,7 @@ A single number of accepted (successfully upserted) vertices (0 or positive inte
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Upsert data to graph]
 
 
-=== upsertVertexDataFrame()
+== upsertVertexDataFrame()
 `upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None, attributes: dict = "") -> int`
 
 Upserts vertices from a Pandas DataFrame.
@@ -177,7 +178,7 @@ must match the vertex's attribute names.
 The number of vertices upserted.
 
 
-=== getVertices()
+== getVertices()
 `getVertices(vertexType: str, select: str = "", where: str = "", limit: Union[int, str] = None, sort: str = "", fmt: str = "py", withId: bool = True, withType: bool = False, timeout: int = 0) -> Union[dict, str, pd.DataFrame]`
 
 Retrieves vertices of the given vertex type.
@@ -217,7 +218,7 @@ dictionary, JSON or pandas DataFrame.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_list_vertices[List vertices]
 
 
-=== getVertexDataFrame()
+== getVertexDataFrame()
 `getVertexDataFrame(vertexType: str, select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 Retrieves vertices of the given vertex type and returns them as pandas DataFrame.
@@ -248,7 +249,7 @@ The (selected) details of the (matching) vertex instances (sorted, limited) as p
 DataFrame.
 
 
-=== getVertexDataframe()
+== getVertexDataframe()
 `getVertexDataframe(vertexType: str, select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 DEPRECATED
@@ -257,7 +258,7 @@ Use `getVertexDataFrame()` instead.
 
 
 
-=== getVerticesById()
+== getVerticesById()
 `getVerticesById(vertexType: str, vertexIds: Union[int, str, list], select: str = "", fmt: str = "py", withId: bool = True, withType: bool = False, timeout: int = 0) -> Union[dict, str, pd.DataFrame]`
 
 Retrieves vertices of the given vertex type, identified by their ID.
@@ -287,7 +288,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_retrieve_a_vertex[Retrie
 
 
 
-=== getVertexDataFrameById()
+== getVertexDataFrameById()
 `getVertexDataFrameById(vertexType: str, vertexIds: Union[int, str, list], select: str = "") -> pd.DataFrame`
 
 Retrieves vertices of the given vertex type, identified by their ID.
@@ -305,7 +306,7 @@ This is a shortcut to ``getVerticesById(..., fmt="df", withId=True, withType=Fal
 The (selected) details of the (matching) vertex instances as pandas DataFrame.
 
 
-=== getVertexDataframeById()
+== getVertexDataframeById()
 `getVertexDataframeById(vertexType: str, vertexIds: Union[int, str, list], select: str = "") -> pd.DataFrame`
 
 DEPRECATED
@@ -314,7 +315,7 @@ Use `getVertexDataFrameById()` instead.
 
 
 
-=== getVertexStats()
+== getVertexStats()
 `getVertexStats(vertexTypes: Union[str, list], skipNA: bool = False) -> dict`
 
 Returns vertex attribute statistics.
@@ -336,7 +337,7 @@ A dictionary of various vertex stats for each vertex type specified.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_built_in_functions_on_graph[Run built-in functions]
 
 
-=== delVertices()
+== delVertices()
 `delVertices(vertexType: str, where: str = "", limit: str = "", sort: str = "", permanent: bool = False, timeout: int = 0) -> int`
 
 Deletes vertices from graph.
@@ -374,7 +375,7 @@ arguments.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_delete_vertices[Delete vertices]
 
 
-=== delVerticesById()
+== delVerticesById()
 `delVerticesById(vertexType: str, vertexIds: Union[int, str, list], permanent: bool = False, timeout: int = 0) -> int`
 
 Deletes vertices from graph identified by their ID.
@@ -397,7 +398,7 @@ A single number of vertices deleted.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_delete_a_vertex[Delete a vertex]
 
 
-=== vertexSetToDataFrame()
+== vertexSetToDataFrame()
 `vertexSetToDataFrame(vertexSet: list, withId: bool = True, withType: bool = False) -> pd.DataFrame`
 
 Converts a vertex set to Pandas DataFrame.
