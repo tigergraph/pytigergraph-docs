@@ -2,10 +2,6 @@
 
 Provides functions for authenticating and managing permissions with TigerGraph.
 
-== Authentication and Access Control Functions
-
-Provides functions for authentication and managing permissions with TigerGraph.
-
 === getSecrets()
 `getSecrets() -> dict`
 
