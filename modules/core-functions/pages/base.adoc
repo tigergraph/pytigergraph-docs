@@ -1,9 +1,6 @@
-= pyTigerGraph Connection
+= pyTigerGraph basic functionality
 
 Offers low(est) level HTTP(S) communication used by all other modules (directly or indirectly).
-
-== pyTigerGraph Basic Functionality
-
 
 === Constructor
 `__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", username: str = "tigergraph", password: str = "tigergraph", restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = True, certPath: str = None, debug: bool = False, sslPort: Union[int, str] = "443", gcp: bool = False)`
@@ -13,7 +10,7 @@ Initiate a connection object.
 [discrete]
 ==== **Parameters:**
 * `host`: The host name or IP address of the TigerGraph server. Make sure to include the
-protocol (http:// or https://). If `certPath` is None and the protocol is https,
+protocol (http:// or https://). If `certPath` is `None` and the protocol is https,
 a self-signed certificate will be used.
 * `graphname`: The default graph for running queries.
 * `username`: The username on the TigerGraph server.
@@ -24,7 +21,7 @@ a self-signed certificate will be used.
 being connected to.
 * `version`: DEPRECATED; use `gsqlVersion()`.
 * `apiToken`: DEPRECATED; use `getToken()` with a secret to get a session token.
-* `useCert`: DEPRECATED; the need for CA certificate is now determined by URL scheme.
+* `useCert`: DEPRECATED; the need for a CA certificate is now determined by URL scheme.
 * `certPath`: The filesystem path to the CA certificate. Required in case of https connections.
 * `debug`: Enable debug messages.
 * `sslPort`: Port for fetching SSL certificate in case of firewall.

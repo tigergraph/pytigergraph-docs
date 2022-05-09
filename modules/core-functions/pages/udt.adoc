@@ -1,16 +1,13 @@
-= User Defined Type (UDT) Functions
+= User Defined Typle (UDT) Functions
 
-Get user defined function informations for the graph.
-
-== User Defined Type (UDT) Functions
-
+Get information about User Defined Function for the graph.
 
 === getUDTs
 `getUDTs() -> list`
 
-Returns the list of User Defined Types (names only).
+Returns the list of User-Defined Tuples (names only).
 
-For information on UDTs see the https://docs.tigergraph.com/dev/gsql-ref/ddl-and-loading/system-and-language-basics#typedef-tuple[documentation] .
+For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
 
 [discrete]
 ==== **Returns:**
@@ -20,13 +17,13 @@ The list of names of UDTs (defined in the global scope, i.e. not in queries).
 === getUDT
 `getUDT(udtName: str) -> list`
 
-Returns the details of a specific User Defined Type (defined in the global scope).
+Returns the details of a specific User-Defined Tuple (defined in the global scope).
 
-For information on UDTs see the https://docs.tigergraph.com/dev/gsql-ref/ddl-and-loading/system-and-language-basics#typedef-tuple[documentation] .
+For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
 
 [discrete]
 ==== **Parameter:**
-* `udtName`: The name of the User Defined Type.
+* `udtName`: The name of the User-Defined Tuple.
 
 [discrete]
 ==== **Returns:**

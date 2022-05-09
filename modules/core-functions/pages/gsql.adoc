@@ -2,13 +2,10 @@
 
 Use GSQL within pyTigerGraph.
 
-== GSQL Interface
-
-
 === gsql
 `gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
-Runs a GSQL query and process the output.
+Runs a GSQL query and processes the output.
 
 [discrete]
 ==== **Parameters:**

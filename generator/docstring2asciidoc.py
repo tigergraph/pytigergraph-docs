@@ -108,11 +108,6 @@ def processTypes(node, colon: bool = True) -> str:
     elif isinstance(node, _ast.Subscript):
         if node.value.id == "Union":
             partial = ""
-            '''
-            for t in node.slice.value.elts:
-                partial += processTypes(t, False) + ", "
-            return cln + "Union[" + partial[:-2] + "]"
-            '''
             for child in ast.iter_child_nodes(node):
                 if isinstance(child, ast.Tuple):
                     for t in child.elts:
@@ -127,6 +122,13 @@ def processTypes(node, colon: bool = True) -> str:
 def processFunction(node, adocFile):
     if node.name.startswith("_") and node.name != "__init__":  # TODO cfg for __init__?
         return
+    try:
+        ds = ast.get_docstring(node)
+        if "NO DOC" in ds:
+            return
+    except:
+        raise(Exception("No docstring for {}".format(node.name))) 
+
 
     adocFile.write("=== {}\n".format(node.name if node.name != "__init__" else "Constructor"))
 
@@ -170,22 +172,27 @@ def processFunction(node, adocFile):
 def processClassDocstring(node, adocFile, hasFileHeader):
     try:
         ds = ast.get_docstring(node)
+        if "NO DOC" in ds:
+            return 1
         title = ds.split("\n")[0].rstrip(".")
         description = "\n".join(ds.split("\n")[1:])
 
         adocFile.write(("=" if hasFileHeader else "") + "= {}\n".format(title))
         adocFile.write("{}\n\n".format(description))
+        return 0
     except:
         raise Exception("No docstring for class {}".format(node.name))
 
 
 def processClass(node, adocFile, hasFileHeader):
-    processClassDocstring(node, adocFile, hasFileHeader)
-
-    for child in ast.iter_child_nodes(node):
-        if isinstance(child, _ast.FunctionDef):
-            processFunction(child, adocFile)
-            # return
+    ret_code = processClassDocstring(node, adocFile, hasFileHeader)
+    if ret_code == 0:
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, _ast.FunctionDef):
+                processFunction(child, adocFile)
+                # return
+    else:
+        return
 
 
 def processFileHeader(src, adocFile) -> bool:
