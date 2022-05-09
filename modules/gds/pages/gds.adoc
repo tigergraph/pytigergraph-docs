@@ -3,10 +3,7 @@
 The Graph Data Science Functions are a collection of functions that are used to perform various graph data science and graph machine learning tasks.
 In order to use these functions, confirm that the appropriate prerequisites are installed. Check the docs for more details.
 
-== Graph Data Science Functions
-
-
-=== Constructor
+=== Constructor()
 `__init__(conn: TigerGraphConnection) -> None`
 
 Initiate a GDS object.
@@ -18,7 +15,7 @@ Initiate a GDS object.
 None
 
 
-=== neighborLoader
+=== neighborLoader()
 `neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Get a graph loader that performs neighbor sampling as introduced in the
@@ -56,7 +53,7 @@ See the following documentation for more details about the Neighbor Loader argum
 xref:dataloaders.adoc#_neighbor_loader[Neighbor Loader Documentation]
 
 
-=== edgeLoader
+=== edgeLoader()
 `edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeLoader`
 
 Get a graph loader that pulls batches of edges from database.
@@ -88,7 +85,7 @@ See the following documentation for more details about the Edge Loader arguments
 xref:dataloaders.adoc#_edge_loader[Edge Loader Documentation]
 
 
-=== vertexLoader
+=== vertexLoader()
 `vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> VertexLoader`
 
 Get a data loader that pulls batches of vertices from database.
@@ -119,7 +116,7 @@ See the following documentation for more details about the Vertex Loader argumen
 xref:dataloaders.adoc#_vertex_loader[Vertex Loader Documentation]
 
 
-=== graphLoader
+=== graphLoader()
 `graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
 
 Get a data loader that pulls batches of vertices and edges from database.
@@ -148,7 +145,7 @@ See the following documentation for more details about the Graph Loader argument
 xref:dataloaders.adoc#_graph_loader[Graph Loader Documentation]
 
 
-=== featurizer
+=== featurizer()
 `featurizer() -> Featurizer`
 
 Get a featurizer.
@@ -157,7 +154,7 @@ Get a featurizer.
 Featurizer
 
 
-=== vertexSplitter
+=== vertexSplitter()
 `vertexSplitter(timeout: int = 600000)`
 
 Get a vertex splitter that splits vertices into at most 3 parts randomly.
@@ -197,7 +194,7 @@ splitter.run()
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
 
-=== edgeSplitter
+=== edgeSplitter()
 `edgeSplitter(timeout: int = 600000)`
 
 Get an edge splitter that splits edges into at most 3 parts randomly. 

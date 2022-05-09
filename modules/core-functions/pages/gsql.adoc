@@ -2,7 +2,7 @@
 
 Use GSQL within pyTigerGraph.
 
-=== gsql
+=== gsql()
 `gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
 Runs a GSQL query and processes the output.

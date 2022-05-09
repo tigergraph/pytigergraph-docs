@@ -9,13 +9,13 @@ Usage:
 - Get running average by accessing the mean proporty, running sum by the total property, and
 number of values by the count property.
 
-=== Constructor
+=== Constructor()
 `__init__() -> None`
 
 Initialize the accumulator.
 
 
-=== update
+=== update()
 `update(value: float, count: int = 1) -> None`
 
 Add a value to the running sum.
@@ -30,19 +30,19 @@ If it is a sum of multiple values, the number of values can be specified by this
 length argument, so that the running average can be calculated correctly. Defaults to 1.
 
 
-=== mean
+=== mean()
 `mean() -> float`
 
 Get running average.
 
 
-=== total
+=== total()
 `total() -> float`
 
 Get running sum.
 
 
-=== count
+=== count()
 `count() -> int`
 
 Get running count
@@ -56,7 +56,7 @@ Usage:
 - Call the update function to add predictions and labels.
 - Get accuracy score at any point by accessing the value proporty.
 
-=== update
+=== update()
 `update(preds: ndarray, labels: ndarray) -> None`
 
 Add predictions and labels to be compared.
@@ -69,7 +69,7 @@ labels (ndarray):
 Array of true labels.
 
 
-=== value
+=== value()
 `value() -> float`
 
 Get accuracy score.
@@ -86,7 +86,7 @@ Usage:
 - Call the update function to add predictions and labels.
 - Get recall score at any point by accessing the value proporty.
 
-=== update
+=== update()
 `update(preds: ndarray, labels: ndarray) -> None`
 
 Add predictions and labels to be compared.
@@ -99,7 +99,7 @@ labels (ndarray):
 Array of true labels.
 
 
-=== value
+=== value()
 `value() -> float`
 
 Get recall score.
@@ -116,7 +116,7 @@ Usage:
 - Call the update function to add predictions and labels.
 - Get precision score at any point by accessing the value proporty.
 
-=== update
+=== update()
 `update(preds: ndarray, labels: ndarray) -> None`
 
 Add predictions and labels to be compared.
@@ -129,7 +129,7 @@ labels (ndarray):
 Array of true labels.
 
 
-=== value
+=== value()
 `value() -> float`
 
 Get precision score.

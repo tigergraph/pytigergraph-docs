@@ -130,7 +130,7 @@ def processFunction(node, adocFile):
         raise(Exception("No docstring for {}".format(node.name))) 
 
 
-    adocFile.write("=== {}\n".format(node.name if node.name != "__init__" else "Constructor"))
+    adocFile.write("=== {}()\n".format(node.name if node.name != "__init__" else "Constructor"))
 
     argList = ""
 
@@ -181,7 +181,8 @@ def processClassDocstring(node, adocFile, hasFileHeader):
         adocFile.write("{}\n\n".format(description))
         return 0
     except:
-        raise Exception("No docstring for class {}".format(node.name))
+        return 0
+        #raise Exception("No docstring for class {}".format(node.name))
 
 
 def processClass(node, adocFile, hasFileHeader):

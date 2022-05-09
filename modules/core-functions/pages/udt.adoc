@@ -2,7 +2,7 @@
 
 Get information about User Defined Function for the graph.
 
-=== getUDTs
+=== getUDTs()
 `getUDTs() -> list`
 
 Returns the list of User-Defined Tuples (names only).
@@ -14,7 +14,7 @@ For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-ba
 The list of names of UDTs (defined in the global scope, i.e. not in queries).
 
 
-=== getUDT
+=== getUDT()
 `getUDT(udtName: str) -> list`
 
 Returns the details of a specific User-Defined Tuple (defined in the global scope).
