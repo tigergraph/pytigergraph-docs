@@ -2,6 +2,21 @@
 
 The Featurizer class provides methods for installing and running Graph Data Science Algorithms onto a TigerGraph server.
 
+== \__init__()
+`__init__(conn: TigerGraphConnection)`
+
+Class for feature extraction.
+
+The job of a feature extracter is to install and run algorithms in the Graph Data Science (GDS) libarary.
+Currently, a set of graph algorithms are moved to the `gsql` folder, which you can find in the same directory as this file,
+and have been saved into a dictionary along with their output type.
+To add a specific algorithm, it should be added both to the `gsql` folder and class variable dictionary. 
+[discrete]
+==== **Parameter:**
+conn (TigerGraphConnection): 
+Connection to the TigerGraph database.
+
+
 == listAlgorithms()
 `listAlgorithms(category: str = None)`
 
@@ -15,7 +30,9 @@ The class of the algorithms, if it is None the entire list will be printed out.
 == installAlgorithm()
 `installAlgorithm(query_name: str) -> str`
 
-Checks if the query is already installed, if not it will install the query and change the schema if an attribute needs to be added.        
+Checks if the query is already installed. If the query is not installed,
+it installs the query and changes the schema if an attribute needs to be added.
+
 [discrete]
 ==== **Parameter:**
 query_name (str): 
@@ -27,8 +44,9 @@ The name of query to be installed
 
 Runs an installed query.
 The query must be already created and installed in the graph.
-If the query accepts input parameters and the parameters have not been provided, they will be initialized by parsing the query.
-If the initialized parameters contain any None value, the function will raise the ValueError.
+If the query accepts input parameters and the parameters have not been provided, calling this function runs the query with the default values for the parameters.
+If the there isn't a default value in the query definition and no parameters are provided, the function raises a `ValueError`.
+
 [discrete]
 ==== **Parameters:**
 * `query_name (str)`: The name of the query to be executed.
@@ -37,11 +55,7 @@ feat_name (str):
 An attribute name that needs to be added to the vertex/edge
 * `schema_name`: List of Vertices/Edges that the attr_name need to added to them.    
 * `timeout (int)`: Maximum duration for successful query execution (in milliseconds).
- +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/#_gsql_query_timeout[documentation] for more details.
 * `sizeLimit (int)`: Maximum size of response (in bytes).
- +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/#_response_size[documentation] for more details.
 
 [discrete]
 ==== **Returns:**
