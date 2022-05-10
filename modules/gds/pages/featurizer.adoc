@@ -1,11 +1,11 @@
-== Featurizer
+= Featurizer
 
-=== listAlgorithms()
+The Featurizer class provides methods for installing and running Graph Data Science Algorithms onto a TigerGraph server.
+
+== listAlgorithms()
 `listAlgorithms(category: str = None)`
 
 Print the list of avalaible algorithms in GDS.
-Runs and installs Graph Data Science Algorithms. Requires the authenticated user to have all `designer` privileges for full functionality. 
-
 [discrete]
 ==== **Parameter:**
 category (str): 
@@ -14,8 +14,6 @@ The class of the algorithms, if it is None the entire list will be printed out.
 
 == installAlgorithm()
 `installAlgorithm(query_name: str) -> str`
-Checks if the query is already installed. If the query is not installed,
-it installs the query and changes the schema if an attribute needs to be added.
 
 Checks if the query is already installed, if not it will install the query and change the schema if an attribute needs to be added.        
 [discrete]
@@ -44,7 +42,6 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/#_gsql_query_t
 * `sizeLimit (int)`: Maximum size of response (in bytes).
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/#_response_size[documentation] for more details.
-
 
 [discrete]
 ==== **Returns:**
