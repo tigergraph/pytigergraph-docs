@@ -9,10 +9,6 @@ Requires `querywriters` user permissions for full functionality.
 
 == NeighborLoader
 
-
-=== \__init__()
-`__init__(graph: TigerGraphConnection, v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> None`
-
 A data loader that performs neighbor sampling.
 See more details about the specific sampling method in 
 link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large Graphs].
@@ -30,16 +26,15 @@ included as seeds.
 There are two ways to use the data loader:
 
 * It can be used as an iterable, which means you can loop through
-it to get every batch of data. If you load all data at once (`num_batches=1`),
-there will be only one batch (of all the data) in the iterator.
+    it to get every batch of data. If you load all data at once (`num_batches=1`),
+    there will be only one batch (of all the data) in the iterator.
 * You can access the `data` property of the class directly. If there is
-only one batch of data to load, it will give you the batch directly instead
-of an iterator, which might make more sense in that case. If there are
-multiple batches of data to load, it will return the loader itself.
+    only one batch of data to load, it will give you the batch directly instead
+    of an iterator, which might make more sense in that case. If there are
+    multiple batches of data to load, it will return the loader itself.
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_neighborloader.ipynb[the ML Workbench tutorial notebook]
-for examples.
-
+    for examples.
 
 === data
 `data -> Any`
