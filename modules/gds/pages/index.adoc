@@ -4,7 +4,7 @@
 Graph Data Science (GDS) functions perform machine learning tasks such as the following:
 
 * Loading data from a TigerGraph database in batches
-* xref:uSplitting vertices into training, test, and validation sets
+* Splitting vertices into training, test, and validation sets
 * Gathering metrics for Graph Neural Network (GNN) predictions
 * Installing and running Graph Data Science algorithms
 
