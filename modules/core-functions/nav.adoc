@@ -3,6 +3,7 @@
 ** xref:vertex.adoc[Vertex Functions]
 ** xref:edge.adoc[Edge Functions]
 ** xref:query.adoc[Query Functions]
+** xref:udt.adoc[UDT Functions]
 ** xref:gsql.adoc[GSQL Interface]
 ** xref:loading.adoc[Loading Functions]
 ** xref:path.adoc[Path Finding Functions]

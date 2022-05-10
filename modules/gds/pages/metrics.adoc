@@ -4,11 +4,18 @@ Utility for gathering metrics for GNN predictions.
 
 == Accuracy
 
-Accuracy = sum(preds == labels) / len(labels)
+    Accuracy = sum(preds == labels) / len(labels)
 
-Usage:
-- Call the update function to add predictions and labels.
-- Get accuracy score at any point by accessing the value property.
+    Usage:
+<<<<<<< HEAD
+
+    * Call the update function to add predictions and labels.
+    * Get accuracy score at any point by accessing the value proporty.
+=======
+    - Call the update function to add predictions and labels.
+    - Get accuracy score at any point by accessing the value property.
+>>>>>>> f8c316a4eae0a37cc18fcf91dd666569a8d01f78
+    
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -34,11 +41,18 @@ Accuracy score (float).
 
 == Recall
 
-Recall = sum(preds * labels) / sum(labels)
+    Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
 
-Usage:
-    Call the update function to add predictions and labels.
-    Get recall score at any point by accessing the value property.
+    Usage:
+<<<<<<< HEAD
+
+    * Call the update function to add predictions and labels.
+    * Get recall score at any point by accessing the value proporty.
+=======
+        Call the update function to add predictions and labels.
+        Get recall score at any point by accessing the value property.
+>>>>>>> f8c316a4eae0a37cc18fcf91dd666569a8d01f78
+    
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -64,11 +78,18 @@ Recall score (float).
 
 == Precision
 
-Precision = sum(preds * labels) / sum(preds)
+    Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
 
-Usage:
-    Call the update function to add predictions and labels.
-    Get precision score at any point by accessing the value property.
+    Usage:
+<<<<<<< HEAD
+
+    * Call the update function to add predictions and labels.
+    * Get precision score at any point by accessing the value proporty.
+=======
+        Call the update function to add predictions and labels.
+        Get precision score at any point by accessing the value property.
+>>>>>>> f8c316a4eae0a37cc18fcf91dd666569a8d01f78
+    
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`

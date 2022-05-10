@@ -3,3 +3,4 @@
 ** xref:dataloaders.adoc[Data Loaders]
 ** xref:featurizer.adoc[Featurizer]
 ** xref:metrics.adoc[Metrics]
+** xref:splitters.adoc[Splitters]
