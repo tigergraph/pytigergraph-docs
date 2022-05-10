@@ -1,11 +1,7 @@
 = Data Loaders
 
-<<<<<<< HEAD
 Graph Machine Learning Data Loaders for pyTigerGraph. Uses either REST++ service or Kafka.
 Requires `querywriters` user permissions for full functionality. Refer to https://docs.tigergraph.com/tigergraph-server/current/user-access/access-control-model#_built_in_roles for more information.
-=======
-:description: Data loader classes in the pyTigerGraph GDS module. 
->>>>>>> 8515f8750e60f0af9b8bd4419f29e836fdb98740
 
 Data loaders are classes in the pyTigerGraph Graph Data Science (GDS) module. 
 You can define an instance of each data loader class through a link:https://docs.tigergraph.com/pytigergraph/current/gds/factory-functions[factory function].

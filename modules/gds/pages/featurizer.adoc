@@ -1,36 +1,21 @@
-== listAlgorithms()
-`listAlgorithms(category: str = None)`
-
-<<<<<<< HEAD
-Print the list of avalaible algorithms in GDS.
-=======
-Runs and installs Graph Data Science Algorithms. Requires the authenticated user to have all `designer` privileges for full functionality. 
-
 == Featurizer
 
+=== listAlgorithms()
+`listAlgorithms(category: str = None)`
 
-=== \__init__()
-`__init__(conn: TigerGraphConnection)`
+Print the list of avalaible algorithms in GDS.
+Runs and installs Graph Data Science Algorithms. Requires the authenticated user to have all `designer` privileges for full functionality. 
 
-Class for Feature Extraction.
-The job of a feature extracter is to install and run algorithms in graph data science libarary.
-Currently, a set of graph algorithms are moved to the `gsql` folder, which you can find in the same directory as this file,
-and have been saved into a dictionary along with their output type.
-To add a specific algorithm, it should be added both to the `gsql` folder and class variable dictionary. 
->>>>>>> e6b28eaca4454ff12e8175656e3d68890425db2a
 [discrete]
 ==== **Parameter:**
 category (str): 
 The class of the algorithms, if it is None the entire list will be printed out.
 
 
-<<<<<<< HEAD
 == installAlgorithm()
 `installAlgorithm(query_name: str) -> str`
-=======
 Checks if the query is already installed. If the query is not installed,
 it installs the query and changes the schema if an attribute needs to be added.
->>>>>>> e6b28eaca4454ff12e8175656e3d68890425db2a
 
 Checks if the query is already installed, if not it will install the query and change the schema if an attribute needs to be added.        
 [discrete]
@@ -43,7 +28,6 @@ The name of query to be installed
 `runAlgorithm(query_name: str, params: dict = None, feat_name: str = None, schema_name: list = None, timeout: int = 2147480, sizeLimit: int = None) -> Any`
 
 Runs an installed query.
-<<<<<<< HEAD
 The query must be already created and installed in the graph.
 If the query accepts input parameters and the parameters have not been provided, they will be initialized by parsing the query.
 If the initialized parameters contain any None value, the function will raise the ValueError.
@@ -60,16 +44,7 @@ See the https://docs.tigergraph.com/tigergraph-server/current/api/#_gsql_query_t
 * `sizeLimit (int)`: Maximum size of response (in bytes).
  +
 See the https://docs.tigergraph.com/tigergraph-server/current/api/#_response_size[documentation] for more details.
-=======
-The query must already be installed in the graph.
-If the query accepts input parameters and the parammeters have not been provided, they will be initialized by parsing the query.
-[discrete]
-==== **Parameters:**
-* `name_of_query`: The name of the query to be executed.
-* `params`: Query parameters. a dictionary.
-* `timeout`: Timeout limit for successful query execution in milliseconds.
-* `sizeLimit`: Maximum size of response in bytes.
->>>>>>> e6b28eaca4454ff12e8175656e3d68890425db2a
+
 
 [discrete]
 ==== **Returns:**
