@@ -42,6 +42,19 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 Return the last data read from the queue.
 
 
+=== fetch()
+`fetch(vertices: list) -> None`
+
+Fetch neighborhood subgraphs for specific vertices.
+
+[discrete]
+==== **Parameter:**
+vertices (list of dict): 
+Vertices to fetch with their neighborhood subgraphs. 
+Each vertex corresponds to a dict with two mandatory keys 
+{"primary_id": ..., "type": ...}
+
+
 == EdgeLoader
 
 Data loader that pulls batches of edges from database.
