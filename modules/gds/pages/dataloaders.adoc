@@ -42,6 +42,19 @@ link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large
 Return the last data read from the queue.
 
 
+=== fetch()
+`fetch(vertices: list) -> None`
+
+Fetch neighborhood subgraphs for specific vertices.
+
+[discrete]
+==== **Parameter:**
+vertices (list of dict): 
+Vertices to fetch with their neighborhood subgraphs. 
+Each vertex corresponds to a dict with two mandatory keys 
+{"primary_id": ..., "type": ...}
+
+
 == EdgeLoader
 
 Data loader that loads all edges from the graph in batches.
