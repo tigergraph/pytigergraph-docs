@@ -9,32 +9,32 @@ Requires `querywriters` user permissions for full functionality.
 
 == NeighborLoader
 
-A data loader that performs neighbor sampling.
-See more details about the specific sampling method in 
-link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large Graphs].
+A data loader that performs neighbor sampling. 
+You can decalre a `NeighborLoader` instance with the factory function `neighborLoder()`.
 
-It first chooses `batch_size` number of vertices as seeds,
-then picks `num_neighbors` number of neighbors of each seed at random,
-then `num_neighbors` neighbors of each neighbor, and repeat for `num_hops`.
-This generates one subgraph. As you loop through this data loader, every
-vertex will at some point be chosen as a seed and you will get the subgraph
-expanded from the seed. If you want to limit seeds to certain vertices, the boolean
-attribute provided to `filter_by` will be used to indicate which vertices can be
-included as seeds.
+A neighbor loader is an iterable.
+When you loop through a neighbor loader instance, it loads one batch of data from the graph to which you established a connection. 
 
+In every iteration, it first chooses a specified number of vertices as seeds,
+then picks a specified number of neighbors of each seed at random,
+then the same number of neighbors of each neighbor, and repeat for a specified number of hops.
+The vertices sampled this way form one subgraph and is contained in one batch.
 
-There are two ways to use the data loader:
+You can iterate on the instance until every vertex has been picked as seed. 
 
-* It can be used as an iterable, which means you can loop through
-    it to get every batch of data. If you load all data at once (`num_batches=1`),
-    there will be only one batch (of all the data) in the iterator.
-* You can access the `data` property of the class directly. If there is
-    only one batch of data to load, it will give you the batch directly instead
-    of an iterator, which might make more sense in that case. If there are
-    multiple batches of data to load, it will return the loader itself.
+Example:
+    [.wrap,python]
+    ----
+    for i, batch in enumerate(neighbor_loader):
+        print("----Batch {}----".format(i))
+        print(batch)
+    ----
+    
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_neighborloader.ipynb[the ML Workbench tutorial notebook]
     for examples.
+See more details about the specific sampling method in 
+link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large Graphs].
 
 === data
 `data -> Any`
@@ -44,21 +44,25 @@ Return the last data read from the queue.
 
 == EdgeLoader
 
-Data loader that pulls batches of edges from database.
+Data loader that loads all edges from the graph in batches.
+You can define an edge loader using the `edgeLoader()` factory function.
 
-It divides edges into `num_batches` and returns each batch separately.
+An edge loader instance is an iterable. 
+When you loop through an edge loader instance, it loads one batch of data from the graph to which you established a connection.
+The size and total number of batches are specified when you define the edge loader instance. 
+It divides edges into a specified number of batches. and returns each batch separately.
     The boolean attribute provided to `filter_by` indicates which edges are included.
     If you need random batches, set `shuffle` to True.
 
 There are two ways to use the data loader.
 
 * It can be used as an iterable, which means you can loop through
-      it to get every batch of data. If you load all edges at once (`num_batches=1`),
-      there will be only one batch (of all the edges) in the iterator.
+it to get every batch of data. If you load all edges at once (`num_batches=1`),
+there will be only one batch (of all the edges) in the iterator.
 * You can access the `data` property of the class directly. If there is
-      only one batch of data to load, it will give you the batch directly instead
-      of an iterator, which might make more sense in that case. If there are
-      multiple batches of data to load, it will return the loader again.
+only one batch of data to load, it will give you the batch directly instead
+of an iterator, which might make more sense in that case. If there are
+multiple batches of data to load, it will return the loader again.
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeloader.ipynb[the ML Workbench edge loader tutorial notebook]
     for examples.
