@@ -13,6 +13,7 @@ Core functions allow you to use the following core features of the TigerGraph da
 
 Core functions are divided into the following categories:
 
+* xref:auth.adoc[]
 * xref:schema.adoc[]
 * xref:loading.adoc[]
 * xref:vertex.adoc[]
