@@ -1,4 +1,5 @@
 * xref:index.adoc[Core Functions]
+** xref:base.adoc[pyTigerGraph.TigerGraphConnection]
 ** xref:auth.adoc[Authentication Functions]
 ** xref:vertex.adoc[Vertex Functions]
 ** xref:edge.adoc[Edge Functions]

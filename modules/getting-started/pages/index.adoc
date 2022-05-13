@@ -4,6 +4,6 @@ The Getting Started sequence walks you through the following:
 
 * xref:install.adoc[]
 * xref:connection.adoc[]
-* xref:examples.adoc[]
+* xref:101.adoc[]
 
 At the conclusion of the Getting Started sequence, you’ll have reached an excellent starting point for further, more detail-driven activities.
