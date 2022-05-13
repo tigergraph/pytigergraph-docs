@@ -20,7 +20,8 @@ pip3 install pyTigerGraph
 == Install _pyTigerGraph[gds]_
 
 To utilize the Graph Data Science functionality in the xref:gds:index.adoc[GDS] section, download the GDS package that fits your needs.
-Any of the options below allows you to use GDS functions, but certain flavors allow you to output results in formats sup
+Any of the options below allows you to use GDS functions, but certain flavors allow you to output results in formats supported by different frameworks.
+
 The options are:
 
 * To install all required packages for full GDS functionality, including PyTorch, PyTorch Geometric, and DGL, run the following command:

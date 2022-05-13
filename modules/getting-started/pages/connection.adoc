@@ -13,14 +13,14 @@ _pyTigerGraph_ connects to the TigerGraph database through various REST API endp
 Some endpoints use https://datatracker.ietf.org/doc/html/rfc7617[basic] (username/password)
 authentication; others use https://datatracker.ietf.org/doc/html/rfc6750[bearer token] authentication.
 Therefore, to access a
-xref:tigergraph-server:API:authentication.adoc[secured] TigerGraph instance, you need to provide credentials for both authentication scheme:
+xref:tigergraph-server:API:authentication.adoc[secured] TigerGraph instance, you need to provide credentials for both authentication schemes:
 
 [source.wrap,python]
 ----
 conn = tg.TigerGraphConnection(host="<hostname>", graphname="<graph_name>", username="<username>", password="<password>") <1>
 conn.getToken(<secret>) <2>
 ----
-<1> The username and password is provided via the constructor of the `TigerGraphConnection` class (see below).
+<1> The username and password are provided via the constructor of the `TigerGraphConnection` class (see below).
 <2> The token for the bearer authentication scheme is not provided directly. Instead, you need a
 xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] to get a session token.
 Secrets are unique strings that serve as a user’s credentials in certain circumstances.
@@ -28,8 +28,8 @@ Secrets are unique strings that serve as a user’s credentials in certain circu
 In addition to these, you need to provide the hostname or IP address of the TigerGraph instance
 and the name of a _graph_.
 
-The graph in this context is a logical container that consists of object type (vertex and edge type, UDT, data sources, etc.) definitions and the instances of these object types.
-A TigerGraph instance can contain multiple of graphs, so you need to specify which one you want to use.
+The graph in this context is a logical container that consists of object type definitions (vertex and edge types, user-defined types (UDTs), data sources, etc.)  and the instances of these object types.
+A TigerGraph instance can contain multiple graphs, so you need to specify which one you want to use.
 
 For example:
 
@@ -38,6 +38,8 @@ For example:
 conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery", "hsolo", "f4lc0n")
 conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5')
 ----
+
+In this command, the user is connecting to the `r_alliance.i.tgcloud.io` host and accessing the `GoodsDelivery` graph, providing the username `hsolo` and corresponding password `f4lc0n` as well as the secret for the bearer token authentication scheme.
 
 == Connect to an unsecured instance
 
@@ -48,7 +50,7 @@ If your instance does not have user authentication enabled, then you do not need
 conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery")
 ----
 
-If you are running locally a virtual machine or a container with default port mapping, and you are using the default graph `MyGraph`, you can omit all arguments when calling the constructor:
+If you are running TigerGraph locally on a virtual machine or a container with default port mapping, and you are using the default graph `MyGraph`, you can omit all arguments when calling the constructor:
 
 [source,python]
 ----
