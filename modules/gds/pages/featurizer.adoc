@@ -2,6 +2,21 @@
 
 The Featurizer class provides methods for installing and running Graph Data Science Algorithms onto a TigerGraph server.
 
+== \__init__()
+`__init__(conn: TigerGraphConnection)`
+
+Class for feature extraction.
+
+The job of a feature extracter is to install and run algorithms in the Graph Data Science (GDS) libarary.
+Currently, a set of graph algorithms are moved to the `gsql` folder, which you can find in the same directory as this file,
+and have been saved into a dictionary along with their output type.
+To add a specific algorithm, it should be added both to the `gsql` folder and class variable dictionary. 
+[discrete]
+==== **Parameter:**
+conn (TigerGraphConnection): 
+Connection to the TigerGraph database.
+
+
 == listAlgorithms()
 `listAlgorithms(category: str = None)`
 
