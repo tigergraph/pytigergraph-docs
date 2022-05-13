@@ -44,7 +44,9 @@ link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large
 === data
 `data -> Any`
 
-Return the last data read from the queue.
+A property of the instance. 
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
 
 
 == EdgeLoader
@@ -125,7 +127,7 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 `data -> Any`
 
 A property of the instance. 
-The `data` property stores all edges if all data is loaded in a single batch of data.
+The `data` property stores all edges if all data is loaded in a single batch.
 If there are multiple batches of data, the `data` property returns the instance itself. 
 
 
@@ -210,7 +212,9 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 === data
 `data -> Any`
 
-Return the last data read from the queue.
+A property of the instance. 
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself.
 
 
 == GraphLoader
@@ -294,6 +298,8 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 === data
 `data -> Any`
 
-Return the last data read from the queue.
+A property of the instance. 
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
 
 

@@ -1,5 +1,5 @@
 * xref:index.adoc[]
-** xref:gds.adoc[Graph Data Science Functions]
+** xref:gds.adoc[]
 ** xref:dataloaders.adoc[Data Loaders]
 ** xref:featurizer.adoc[Featurizer]
 ** xref:metrics.adoc[Metrics]
