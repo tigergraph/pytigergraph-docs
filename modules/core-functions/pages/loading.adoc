@@ -2,7 +2,7 @@
 
 
 The functions on this page run loading jobs on the TigerGraph server.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base`[TigerGraphConnection` obejct].
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` obejct]. 
 
 == runLoadingJobWithFile()
 `runLoadingJobWithFile(filePath: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> dict`
