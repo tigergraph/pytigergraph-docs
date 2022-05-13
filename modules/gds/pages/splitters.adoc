@@ -2,21 +2,6 @@
 
 This class contains functions for data splitting.
 
-== BaseRandomSplitter
-
-
-=== run()
-`run() -> None`
-
-Perform the split.
-
-The split ratios set in initialization can be overridden here. For example,
- +
-`splitter = RandomVertexSplitter(conn, timeout, attr_name=0.6); splitter.run(attr_name=0.3)`
-+
-will use the ratio 0.3 instead of 0.6.
-
-
 == RandomVertexSplitter
 
 The split results are stored in the provided vertex attributes. Each boolean attribute
