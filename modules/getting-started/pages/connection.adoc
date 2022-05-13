@@ -20,7 +20,7 @@ xref:tigergraph-server:API:authentication.adoc[secured] TigerGraph instance, you
 conn = tg.TigerGraphConnection(host="<hostname>", graphname="<graph_name>", username="<username>", password="<password>") <1>
 conn.getToken(<secret>) <2>
 ----
-<1> The username and password are provided via the constructor of the `TigerGraphConnection` class (see below).
+<1> The username and password are provided via the constructor of xref:core-functions:base.adoc[the `TigerGraphConnection` class].
 <2> The token for the bearer authentication scheme is not provided directly. Instead, you need a
 xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret] to get a session token.
 Secrets are unique strings that serve as a user’s credentials in certain circumstances.
