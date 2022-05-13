@@ -1,4 +1,5 @@
 # Release Notes
+
 We are excited to announce the pyTigerGraph v0.9 release! This release adds many new features for graph machine learning and graph data science, a refactoring of core code, and more robust testing. Additionally, we have officially “graduated” it to an official TigerGraph product. This means brand-new documentation, a new GitHub repository, and future feature enhancements. While becoming an official product, we are committed to keeping pyTigerGraph true to its roots as an open-source project. Check out the contributing page and GitHub issues if you want to help with pyTigerGraph’s development.
 pyTigerGraph 0.9 was released on May 16th, 2022.
 
