@@ -22,12 +22,12 @@ def processFunctionDocstring(docstring, adocFile, argNum):
             mode = "todo"
         elif li == "Args:":
             adocFile.write("[discrete]\n")
-            adocFile.write("==== **Parameter" + ("s" if argNum > 1 else "") + ":**\n")
+            adocFile.write("==== Parameter" + ("s" if argNum > 1 else "") + ":\n")
             mode = "param"
         elif li in ["Args:", "Returns:", "Endpoint:", "Endpoints:", "Uses:", "Raises:", "Notes:",
             "Example:", "Examples:", "Usage:"]:
             adocFile.write("[discrete]\n")
-            adocFile.write("==== **{}**\n".format(li))
+            adocFile.write("==== {}\n".format(li))
             mode = "none"
         else:
             if mode == "todo":

@@ -5,9 +5,9 @@ The Featurizer class provides methods for installing and running Graph Data Scie
 == listAlgorithms()
 `listAlgorithms(category: str = None)`
 
-Print the list of avalaible algorithms in GDS.
+Print the list of available algorithms in GDS.
 [discrete]
-==== **Parameter:**
+==== Parameter:
 category (str): 
 The class of the algorithms, if it is None the entire list will be printed out.
 
@@ -19,7 +19,7 @@ Checks if the query is already installed. If the query is not installed,
 it installs the query and changes the schema if an attribute needs to be added.
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 query_name (str): 
 The name of query to be installed
 
@@ -33,7 +33,7 @@ If the query accepts input parameters and the parameters have not been provided,
 If the there isn't a default value in the query definition and no parameters are provided, the function raises a `ValueError`.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `query_name (str)`: The name of the query to be executed.
 * `params (dict)`: Query parameters. a dictionary.
 feat_name (str): 
@@ -43,7 +43,7 @@ An attribute name that needs to be added to the vertex/edge
 * `sizeLimit (int)`: Maximum size of response (in bytes).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 

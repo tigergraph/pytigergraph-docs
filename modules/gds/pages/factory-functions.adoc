@@ -32,11 +32,11 @@ You can find the reference for those classes on the following pages:
 `neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Returns a `NeighborLoader` instance.
-A `NeighborLoader` instance performs neighbor sampling from all vertices in the graph in bathces in the following manner:
+A `NeighborLoader` instance performs neighbor sampling from all vertices in the graph in batches in the following manner:
 
 . It chooses a specified number (`batch_size`) of vertices as seeds. 
 The number of batches is the total number of vertices divided by the batch size. 
-* If you specify the number of batchs (`num_batches`) instead, `batch_size` is calculated by dividing the total number of vertices by the number of batches.
+* If you specify the number of batches (`num_batches`) instead, `batch_size` is calculated by dividing the total number of vertices by the number of batches.
 If specify both parameters, `batch_size` takes priority. 
 . It picks a specified number (`num_neighbors`) of neighbors of each seed at random.
 . It picks the same number of neighbors for each neighbor, and repeats this process until it finished performing a specified number of hops (`num_hops`).
@@ -58,16 +58,16 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 for examples.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `v_in_feats (list, optional)`: Vertex attributes to be used as input features.
-Only numeric and boolean attributes are allowed. The type of an attrbiute
+Only numeric and boolean attributes are allowed. The type of an attribute
 is automatically determined from the database schema. Defaults to None.
 * `v_out_labels (list, optional)`: Vertex attributes to be used as labels for
 prediction. Only numeric and boolean attributes are allowed. Defaults to None.
 * `v_extra_feats (list, optional)`: Other attributes to get such as indicators of
 train/test data. All types of attributes are allowed. Defaults to None.
 * `e_in_feats (list, optional)`: Edge attributes to be used as input features.
-Only numeric and boolean attributes are allowed. The type of an attrbiute
+Only numeric and boolean attributes are allowed. The type of an attribute
 is automatically determined from the database schema. Defaults to None.
 * `e_out_labels (list, optional)`: Edge attributes to be used as labels for
 prediction. Only numeric and boolean attributes are allowed. Defaults to None.
@@ -140,7 +140,7 @@ of an iterator. If there are
 multiple batches of data to load, it returns the loader itself.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `attributes (list, optional)`: Edge attributes to be included. Defaults to None.
 * `batch_size (int, optional)`: Number of edges in each batch.
 Defaults to None.
@@ -203,7 +203,7 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader again.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `attributes (list, optional)`: Vertex attributes to be included. Defaults to None.
 * `batch_size (int, optional)`: Number of vertices in each batch.
 Defaults to None.
@@ -266,16 +266,16 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `v_in_feats (list, optional)`: Vertex attributes to be used as input features.
-Only numeric and boolean attributes are allowed. The type of an attrbiute
+Only numeric and boolean attributes are allowed. The type of an attribute
 is automatically determined from the database schema. Defaults to None.
 * `v_out_labels (list, optional)`: Vertex attributes to be used as labels for prediction.
 Only numeric and boolean attributes are allowed. Defaults to None.
 * `v_extra_feats (list, optional)`: Other attributes to get such as indicators of train/test data.
 All types of attributes are allowed. Defaults to None.
 * `e_in_feats (list, optional)`: Edge attributes to be used as input features.
-Only numeric and boolean attributes are allowed. The type of an attrbiute
+Only numeric and boolean attributes are allowed. The type of an attribute
 is automatically determined from the database schema. Defaults to None.
 * `e_out_labels (list, optional)`: Edge attributes to be used as labels for
 prediction. Only numeric and boolean attributes are allowed. Defaults to None.
@@ -322,7 +322,7 @@ for examples.
 
 Get a featurizer.
 [discrete]
-==== **Returns:**
+==== Returns:
 Featurizer
 
 
@@ -335,7 +335,7 @@ The split results are stored in the provided vertex attributes. Each boolean att
 indicates which part a vertex belongs to.
 
 [discrete]
-==== **Usage:**
+==== Usage:
 
 * A random 60% of vertices will have their attribute `attr_name` set to True, and
 others False. `attr_name` can be any attribute that exists in the database (same below).
@@ -369,7 +369,7 @@ splitter.run()
 ----
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
 
@@ -382,7 +382,7 @@ The split results are stored in the provided edge attributes. Each boolean attri
 indicates which part an edge belongs to.
 
 [discrete]
-==== **Usage:**
+==== Usage:
 
 * A random 60% of edges will have their attribute "attr_name" set to True, and 
 others False. `attr_name` can be any attribute that exists in the database (same below).
@@ -410,7 +410,7 @@ splitter = conn.gds.edgeSplitter(timeout, attr_name=0.6, attr_name2=0.2, attr_na
 splitter.run()
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 timeout (int, optional): 
 Timeout value for the operation. Defaults to 600000.
 

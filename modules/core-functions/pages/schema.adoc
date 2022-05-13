@@ -2,7 +2,7 @@
 
 
 The functions in this page retrieve information about the graph schema.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` obejct]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
 
 == getSchema()
 `getSchema(udts: bool = True, force: bool = False) -> dict`
@@ -11,17 +11,17 @@ Retrieves the schema metadata (of all vertex and edge type and, if not disabled,
 User-Defined Type details) of the graph.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `udts`: If `True`, the output includes User-Defined Types in the schema details.
 * `force`: If `True`, retrieves the schema metadata again, otherwise returns a cached copy of
 the schema metadata (if they were already fetched previously).
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The schema metadata.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /gsqlserver/gsql/schema`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_graph_schema_metadata[Show graph schema metadata]
 
@@ -32,7 +32,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_graph_schema_metada
 Upserts data (vertices and edges) from a JSON file or a file with equivalent object structure.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `data`: The data of vertex and edge instances, in a specific format.
 * `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
 the database contained in the request are all-or-nothing: either all changes are
@@ -48,11 +48,11 @@ Note that this parameter does not affect vertices.
 vertices.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The result of upsert (number of vertices and edges accepted/upserted).
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /graph/{graph_name}`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Upsert data to graph]
 
@@ -63,7 +63,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Ups
 Lists the REST++ endpoints and their parameters.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `builtin`: List the TigerGraph-provided REST++ endpoints.
 * `dynamic`: List endpoints for user-installed queries.
 * `static`: List static endpoints.
@@ -71,7 +71,7 @@ Lists the REST++ endpoints and their parameters.
 If none of the above arguments are specified, all endpoints are listed.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /endpoints/{graph_name}`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_list_all_endpoints[List all endpoints]
 

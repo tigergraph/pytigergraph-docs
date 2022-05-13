@@ -2,7 +2,7 @@
 
 
 Utility functions for pyTigerGraph.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` obejct]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
 
 == echo()
 `echo(usePost: bool = False) -> str`
@@ -10,15 +10,15 @@ All functions in this module are called as methods on a link:https://docs.tigerg
 Pings the database.
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 * `usePost`: Use POST instead of GET
 
 [discrete]
-==== **Returns:**
+==== Returns:
 "Hello GSQL" if everything was OK.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /echo`
 - `POST /echo`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_echo[Echo]
@@ -31,17 +31,17 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_echo[Echo]
 Retrieves the git versions of all components of the system.
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 * `raw`: Return unprocessed version info string, or extract version info for each component
 into a list.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 Either an unprocessed string containing the version info details, or a list with version
 info for each component.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /version`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_component_versions[Show component versions]
 
@@ -54,16 +54,16 @@ Gets the version information of a specific component.
 Get the full list of components using `getVersion()`.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `component`: One of TigerGraph's components (e.g. product, gpe, gse).
 * `full`: Return the full version string (with timestamp, etc.) or just X.Y.Z.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 Version info for specified component.
 
 [discrete]
-==== **Raises:**
+==== Raises:
 `TigerGraphException` if invalid/non-existent component is specified.
 
 
@@ -73,7 +73,7 @@ Version info for specified component.
 Returns the expiration date and remaining days of the license.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 Returns license details. For an evaluation/trial deployment, returns an information message and -1 remaining days.
 
 

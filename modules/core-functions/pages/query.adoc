@@ -2,7 +2,7 @@
 
 
 The functions on this page run installed or interpret queries in TigerGraph.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` obejct]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
 
 == getInstalledQueries()
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
@@ -10,14 +10,14 @@ All functions in this module are called as methods on a link:https://docs.tigerg
 Returns a list of installed queries.
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 * `fmt`: Format of the results: +
 - "py":   Python objects (default)
 - "json": JSON document
 - "df":   pandas DataFrame
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The names of the installed queries.
 
 
@@ -32,7 +32,7 @@ Use `getEndpoints(dynamic=True)` or GraphStudio to find out the generated endpoi
 the query. Only the query name needs to be specified here.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `queryName`: The name of the query to be executed.
 * `params`: Query parameters. A string of param1=value1&param2=value2 format or a dictionary.
 See below for special rules for dictionaries.
@@ -44,12 +44,12 @@ See xref:tigergraph-server:API:index.adoc#_response_size[Response size]
 you to exceed this limit.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
 accumulators, etc.
 
 [discrete]
-==== **Notes:**
+==== Notes:
 When specifying parameter values in a dictionary:
 
 - For primitive parameter types use
@@ -78,7 +78,7 @@ When specifying parameter values in a dictionary:
 +
 
 [discrete]
-==== **Endpoints:**
+==== Endpoints:
 - `GET /query/{graph_name}/{query_name}`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_installed_query_get[Run an installed query (GET)]
 - `POST /query/{graph_name}/{query_name}`
@@ -95,7 +95,7 @@ Use ``$graphname`` or ``@graphname@`` in the ``FOR GRAPH`` clause to avoid hardc
 name of the graph in your app. It will be replaced by the actual graph name.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `queryText`: The text of the GSQL query that must be provided in this format: +
 
 [source.wrap, gsql]
@@ -109,12 +109,12 @@ INTERPRET QUERY (<params>) FOR GRAPH <graph_name> {
 See below for special rules for dictionaries.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The output of the query, a list of output elements such as vertex sets, edge sets, variables and
 accumulators.
 
 [discrete]
-==== **Notes:**
+==== Notes:
 When specifying parameter values in a dictionary:
 
 - For primitive parameter types use
@@ -144,7 +144,7 @@ When specifying parameter values in a dictionary:
 
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `POST /gsqlserver/interpreted_query`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_interpreted_query[Run an interpreted query]
 
@@ -157,13 +157,13 @@ Parses query output and separates vertex and edge data (and optionally other out
 easier use.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `output`: The data structure returned by `runInstalledQuery()` or `runInterpretedQuery()`.
 * `graphOnly`: If `True` (the default setting), restricts captured output to vertices and edges.
 If `False`, captures values of variables and accumulators and any other plain text printed.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 A dictionary with two (or three) keys: `"vertices"`, `"edges"` and optionally `"output"`.
 The first two refer to another dictionary containing keys for each vertex and edge types
 found and the instances of those vertex and edge types. `"output"` is a list of
@@ -187,7 +187,7 @@ visualization component.
 Retrieves real-time query performance statistics over the given time period.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `seconds`: The duration of statistic collection period (the last _n_ seconds before the function
 call).
 * `segments`: The number of segments of the latency distribution (shown in results as
@@ -196,7 +196,7 @@ will be divided into ten equal segments: 0%-10%, 11%-20%, etc.
 This argument must be an integer between 1 and 100.
 
 [discrete]
-==== **Endpoint:**
+==== Endpoint:
 - `GET /statistics/{graph_name}`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_query_performance[Show query performance]
 

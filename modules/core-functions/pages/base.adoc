@@ -1,7 +1,7 @@
 = `TigerGraphConnection`
 
 
-A `TigerGraphConnection` object provides the HTTP(S) communication used by all other modules.
+A TigerGraphConnection object provides the HTTP(S) communication used by all other modules.
 
 
 
@@ -11,7 +11,7 @@ A `TigerGraphConnection` object provides the HTTP(S) communication used by all o
 Initiate a connection object.
 
 [discrete]
-==== **Parameters:**
+==== Parameters:
 * `host`: The host name or IP address of the TigerGraph server. Make sure to include the
 protocol (http:// or https://). If `certPath` is `None` and the protocol is https,
 a self-signed certificate will be used.
@@ -31,7 +31,7 @@ being connected to.
 * `gcp`: Is firewall used?
 
 [discrete]
-==== **Raises:**
+==== Raises:
 TigerGraphException: In case on invalid URL scheme.
 
 

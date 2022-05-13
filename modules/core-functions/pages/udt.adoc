@@ -2,7 +2,7 @@
 
 
 The functions on this page retrieve information about user-defined tuples (UDT) for the graph.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` obejct]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
 
 == getUDTs()
 `getUDTs() -> list`
@@ -12,7 +12,7 @@ Returns the list of User-Defined Tuples (names only).
 For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The list of names of UDTs (defined in the global scope, i.e. not in queries).
 
 
@@ -24,11 +24,11 @@ Returns the details of a specific User-Defined Tuple (defined in the global scop
 For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
 
 [discrete]
-==== **Parameter:**
+==== Parameter:
 * `udtName`: The name of the User-Defined Tuple.
 
 [discrete]
-==== **Returns:**
+==== Returns:
 The metadata (the details of the fields) of the UDT.
 
 
