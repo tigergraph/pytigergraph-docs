@@ -26,6 +26,7 @@ You can iterate on the instance until every vertex has been picked as seed.
 Examples:
 
 The following example iterates over a neighbor loader instance. 
+--
 [.wrap,python]
 ----
 for i, batch in enumerate(neighbor_loader):
@@ -130,7 +131,6 @@ source   target  time  is_train
 0  9437185  13631508     0         1
 ----
 --
-====
 
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeloader.ipynb[the ML Workbench edge loader tutorial notebook]
