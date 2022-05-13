@@ -15,7 +15,7 @@ Many new capabilities added for graph data science and graph machine learning.
 
 ## Other Changes
 ### Documentation
-We have moved the documentation to [the official TigerGraph Documentation site](https://docs.tigergraph.com/pytigergraph/current/intro/) and updated many of the contents.
+We have moved the documentation to the https://docs.tigergraph.com/pytigergraph/current/intro/[official TigerGraph Documentation site ] and updated many of the contents with type hints and more descriptive parameter explainations.
 
 ### Testing
 There is now well-defined testing for every function in the package. A more defined testing framework is coming soon.
