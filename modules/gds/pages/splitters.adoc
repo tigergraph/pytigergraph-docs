@@ -47,7 +47,7 @@ splitter.run()
 ----
 
 [discrete]
-==== Parameter:
+==== Parameters:
 * `conn (TigerGraphConnection)`: Connection to TigerGraph database.
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
@@ -113,7 +113,7 @@ splitter.run()
 ----
 
 [discrete]
-==== Parameter:
+==== Parameters:
 * `conn (TigerGraphConnection)`: Connection to TigerGraph database.
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
