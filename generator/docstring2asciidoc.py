@@ -186,7 +186,8 @@ def processClassDocstring(node, adocFile, hasFileHeader):
         description = "\n".join(ds.split("\n")[1:])
 
         adocFile.write(("=" if hasFileHeader else "") + "= {}\n".format(node.name))
-        adocFile.write("{}\n\n".format(description))
+        #adocFile.write("{}\n\n".format(description))
+        processFunctionDocstring(description, adocFile, 0)
         return 0
     except:
         return 1
