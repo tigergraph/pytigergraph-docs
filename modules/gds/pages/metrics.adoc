@@ -1,5 +1,6 @@
 = pyTigerGraph GDS Metrics
-:stem: latex
+
+:stem: latexmath
 
 Utility for gathering metrics for GNN predictions.
 
@@ -38,7 +39,7 @@ Accuracy score (float).
 
 == Recall
 
-Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
+Recall = stem:[\frac{\sum(preds * labels)}{\sum(labels)}]
 
 [discrete]
 ==== Usage:
@@ -71,7 +72,7 @@ Recall score (float).
 
 == Precision
 
-Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
+Precision = stem:[\frac{\sum(preds * labels)}{\sum(preds)}]
 
 [discrete]
 ==== Usage:

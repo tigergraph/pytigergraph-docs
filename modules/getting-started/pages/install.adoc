@@ -4,9 +4,9 @@
 This page walks you through installing pyTigerGraph on your machine.
 
 == Prerequisites
-* OS version
-* Python version
-* Package managers
+* Python 3.0 or higher.
+* `torch` is installed in your Python environment.
+
 
 == Install _pyTigerGraph_
 
