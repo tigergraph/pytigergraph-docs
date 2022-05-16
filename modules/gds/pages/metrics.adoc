@@ -8,10 +8,12 @@ Utility for gathering metrics for GNN predictions.
 
 Accuracy = sum(preds == labels) / len(labels)
 
-Usage:
+[discrete]
+==== Usage:
 
 * Call the update function to add predictions and labels.
 * Get accuracy score at any point by accessing the value property.
+
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -39,10 +41,12 @@ Accuracy score (float).
 
 Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
 
-Usage:
+[discrete]
+==== Usage:
 
 * Call the update function to add predictions and labels.
 * Get recall score at any point by accessing the value property.
+
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
@@ -70,10 +74,12 @@ Recall score (float).
 
 Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
 
-Usage:
+[discrete]
+==== Usage:
 
 * Call the update function to add predictions and labels.
 * Get precision score at any point by accessing the value property.
+
 
 === update()
 `update(preds: ndarray, labels: ndarray) -> None`
