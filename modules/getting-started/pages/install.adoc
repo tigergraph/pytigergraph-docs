@@ -5,8 +5,7 @@ This page walks you through installing pyTigerGraph on your machine.
 
 == Prerequisites
 * Python 3.0 or higher.
-* If you are installing pyTigerGraph[gds], make sure https://pytorch.org/get-started/locally/[`torch` is installed] in your Python environment.
-
+* If you are installing `pyTigerGraph[gds]`, make sure https://pytorch.org/get-started/locally/[`torch` is installed] in your Python environment.
 
 == Install _pyTigerGraph_
 
@@ -19,32 +18,25 @@ pip3 install pyTigerGraph
 
 == Install _pyTigerGraph[gds]_
 
-To utilize the Graph Data Science functionality in the xref:gds:index.adoc[GDS] section, download the GDS package that fits your needs.
-Any of the options below allows you to use GDS functions, but certain flavors allow you to output results in formats supported by different frameworks.
+To utilize xref:gds:index.adoc[pyTigerGraph's Graph Data Science (GDS) functionality], run the following command to install `pyTigerGraph[gds]`.
 
-The options are:
-
-* To install all required packages for full GDS functionality, including PyTorch, PyTorch Geometric, and DGL, run the following command:
-+
+[source,console]
 ----
 pip3 install 'pyTigerGraph[gds]'
 ----
-* To use the GDS functions with the option of producing output in the format supported by the *PyTorch Geometric framework*, run the following command:
-+
-----
-pip3 install 'pyTigerGraph[gds-pyg]'
-----
-* To use the GDS functions with the option of producing output in the format supported by the *Deep Graph Library* (DGL) framework, run the following command:
-+
-----
-pip3 install 'pyTigerGraph[gds-dgl]'
-----
-* To use the GDS functions without needing to produce output in the format supported by PyTorch Geometric or DGL.
-This makes the data loaders output *Pandas dataframes*:
-+
-----
-pip3 install 'pyTigerGraph[gds-lite]'
-----
+
+Certain GDS classes, such as xref:gds:dataloaders.adoc[data loaders], can produce output in PyTorch Geometric (PyG) or Deep Graph Library (DGL) formats.
+To support those formats, you need to have installed the respective packages in your Python environment:
+
+* https://www.dgl.ai/pages/start.html[Install Deep Graph Library].
+* https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html[Install pyTorch Geometric] .
+
+It is optional to install either of the aforementioned packages.
+If you don't install either of the packages, you can still use the GDS functions, and output results in panda frames.
+
+
+
+== Import `pyTigerGraph`
 
 Once the package is installed, you can import it like any other Python package:
 
@@ -52,3 +44,4 @@ Once the package is installed, you can import it like any other Python package:
 ----
 import pyTigerGraph as tg
 ----
+
