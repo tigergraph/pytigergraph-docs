@@ -28,6 +28,9 @@ You can find the reference for those classes on the following pages:
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/metrics[Metrics]
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/dataloaders[Splitters]
 
+NOTE: If you are not sure how to configure the optional arguments related to Kafka, leave them blank. 
+More detailed instructions on how to use them will be provided in a future release. 
+
 == neighborLoader()
 `neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
 

@@ -10,5 +10,5 @@ nav:
 - modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
-- modules/changelog/nav.adoc
+- modules/release-notes/nav.adoc
 - modules/contributing/nav.adoc
