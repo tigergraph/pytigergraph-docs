@@ -6,26 +6,35 @@ The Featurizer class provides methods for installing and running Graph Data Scie
 `listAlgorithms(category: str = None)`
 
 Print the list of available algorithms in GDS.
+
 [discrete]
 ==== Parameter:
-category (str): 
-The class of the algorithms, if it is None the entire list will be printed out.
+* `category (str)`: The class of the algorithms, if it is None the entire list will be printed out.
+
+[discrete]
+==== Returns:
+Prints the information for algorithms within the specified category.
 
 
 == installAlgorithm()
-`installAlgorithm(query_name: str) -> str`
+`installAlgorithm(query_name: str, query_path: str = None) -> str`
 
-Checks if the query is already installed. If the query is not installed,
-it installs the query and changes the schema if an attribute needs to be added.
+Checks if the query is already installed. 
+If the query is not installed, it installs the query and changes the schema if an attribute needs to be added.
 
 [discrete]
-==== Parameter:
-query_name (str): 
-The name of query to be installed
+==== Parameters:
+* `query_name (str)`: The name of query to be installed.
+* `query_path (str)`: If using a custom query, the path to the `.gsql` file that contains the query.
+Note: you must have the `query_name` parameter match the name of the query in the file.
+
+[discrete]
+==== Returns:
+String of query name installed.
 
 
 == runAlgorithm()
-`runAlgorithm(query_name: str, params: dict = None, feat_name: str = None, schema_name: list = None, timeout: int = 2147480, sizeLimit: int = None) -> Any`
+`runAlgorithm(query_name: str, params: dict = None, feat_name: str = None, feat_type: str = None, custom_query: bool = False, schema_name: list = None, global_schema: bool = False, timeout: int = 2147480, sizeLimit: int = None) -> Any`
 
 Runs an installed query.
 The query must be already created and installed in the graph.
@@ -35,16 +44,21 @@ If the there isn't a default value in the query definition and no parameters are
 [discrete]
 ==== Parameters:
 * `query_name (str)`: The name of the query to be executed.
-* `params (dict)`: Query parameters. a dictionary.
+* `params (dict)`: Query parameters. A dictionary.
 feat_name (str): 
 An attribute name that needs to be added to the vertex/edge
-* `schema_name`: List of Vertices/Edges that the attr_name need to added to them.    
+* `feat_type (str)`: Type of attribute that needs to be added to the vertex/edge. Only needed if `custom_query` is set to `True`.
+* `custom_query (bool)`: If the query is a custom query. Defaults to False. 
+* `schema_name (list[str])`: List of Vertices/Edges that the attr_name need to added to them.
+* `global_schema (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`.
+ +
+See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes[documentation] for more details.
 * `timeout (int)`: Maximum duration for successful query execution (in milliseconds).
 * `sizeLimit (int)`: Maximum size of response (in bytes).
 
 [discrete]
 ==== Returns:
 The output of the query, a list of output elements (vertex sets, edge sets, variables,
-accumulators, etc.
+accumulators, etc.)
 
 
