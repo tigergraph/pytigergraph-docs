@@ -152,7 +152,11 @@ def processFunction(node, adocFile, h2s = False):
     # Arguments
     for a in args:
         if a.arg != "self":
-            argList += a.arg + processTypes(a.annotation)
+            procType = processTypes(a.annotation)
+            if procType:
+                argList += a.arg + procType
+            else:
+                argList += a.arg
             if i >= defOffset:
                 de = defs[i - defOffset].value
                 if isinstance(de, str):

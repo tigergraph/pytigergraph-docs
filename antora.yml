@@ -1,7 +1,7 @@
 name: pytigergraph
 title: pyTigerGraph
-version: 0.9
-display_version: "0.9"
+version: 0.9.1
+display_version: "0.9.1"
 start_page: intro:index.adoc
 
 nav:

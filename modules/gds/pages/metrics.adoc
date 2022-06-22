@@ -39,7 +39,7 @@ Accuracy score (float).
 
 == Recall
 
-Recall = stem:[\frac{\sum(preds * labels)}{\sum(labels)}]
+Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
 
 [discrete]
 ==== Usage:
@@ -72,7 +72,7 @@ Recall score (float).
 
 == Precision
 
-Precision = stem:[\frac{\sum(preds * labels)}{\sum(preds)}]
+Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
 
 [discrete]
 ==== Usage:
