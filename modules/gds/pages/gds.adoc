@@ -525,7 +525,7 @@ Featurizer
 
 
 == vertexSplitter()
-`vertexSplitter(timeout: int = 600000)`
+`vertexSplitter(v_types = None, timeout: int = 600000)`
 
 Get a vertex splitter that splits vertices into at most 3 parts randomly.
 
@@ -567,12 +567,13 @@ splitter.run()
 ----
 
 [discrete]
-==== Parameter:
+==== Parameters:
+* `v_types (List[str], optional)`: Types of vertex the split will work on. Defaults to None (all types).
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
 
 == edgeSplitter()
-`edgeSplitter(timeout: int = 600000)`
+`edgeSplitter(e_types = None, timeout: int = 600000)`
 
 Get an edge splitter that splits edges into at most 3 parts randomly. 
 
@@ -608,7 +609,8 @@ splitter = conn.gds.edgeSplitter(timeout, attr_name=0.6, attr_name2=0.2, attr_na
 splitter.run()
 
 [discrete]
-==== Parameter:
+==== Parameters:
+* `e_types (List[str], optional)`: Types of edges the split will work on. Defaults to None (all types).
 timeout (int, optional): 
 Timeout value for the operation. Defaults to 600000.
 
