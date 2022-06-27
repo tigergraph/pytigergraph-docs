@@ -18,7 +18,8 @@ a self-signed certificate will be used.
 * `graphname`: The default graph for running queries.
 * `username`: The username on the TigerGraph server.
 * `password`: The password for that user.
-* `tgCloud`: Set to `True` if using TigerGraph Cloud. (Only needed for new TigerGraph Cloud instances.)
+* `tgCloud`: Set to `True` if using TigerGraph Cloud. If your hostname contains `tgcloud`, then this is
+automatically set to `True`, and you do not need to set this argument.
 * `restppPort`: The port for REST++ queries.
 * `gsPort`: The port of all other queries.
 * `gsqlVersion`: The version of the GSQL client to be used. Effectively the version of the database

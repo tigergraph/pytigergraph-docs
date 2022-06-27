@@ -28,8 +28,37 @@ You can find the reference for those classes on the following pages:
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/metrics[Metrics]
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/splitters[Splitters]
 
+== configureKafka()
+`configureKafka(kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None) -> None`
+
+Configure the Kafka connection. Will override any configuration that is defined in factory functions.
+[discrete]
+==== Parameters:
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
+* `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
+Defaults to 104857600.
+* `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
+Defaults to 1.
+* `kafka_replica_factor (int, optional)`: Number of replications for the topic created by this
+loader. Defaults to 1.
+* `kafka_retention_ms (int, optional)`: Retention time for messages in the topic created by this
+loader in milliseconds. Defaults to 60000.
+* `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
+loader finishes pulling data. Defaults to True.
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
+should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
+should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
+
+
 == neighborLoader()
-`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> NeighborLoader`
+`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None, timeout: int = 300000) -> NeighborLoader`
 
 Returns a `NeighborLoader` instance.
 A `NeighborLoader` instance performs neighbor sampling from vertices in the graph in batches in the following manner:
@@ -126,7 +155,7 @@ can be included as seeds. Defaults to None.
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
-* `kafka_address (str, optional)`: Address of the kafka broker. Defaults to None.
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
 * `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
@@ -137,15 +166,21 @@ loader. Defaults to 1.
 loader in milliseconds. Defaults to 60000.
 * `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
 loader finishes pulling data. Defaults to True.
-* `kafka_address_consumer (str, optional)`: Address of the kafka broker that a consumer
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
 should use. Defaults to be the same as `kafkaAddress`.
-* `kafka_address_producer (str, optional)`: Address of the kafka broker that a producer
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
 should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
 == edgeLoader()
-`edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeLoader`
+`edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None, timeout: int = 300000) -> EdgeLoader`
 
 Returns an `EdgeLoader` instance. 
 An `EdgeLoader` instance loads all edges in the graph in batches.
@@ -195,7 +230,7 @@ Defaults to False.
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
-* `kafka_address (str, optional)`: Address of the kafka broker. Defaults to None.
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
 * `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
@@ -206,10 +241,16 @@ loader. Defaults to 1.
 loader in milliseconds. Defaults to 60000.
 * `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
 loader finishes pulling data. Defaults to True.
-* `kafka_address_consumer (str, optional)`: Address of the kafka broker that a consumer
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
 should use. Defaults to be the same as `kafkaAddress`.
-* `kafka_address_producer (str, optional)`: Address of the kafka broker that a producer
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
 should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeloader.ipynb[the ML Workbench edge loader tutorial notebook]
@@ -217,7 +258,7 @@ for examples.
 
 
 == vertexLoader()
-`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> VertexLoader`
+`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None, timeout: int = 300000) -> VertexLoader`
 
 Returns a `VertexLoader` instance.
 A `VertexLoader` can load all vertices of a graph in batches.
@@ -267,7 +308,7 @@ can be included. Defaults to None.
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
-* `kafka_address (str, optional)`: Address of the kafka broker. Defaults to None.
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
 * `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
@@ -278,10 +319,16 @@ Defaults to 1.
 loader in milliseconds. Defaults to 60000.
 * `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
 loader finishes pulling data. Defaults to True.
-* `kafka_address_consumer (str, optional)`: Address of the kafka broker that a consumer
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
 should use. Defaults to be the same as `kafkaAddress`.
-* `kafka_address_producer (str, optional)`: Address of the kafka broker that a producer
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
 should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_vertexloader.ipynb[the ML Workbench tutorial notebook]
@@ -289,7 +336,7 @@ for examples.
 
 
 == graphLoader()
-`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> GraphLoader`
+`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None, timeout: int = 300000) -> GraphLoader`
 
 Returns a `GraphLoader`instance.
 A `GraphLoader` instance loads all edges from the graph in batches, along with the vertices that are connected with each edge.
@@ -378,7 +425,7 @@ Only "PyG", "DGL" and "dataframe" are supported. Defaults to "dataframe".
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
-* `kafka_address (str, optional)`: Address of the kafka broker. Defaults to None.
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
 * `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
@@ -389,10 +436,16 @@ loader. Defaults to 1.
 loader in milliseconds. Defaults to 60000.
 * `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
 loader finishes pulling data. Defaults to True.
-* `kafka_address_consumer (str, optional)`: Address of the kafka broker that a consumer
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
 should use. Defaults to be the same as `kafkaAddress`.
-* `kafka_address_producer (str, optional)`: Address of the kafka broker that a producer
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
 should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_graphloader.ipynb[the ML Workbench tutorial notebook for graph loaders]
@@ -400,7 +453,7 @@ for examples.
 
 
 == edgeNeighborLoader()
-`edgeNeighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, timeout: int = 300000) -> EdgeNeighborLoader`
+`edgeNeighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, kafka_address: str = None, kafka_max_msg_size: int = 104857600, kafka_num_partitions: int = 1, kafka_replica_factor: int = 1, kafka_retention_ms: int = 60000, kafka_auto_del_topic: bool = True, kafka_address_consumer: str = None, kafka_address_producer: str = None, kafka_security_protocol: str = "PLAINTEXT", kafka_sasl_mechanism: str = None, kafka_sasl_plain_username: str = None, kafka_sasl_plain_password: str = None, kafka_producer_ca_location: str = None, kafka_consumer_ca_location: str = None, timeout: int = 300000) -> EdgeNeighborLoader`
 
 Returns an `EdgeNeighborLoader` instance.
 An `EdgeNeighborLoader` instance performs neighbor sampling from all edges in the graph in batches in the following manner:
@@ -497,7 +550,7 @@ can be included as seeds. Defaults to None.
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
-* `kafka_address (str, optional)`: Address of the kafka broker. Defaults to None.
+* `kafka_address (str, optional)`: Address of the Kafka broker. Defaults to None.
 * `kafka_max_msg_size (int, optional)`: Maximum size of a Kafka message in bytes.
 Defaults to 104857600.
 * `kafka_num_partitions (int, optional)`: Number of partitions for the topic created by this loader.
@@ -508,10 +561,16 @@ loader. Defaults to 1.
 loader in milliseconds. Defaults to 60000.
 * `kafka_auto_del_topic (bool, optional)`: Whether to delete the Kafka topic once the
 loader finishes pulling data. Defaults to True.
-* `kafka_address_consumer (str, optional)`: Address of the kafka broker that a consumer
+* `kafka_address_consumer (str, optional)`: Address of the Kafka broker that a consumer
 should use. Defaults to be the same as `kafkaAddress`.
-* `kafka_address_producer (str, optional)`: Address of the kafka broker that a producer
+* `kafka_address_producer (str, optional)`: Address of the Kafka broker that a producer
 should use. Defaults to be the same as `kafkaAddress`.
+* `kafka_security_protocol (str, optional)`: Security prototol for Kafka. Defaults to None.
+* `kafka_sasl_mechanism (str, optional)`: Authentication mechanism for Kafka. Defaults to None.
+* `kafka_sasl_plain_username (str, optional)`: SASL username for Kafka. Defaults to None.
+* `kafka_sasl_plain_password (str, optional)`: SASL password for Kafka. Defaults to None.
+* `kafka_producer_ca_location (str, optional)`: Path to CA certificate on TigerGraph DB server for verifying the broker's key. 
+* `kafka_consumer_ca_location (str, optional)`: Path to CA certificate on client machine for verifying the broker's key. 
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
@@ -531,6 +590,8 @@ Get a vertex splitter that splits vertices into at most 3 parts randomly.
 
 The split results are stored in the provided vertex attributes. Each boolean attribute
 indicates which part a vertex belongs to.
+
+Make sure to create the appropriate attributes in the graph before using these functions.
 
 [discrete]
 ==== Usage:
@@ -579,6 +640,8 @@ Get an edge splitter that splits edges into at most 3 parts randomly.
 
 The split results are stored in the provided edge attributes. Each boolean attribute
 indicates which part an edge belongs to.
+
+Make sure to create the appropriate attributes in the graph before using these functions.
 
 [discrete]
 ==== Usage:
