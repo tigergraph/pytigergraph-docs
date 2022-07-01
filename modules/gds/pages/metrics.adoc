@@ -37,9 +37,11 @@ Get accuracy score.
 Accuracy score (float).
 
 
-== Recall
+== BinaryRecall
 
 Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
+
+This metric is for binary classifications, i.e., both preds and labels are arrays of 0's and 1's.
 
 [discrete]
 ==== Usage:
@@ -70,9 +72,11 @@ Get recall score.
 Recall score (float).
 
 
-== Precision
+== BinaryPrecision
 
 Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
+
+This metric is for binary classifications, i.e., both preds and labels are arrays of 0's and 1's.
 
 [discrete]
 ==== Usage:

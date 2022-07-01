@@ -24,15 +24,16 @@ The output of the statement(s) executed.
 == installUDF()
 `installUDF(ExprFunctions: str = "", ExprUtil: str = "") -> None`
 
-Install User Defined Function (UDF) to the database.  +
+Install User Defined Function (UDF) to the database. 
+ +
 See the https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-defined-functions[documentation] for more details. for details on UDFs.
 
 [discrete]
 ==== Parameters:
 ExprFunctions (str, optional): 
-Path to the file for ExprFunctions. Defaults to ''.
+Path or URL to the file for ExprFunctions. Defaults to '' (a blank path/URL).
 ExprUtil (str, optional): 
-Path to the file for ExprUtil. Defaults to ''.
+Path or URL to the file for ExprUtil. Defaults to '' (a blank path/URL).
 
 [discrete]
 ==== Returns:
