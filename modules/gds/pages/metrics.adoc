@@ -6,7 +6,7 @@ Utility for gathering metrics for GNN predictions.
 
 == Accuracy
 
-Accuracy = sum(preds == labels) / len(labels)
+Accuracy = sum(predictions == labels) / len(labels)
 
 [discrete]
 ==== Usage:
@@ -39,9 +39,9 @@ Accuracy score (float).
 
 == BinaryRecall
 
-Recall = stem:[rac{\sum(preds * labels)}{\sum(labels)}]
+Recall = stem:[rac{\sum(predictions * labels)}{\sum(labels)}]
 
-This metric is for binary classifications, i.e., both preds and labels are arrays of 0's and 1's.
+This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
 [discrete]
 ==== Usage:
@@ -74,9 +74,9 @@ Recall score (float).
 
 == BinaryPrecision
 
-Precision = stem:[rac{\sum(preds * labels)}{\sum(preds)}]
+Precision = stem:[rac{\sum(predictionss * labels)}{\sum(predictions)}]
 
-This metric is for binary classifications, i.e., both preds and labels are arrays of 0's and 1's.
+This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
 [discrete]
 ==== Usage:
