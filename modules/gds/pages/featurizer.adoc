@@ -17,20 +17,25 @@ Prints the information for algorithms within the specified category.
 
 
 == installAlgorithm()
-`installAlgorithm(query_name: str, query_path: str = None) -> str`
+`installAlgorithm(query_name: str, query_path: str = None, global_change: bool = False) -> str`
 
 Checks if the query is already installed. 
 If the query is not installed, it installs the query and changes the schema if an attribute needs to be added.
 
 [discrete]
 ==== Parameters:
-* `query_name (str)`: The name of query to be installed.
+query_name (str): 
+The name of query to be installed
 * `query_path (str)`: If using a custom query, the path to the `.gsql` file that contains the query.
 Note: you must have the `query_name` parameter match the name of the query in the file.
 
+* `global_change (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`. For Algorithms that are not schema free we need to specify this argument.
+ +
+See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes[documentation] for more details.
+for more details.
 [discrete]
 ==== Returns:
-String of query name installed.
+String of query name installed.    
 
 
 == runAlgorithm()
@@ -49,10 +54,11 @@ feat_name (str):
 An attribute name that needs to be added to the vertex/edge
 * `feat_type (str)`: Type of attribute that needs to be added to the vertex/edge. Only needed if `custom_query` is set to `True`.
 * `custom_query (bool)`: If the query is a custom query. Defaults to False. 
-* `schema_name (list[str])`: List of Vertices/Edges that the attr_name need to added to them.
+* `schema_name`: List of Vertices/Edges that the attr_name need to added to them.  
 * `global_schema (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`.
  +
 See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes[documentation] for more details.
+for more details.  
 * `timeout (int)`: Maximum duration for successful query execution (in milliseconds).
 * `sizeLimit (int)`: Maximum size of response (in bytes).
 
