@@ -16,7 +16,8 @@ Initiate a connection object.
 protocol (http:// or https://). If `certPath` is `None` and the protocol is https,
 a self-signed certificate will be used.
 * `graphname`: The default graph for running queries.
-* `gsqlSecret`: The secret key for GSQL. Created in AdminPortal of GraphStudio for the graph you wish to use.
+* `gsqlSecret`: The secret key for GSQL.  +
+See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_secrets.[documentation] for more details.
 Required for GSQL authentication on TigerGraph Cloud instances created after July 5, 2022.
 * `username`: The username on the TigerGraph server.
 * `password`: The password for that user.

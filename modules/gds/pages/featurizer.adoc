@@ -30,8 +30,7 @@ The name of query to be installed.
 Note: you must have the `query_name` parameter match the name of the query in the file.
 * `global_change (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`. For algorithms that are not schema free we need to specify this argument.
  +
-See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes[documentation] for more details.
-for more details.
+See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes.[documentation] for more details.
 [discrete]
 ==== Returns:
 String of query name installed.    
@@ -56,8 +55,7 @@ An attribute name that needs to be added to the vertex/edge
 * `schema_name`: List of Vertices/Edges that the attr_name need to added to them.  
 * `global_schema (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`.
  +
-See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes[documentation] for more details.
-for more details.  
+See the https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes.[documentation] for more details.
 * `timeout (int)`: Maximum duration for successful query execution (in milliseconds).
 * `sizeLimit (int)`: Maximum size of response (in bytes).
 
