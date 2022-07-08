@@ -26,7 +26,7 @@ The output of the statement(s) executed.
 
 Install user defined functions (UDF) to the database. 
  +
-See the https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-defined-functions[documentation] for more details. for details on UDFs.
+See the https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-defined-functions[UDF documentation] for more details. for details on UDFs.
 
 [discrete]
 ==== Parameters:
