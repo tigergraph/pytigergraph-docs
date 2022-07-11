@@ -1,5 +1,19 @@
 = Release Notes
 
+== [1.0] - 2022-07-11
+
+Release of pyTigerGraph version 1.0, in conjunction with version 1.0 of the link:https://docs.tigergraph.com/ml-workbench/current/overview/[TigerGraph Machine Learning Workbench]. 
+
+== Added:
+* Kafka authentication support for ML Workbench enterprise users.
+* Custom query support for Featurizer, allowing developers to generate their own graph-based features as well as use our link:https://docs.tigergraph.com/graph-ml/current/intro/[built-in Graph Data Science algorithms].
+
+== Changed:
+* Additional testing of GDS functionality
+* More demos and tutorials for TigerGraph ML Workbench, found link:https://github.com/TigerGraph-DevLabs/mlworkbench-docs[here].
+* Various bug fixes.
+
+
 == [0.9.1] - 2022-06-21
 Added new parameter, `tgCloud` for when connecting to a TigerGraph Cloud instance. Set to `True` if using a new TigerGraph Cloud 
 

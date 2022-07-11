@@ -6,7 +6,7 @@ A TigerGraphConnection object provides the HTTP(S) communication used by all oth
 
 
 == \__init__()
-`__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", username: str = "tigergraph", password: str = "tigergraph", tgCloud: bool = False, restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = True, certPath: str = None, debug: bool = False, sslPort: Union[int, str] = "443", gcp: bool = False)`
+`__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", gsqlSecret: str = "", username: str = "tigergraph", password: str = "tigergraph", tgCloud: bool = False, restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = True, certPath: str = None, debug: bool = False, sslPort: Union[int, str] = "443", gcp: bool = False)`
 
 Initiate a connection object.
 
@@ -16,9 +16,13 @@ Initiate a connection object.
 protocol (http:// or https://). If `certPath` is `None` and the protocol is https,
 a self-signed certificate will be used.
 * `graphname`: The default graph for running queries.
+* `gsqlSecret`: The secret key for GSQL.  +
+See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_secrets.[secrets documentation] for more details.
+Required for GSQL authentication on TigerGraph Cloud instances created after July 5, 2022.
 * `username`: The username on the TigerGraph server.
 * `password`: The password for that user.
-* `tgCloud`: Set to `True` if using TigerGraph Cloud. (Only needed for new TigerGraph Cloud instances.)
+* `tgCloud`: Set to `True` if using TigerGraph Cloud. If your hostname contains `tgcloud`, then this is
+automatically set to `True`, and you do not need to set this argument.
 * `restppPort`: The port for REST++ queries.
 * `gsPort`: The port of all other queries.
 * `gsqlVersion`: The version of the GSQL client to be used. Effectively the version of the database

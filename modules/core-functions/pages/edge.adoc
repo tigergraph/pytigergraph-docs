@@ -50,7 +50,7 @@ Returns the type(s) of the edge type's source vertex.
 - "&#42;" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
 versions).
  +
-See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[documentation] for more details.
+See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[schema documentation] for more details.
 - A set of vertex type name strings (unique values) if the edge has multiple source
 vertex types (notation used in 3.0 and later versions). +
 Even if the source vertex types were defined as `"&#42;"`, the REST API will list them as
@@ -219,7 +219,7 @@ Example:
         {"visits": (1482, "+"), "max_duration": (371, "max")}
 ----
 
-For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
+For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[operation code documentation] .
 
 [discrete]
 ==== Returns:
@@ -229,7 +229,7 @@ A single number of accepted (successfully upserted) edges (0 or 1).
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[data loading documentation] for more details.
 
 
 
@@ -266,7 +266,7 @@ Example:
         ]
 ----
 
-For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[documentation] .
+For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[operation codes documentation] .
 
 [discrete]
 ==== Returns:
@@ -276,7 +276,7 @@ A single number of accepted (successfully upserted) edges (0 or positive integer
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[documentation] for more details.
+See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[data loading documentation] for more details.
 
 
 
