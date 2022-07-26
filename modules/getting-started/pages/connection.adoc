@@ -35,7 +35,7 @@ For example:
 
 [source.wrap,python]
 ----
-conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery", "hsolo", "f4lc0n")
+conn = tg.TigerGraphConnection(host="r_alliance.i.tgcloud.io", graphname="GoodsDelivery", username="hsolo", password="f4lc0n")
 conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5')
 ----
 
@@ -47,7 +47,7 @@ If your instance does not have user authentication enabled, then you do not need
 
 [source.wrap,python]
 ----
-conn = tg.TigerGraphConnection("r_alliance.i.tgcloud.io", "GoodsDelivery")
+conn = tg.TigerGraphConnection(host="r_alliance.i.tgcloud.io", graph="GoodsDelivery")
 ----
 
 If you are running TigerGraph locally on a virtual machine or a container with default port mapping, and you are using the default graph `MyGraph`, you can omit all arguments when calling the constructor:
