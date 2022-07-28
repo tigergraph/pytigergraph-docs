@@ -12,7 +12,7 @@ This page covers both connections to Cloud and non-Cloud instances.
 * You have access to a running TigerGraph instance.
 * You have created a graph on your TigerGraph instance.
 * If your TigerGraph instance has authentication enabled, you have created a graph, and generated a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret].
-See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[] for how to create a secret.
+See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
 
 == Connect to a graph on a non-Cloud TigerGraph instance
 
@@ -111,7 +111,7 @@ conn = TigerGraphConnection(host="r_alliance.i.tgcloud.io", graphname="GoodsDeli
 conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5') <1>
 ----
 <1> The string in the `getToken()` argument is a secret.
-See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[] for how to create a secret.
+See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
 
 
 
