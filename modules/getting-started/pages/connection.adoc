@@ -67,6 +67,9 @@ See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secre
 
 == Connect to a graph on a TigerGraph Cloud instance
 
+NOTE: This process applies to TigerGraph Cloud solutions created after July 5th, 2022.
+If your solution was created before that date, follow <<_connect_to_a_graph_on_a_non_cloud_tigergraph_instance,the procedure for non-Cloud instances>> instead to connect to your solution.
+
 To connect to a TigerGraph Cloud instance, you no longer need to provide a username-password pair.
 You only need to provide the following information:
 
