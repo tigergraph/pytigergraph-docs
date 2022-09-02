@@ -18,6 +18,7 @@ Release of pyTigerGraph version 1.1.
 * Confirm Kafka topic is created before subscription.
 * More efficient use of Kafka resources.
 * Allow multiple consumers on the same data.
+* Improved deprecation warnings.
 
 == [1.0] - 2022-07-11
 
