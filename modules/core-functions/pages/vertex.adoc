@@ -3,7 +3,7 @@
 
 Functions to upsert, retrieve and delete vertices.
 
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
 == getVertexTypes()
 `getVertexTypes(force: bool = False) -> list`
@@ -221,7 +221,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_list_vertices[List verti
 
 
 == getVertexDataFrame()
-`getVertexDataFrame(vertexType: str, select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
+`getVertexDataFrame(vertexType: str, select: str = "", where: str = "", limit: Union[int, str] = None, sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 Retrieves vertices of the given vertex type and returns them as pandas DataFrame.
 
@@ -252,16 +252,15 @@ DataFrame.
 
 
 == getVertexDataframe()
-`getVertexDataframe(vertexType: str, select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
+`getVertexDataframe(vertexType: str, select: str = "", where: str = "", limit: Union[int, str] = None, sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 DEPRECATED
 
 Use `getVertexDataFrame()` instead.
 
 
-
 == getVerticesById()
-`getVerticesById(vertexType: str, vertexIds: Union[int, str, list], select: str = "", fmt: str = "py", withId: bool = True, withType: bool = False, timeout: int = 0) -> Union[dict, str, pd.DataFrame]`
+`getVerticesById(vertexType: str, vertexIds: Union[int, str, list], select: str = "", fmt: str = "py", withId: bool = True, withType: bool = False, timeout: int = 0) -> Union[list, str, pd.DataFrame]`
 
 Retrieves vertices of the given vertex type, identified by their ID.
 
@@ -271,7 +270,7 @@ Retrieves vertices of the given vertex type, identified by their ID.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `select`: Comma separated list of vertex attributes to be retrieved.
 * `fmt`: Format of the results: +
-"py":   Python objects
+"py":   Python objects (in a list)
 "json": JSON document
 "df":   pandas DataFrame
 * `withId`: (If the output format is "df") should the vertex ID be included in the dataframe?
@@ -314,7 +313,6 @@ The (selected) details of the (matching) vertex instances as pandas DataFrame.
 DEPRECATED
 
 Use `getVertexDataFrameById()` instead.
-
 
 
 == getVertexStats()

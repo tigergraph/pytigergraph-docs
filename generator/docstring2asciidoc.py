@@ -60,9 +60,9 @@ def processFunctionDocstring(docstring, adocFile, argNum):
                         li = li.lstrip()
                     if "See https://docs.tigergraph.com" in li:
                         li = re.sub(r"See (https[^ ]+)",
-                            r" +\nSee the \1[documentation] for more details.", li)
+                            r" +\nSee \1[this] for more details.", li)
                     if "see https://docs.tigergraph.com" in li:
-                        li = re.sub(r"see (https[^ ]+)", r"see the \1[documentation]", li)
+                        li = re.sub(r"see (https[^ ]+)", r"see \1[this]", li)
                     if '"*"' in li:
                         li = li.replace('"*"', '"&#42;"')
                     adocFile.write(li + "\n")
@@ -158,11 +158,14 @@ def processFunction(node, adocFile, h2s = False):
             else:
                 argList += a.arg
             if i >= defOffset:
-                de = defs[i - defOffset].value
-                if isinstance(de, str):
-                    argList += " = \"" + de + "\""
-                else:
-                    argList += " = " + str(de)
+                try:
+                    de = defs[i - defOffset].value
+                    if isinstance(de, str):
+                        argList += " = \"" + de + "\""
+                    else:
+                        argList += " = " + str(de)
+                except:
+                    pass
             argList += ", "
         i += 1
     argList = argList[:-2]
@@ -294,6 +297,8 @@ def main():
         for child in ast.iter_child_nodes(node):
             if isinstance(child, _ast.ClassDef):
                 processClass(child, adocFile, hasFileHeader)
+            if isinstance(child, _ast.FunctionDef):
+                processFunction(child, adocFile, hasFileHeader)
 
         adocFile.close()
 
