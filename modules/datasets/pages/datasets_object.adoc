@@ -15,9 +15,10 @@ downloaded to local `tmp_dir` automatically when this class is instantiated.
 
 [discrete]
 ==== Parameters:
-name (str, optional): 
-Name of the dataset to get. Defaults to None.
-tmp_dir (str, optional): 
-Where to store the artifacts of this dataset. Defaults to "./tmp".
+`name` (str, optional):
+Name of the dataset to get. Defaults to `None`.
+
+`tmp_dir` (str, optional):
+Where to store the artifacts of this dataset. Defaults to `"./tmp"`.
 
 
