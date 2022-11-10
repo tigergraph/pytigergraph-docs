@@ -1,4 +1,4 @@
-= Datasets
+= Datasets Object
 
 
 Stock datasets that can be ingested into a TigerGraph database through the `ingestDataset`

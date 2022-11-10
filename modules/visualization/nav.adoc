@@ -1,1 +1,1 @@
-* xref:index.adoc[Visualization]
+* xref:visualization.adoc[Visualization]

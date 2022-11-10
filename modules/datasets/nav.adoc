@@ -1,2 +1,2 @@
-** xref:datasets.adoc[Datasets]
-** xref:dataset_object.adoc[Dataset Object]
+* xref:datasets.adoc[Dataset Ingestion]
+** xref:datasets_object.adoc[Dataset Object]
