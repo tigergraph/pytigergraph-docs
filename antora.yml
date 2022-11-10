@@ -10,5 +10,7 @@ nav:
 - modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
-- modules/release-notes/nav.adoc
 - modules/contributing/nav.adoc
+- modules/visualization/nav.adoc
+- modules/datasets/nav.adoc
+- modules/release-notes/nav.adoc
