@@ -2,6 +2,10 @@
 
 The Featurizer class provides methods for installing and running Graph Data Science Algorithms onto a TigerGraph server.
 
+[NOTE]
+The `CALL` function (see xref:graph-ml:using-an-algorithm:index.adoc[]) for supporting packaged queries in GSQL is not available through pyTigerGraph.
+Use the methods on this page instead.
+
 == listAlgorithms()
 `listAlgorithms(category: str = None)`
 
@@ -24,14 +28,17 @@ If the query is not installed, it installs the query and changes the schema if a
 
 [discrete]
 ==== Parameters:
-query_name (str): 
-The name of query to be installed.
+* `query_name (str)`:
+The name of the query to be installed.
+
 * `query_path (str)`: If using a custom query, the path to the `.gsql` file that contains the query.
 Note: you must have the `query_name` parameter match the name of the query in the file.
+
 * `global_change (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`. For algorithms that are not schema free we need to specify this argument.
  +
-See https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes.[this] for more details.
+See xref:gsql-ref:ddl-and-loading:modifying-a-graph-schema.adoc#global-vs-local-schema-changes[Global vs Local Schema Changes] for more details.
 [discrete]
+
 ==== Returns:
 String of query name installed.    
 
@@ -55,7 +62,7 @@ An attribute name that needs to be added to the vertex/edge
 * `schema_name`: List of Vertices/Edges that the attr_name need to added to them.  
 * `global_schema (bool)`: False by default. Set to true if you want to run `GLOBAL SCHEMA_CHANGE JOB`.
  +
-See https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-graph-schema#_global_vs_local_schema_changes.[this] for more details.
+See xref:gsql-ref:ddl-and-loading:modifying-a-graph-schema.adoc#global-vs-local-schema-changes[Global vs Local Schema Changes] for more details.
 * `timeout (int)`: Maximum duration for successful query execution (in milliseconds).
 * `sizeLimit (int)`: Maximum size of response (in bytes).
 
