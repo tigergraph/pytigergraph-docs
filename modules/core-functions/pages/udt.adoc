@@ -9,8 +9,7 @@ All functions in this module are called as methods on a link:https://docs.tigerg
 
 Returns the list of User-Defined Tuples (names only).
 
-For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
-
+For information on UDTs, see the xref:gsql-ref:ddl-and-loading:attribute-data-types.adoc#user-defined-tuples[User-Defined Tuples] page of the GSQL language documentation.
 [discrete]
 ==== Returns:
 The list of names of UDTs (defined in the global scope, i.e. not in queries).
@@ -21,7 +20,7 @@ The list of names of UDTs (defined in the global scope, i.e. not in queries).
 
 Returns the details of a specific User-Defined Tuple (defined in the global scope).
 
-For information on UDTs see xref:gsql-ref:ddl-and-loading:system-and-language-basics.adoc#typedef-tuple[User-Defined Tuple]
+For information on UDTs, see the xref:gsql-ref:ddl-and-loading:attribute-data-types.adoc#user-defined-tuples[User-Defined Tuples] page of the GSQL language documentation.
 
 [discrete]
 ==== Parameter:
