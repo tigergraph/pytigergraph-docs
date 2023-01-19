@@ -11,8 +11,8 @@ This page covers both connections to Cloud and non-Cloud instances.
 * pyTigerGraph is installed on your machine.
 * You have access to a running TigerGraph instance.
 * You have created a graph on your TigerGraph instance.
-* If your TigerGraph instance has authentication enabled, you have created a graph, and generated a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret].
-See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
+* If your TigerGraph instance has authentication enabled, you have created a graph, and generated a xref:tigergraph-server:user-access:user-credentials.adoc#_secrets[secret].
+See xref:tigergraph-server:user-access:user-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
 
 == Connect to a graph on a non-Cloud TigerGraph instance
 
@@ -39,7 +39,7 @@ The graph in this context is a logical container that consists of object type de
 A TigerGraph instance can contain multiple graphs, so you need to specify which one you want to use.
 
 === Generate authentication token
-If the instance has user authentication enabled, you also need to provide a xref:tigergraph-server:user-access:managing-credentials.adoc#_secrets[secret], which is a unique string that serve as a user’s credential when creating authentication tokens for TigerGraph's REST API endpoints.
+If the instance has user authentication enabled, you also need to provide a xref:tigergraph-server:user-access:user-credentials.adoc#_secrets[secret], which is a unique string that serve as a user’s credential when creating authentication tokens for TigerGraph's REST API endpoints.
 
 Run the following function to generate an authentication.
 After running the function, the token is saved to the `TigerGraphConnection` object, and you can now use its methods to access and modify graph data.
@@ -61,7 +61,7 @@ conn = TigerGraphConnection(host="127.0.0.1", graphname="GoodsDelivery", usernam
 conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5') <1>
 ----
 <1> The string in the `getToken()` argument is a secret.
-See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[] for how to create a secret.
+See xref:tigergraph-server:user-access:user-credentials.adoc#_create_a_secret[] for how to create a secret.
 
 
 
@@ -114,7 +114,7 @@ conn = TigerGraphConnection(host="r_alliance.i.tgcloud.io", graphname="GoodsDeli
 conn.getToken('oodvd1upqbj96vq22jof21o8nl8cjkd5') <1>
 ----
 <1> The string in the `getToken()` argument is a secret.
-See xref:tigergraph-server:user-access:managing-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
+See xref:tigergraph-server:user-access:user-credentials.adoc#_create_a_secret[Managing Credentials] for how to create a secret.
 
 
 
