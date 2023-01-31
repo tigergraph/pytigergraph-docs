@@ -2,7 +2,7 @@
 
 
 Functions to upsert, retrieve and delete edges.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
 == getEdgeTypes()
 `getEdgeTypes(force: bool = False) -> list`
@@ -50,7 +50,7 @@ Returns the type(s) of the edge type's source vertex.
 - "&#42;" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
 versions).
  +
-See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[schema documentation] for more details.
+See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[this] for more details.
 - A set of vertex type name strings (unique values) if the edge has multiple source
 vertex types (notation used in 3.0 and later versions). +
 Even if the source vertex types were defined as `"&#42;"`, the REST API will list them as
@@ -78,7 +78,7 @@ Returns the type(s) of the edge type's target vertex.
 - "&#42;" if the edge can end in any vertex type (notation used in 2.6.1 and earlier
 versions).
  +
-See the https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[documentation] for more details.
+See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[this] for more details.
 - A set of vertex type name strings (unique values) if the edge has multiple target
 vertex types (notation used in 3.0 and later versions). +
 Even if the target vertex types were defined as "&#42;", the REST API will list them as
@@ -157,10 +157,10 @@ count of the given edge type after filtered by `where` condition.
 ==== Endpoints:
 - `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_edges_of_a_vertex[documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_edges_of_a_vertex[this] for more details.
 - `POST /builtins/{graph_name}`
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_built_in_functions_on_graph[documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_built_in_functions_on_graph[this] for more details.
 
 
 == getEdgeCount()
@@ -219,7 +219,7 @@ Example:
         {"visits": (1482, "+"), "max_duration": (371, "max")}
 ----
 
-For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[operation code documentation] .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
 
 [discrete]
 ==== Returns:
@@ -229,7 +229,7 @@ A single number of accepted (successfully upserted) edges (0 or 1).
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[data loading documentation] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[this] for more details.
 
 
 
@@ -266,7 +266,7 @@ Example:
         ]
 ----
 
-For valid values of `<operator>` see the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[operation codes documentation] .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
 
 [discrete]
 ==== Returns:
@@ -276,7 +276,7 @@ A single number of accepted (successfully upserted) edges (0 or positive integer
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[data loading documentation] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[this] for more details.
 
 
 
@@ -296,9 +296,9 @@ dataframe index would be used instead.
 * `to_id`: The field name where the target vertex primary id is given. If omitted, the
 dataframe index would be used instead.
 * `attributes`: A dictionary in the form of `{target: source}` where source is the column name in
-the dataframe and target is the attribute name in the graph vertex. When omitted,
+the dataframe and target is the attribute name on the edge. When omitted,
 all columns would be upserted with their current names. In this case column names
-must match the vertex's attribute names.
+must match the edges's attribute names.
 
 [discrete]
 ==== Returns:
@@ -344,11 +344,11 @@ JSON or pandas DataFrame.
 ==== Endpoint:
 - `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex[documentation] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#list-edges-of-a-vertex[this] for more details.
 
 
 == getEdgesDataFrame()
-`getEdgesDataFrame(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
+`getEdgesDataFrame(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: Union[int, str] = None, sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 Retrieves edges of the given edge type originating from a specific source vertex.
 
@@ -378,12 +378,11 @@ JSON or pandas DataFrame.
 
 
 == getEdgesDataframe()
-`getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: str = "", sort: str = "", timeout: int = 0) -> pd.DataFrame`
+`getEdgesDataframe(sourceVertexType: str, sourceVertexId: str, edgeType: str = "", targetVertexType: str = "", targetVertexId: str = "", select: str = "", where: str = "", limit: Union[int, str] = None, sort: str = "", timeout: int = 0) -> pd.DataFrame`
 
 DEPRECATED
 
 Use `getEdgesDataFrame()` instead.
-
 
 
 == getEdgesByType()
@@ -428,7 +427,7 @@ Attribute statistics of edges; a dictionary of dictionaries.
 ==== Endpoint:
 - `POST /builtins/{graph_name}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph[documentation] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#run-built-in-functions-on-graph[this] for more details.
 
 
 == delEdges()
@@ -461,7 +460,7 @@ A dictionary of `edge_type: deleted_edge_count` pairs.
 ==== Endpoint:
 - `DELETE /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}/{edge_type}/{target_vertex_type}/{target_vertex_id}`
  +
-See the https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge[documentation] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge[this] for more details.
 
 
 == edgeSetToDataFrame()
