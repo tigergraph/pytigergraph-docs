@@ -66,7 +66,7 @@ Whether to add a topic for each epoch. Defaults to False.
 
 
 == neighborLoader()
-`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> NeighborLoader`
+`neighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> NeighborLoader`
 
 Returns a `NeighborLoader` instance.
 A `NeighborLoader` instance performs neighbor sampling from vertices in the graph in batches in the following manner:
@@ -159,6 +159,8 @@ can be included as seeds. Defaults to None.
 * `output_format (str, optional)`: Format of the output data of the loader. Only
 "PyG", "DGL", "spektral", and "dataframe" are supported. Defaults to "PyG".
 * `add_self_loop (bool, optional)`: Whether to add self-loops to the graph. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `loader_id (str, optional)`: An identifier of the loader which can be any string. It is
 also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
@@ -169,7 +171,7 @@ for it. Defaults to None.
 
 
 == edgeLoader()
-`edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> EdgeLoader`
+`edgeLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> EdgeLoader`
 
 Returns an `EdgeLoader` instance. 
 An `EdgeLoader` instance loads all edges in the graph in batches.
@@ -221,6 +223,8 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 * `callback_fn (callable, optional)`: A callable function to apply to each batch in the dataloader. Defaults to None.
 
@@ -229,7 +233,7 @@ for examples.
 
 
 == vertexLoader()
-`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> VertexLoader`
+`vertexLoader(attributes: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "dataframe", loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> VertexLoader`
 
 Returns a `VertexLoader` instance.
 A `VertexLoader` can load all vertices of a graph in batches.
@@ -281,6 +285,8 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 * `callback_fn (callable, optional)`: A callable function to apply to each batch in the dataloader. Defaults to None.
 
@@ -289,7 +295,7 @@ for examples.
 
 
 == graphLoader()
-`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> GraphLoader`
+`graphLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> GraphLoader`
 
 Returns a `GraphLoader`instance.
 A `GraphLoader` instance loads all edges from the graph in batches, along with the vertices that are connected with each edge.
@@ -379,6 +385,8 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 * `callback_fn (callable, optional)`: A callable function to apply to each batch in the dataloader. Defaults to None.
 
@@ -387,7 +395,7 @@ for examples.
 
 
 == edgeNeighborLoader()
-`edgeNeighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> EdgeNeighborLoader`
+`edgeNeighborLoader(v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_neighbors: int = 10, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> EdgeNeighborLoader`
 
 Returns an `EdgeNeighborLoader` instance.
 An `EdgeNeighborLoader` instance performs neighbor sampling from all edges in the graph in batches in the following manner:
@@ -485,12 +493,14 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 * `callback_fn (callable, optional)`: A callable function to apply to each batch in the dataloader. Defaults to None.
 
 
 == nodepieceLoader()
-`nodepieceLoader(v_feats: Union[list, dict] = None, target_vertex_types: Union[str, list] = None, compute_anchors: bool = False, use_cache: bool = False, clear_cache: bool = False, anchor_method: str = "random", anchor_cache_attr: str = "anchors", max_distance: int = 5, max_anchors: int = 10, max_relational_context: int = 10, anchor_percentage: float = 0.01, anchor_attribute: str = "is_anchor", e_types: list = None, global_schema_change: bool = False, tokenMap: Union[dict, str] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> NodePieceLoader`
+`nodepieceLoader(v_feats: Union[list, dict] = None, target_vertex_types: Union[str, list] = None, compute_anchors: bool = False, use_cache: bool = False, clear_cache: bool = False, anchor_method: str = "random", anchor_cache_attr: str = "anchors", max_distance: int = 5, max_anchors: int = 10, max_relational_context: int = 10, anchor_percentage: float = 0.01, anchor_attribute: str = "is_anchor", e_types: list = None, global_schema_change: bool = False, tokenMap: Union[dict, str] = None, batch_size: int = None, num_batches: int = 1, shuffle: bool = False, filter_by: str = None, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> NodePieceLoader`
 
 Returns a `NodePieceLoader` instance.
 A `NodePieceLoader` instance loads all edges from the graph in batches, along with the vertices that are connected with each edge.
@@ -549,8 +559,9 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
-
 * `callback_fn (callable, optional)`: A callable function to apply to each batch in the dataloader. Defaults to None.
 
 See https://github.com/tigergraph/graph-ml-notebooks/tree/main/applications/nodepiece/nodepiece.ipynb[the ML Workbench tutorial notebook for nodepiece loaders]
@@ -558,7 +569,7 @@ for examples.
 
 
 == hgtLoader()
-`hgtLoader(num_neighbors: dict, v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, timeout: int = 300000, callback_fn: Callable = None) -> HGTLoader`
+`hgtLoader(num_neighbors: dict, v_in_feats: Union[list, dict] = None, v_out_labels: Union[list, dict] = None, v_extra_feats: Union[list, dict] = None, e_in_feats: Union[list, dict] = None, e_out_labels: Union[list, dict] = None, e_extra_feats: Union[list, dict] = None, batch_size: int = None, num_batches: int = 1, num_hops: int = 2, shuffle: bool = False, filter_by: str = None, output_format: str = "PyG", add_self_loop: bool = False, loader_id: str = None, buffer_size: int = 4, reverse_edge: bool = False, delimiter: str = ",", timeout: int = 300000, callback_fn: Callable = None) -> HGTLoader`
 
 Returns a `HGTLoader` instance.
 A `HGTLoader` instance performs stratified neighbor sampling from vertices in the graph in batches in the following manner:
@@ -653,6 +664,8 @@ also used as the Kafka topic name. If `None`, a random string will be generated
 for it. Defaults to None.
 * `buffer_size (int, optional)`: Number of data batches to prefetch and store in memory. Defaults to 4.
 * `reverse_edge (bool, optional)`: Whether to traverse along reverse edge types. Defaults to False.
+* `delimiter (str, optional)`: What character (or combination of characters) to use to separate attributes as batches are being created.
+Defaults to ",".
 * `timeout (int, optional)`: Timeout value for GSQL queries, in ms. Defaults to 300000.
 
 
