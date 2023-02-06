@@ -22,9 +22,10 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-preds (ndarray): 
+* `preds (ndarray)`:
 Array of predicted labels.
-labels (ndarray): 
+
+* `labels (ndarray)`:
 Array of true labels.
 
 
@@ -57,9 +58,10 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-preds (ndarray): 
+* `preds (ndarray)`:
 Array of predicted labels.
-labels (ndarray): 
+
+* `labels (ndarray)`:
 Array of true labels.
 
 
@@ -92,9 +94,10 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-preds (ndarray): 
+* `preds (ndarray)`:
 Array of predicted labels.
-labels (ndarray): 
+
+* `labels (ndarray)`:
 Array of true labels.
 
 

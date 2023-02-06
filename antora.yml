@@ -1,7 +1,7 @@
 name: pytigergraph
 title: pyTigerGraph
-version: 1.0
-display_version: "1.0"
+version: 1.2
+display_version: "1.2"
 start_page: intro:index.adoc
 
 nav:
@@ -10,5 +10,7 @@ nav:
 - modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
-- modules/release-notes/nav.adoc
+- modules/datasets/nav.adoc
+- modules/visualization/nav.adoc
 - modules/contributing/nav.adoc
+- modules/release-notes/nav.adoc
