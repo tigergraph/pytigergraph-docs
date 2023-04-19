@@ -2,7 +2,7 @@
 
 
 The functions on this page authenticate connections and manage TigerGraph credentials.
-All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object]. 
+All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
 == getSecrets()
 `getSecrets() -> dict`
@@ -61,7 +61,7 @@ should not be necessary and should not be executable by generic users.
 
 Drops a secret.
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_drop_a_secret[secrets documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_drop_a_secret[this] for more details.
 
 [discrete]
 ==== Parameters:
@@ -82,13 +82,13 @@ Requests an authorization token.
 This function returns a token only if REST++ authentication is enabled. If not, an exception
 will be raised.
  +
-See the https://docs.tigergraph.com/admin/admin-guide/user-access-management/user-privileges-and-authentication#rest-authentication[REST authentication documentation] for more details.
+See https://docs.tigergraph.com/admin/admin-guide/user-access-management/user-privileges-and-authentication#rest-authentication[this] for more details.
 
 [discrete]
 ==== Parameters:
 * `secret`: The secret (string) generated in GSQL using `CREATE SECRET`.
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[secrets documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[this] for more details.
 * `setToken`: Set the connection's API token to the new value (default: `True`).
 * `lifetime`: Duration of token validity (in seconds, default 30 days = 2,592,000 seconds).
 
@@ -110,7 +110,7 @@ error occurred.
 ==== Endpoint:
 - `POST /requesttoken`
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_request_a_token[token documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_request_a_token[this] for more details.
 
 
 == refreshToken()
@@ -121,13 +121,13 @@ Extends a token's lifetime.
 This function works only if REST++ authentication is enabled. If not, an exception will be
 raised.
  +
-See the https://docs.tigergraph.com/admin/admin-guide/user-access-management/user-privileges-and-authentication#rest-authentication[REST Authentication documentation] for more details.
+See https://docs.tigergraph.com/admin/admin-guide/user-access-management/user-privileges-and-authentication#rest-authentication[this] for more details.
 
 [discrete]
 ==== Parameters:
 * `secret`: The secret (string) generated in GSQL using `CREATE SECRET`.
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[secrets documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[this] for more details.
 * `token`: The token requested earlier. If not specified, refreshes current connection's token.
 * `lifetime`: Duration of token validity (in seconds, default 30 days = 2,592,000 seconds) from
 current system timestamp.
@@ -147,7 +147,7 @@ zone.
 [discrete]
 ==== Raises:
 `TigerGraphException` if REST++ authentication is not enabled or if an authentication error
-occurs. 
+occurs.
 
 Note:
 
@@ -155,7 +155,7 @@ Note:
 ==== Endpoint:
 - `PUT /requesttoken`
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_refresh_a_token[token documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_refresh_a_token[this] for more details.
 
 
 == deleteToken()
@@ -166,13 +166,13 @@ Deletes a token.
 This function works only if REST++ authentication is enabled. If not, an exception will be
 raised.
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/user-access/enabling-user-authentication#_enable_restpp_authentication[REST authentication documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/user-access/enabling-user-authentication#_enable_restpp_authentication[this] for more details.
 
 [discrete]
 ==== Parameters:
 * `secret`: The secret (string) generated in GSQL using `CREATE SECRET`.
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[secrets documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_create_a_secret[this] for more details.
 * `token`: The token requested earlier. If not specified, deletes current connection's token,
 so be careful.
 * `skipNA`: Don't raise an exception if the specified token does not exist.
@@ -191,6 +191,6 @@ occurred, for example if the specified token does not exist.
 ==== Endpoint:
 - `DELETE /requesttoken`
  +
-See the https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_delete_a_token[token documentation] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_delete_a_token[this] for more details.
 
 

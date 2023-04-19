@@ -365,3 +365,119 @@ The `data` property stores all data if all data is loaded in a single batch.
 If there are multiple batches of data, the `data` property returns the instance itself
 
 
+== NodePieceLoader
+
+A data loader that performs NodePiece sampling from the graph.
+You can declare a `NodePieceLoader` instance with the factory function `nodePieceLoader()`.
+
+A NodePiece loader is an iterable.
+When you loop through a loader instance, it loads one batch of data from the graph to which you established a connection.
+
+In every iteration, the NodePiece loader selects a group of seed vertices of size batch size. 
+For each vertex in the batch, it will produce a set of the k closest "anchor" vertices in the graph,
+as well as up to j edge types. For more information on the NodePiece data loading scheme, the
+https://towardsdatascience.com/nodepiece-tokenizing-knowledge-graphs-6dd2b91847aa[blog article] and
+https://arxiv.org/abs/2106.12144[paper] are good places to start.
+
+You can iterate on the instance until every vertex has been picked as seed.
+
+[discrete]
+==== Examples:
+
+The following example iterates over an NodePiece loader instance.
+[.wrap,python]
+----
+for i, batch in enumerate(node_piece_loader):
+print("----Batch {}----".format(i))
+print(batch)
+----
+
+
+=== saveTokens()
+`saveTokens(filename) -> None`
+
+Save tokens to pickle file
+[discrete]
+==== Parameter:
+* `filename (str)`: Filename to save the tokens to.
+
+
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself.
+
+
+=== fetch()
+`fetch(vertices: list) -> None`
+
+Fetch NodePiece results (anchors, distances, and relational context) for specific vertices.
+
+[discrete]
+==== Parameter:
+* `vertices (list of dict)`: Vertices to fetch with their NodePiece results.
+Each vertex corresponds to a dict with two mandatory keys
+{"primary_id": ..., "type": ...}
+
+
+=== precompute()
+`precompute() -> None`
+
+Compute NodePiece results (anchors and their distances) to cache attribute.
+
+
+
+== HGTLoader
+
+A data loader that performs stratified neighbor sampling as in  
+link:https://arxiv.org/abs/2003.01332[Heterogeneous Graph Transformer].
+You can declare a `HGTLoader` instance with the factory function `hgtLoader()`.
+
+A HGT loader is an iterable.
+When you loop through a HGT loader instance, it loads one batch of data at a time from the graph.
+
+In every iteration, it first chooses a specified number of vertices as seeds,
+then picks a specified number of neighbors of each type at random,
+then the specified number of neighbors of every type of each neighbor, and repeat for a specified number of hops.
+It loads both the vertices and the edges connecting them to their neighbors.
+The vertices sampled this way along with their edges form one subgraph and is contained in one batch.
+
+You can iterate on the instance until every vertex has been picked as seed.
+
+[discrete]
+==== Examples:
+
+The following example iterates over a HGT loader instance.
+[.wrap,python]
+----
+for i, batch in enumerate(hgt_loader):
+print("----Batch {}----".format(i))
+print(batch)
+----
+
+See more details about the specific sampling method in
+link:https://arxiv.org/abs/2003.01332[Heterogeneous Graph Transformer].
+
+
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
+
+
+=== fetch()
+`fetch(vertices: list) -> None`
+
+Fetch neighborhood subgraphs for specific vertices.
+
+[discrete]
+==== Parameter:
+* `vertices (list of dict)`: Vertices to fetch with their neighborhood subgraphs.
+Each vertex corresponds to a dict with two mandatory keys
+{"primary_id": ..., "type": ...}
+
+
