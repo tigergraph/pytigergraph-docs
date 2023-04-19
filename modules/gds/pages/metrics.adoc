@@ -22,10 +22,9 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-* `preds (ndarray)`:
+preds (ndarray): 
 Array of predicted labels.
-
-* `labels (ndarray)`:
+labels (ndarray): 
 Array of true labels.
 
 
@@ -58,10 +57,9 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-* `preds (ndarray)`:
+preds (ndarray): 
 Array of predicted labels.
-
-* `labels (ndarray)`:
+labels (ndarray): 
 Array of true labels.
 
 
@@ -72,6 +70,66 @@ Get recall score.
 [discrete]
 ==== Returns:
 Recall score (float).
+
+
+== ConfusionMatrix
+Updates a confusion matrix as new updates occur.
+
+[discrete]
+==== Parameters:
+* `num_classes (int)`: Number of classes in your classification task.
+
+
+=== \__init__()
+`__init__(num_classes: int) -> None`
+
+Instantiate the Confusion Matrix metric.
+[discrete]
+==== Parameter:
+* `num_classes (int)`: Number of classes in the classification task.
+
+
+=== update()
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value()
+`value() -> np.array`
+
+Get the confusion matrix.
+[discrete]
+==== Returns:
+Consfusion matrix in dataframe form.
+
+
+== Recall
+
+Recall = stem:[rac{true positives}{\sum(true positives + false negatives)}
+This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get recall score at any point by accessing the value property.
+
+
+=== value()
+`value() -> Union[dict, float]`
+
+Get recall score for each class.
+[discrete]
+==== Returns:
+Recall score for each class or the average recall if `num_classes` == 2.
 
 
 == BinaryPrecision
@@ -94,10 +152,9 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-* `preds (ndarray)`:
+preds (ndarray): 
 Array of predicted labels.
-
-* `labels (ndarray)`:
+labels (ndarray): 
 Array of true labels.
 
 
@@ -108,5 +165,267 @@ Get precision score.
 [discrete]
 ==== Returns:
 Precision score (float).
+
+
+== Precision
+
+Recall = stem:[rac{true positives}{\sum(true positives + false positives)}
+This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get recall score at any point by accessing the value property.
+
+
+=== value()
+`value() -> Union[dict, float]`
+
+Get precision score for each class.
+[discrete]
+==== Returns:
+Precision score for each class or the average precision if `num_classes` == 2.
+
+
+== MSE
+
+
+
+=== update()
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value()
+`value() -> float`
+
+Get MSE score.
+[discrete]
+==== Returns:
+MSE value (float).
+
+
+== RMSE
+
+
+
+=== value()
+`value() -> float`
+
+Get RMSE value.
+[discrete]
+==== Returns:
+RMSE value (float).
+
+
+== MAE
+
+
+
+=== update()
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value()
+`value() -> float`
+
+Get MAE score.
+[discrete]
+==== Returns:
+MAE value (float).
+
+
+== HitsAtK
+
+
+=== \__init__()
+`__init__(k: int) -> None`
+
+Instantiate the Hits@K Metric
+[discrete]
+==== Parameter:
+* `k (int)`: Top k number of entities to compare.
+
+
+=== update()
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value()
+`value() -> float`
+
+Get Hits@K score.
+[discrete]
+==== Returns:
+Hits@K value (float).
+
+
+== RecallAtK
+
+
+=== \__init__()
+`__init__(k: int) -> None`
+
+Instantiate the Recall@K Metric
+[discrete]
+==== Parameter:
+* `k (int)`: Top k number of entities to compare.
+
+
+=== update()
+`update(preds: ndarray, labels: ndarray) -> None`
+
+Add predictions and labels to be compared.
+
+[discrete]
+==== Parameters:
+preds (ndarray): 
+Array of predicted labels.
+labels (ndarray): 
+Array of true labels.
+
+
+=== value()
+`value() -> float`
+
+Get Recall@K score.
+[discrete]
+==== Returns:
+Recall@K value (float).
+
+
+== \__init__()
+`__init__(num_classes: int = 2)`
+
+Instantiate the Classification Metrics collection.
+Collects Loss, Accuracy, Precision, Recall, and Confusion Matrix Metrics.
+[discrete]
+==== Parameter:
+* `num_classes (int)`: Number of classes in the classification task.
+
+
+== reset_metrics()
+`reset_metrics()`
+
+Reset the collection of metrics.
+
+
+== update_metrics()
+`update_metrics(loss, out, batch, target_type = None)`
+
+Update the metrics collected.
+[discrete]
+==== Parameters:
+loss (float): loss value to update
+out (ndarray): the predictions of the model
+batch (dict): the batch to calculate metrics on
+target_type (str, optional): the type of schema element to calculate the metrics for
+
+
+== get_metrics()
+`get_metrics()`
+
+Get the metrics collected.
+[discrete]
+==== Returns:
+Dictionary of Accuracy, Precision, Recall, and Confusion Matrix
+
+
+== \__init__()
+`__init__()`
+
+Instantiate the Regression Metrics collection.
+Collects Loss, MSE, RMSE, and MAE metrics.
+
+
+== reset_metrics()
+`reset_metrics()`
+
+Reset the collection of metrics.
+
+
+== update_metrics()
+`update_metrics(loss, out, batch, target_type = None)`
+
+Update the metrics collected.
+[discrete]
+==== Parameters:
+loss (float): loss value to update
+out (ndarray): the predictions of the model
+batch (dict): the batch to calculate metrics on
+target_type (str, optional): the type of schema element to calculate the metrics for
+
+
+== get_metrics()
+`get_metrics()`
+
+Get the metrics collected.
+[discrete]
+==== Returns:
+Dictionary of MSE, RMSE, and MAE.
+
+
+== \__init__()
+`__init__(k)`
+
+Instantiate the Classification Metrics collection.
+Collects Loss, Recall@K, and Hits@K metrics.
+[discrete]
+==== Parameter:
+* `k (int)`: The number of results to look at when calculating metrics.
+
+
+== reset_metrics()
+`reset_metrics()`
+
+Reset the collection of metrics.
+
+
+== update_metrics()
+`update_metrics(loss, out, batch, target_type = None)`
+
+Update the metrics collected.
+[discrete]
+==== Parameters:
+loss (float): loss value to update
+out (ndarray): the predictions of the model
+batch (dict): the batch to calculate metrics on
+target_type (str, optional): the type of schema element to calculate the metrics for
+
+
+== get_metrics()
+`get_metrics()`
+
+Get the metrics collected.
+[discrete]
+==== Returns:
+Dictionary of Recall@K, Hits@K, and K.
 
 

@@ -402,6 +402,16 @@ Save tokens to pickle file
 * `filename (str)`: Filename to save the tokens to.
 
 
+=== reinstall_query()
+`reinstall_query() -> str`
+
+Reinstall the dataloader query.
+
+[discrete]
+==== Returns:
+The name of the query installed (str)
+
+
 === data
 `data -> Any`
 

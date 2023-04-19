@@ -21,6 +21,6 @@
     "pyTigerGraph/pyTigerGraphDataset.py": "modules/datasets/pages/datasets.adoc",
     "pyTigerGraph/datasets.py": "modules/datasets/pages/dataset_object.adoc",
     "pyTigerGraph/visualization.py": "modules/visualization/pages/visualization.adoc",
-    "pyTigerGraph/gds/transforms.py": "modules/gds/pages/transforms.adoc"
+    "pyTigerGraph/gds/transforms/pyg_transforms.py": "modules/gds/pages/transforms.adoc"
   }
 }

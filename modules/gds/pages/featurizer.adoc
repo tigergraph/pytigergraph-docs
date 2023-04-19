@@ -40,6 +40,24 @@ If the results are not available yet, returns the string 'Algorithm Results not 
 
 
 == Featurizer
+The Featurizer pulls the most up-to-date version of the algorithm available in our public GitHub repository that is
+compatible with your database version.
+Note: In environments not connected to the public internet, you can download the repository manually and use the featurizer
+like this:
+
+[source,indent=0]
+----
+import pyTigerGraph as tg
+from pyTigerGraph.gds.featurizer import Featurizer
+
+conn = tg.TigerGraphConnection(host="HOSTNAME_HERE", username="USERNAME_HERE", password="PASSWORD_HERE", graphname="GRAPHNAME_HERE")
+conn.getToken(conn.createSecret())
+feat = Featurizer(conn, repo="PATH/TO/MANUALLY_DOWNLOADED_REPOSITORY")
+
+res = feat.runAlgorithm("tg_pagerank", params={"v_type": "Paper", "e_type": "CITES"})
+
+print(res)
+----
 
 
 
@@ -88,7 +106,7 @@ Parameter dict the algorithm takes as input.
 
 
 === runAlgorithm()
-`runAlgorithm(query_name: str, params: dict = None, runAsync: bool = False, threadLimit: int = None, feat_name: str = None, feat_type: str = None, custom_query: bool = False, schema_name: list = None, global_schema: bool = False, timeout: int = 2147480, sizeLimit: int = None, templateQuery: bool = False) -> Any`
+`runAlgorithm(query_name: str, params: dict = None, runAsync: bool = False, threadLimit: int = None, memoryLimit: int = None, feat_name: str = None, feat_type: str = None, custom_query: bool = False, schema_name: list = None, global_schema: bool = False, timeout: int = 2147480, sizeLimit: int = None, templateQuery: bool = False) -> Any`
 
 Runs a TigerGraph Graph Data Science Algorithm. If a built-in algorithm is not installed, it will automatically install before execution.
 Custom algorithms will have to be installed using the `installAlgorithm()` method.
@@ -106,6 +124,9 @@ If specifying vertices as sources or destinations, must use the following form: 
 * `runAsync (bool, optional)`: If True, runs the algorithm in asynchronous mode and returns a `AsyncFeaturizerResult` object. Defaults to False.
 * `threadLimit`: Specify a limit of the number of threads the query is allowed to use on each node of the TigerGraph cluster.
 See xref:tigergraph-server:API:built-in-endpoints#_specify_thread_limit[Thread limit]
+* `memoryLimit`: Specify a limit to the amount of memory consumed by the query (in MB). If the limit is exceeded, the query will abort automatically.
+Supported in database versions >= 3.8.
+See xref:tigergraph-server:system-management:memory-management#_by_http_header[Memory limit]
 * `feat_name (str, optional)`: An attribute name that needs to be added to the vertex/edge. If the result attribute parameter is specified in the parameters, that will be used.
 * `feat_type (str, optional)`: Type of attribute that needs to be added to the vertex/edge. Only needed if `custom_query` is set to `True`.
 * `custom_query (bool, optional)`: If the query is a custom query. Defaults to False.
@@ -117,7 +138,8 @@ See https://docs.tigergraph.com/gsql-ref/current/ddl-and-loading/modifying-a-gra
 * `timeout (int, optional)`: Maximum duration for successful query execution (in milliseconds).
 * `sizeLimit (int, optional)`: Maximum size of response (in bytes).
 * `templateQuery (bool, optional)`: Whether to call packaged template query.  +
-See https://docs.tigergraph.com/graph-ml/current/using-an-algorithm/#_packaged_template_queries.[this] for more details.
+See https://docs.tigergraph.com/graph-ml/current/using-an-algorithm/#_packaged_template_queries[this] for more details. for more details.
+Note that currently not every algorithm supports template query. More will be added in the future.
 Default: False.
 
 [discrete]

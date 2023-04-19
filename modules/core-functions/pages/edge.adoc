@@ -35,6 +35,25 @@ copy of edge type details (if they were already fetched previously).
 The metadata of the edge type.
 
 
+== getEdgeAttrs()
+`getEdgeAttrs(edgeType: str) -> list`
+
+Returns the names and types of the attributes of the edge type.
+
+[discrete]
+==== Parameter:
+* `edgeType`: The name of the edge type.
+
+[discrete]
+==== Returns:
+A list of (attribute_name, attribute_type) tuples.
+The format of attribute_type is one of
+- "scalar_type"
+- "complex_type(scalar_type)"
+- "map_type(key_type,value_type)"
+and it is a string.
+
+
 == getEdgeSourceVertexType()
 `getEdgeSourceVertexType(edgeType: str) -> Union[str, set]`
 
@@ -116,6 +135,34 @@ Returns the name of the reverse edge of the specified edge type, if applicable.
 [discrete]
 ==== Returns:
 The name of the reverse edge, if it was defined.
+
+
+== isMultiEdge()
+`isMultiEdge(edgeType: str) -> bool`
+
+Can the edge have multiple instances between the same pair of vertices?
+
+[discrete]
+==== Parameter:
+* `edgeType`: The name of the edge type.
+
+[discrete]
+==== Returns:
+`True`, if the edge can have multiple instances between the same pair of vertices.
+
+
+== getDiscriminators()
+`getDiscriminators(edgeType: str) -> list`
+
+Returns the names and types of the discriminators of the edge type.
+
+[discrete]
+==== Parameter:
+* `edgeType`: The name of the edge type.
+
+[discrete]
+==== Returns:
+A list of (attribute_name, attribute_type) tuples.
 
 
 == getEdgeCountFrom()

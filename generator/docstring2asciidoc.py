@@ -120,7 +120,7 @@ def processTypes(node, colon: bool = True) -> str:
 
 
 def processFunction(node, adocFile, h2s = False):
-    if node.name.startswith("_") and node.name != "__init__":  # TODO cfg for __init__?
+    if node.name.startswith("_") and node.name != "__init__" and node.name != "__call__":  # TODO cfg for __init__?
         return
     try:
         ds = ast.get_docstring(node)
@@ -130,9 +130,9 @@ def processFunction(node, adocFile, h2s = False):
         raise(Exception("No docstring for {}".format(node.name))) 
     
     if h2s:
-        adocFile.write("== {}".format(node.name if node.name != "__init__" else "\\__init__"))
+        adocFile.write("== {}".format(node.name if node.name != "__init__" else "\\__init__" if node.name != "__call__" else "\\__call__"))
     else:
-        adocFile.write("=== {}".format(node.name if node.name != "__init__" else "\\__init__"))
+        adocFile.write("=== {}".format(node.name if node.name != "__init__" else "\\__init__" if node.name != "__call__" else "\\__call__"))
 
     if node.name == "data":
         adocFile.write("\n")
