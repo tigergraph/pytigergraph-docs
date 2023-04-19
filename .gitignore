@@ -2,3 +2,4 @@
 .idea/*
 *.pyc
 generator/docstring2asciidoc_cfg.json
+.DS_Store
