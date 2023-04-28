@@ -5,3 +5,4 @@
 ** xref:metrics.adoc[Metrics]
 ** xref:splitters.adoc[Splitters]
 ** xref:transforms.adoc[Transforms]
+** xref:trainer.adoc[Trainer]
