@@ -20,6 +20,25 @@ cached copy of vertex type metadata (if they were already fetched previously).
 The list of vertex types defined in the current graph.
 
 
+== getVertexAttrs()
+`getVertexAttrs(vertexType: str) -> list`
+
+Returns the names and types of the attributes of the vertex type.
+
+[discrete]
+==== Parameter:
+* `vertexType`: The name of the vertex type.
+
+[discrete]
+==== Returns:
+A list of (attribute_name, attribute_type) tuples.
+The format of attribute_type is one of
+- "scalar_type"
+- "complex_type(scalar_type)"
+- "map_type(key_type,value_type)"
+and it is a string.
+
+
 == getVertexType()
 `getVertexType(vertexType: str, force: bool = False) -> dict`
 
@@ -37,26 +56,31 @@ The metadata of the vertex type.
 
 
 == getVertexCount()
-`getVertexCount(vertexType: Union[str, list], where: str = "") -> Union[int, dict]`
+`getVertexCount(vertexType: Union[str, list] = "*", where: str = "", realtime: bool = False) -> Union[int, dict]`
 
 Returns the number of vertices of the specified type.
 
 [discrete]
 ==== Parameters:
-* `vertexType`: The name of the vertex type.
-* `where`: A comma separated list of conditions that are all applied on each vertex's
+* `vertexType (Union[str, list], optional)`: The name of the vertex type. If `vertexType` == "&#42;", then count the instances of all 
+vertex types (`where` cannot be specified in this case). Defaults to "&#42;".
+* `where (str, optional)`: A comma separated list of conditions that are all applied on each vertex's
 attributes. The conditions are in logical conjunction (i.e. they are "AND'ed"
-together).
+together). Defaults to "".
+* `realtime (bool, optional)`: Whether to get the most up-to-date number by force. When there are frequent updates happening, 
+a slightly outdated number (up to 30 seconds delay) might be fetched. Set `realtime=True` to
+force the system to recount the vertices, which will get a more up-to-date result but will
+also take more time. This parameter only works with TigerGraph DB 3.6 and above.
+Defaults to False.
 
 [discrete]
 ==== Returns:
-A dictionary of <vertex_type>: <vertex_count> pairs.
+- A dictionary of <vertex_type>: <vertex_count> pairs if `vertexType` is a list or "&#42;".
+- An integer of vertex count if `vertexType` is a single vertex type.
 
 [discrete]
 ==== Uses:
-- If `vertexType` == "&#42;": the count of the instances of all vertex types (`where` cannot
-be specified in this case).
-- If `vertexType` is specified only: count of the instances of the given vertex type.
+- If `vertexType` is specified only: count of the instances of the given vertex type(s).
 - If `vertexType` and `where` are specified: count of the instances of the given vertex
 type after being filtered by `where` condition(s).
 

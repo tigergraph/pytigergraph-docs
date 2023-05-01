@@ -41,3 +41,18 @@ being connected to.
 TigerGraphException: In case on invalid URL scheme.
 
 
+== customizeHeader()
+`customizeHeader(timeout: int = 16000, responseSize: int = 32000000.0)`
+
+Method to configure the request header.
+
+[discrete]
+==== Parameters:
+* `tiemout (int, optional)`: The timeout value desired in milliseconds. Defaults to 16,000 ms (16 sec)
+* `responseSize`: The size of the response in bytes. Defaults to 3.2E7 bytes (32 MB).
+
+[discrete]
+==== Returns:
+Nothing. Sets `responseConfigHeader` class attribute.
+
+

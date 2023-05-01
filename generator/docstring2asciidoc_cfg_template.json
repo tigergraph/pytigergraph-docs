@@ -3,7 +3,7 @@
   "doc_root": "/Users/username/pytigergraph-docs",
   "mapping": {
     "pyTigerGraph/pyTigerGraphAuth.py": "modules/core-functions/pages/auth.adoc",
-    "pyTigerGraph/pyTigerGraphBase.py": "modules/functions-core/pages/base.adoc",
+    "pyTigerGraph/pyTigerGraphBase.py": "modules/core-functions/pages/base.adoc",
     "pyTigerGraph/pyTigerGraphEdge.py": "modules/core-functions/pages/edge.adoc",
     "pyTigerGraph/pyTigerGraphGSQL.py": "modules/core-functions/pages/gsql.adoc",
     "pyTigerGraph/pyTigerGraphLoading.py": "modules/core-functions/pages/loading.adoc",
@@ -17,6 +17,11 @@
     "pyTigerGraph/gds/dataloaders.py": "modules/gds/pages/dataloaders.adoc",
     "pyTigerGraph/gds/featurizer.py": "modules/gds/pages/featurizer.adoc",
     "pyTigerGraph/gds/metrics.py": "modules/gds/pages/metrics.adoc",
-    "pyTigerGraph/gds/splitters.py": "modules/gds/pages/splitters.adoc"
+    "pyTigerGraph/gds/splitters.py": "modules/gds/pages/splitters.adoc",
+    "pyTigerGraph/pyTigerGraphDataset.py": "modules/datasets/pages/datasets.adoc",
+    "pyTigerGraph/datasets.py": "modules/datasets/pages/dataset_object.adoc",
+    "pyTigerGraph/visualization.py": "modules/visualization/pages/visualization.adoc",
+    "pyTigerGraph/gds/transforms/pyg_transforms.py": "modules/gds/pages/transforms.adoc",
+    "pyTigerGraph/gds/trainer.py": "modules/gds/pages/trainer.adoc"
   }
 }
