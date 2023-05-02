@@ -321,23 +321,26 @@ Get Recall@K score.
 Recall@K value (float).
 
 
-== \__init__()
+== ClassificationMetrics
+Collects Loss, Accuracy, Precision, Recall, and Confusion Matrix Metrics.
+
+
+=== \__init__()
 `__init__(num_classes: int = 2)`
 
 Instantiate the Classification Metrics collection.
-Collects Loss, Accuracy, Precision, Recall, and Confusion Matrix Metrics.
 [discrete]
 ==== Parameter:
 * `num_classes (int)`: Number of classes in the classification task.
 
 
-== reset_metrics()
+=== reset_metrics()
 `reset_metrics()`
 
 Reset the collection of metrics.
 
 
-== update_metrics()
+=== update_metrics()
 `update_metrics(loss, out, batch, target_type = None)`
 
 Update the metrics collected.
@@ -349,7 +352,7 @@ batch (dict): the batch to calculate metrics on
 target_type (str, optional): the type of schema element to calculate the metrics for
 
 
-== get_metrics()
+=== get_metrics()
 `get_metrics()`
 
 Get the metrics collected.
@@ -358,20 +361,24 @@ Get the metrics collected.
 Dictionary of Accuracy, Precision, Recall, and Confusion Matrix
 
 
-== \__init__()
-`__init__()`
-
-Instantiate the Regression Metrics collection.
+== RegressionMetrics
 Collects Loss, MSE, RMSE, and MAE metrics.
 
 
-== reset_metrics()
+=== \__init__()
+`__init__()`
+
+Instantiate the Regression Metrics collection.
+
+
+
+=== reset_metrics()
 `reset_metrics()`
 
 Reset the collection of metrics.
 
 
-== update_metrics()
+=== update_metrics()
 `update_metrics(loss, out, batch, target_type = None)`
 
 Update the metrics collected.
@@ -383,7 +390,7 @@ batch (dict): the batch to calculate metrics on
 target_type (str, optional): the type of schema element to calculate the metrics for
 
 
-== get_metrics()
+=== get_metrics()
 `get_metrics()`
 
 Get the metrics collected.
@@ -392,23 +399,27 @@ Get the metrics collected.
 Dictionary of MSE, RMSE, and MAE.
 
 
-== \__init__()
+== LinkPredictionMetrics
+
+Collects Loss, Recall@K, and Hits@K metrics.
+
+
+=== \__init__()
 `__init__(k)`
 
 Instantiate the Classification Metrics collection.
-Collects Loss, Recall@K, and Hits@K metrics.
 [discrete]
 ==== Parameter:
 * `k (int)`: The number of results to look at when calculating metrics.
 
 
-== reset_metrics()
+=== reset_metrics()
 `reset_metrics()`
 
 Reset the collection of metrics.
 
 
-== update_metrics()
+=== update_metrics()
 `update_metrics(loss, out, batch, target_type = None)`
 
 Update the metrics collected.
@@ -420,7 +431,7 @@ batch (dict): the batch to calculate metrics on
 target_type (str, optional): the type of schema element to calculate the metrics for
 
 
-== get_metrics()
+=== get_metrics()
 `get_metrics()`
 
 Get the metrics collected.
