@@ -6,7 +6,7 @@ Utility for gathering metrics for GNN predictions.
 
 == Accuracy
 
-Accuracy = stem:[frac{sum(predictions == labels)}{len(labels)}]
+Accuracy = stem:[\sum_{i=1}^n (predictions_i == labels_i)/n]
 
 [discrete]
 ==== Usage:
@@ -39,7 +39,7 @@ Accuracy score (float).
 
 == BinaryRecall
 
-Recall = stem:[rac{\sum(predictions * labels)}{\sum(labels)}]
+Recall = stem:[\sum(predictions * labels)/\sum(labels)]
 
 This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
@@ -114,6 +114,7 @@ Consfusion matrix in dataframe form.
 == Recall
 
 Recall = stem:[rac{true positives}{\sum(true positives + false negatives)}
+
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
 [discrete]
@@ -170,6 +171,7 @@ Precision score (float).
 == Precision
 
 Recall = stem:[rac{true positives}{\sum(true positives + false positives)}
+
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
 [discrete]
