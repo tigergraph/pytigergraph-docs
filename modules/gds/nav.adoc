@@ -8,3 +8,6 @@
 *** xref:pyg_transforms.adoc[PyTorch Geometric Transforms]
 *** xref:nodepiece_transforms.adoc[NodePiece Transforms]
 ** xref:trainer.adoc[Trainer]
+** xref:models.adoc[Models]
+*** xref:graphsage.adoc[GraphSAGE]
+*** xref:nodepiece.adoc[NodePiece]
