@@ -38,6 +38,7 @@ Accuracy score (float).
 
 
 == BinaryRecall
+This metric is deprecated. Use Recall instead.
 
 Recall = stem:[\sum(predictions * labels)/\sum(labels)]
 
@@ -113,7 +114,7 @@ Consfusion matrix in dataframe form.
 
 == Recall
 
-Recall = stem:[rac{true positives}{\sum(true positives + false negatives)}
+Recall = stem:[true positives/\sum(true positives + false negatives)}
 
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
@@ -134,8 +135,8 @@ Recall score for each class or the average recall if `num_classes` == 2.
 
 
 == BinaryPrecision
-
-Precision = stem:[rac{\sum(predictions * labels)}{\sum(predictions)}]
+This metric is deprecated. Use the Precision metric instead. 
+Precision = stem:[\sum(predictions * labels)/\sum(predictions)]
 
 This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
@@ -170,7 +171,7 @@ Precision score (float).
 
 == Precision
 
-Recall = stem:[rac{true positives}{\sum(true positives + false positives)}
+Recall = stem:[true positives/\sum(true positives + false positives)
 
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
@@ -192,7 +193,7 @@ Precision score for each class or the average precision if `num_classes` == 2.
 
 == MSE
 
-MSE = stem:[frac{\sum(pred-actual)^2}{n}]
+MSE = stem:[\sum(predicted-actual)^2/n]
 
 This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
 
@@ -227,6 +228,15 @@ MSE value (float).
 
 == RMSE
 
+RMSE = stem:[\sqrt(\sum(predicted-actual)^2/n)]
+
+This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get RMSE score at any point by accessing the value property.
 
 
 === value()
@@ -240,6 +250,15 @@ RMSE value (float).
 
 == MAE
 
+MAE = \sum(predicted-actual)/n
+
+This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get MAE value at any point by accessing the value property.
 
 
 === update()
@@ -265,6 +284,18 @@ MAE value (float).
 
 
 == HitsAtK
+This metric is used in link prediction tasks, i.e. determining if two vertices have an edge between them.
+Also known as Precsion@K.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get Hits@K value at any point by accessing the value property.
+
+[discrete]
+==== Parameters:
+* `k (int)`: Top k number of entities to compare.
 
 
 === \__init__()
@@ -299,6 +330,17 @@ Hits@K value (float).
 
 
 == RecallAtK
+This metric is used in link prediction tasks, i.e. determining if two vertices have an edge between them
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get Recall@K value at any point by accessing the value property.
+
+[discrete]
+==== Parameters:
+* `k (int)`: Top k number of entities to compare.
 
 
 === \__init__()
