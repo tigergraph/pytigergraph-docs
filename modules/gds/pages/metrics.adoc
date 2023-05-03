@@ -6,7 +6,7 @@ Utility for gathering metrics for GNN predictions.
 
 == Accuracy
 
-Accuracy = sum(predictions == labels) / len(labels)
+Accuracy = stem:[frac{sum(predictions == labels)}{len(labels)}]
 
 [discrete]
 ==== Usage:
@@ -190,6 +190,15 @@ Precision score for each class or the average precision if `num_classes` == 2.
 
 == MSE
 
+MSE = stem:[frac{\sum(pred-actual)^2}{n}]
+
+This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
+
+[discrete]
+==== Usage:
+
+* Call the update function to add predictions and labels.
+* Get MSE value at any point by accessing the value property.
 
 
 === update()
