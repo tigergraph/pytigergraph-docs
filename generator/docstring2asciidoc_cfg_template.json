@@ -21,7 +21,10 @@
     "pyTigerGraph/pyTigerGraphDataset.py": "modules/datasets/pages/datasets.adoc",
     "pyTigerGraph/datasets.py": "modules/datasets/pages/dataset_object.adoc",
     "pyTigerGraph/visualization.py": "modules/visualization/pages/visualization.adoc",
-    "pyTigerGraph/gds/transforms/pyg_transforms.py": "modules/gds/pages/transforms.adoc",
-    "pyTigerGraph/gds/trainer.py": "modules/gds/pages/trainer.adoc"
+    "pyTigerGraph/gds/transforms/pyg_transforms.py": "modules/gds/pages/pyg_transforms.adoc",
+    "pyTigerGraph/gds/transforms/nodepiece_transforms.py": "modules/gds/pages/nodepiece_transforms.adoc",
+    "pyTigerGraph/gds/trainer.py": "modules/gds/pages/trainer.adoc",
+    "pyTigerGraph/gds/models/NodePieceMLP.py": "modules/gds/pages/nodepiece.adoc",
+    "pyTigerGraph/gds/models/GraphSAGE.py": "modules/gds/pages/graphsage.adoc"
   }
 }
