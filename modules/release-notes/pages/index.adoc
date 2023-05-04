@@ -35,7 +35,7 @@ There is a incompatibility between v1.3 and v1.4 of pyTigerGraph and the corresp
 * Optional `distributed_query` parameter in dataloaders if running on distributed database clusters.
     - If set to True, installs the dataloader using the `DISTRIBUTED` keyword in the query heading. Useful for distributed database clusters.
 * `stop()` function in dataloaders
-    - Kill the query producing batches for the dataloader immediately. Helpful for stoping the production of batches sent to Kafka after breaking out of a training loop.
+    - Kill the query producing batches for the dataloader immediately. Helpful for stopping the production of batches sent to Kafka after breaking out of a training loop.
 
 === Changed:
 * Dataloader factory produces multiple dataloaders if `filter_by` is a list of different filters.
