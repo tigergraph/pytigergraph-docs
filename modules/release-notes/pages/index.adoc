@@ -78,12 +78,12 @@ Release of pyTigerGraph version 1.2.
 
 Release of pyTigerGraph version 1.1. 
 
-== Added:
+=== Added:
 * TensorFlow support for homogeneous GNNs via the Spektral library.
 * Heterogeneous Graph Dataloading support for DGL.
 * Support of lists of strings in dataloaders.
 
-== Changed:
+=== Changed:
 * Fixed KeyError when creating a data loader on a graph where PrimaryIdAsAttribute is False.
 * Error catch if Kafka dataloader doesn't run in async mode.
 * Refresh schema during dataloader instantiation and featurizer attribute addition.
