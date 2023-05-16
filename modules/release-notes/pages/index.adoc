@@ -4,30 +4,30 @@
 
 Release of pyTigerGraph version 1.4. 
 
-**Note:** if you are using the Graph Data Science dataloaders, continue to use the latest 1.3.x version until you have upgraded your ML Workbench installation.
+**Note:** if you are using the Graph Data Science dataloaders, you must upgrade both the ML Workbench and pyTigerGraph to 1.4 at the same time. 
 There is a incompatibility between v1.3 and v1.4 of pyTigerGraph and the corresponding ML Workbench versions. 
 
 === Added:
 * Additional Query Management Support
     - xref:pytigergraph:core-functions:query.adoc#_showquery[`showQuery()`] returns the GSQL of a given query.
     - xref:pytigergraph:core-functions:query.adoc#_getquerymetadata[`getQueryMetadata()`] returns the metadata details about a query, such as input parameters and what is returned in `PRINT` statements.
-    - xref:pytigergraph:core-functions:query.adoc#_getrunningqueries[`getRunningQueries()`] shows the statuistics of queries currently running on the graph.
+    - xref:pytigergraph:core-functions:query.adoc#_getrunningqueries[`getRunningQueries()`] shows the statistics of queries currently running on the graph.
     - xref:pytigergraph:core-functions:query.adoc#_abortquery[`abortQuery()`] aborts a selected query by ID or all queries on the graph.
 * Additional System Management Support
     - xref:pytigergraph:core-functions:utils.adoc#_ping[`ping()`] is a public API to check the health of the TigerGraph server.
     - xref:pytigergraph:core-functions:utils.adoc#_getsystemmetrics[`getSystemMetrics()`] monitors system metrics such as CPU and RAM usage.
     - xref:pytigergraph:core-functions:utils.adoc#_getqueryperformance[`getQueryPerformance()`] returns real-time query performance statistics over a given period.
     - xref:pytigergraph:core-functions:utils.adoc#_getservicestatus[`getServiceStatus()`] returns the status of TigerGraph services specified in the request.
-    - xref:pytigergraph:core-functions:utils.adoc#_rebuildgraph[`rebuildGraph()`] rebuilds the graph immediately.
+    - xref:pytigergraph:core-functions:utils.adoc#_rebuildgraph[`rebuildGraph()`] xref:tigergraph-server:api:built-in-endpoints.adoc#_rebuild_graph_engine[rebuilds] the graph immediately.
 * Built in Graph ML models and Trainer
-    - xref:pytigergraph:gds:graphsage.adoc[Various GraphSAGE models] for vertex classification and regression, as well as link prediction
+    - xref:pytigergraph:gds:graphsage.adoc[Various GraphSAGE models] for vertex classification and regression, as well as link prediction.
     - xref:pytigergraph:gds:nodepiece.adoc[NodePiece MLP model] for vertex classification.
     - xref:pytigergraph:gds:trainer.adoc[General purpose trainer] to enable training of Graph ML models in a concise fashion.
 * Transforms
     - xref:pytigergraph:gds:pyg_transforms.adoc[`PyGTemporalTransform`] to create a sequence of subgraphs for a given batch of data, in a temporal manner. 
     - xref:pytigergraph:gds:nodepiece_transforms.adoc[`NodePieceMLPTransform`] to transform a batch produced by a NodePiece dataloader into a batch that can be fed into a PyTorch multilayer perceptron.
 * Additional Dataloader Support
-    - SSL Support: two-way SSL encryption via Kerberos
+    - SSL Support: two-way SSL encryption via Kerberos.
     - Collaborative dataloaders: use dataloaders on multiple machines to pull batches from the same Kafka queue. Helpful for data distributed model training.
     - Datetime support in dataloaders: Output `DATETIME` attributes from the database using the dataloaders. Exports as UNIX epoch timestamps.
     - Optional `distributed_query` parameter in dataloaders if running on distributed database clusters. If set to True, installs the dataloader using the `DISTRIBUTED` keyword in the query heading. Useful for distributed database clusters.
