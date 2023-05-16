@@ -14,18 +14,18 @@ There is a incompatibility between v1.3 and v1.4 of pyTigerGraph and the corresp
     - xref:pytigergraph:core-functions:query.adoc#_getrunningqueries[`getRunningQueries()`] shows the statuistics of queries currently running on the graph.
     - xref:pytigergraph:core-functions:query.adoc#_abortquery[`abortQuery()`] aborts a selected query by ID or all queries on the graph.
 * Additional System Management Support
-    - `ping()` is a public API to check the health of the TigerGraph server.
-    - `getSystemMetrics()` monitors system metrics such as CPU and RAM usage.
-    - `getQueryPerformance()` returns real-time query performance statistics over a given period.
-    - `getServiceStatus()` returns the status of TigerGraph services specified in the request.
-    - `rebuildGraph()` rebuilds the graph immediately.
+    - xref:pytigergraph:core-functions:utils.adoc#_ping[`ping()`] is a public API to check the health of the TigerGraph server.
+    - xref:pytigergraph:core-functions:utils.adoc#_getsystemmetrics[`getSystemMetrics()`] monitors system metrics such as CPU and RAM usage.
+    - xref:pytigergraph:core-functions:utils.adoc#_getqueryperformance[`getQueryPerformance()`] returns real-time query performance statistics over a given period.
+    - xref:pytigergraph:core-functions:utils.adoc#_getservicestatus[`getServiceStatus()`] returns the status of TigerGraph services specified in the request.
+    - xref:pytigergraph:core-functions:utils.adoc#_rebuildgraph[`rebuildGraph()`] rebuilds the graph immediately.
 * Built in Graph ML models and Trainer
-    - Various GraphSAGE models for vertex classification and regression, as well as link prediction
-    - NodePiece MLP model for vertex classification.
-    - General purpose trainer to enable training of Graph ML models in a concise fashion.
+    - xref:pytigergraph:gds:graphsage.adoc[Various GraphSAGE models] for vertex classification and regression, as well as link prediction
+    - xref:pytigergraph:gds:nodepiece.adoc[NodePiece MLP model] for vertex classification.
+    - xref:pytigergraph:gds:trainer.adoc[General purpose trainer] to enable training of Graph ML models in a concise fashion.
 * Transforms
-    - `PyGTemporalTransform` to create a sequence of subgraphs for a given batch of data, in a temporal manner. 
-    - `NodePieceMLPTransform` to transform a batch produced by a NodePiece dataloader into a batch that can be fed into a PyTorch multilayer perceptron.
+    - xref:pytigergraph:gds:pyg_transforms.adoc[`PyGTemporalTransform`] to create a sequence of subgraphs for a given batch of data, in a temporal manner. 
+    - xref:pytigergraph:gds:nodepiece_transforms.adoc[`NodePieceMLPTransform`] to transform a batch produced by a NodePiece dataloader into a batch that can be fed into a PyTorch multilayer perceptron.
 * Additional Dataloader Support
     - SSL Support: two-way SSL encryption via Kerberos
     - Collaborative dataloaders: use dataloaders on multiple machines to pull batches from the same Kafka queue. Helpful for data distributed model training.
