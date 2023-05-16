@@ -113,6 +113,13 @@ def processTypes(node, colon: bool = True) -> str:
                     for t in child.elts:
                         partial += processTypes(t, False) + ", "
             return cln + "Union[" + partial[:-2] + "]"
+        if node.value.id == "Tuple":
+            partial = ""
+            for child in ast.iter_child_nodes(node):
+                if isinstance(child, ast.Tuple):
+                    for t in child.elts:
+                        partial += processTypes(t, False) + ", "
+            return cln + "Tuple[" + partial[:-2] + "]"
     else:
         for child in ast.iter_child_nodes(node):
             print(child)

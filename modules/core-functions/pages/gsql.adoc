@@ -38,3 +38,21 @@ See https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-define
 Status of the installation.
 
 
+== getUDF()
+`getUDF(ExprFunctions: bool = True, ExprUtil: bool = True) -> Union[str, Tuple[str, str]]`
+
+Get user defined functions (UDF) installed in the database.
+ +
+See https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-defined-functions[this] for more details. for details on UDFs.
+
+[discrete]
+==== Parameters:
+* `ExprFunctions (bool, optional)`: Whether to get ExprFunctions. Defaults to True.
+* `ExprUtil (bool, optional)`: Whether to get ExprUtil. Defaults to True.
+
+[discrete]
+==== Returns:
+str: If only one of `ExprFunctions` or `ExprUtil` is True, return of the content of that file.
+Tuple[str, str]: content of ExprFunctions and content of ExprUtil.
+
+
