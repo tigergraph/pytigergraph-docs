@@ -1,6 +1,6 @@
 = Release Notes
 
-== [1.4] - 2023-05-08
+== [1.4] - 2023-05-16
 
 Release of pyTigerGraph version 1.4. 
 
