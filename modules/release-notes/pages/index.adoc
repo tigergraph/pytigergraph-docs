@@ -18,7 +18,7 @@ There is a incompatibility between v1.3 and v1.4 of pyTigerGraph and the corresp
     - xref:pytigergraph:core-functions:utils.adoc#_getsystemmetrics[`getSystemMetrics()`] monitors system metrics such as CPU and RAM usage.
     - xref:pytigergraph:core-functions:utils.adoc#_getqueryperformance[`getQueryPerformance()`] returns real-time query performance statistics over a given period.
     - xref:pytigergraph:core-functions:utils.adoc#_getservicestatus[`getServiceStatus()`] returns the status of TigerGraph services specified in the request.
-    - xref:pytigergraph:core-functions:utils.adoc#_rebuildgraph[`rebuildGraph()`] xref.current@tigergraph-server:api:built-in-endpoints.adoc#_rebuild_graph_engine[rebuilds] the graph immediately.
+    - xref:pytigergraph:core-functions:utils.adoc#_rebuildgraph[`rebuildGraph()`] xref:current@tigergraph-server:api:built-in-endpoints.adoc#_rebuild_graph_engine[rebuilds] the graph immediately.
 * Built in Graph ML models and Trainer
     - xref:pytigergraph:gds:graphsage.adoc[Various GraphSAGE models] for vertex classification and regression, as well as link prediction.
     - xref:pytigergraph:gds:nodepiece.adoc[NodePiece MLP model] for vertex classification.
