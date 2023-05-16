@@ -9,10 +9,10 @@ There is a incompatibility between v1.3 and v1.4 of pyTigerGraph and the corresp
 
 === Added:
 * Additional Query Management Support
-    - xref:query.adoc#_showquery[`showQuery()`] returns the GSQL of a given query.
-    - xref:query.adoc#_getquerymetadata[`getQueryMetadata()`] returns the metadata details about a query, such as input parameters and what is returned in `PRINT` statements.
-    - xref:query.adoc#_getrunningqueries[`getRunningQueries()`] shows the statuistics of queries currently running on the graph.
-    - xref:query.adoc#_abortquery[`abortQuery()`] aborts a selected query by ID or all queries on the graph.
+    - xref:../../core-functions/pages/query.adoc#_showquery[`showQuery()`] returns the GSQL of a given query.
+    - xref:../../core-functions/pages/query.adoc#_getquerymetadata[`getQueryMetadata()`] returns the metadata details about a query, such as input parameters and what is returned in `PRINT` statements.
+    - xref:../../core-functions/pages/query.adoc#_getrunningqueries[`getRunningQueries()`] shows the statuistics of queries currently running on the graph.
+    - xref:../../core-functions/pages/query.adoc#_abortquery[`abortQuery()`] aborts a selected query by ID or all queries on the graph.
 * Additional System Management Support
     - `ping()` is a public API to check the health of the TigerGraph server.
     - `getSystemMetrics()` monitors system metrics such as CPU and RAM usage.
