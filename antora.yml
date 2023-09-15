@@ -12,5 +12,6 @@ nav:
 - modules/gds/nav.adoc
 - modules/datasets/nav.adoc
 - modules/visualization/nav.adoc
+- modules/object_oriented_schema/nav.adoc
 - modules/contributing/nav.adoc
 - modules/release-notes/nav.adoc
