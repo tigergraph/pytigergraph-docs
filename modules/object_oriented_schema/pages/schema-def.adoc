@@ -4,7 +4,7 @@ The Object-Oriented Schema functionality allows users to manipulate schema eleme
 
 To add an AccountHolder vertex and a HOLDS_ACCOUNT edge to the Ethereum dataset, simply:
 
-```py
+```
 from pyTigerGraph import TigerGraphConnection
 from pyTigerGraph.schema import Graph, Vertex, Edge
 
@@ -44,13 +44,13 @@ g.add_edge_type(HOLDS_ACCOUNT)
 g.commit_changes()
 ```
 
-One could also define the entire graph schema using the approach. For example, for the Cora dataset, the schema would look something like this:
+Users can define an entire graph schema in the approach below. Using the Cora dataset example, the schema would look something like this:
 
-```py
+```
 from pyTigerGraph import TigerGraphConnection
 from pyTigerGraph.schema import Graph, Vertex, Edge
 
-conn = TigerGraphConnection("http://YOUR_HOSTNAME_HERE", graphname="Cora")
+conn = TigerGraphConnection("http://YOUR_HOSTNAME_HERE")
 
 g = Graph()
 
@@ -85,7 +85,8 @@ When defining new vertex types, make sure to include the `primary_id` and `prima
 For example, to define an AccountHolder vertex type, use:
 
 
-```py
+[source,indent=0]
+----
 @dataclass
 class AccountHolder(Vertex):
     name: str
@@ -96,7 +97,7 @@ class AccountHolder(Vertex):
     some_double: "DOUBLE"
     primary_id: str = "name"
     primary_id_as_attribute: bool = True
-```
+----
 
 
 
@@ -139,7 +140,8 @@ When defining new vertex types, make sure to include the required `from_vertex`,
 For example, to define an HOLDS_ACCOUNT edge type, use:
 
 
-```py
+[source,indent=0]
+----
 @dataclass
 class HOLDS_ACCOUNT(Edge):
     opened_on: datetime
@@ -148,7 +150,7 @@ class HOLDS_ACCOUNT(Edge):
     is_directed: bool = True
     reverse_edge: str = "ACCOUNT_HELD_BY"
     discriminator: str = "opened_on"
-```
+----
 
 
 
@@ -188,11 +190,12 @@ Serves as the way to collect the definitions of Vertex and Edge types.
 
 To instantiate the graph object with a connection to an existing graph, use:
 
-```py
+[source,indent=0]
+----
 from pyTigerGraph.schema import Graph
 
 g = Graph(conn)
-```
+----
 
 
 
