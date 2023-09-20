@@ -1,5 +1,18 @@
 = Release Notes
 
+== [1.5] - 2023-09-20
+
+Release of pyTigerGraph version 1.5. 
+
+=== Added:
+* xref:pytigergraph:object_oriented_schema:schema-def.adoc[Object-oriented schema definition and modifcation]. Define graph schemas in native Python, without knowing GSQL.
+* `gsql()` handles some common error cases and raises an exception if they occur.
+
+=== Changed:
+* Dataloaders that experience a parsing error due to missing/dirty data handle the error more gracefully.
+* Removed the use of pyTigerDriver for GSQL operations.
+* Various bug fixes.
+
 == [1.4] - 2023-05-16
 
 Release of pyTigerGraph version 1.4. 
