@@ -9,47 +9,56 @@ pyTigerGraph is a Python package for connecting to TigerGraph databases.
 [.home-card,cols="2,2",grid=none,frame=none]
 |===
 a|
-*Getting Started*
+image:getstarted-homecard.png[alt=admin,width=74,height=74]
+*Get Started*
 
-Checkout the xref:pytigergraph:getting-started:index.adoc[] section for a quick introduction to pyTigerGraph.
-Or go hands on with our xref:pytigergraph:getting-started:101.adoc[] that walks you through all core functions of pyTigergraph:
+Step-by-step guides to help you get up and running.
 
+xref:pytigergraph:getting-started:index.adoc[Get Started ↗]
+xref:pytigergraph:getting-started:101.adoc[pyTiger 101 ↗]
 
 a|
+image:datasciance_machinelearning.png[alt=admin,width=74,height=74]
 *Core Functions*
 
-xref:pytigergraph:core-functions:index.adoc[]
+xref:pytigergraph:core-functions:index.adoc[Core Functions ↗]
 allow you to use the  core features of the TigerGraph database through pyTigerGraph.
 
 a|
+image:TG_Icon_Library-216.png[alt=admin,width=74,height=74]
 *GDS Functions*
 
-Graph Data Science xref:pytigergraph:gds:index.adoc[(GDS) Functions]  perform machine learning tasks.
+Graph Data Science xref:pytigergraph:gds:index.adoc[(GDS) Functions ↗]  perform machine learning tasks.
 
 a|
+image:TG_Icon_Library-90.png[alt=admin,width=74,height=74]
 *Datasets*
 
-xref:pytigergraph:datasets:datasets.adoc[] ingest stock datasets into a TigerGraph database.
+xref:pytigergraph:datasets:datasets.adoc[Data Ingestion Functions ↗] ingest stock datasets into a TigerGraph database.
 a|
+image:TG_Icon_Library-86.png[alt=admin,width=74,height=74]
 *Visualizations*
 
-Use xref:visualization:visualization.adoc[] to visualize graphs.
+Use xref:visualization:visualization.adoc[Visualizations ↗] to visualize graphs.
 
 a|
+image:TG_Icon_Library-26.png[alt=admin,width=74,height=74]
 *Object-Oriented Schema*
 
-The xref:object_oriented_schema:schema-def.adoc[] functionality allows users to manipulate schema elements in the database in an object-oriented approach in Python.
+The xref:object_oriented_schema:schema-def.adoc[Object-Oriented Schema ↗] functionality allows users to manipulate schema elements in the database in an object-oriented approach in Python.
 
 a|
+image:TG_Icon_Library-107.png[alt=admin,width=74,height=74]
 *Contributing*
 
-Checkout the xref:pytigergraph:contributing:index.adoc[] section for instructions on how to contribute.
+Checkout the xref:pytigergraph:contributing:index.adoc[Contributing ↗] section for instructions on how to contribute.
 
 
 a|
+image:documentation-homecard.png[alt=admin,width=74,height=74]
 *Release Notes*
 
-See xref:pytigergraph:release-notes:index.adoc[]
+See xref:pytigergraph:release-notes:index.adoc[Release Notes ↗]
 for the most up-to-date news on pyTigerGraph.
 
 a|
