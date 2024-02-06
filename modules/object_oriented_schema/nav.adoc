@@ -1,0 +1,1 @@
+* xref:schema-def.adoc[Object Oriented Schema]
