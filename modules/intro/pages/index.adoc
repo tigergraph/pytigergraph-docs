@@ -2,15 +2,85 @@
 :description: Overview of pyTigerGraph.
 
 pyTigerGraph is a Python package for connecting to TigerGraph databases.
+
+*Already familiar with pyTigerGraph?* Join the xref:_pytigergraph_community[], else, get to know pyTigerGraph below.
+
+== Get to Know pyTigerGraph
+[.home-card,cols="2,2",grid=none,frame=none, separator=¦]
+|===
+¦
+image:getstarted-homecard.png[alt=admin,width=74,height=74]
+*Get Started*
+
+Step-by-step guides to help you get up and running.
+
+xref:pytigergraph:getting-started:index.adoc[Get Started |]
+xref:pytigergraph:getting-started:101.adoc[pyTiger 101]
+
+¦
+image:datasciance_machinelearning.png[alt=admin,width=74,height=74]
+*Core Functions*
+
+xref:pytigergraph:core-functions:index.adoc[Core Functions]
+allow you to use the  core features of the TigerGraph database through pyTigerGraph.
+
+¦
+image:TG_Icon_Library-216.png[alt=admin,width=74,height=74]
+*GDS Functions*
+
+Graph Data Science xref:pytigergraph:gds:index.adoc[(GDS) Functions] perform machine learning tasks.
+
+¦
+image:TG_Icon_Library-90.png[alt=admin,width=74,height=74]
+*Datasets*
+
+xref:pytigergraph:datasets:datasets.adoc[Data Ingestion Functions] ingest stock datasets into a TigerGraph database.
+
+¦
+image:TG_Icon_Library-86.png[alt=admin,width=74,height=74]
+*Visualizations*
+
+Use xref:visualization:visualization.adoc[Visualizations] to visualize graphs.
+
+¦
+image:TG_Icon_Library-26.png[alt=admin,width=74,height=74]
+*Object-Oriented Schema*
+
+The xref:object_oriented_schema:schema-def.adoc[Object-Oriented Schema] functionality allows users to manipulate schema elements in the database in an object-oriented approach in Python.
+
+¦
+image:TG_Icon_Library-107.png[alt=admin,width=74,height=74]
+*Contribute*
+
+Checkout the xref:pytigergraph:contributing:index.adoc[Contributing] section for instructions on how to contribute.
+
+¦
+image:documentation-homecard.png[alt=admin,width=74,height=74]
+*Release Notes*
+
+See xref:pytigergraph:release-notes:index.adoc[Release Notes]
+for the most up-to-date news on pyTigerGraph.
+
+¦
+|===
+
+== pyTigerGraph Community
+There are many community resources that you can use for help and support using pyTigerGraph:
+
+* https://dev.tigergraph.com/forum/[TigerGraph Community Forum]
+* https://discord.gg/XM7Cn9w[TigerGraph Community Discord]
+* https://github.com/tigergraph/pyTigerGraph/issues[pyTigerGraph GitHub Issues]
+
+== pyTigerGraph vs. pyTigerGraph[gds]
 We offer two versions of the package: _pyTigerGraph_ and _pyTigerGraph[gds]_.
 
 _pyTigerGraph_ is the default version and contains the core functionality of pyTigerGraph, including the following:
 
 * Data manipulation functions:inserting, updating, upserting, deleting, and retrieving vertices and edges.
 * Query functions: running and managing xref:gsql-ref:querying:query-operations.adoc[queries] inside the TigerGraph
-  database
+database
 * Metadata functions: fetching details of graphs/schemas, vertex and edge types, and other
-  schema objects and object types
+schema objects and object types
 * Authentication and authorization functions
 * Miscellaneous utility functions
 
@@ -21,24 +91,3 @@ This includes:
 * Graph feature engineering using algorithms from the xref:graph-ml:intro:[GSQL Graph Data Science Library].
 * Data loaders for training and inference of Graph Neural Network (GNN) models using PyTorch Geometric and DGL.
 * Machine learning utilities for splitting vertices into training, validation, and testing sets.
-
-== Getting Started
-Checkout the xref:getting-started:index.adoc[Getting Started] section for a quick introduction to pyTigerGraph.
-It walks you through how to perform the following:
-
-* xref:getting-started:install.adoc[]
-* xref:getting-started:connection.adoc[]
-
-In addition, we also provide a video tutorial and a Google Colab notebook that walks you through all core functions of pyTigergraph:
-
-* xref:getting-started:101.adoc[]
-
-== pyTigerGraph Community
-There are many community resources that you can use for help and support using pyTigerGraph:
-
-* https://dev.tigergraph.com/forum/[TigerGraph Community Forum]
-* https://discord.gg/XM7Cn9w[TigerGraph Community Discord]
-* https://github.com/tigergraph/pyTigerGraph/issues[pyTigerGraph GitHub Issues]
-
-== Contributing
-Checkout the xref:contributing:index.adoc[Contributing] section for instructions on how to contribute. pyTigerGraph was started as an open-source community project, and we welcome contributions from the community.
