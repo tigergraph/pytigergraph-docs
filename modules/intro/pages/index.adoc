@@ -50,7 +50,7 @@ The xref:object_oriented_schema:schema-def.adoc[Object-Oriented Schema] function
 
 ¦
 image:TG_Icon_Library-107.png[alt=admin,width=74,height=74]
-*Contributing*
+*Contribute*
 
 Checkout the xref:pytigergraph:contributing:index.adoc[Contributing] section for instructions on how to contribute.
 
