@@ -1,5 +1,7 @@
 = pyTigerGraph Release Notes
 
+== [1.7] - Placeholder
+
 == [1.6] - 2024-04-30
 
 Release of pyTigerGraph version 1.6.
