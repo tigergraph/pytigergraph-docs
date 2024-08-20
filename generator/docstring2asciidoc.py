@@ -120,10 +120,18 @@ def processTypes(node, colon: bool = True) -> str:
                     for t in child.elts:
                         partial += processTypes(t, False) + ", "
             return cln + "Tuple[" + partial[:-2] + "]"
+        if node.value.id == "Dict":
+            partial = ""
+            for child in ast.iter_child_nodes(node):
+                if isinstance(child, ast.Tuple):
+                    for t in child.elts:
+                        partial += processTypes(t, False) + ", "
+            return cln + "Dict[" + partial[:-2] + "]"
     else:
         for child in ast.iter_child_nodes(node):
             print(child)
         return cln + "???4 " + str(type(node))
+    return ""
 
 
 def processFunction(node, adocFile, h2s = False):
@@ -135,6 +143,8 @@ def processFunction(node, adocFile, h2s = False):
             return
     except:
         raise(Exception("No docstring for {}".format(node.name))) 
+    
+    print("\tProcessing function {}".format(node.name))
     
     if h2s:
         adocFile.write("== {}".format(node.name if node.name != "__init__" else "\\__init__" if node.name != "__call__" else "\\__call__"))

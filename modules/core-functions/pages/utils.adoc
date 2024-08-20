@@ -24,48 +24,6 @@ Pings the database.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_echo[Echo]
 
 
-== getVersion()
-`getVersion(raw: bool = False) -> Union[str, list]`
-
-Retrieves the git versions of all components of the system.
-
-[discrete]
-==== Parameter:
-* `raw`: Return unprocessed version info string, or extract version info for each component
-into a list.
-
-[discrete]
-==== Returns:
-Either an unprocessed string containing the version info details, or a list with version
-info for each component.
-
-[discrete]
-==== Endpoint:
-- `GET /version`
-See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_component_versions[Show component versions]
-
-
-== getVer()
-`getVer(component: str = "product", full: bool = False) -> str`
-
-Gets the version information of a specific component.
-
-Get the full list of components using `getVersion()`.
-
-[discrete]
-==== Parameters:
-* `component`: One of TigerGraph's components (e.g. product, gpe, gse).
-* `full`: Return the full version string (with timestamp, etc.) or just X.Y.Z.
-
-[discrete]
-==== Returns:
-Version info for specified component.
-
-[discrete]
-==== Raises:
-`TigerGraphException` if invalid/non-existent component is specified.
-
-
 == getLicenseInfo()
 `getLicenseInfo() -> dict`
 
@@ -102,24 +60,33 @@ Monitor system usage metrics.
 - "diskspace": Disk usage in megabytes by directory
 - "network": Network traffic in bytes since the service started
 - "qps": Number of requests per second by endpoint
-- "servicestate": The state of the service, either online 1 or offline 0
-- "connection": Number of open TCP connections
-* `who (str, optional)`: Name of the component that reported the datapoint.
+- "servicestate": The state of the service, either online 1 or offline 0  (Only avaliable in version <4.1)
+- "connection": Number of open TCP connections (Only avaliable in version <4.1)
+* `who (str, optional)`: Name of the component that reported the datapoint. (Only avaliable in version <4.1)
 * `where (str, optional)`: Name of the node that reported the datapoint.
 
 [discrete]
 ==== Returns:
 JSON object of datapoints collected.
+Note: Output format differs between 3.x and 4.x versions of TigerGraph.
+
+[discrete]
+==== Endpoints:
+- `GET /ts3/api/datapoints` (In TigerGraph versions 3.x)
+See xref:tigergraph-server:API:built-in-endpoints.adoc#_monitor_system_metrics_ts3_deprecated
+- `POST /informant/metrics/get/{metrics_category}` (In TigerGraph versions 4.x)
+See xref:tigergraph-server:API:built-in-endpoints.adoc#_monitor_system_metrics_by_category
 
 
 == getQueryPerformance()
-`getQueryPerformance(seconds: int = None)`
+`getQueryPerformance(seconds: int = 10)`
 
 Returns real-time query performance statistics over the given time period, as specified by the seconds parameter. 
 
 [discrete]
 ==== Parameter:
 * `seconds (int, optional)`: Seconds are measured up to 60, so the seconds parameter must be a positive integer less than or equal to 60.
+Defaults to 10.
 
 
 == getServiceStatus()

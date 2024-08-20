@@ -231,7 +231,7 @@ A dictionary of `edge_type: edge_count` pairs.
 
 
 == upsertEdge()
-`upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str, targetVertexType: str, targetVertexId: str, attributes: dict = None) -> int`
+`upsertEdge(sourceVertexType: str, sourceVertexId: str, edgeType: str, targetVertexType: str, targetVertexId: str, attributes: dict = None, vertexMustExist: bool = False) -> int`
 
 Upserts an edge.
 
@@ -239,7 +239,7 @@ Data is upserted:
 
 - If edge is not yet present in graph, it will be created (see special case below).
 - If it's already in the graph, it is updated with the values specified in the request.
-- If `vertex_must_exist` is True then edge will only be created if both vertex exists
+- If `vertex_must_exist` is True then edge will only be created if both vertices exists
 in graph. Otherwise missing vertices are created with the new edge; the newly created
 vertices' attributes (if any) will be created with default values.
 
@@ -266,7 +266,7 @@ Example:
         {"visits": (1482, "+"), "max_duration": (371, "max")}
 ----
 
-For valid values of `<operator>` see xref:tigergraph-server:API:upsert-rest.adoc#_operation_codes[Upsert > Operation Codes] .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
 
 [discrete]
 ==== Returns:
@@ -276,12 +276,12 @@ A single number of accepted (successfully upserted) edges (0 or 1).
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See xref:tigergraph-server:API:upsert-rest.adoc[Upsert data to graph] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[this] for more details.
 
 
 
 == upsertEdges()
-`upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str, edges: list) -> int`
+`upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str, edges: list, vertexMustExist = False) -> int`
 
 Upserts multiple edges (of the same type).
 
@@ -313,7 +313,7 @@ Example:
         ]
 ----
 
-For valid values of `<operator>` see xref:tigergraph-server:API:upsert-rest.adoc#_operation_codes[Upsert > Operation Codes] .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
 
 [discrete]
 ==== Returns:
@@ -323,12 +323,12 @@ A single number of accepted (successfully upserted) edges (0 or positive integer
 ==== Endpoint:
 - `POST /graph/{graph_name}`
  +
-See xref:tigergraph-server:API:upsert-rest.adoc[Upsert Data to Graph] for more details.
+See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to-graph[this] for more details.
 
 
 
 == upsertEdgeDataFrame()
-`upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str, targetVertexType: str, from_id: str = "", to_id: str = "", attributes: dict = None) -> int`
+`upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str, targetVertexType: str, from_id: str = "", to_id: str = "", attributes: dict = None, vertexMustExist: bool = False) -> int`
 
 Upserts edges from a Pandas DataFrame.
 
