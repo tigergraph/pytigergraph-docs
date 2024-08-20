@@ -3,7 +3,7 @@
 
 pyTigerGraph is a Python package for connecting to TigerGraph databases.
 
-*Already familiar with pyTigerGraph?* Join the xref:_pytigergraph_community[], else, get to know pyTigerGraph below.
+*Already familiar with pyTigerGraph?* Join the xref:https://dev.tigergraph.com/forum/[community], else, get to know pyTigerGraph below.
 
 == Get to Know pyTigerGraph
 [.home-card,cols="2,2",grid=none,frame=none, separator=¦]
@@ -15,7 +15,7 @@ image:getstarted-homecard.png[alt=admin,width=74,height=74]
 Step-by-step guides to help you get up and running.
 
 xref:pytigergraph:getting-started:index.adoc[Get Started |]
-xref:pytigergraph:getting-started:101.adoc[pyTiger 101]
+xref:pytigergraph:getting-started:101.adoc[pyTigerGraph 101]
 
 ¦
 image:datasciance_machinelearning.png[alt=admin,width=74,height=74]
