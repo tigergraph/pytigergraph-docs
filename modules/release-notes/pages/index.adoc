@@ -1,6 +1,12 @@
 = pyTigerGraph Release Notes
 
-== [1.7] - Placeholder
+== [1.7] - 2024-08-21
+
+Release of pyTigerGraph version 1.7.
+
+=== Added: 
+* Support for refactored REST endpoints found in TigerGraph DB 4.1 and above.
+* Support for `vertexMustExist` parameter in upsert functions.
 
 == [1.6] - 2024-04-30
 
