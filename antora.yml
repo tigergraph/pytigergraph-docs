@@ -7,7 +7,6 @@ start_page: intro:index.adoc
 nav:
 - modules/intro/nav.adoc
 - modules/getting-started/nav.adoc
-- modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
 - modules/datasets/nav.adoc
