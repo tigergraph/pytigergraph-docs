@@ -9,3 +9,5 @@ This page lists the previous versions of pyTigerGraph.
 * 1.2
 * 1.1
 * 1.0
+
+https://github.com/tigergraph/pyTigerGraph/tags
