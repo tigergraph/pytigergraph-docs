@@ -1,16 +1,16 @@
 name: pytigergraph
 title: pyTigerGraph
-version: 1.4
-display_version: "1.4"
+version: 1.5
+display_version: "1.5"
 start_page: intro:index.adoc
 
 nav:
 - modules/intro/nav.adoc
 - modules/getting-started/nav.adoc
-- modules/authentication/nav.adoc
 - modules/core-functions/nav.adoc
 - modules/gds/nav.adoc
 - modules/datasets/nav.adoc
 - modules/visualization/nav.adoc
+- modules/object_oriented_schema/nav.adoc
 - modules/contributing/nav.adoc
 - modules/release-notes/nav.adoc

@@ -1,0 +1,11 @@
+= Legacy Version Documentation
+
+This page lists the previous versions of pyTigerGraph.
+
+* 1.4
+* 1.3
+* 1.2
+* 1.1
+* 1.0
+
+https://github.com/tigergraph/pyTigerGraph/tags
