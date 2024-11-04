@@ -1,5 +1,16 @@
 = pyTigerGraph Release Notes
 
+== [1.8] - 2024-11-04
+
+Release of pyTigerGraph version 1.8.
+
+=== Added:
+* Support for async communication with the TigerGraph Database, using the `AsyncTigerGraphConnection` class.
+* Added `delVerticesByType()` functionality
+* Added a `limit` parameter to `getEdgesByType()` to limit the number of edges returned. Note: the limit is applied after retrieving the edges from the database.
+* Added configuration parameters surrounding the atomicity of upsert operations.
+* Added `runLoadingJobWithDataFrame()` functionality to run a GSQL loading job with a Pandas DataFrame. Also added `runLoadingJobWithData()` to run a GSQL loading job with a given data string.
+
 == [1.7] - 2024-08-21
 
 Release of pyTigerGraph version 1.7.
