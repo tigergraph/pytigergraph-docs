@@ -207,3 +207,16 @@ Currentlty only "supportai" is supported in CoPilot v0.9.
 JSON response from the consistency update.
 
 
+== checkConsistencyProgress()
+`checkConsistencyProgress(method = "supportai")`
+
+Check the progress of the consistency update.
+[discrete]
+==== Parameter:
+* `method (str)`: The doc initialization method to check or run.
+Currentlty only "supportai" is supported in CoPilot v0.9.
+[discrete]
+==== Returns:
+JSON response from the consistency update progress.
+
+
