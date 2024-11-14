@@ -80,9 +80,9 @@ for the most up-to-date news on pyTigerGraph.
 |===
 
 == Peformance Notes
-pyTigerGraph is a feature-rich package that allows you to interact with TigerGraph databases from Python.
-It wraps up the REST++ API, adding functionality like URL building, logging, authentication handling, and error checking.
-However, it is important to note that there will be a performance overhead when using pyTigerGraph compared to using cURL-like requests directly to the TigerGraph REST++ API.
+pyTigerGraph is a feature-rich package that allows you to interact with TigerGraph databases using Python.
+It enhances the REST++ API by adding extra features, such as URL setup, log creation, authentication, and error checks.
+Therefore, pyTigerGraph may perform slower than direct cURL requests to the TigerGraph REST++ API.
 
 == pyTigerGraph vs. pyTigerGraph[gds]
 We offer two versions of the package: _pyTigerGraph_ and _pyTigerGraph[gds]_.
