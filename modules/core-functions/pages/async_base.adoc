@@ -1,30 +1,35 @@
-= `TigerGraphConnection`
+= `AsyncTigerGraphConnection`
 
 
 A TigerGraphConnection object provides the HTTP(S) communication used by all other modules.
-This object is the **synchronous** version of the connection object.
-If you want to use pyTigerGraph in an asynchronous environment, use the `AsyncTigerGraphConnection` object.
+This object is the **asynchronous** version of the connection object. If you want to use pyTigerGraph in an synchronous
+environment, use the `TigerGraphConnection` object.
 
-The `TigerGraphConnection` object is the main object that you will interact with when using pyTigerGraph.
+The `AsyncTigerGraphConnection` object is the main object that you will interact with when using pyTigerGraph.
+It provides the same core functionality as the synchronous `TigerGraphConnection` object, but with asynchronous methods.
+
+**Note:** `AsyncTigerGraphConnection` does not currently support the GDS or TigerGraph CoPilot APIs found in the synchronous version.
 
 To test your connection, you can use the `echo()` method. This method sends a simple request to the server and returns the response.
 
 ```python
 from pyTigerGraph import TigerGraphConnection
 
-conn = TigerGraphConnection(
+conn = AsyncTigerGraphConnection(
     host="http://localhost",
     graphname="MyGraph",
     username="tigergraph",
     password="tigergraph")
 
-print(conn.echo())
+resp = await conn.echo()
+
+print(resp)
 ```
 
 == \__init__()
 `__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", gsqlSecret: str = "", username: str = "tigergraph", password: str = "tigergraph", tgCloud: bool = False, restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = None, certPath: str = None, debug: bool = None, sslPort: Union[int, str] = "443", gcp: bool = False, jwtToken: str = "")`
 
-Initiate a connection object.
+Initiate a connection object (doc string copied from synchronous __init__).
 
 [discrete]
 ==== Parameters:
@@ -42,8 +47,8 @@ this is automatically set to `True`, and you do not need to set this argument.
 * `gsPort`: The port for gsql server.
 * `gsqlVersion`: The version of the GSQL client to be used. Effectively the version of the database
 being connected to.
-* `apiToken (Optional)`: Paremeter for specifying a RESTPP service token. Use `getToken()` to get a token.
 * `version`: DEPRECATED; use `gsqlVersion`.
+* `apiToken`: DEPRECATED; use `getToken()` with a secret to get a session token.
 * `useCert`: DEPRECATED; the need for a CA certificate is now determined by URL scheme.
 * `certPath`: The filesystem path to the CA certificate. Required in case of https connections.
 * `debug`: DEPRECATED; configure standard logging in your app.
@@ -54,62 +59,5 @@ being connected to.
 [discrete]
 ==== Raises:
 TigerGraphException: In case on invalid URL scheme.
-
-
-== getVersion()
-`getVersion(raw: bool = False) -> Union[str, list]`
-
-Retrieves the git versions of all components of the system.
-
-[discrete]
-==== Parameter:
-* `raw`: Return unprocessed version info string, or extract version info for each component
-into a list.
-
-[discrete]
-==== Returns:
-Either an unprocessed string containing the version info details, or a list with version
-info for each component.
-
-[discrete]
-==== Endpoint:
-- `GET /version`
-See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_component_versions[Show component versions]
-
-
-== getVer()
-`getVer(component: str = "product", full: bool = False) -> str`
-
-Gets the version information of a specific component.
-
-Get the full list of components using `getVersion()`.
-
-[discrete]
-==== Parameters:
-* `component`: One of TigerGraph's components (e.g. product, gpe, gse).
-* `full`: Return the full version string (with timestamp, etc.) or just X.Y.Z.
-
-[discrete]
-==== Returns:
-Version info for specified component.
-
-[discrete]
-==== Raises:
-`TigerGraphException` if invalid/non-existent component is specified.
-
-
-== customizeHeader()
-`customizeHeader(timeout: int = 16000, responseSize: int = 32000000.0)`
-
-Method to configure the request header.
-
-[discrete]
-==== Parameters:
-* `tiemout (int, optional)`: The timeout value desired in milliseconds. Defaults to 16,000 ms (16 sec)
-* `responseSize`: The size of the response in bytes. Defaults to 3.2E7 bytes (32 MB).
-
-[discrete]
-==== Returns:
-Nothing. Sets `responseConfigHeader` class attribute.
 
 

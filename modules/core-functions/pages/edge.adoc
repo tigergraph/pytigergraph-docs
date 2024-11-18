@@ -68,8 +68,9 @@ Returns the type(s) of the edge type's source vertex.
 - A single source vertex type name string if the edge has a single source vertex type.
 - "&#42;" if the edge can originate from any vertex type (notation used in 2.6.1 and earlier
 versions).
+#creating-an-edge-from-or-to-any-vertex-type
  +
-See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[this] for more details.
+See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema[this] for more details.
 - A set of vertex type name strings (unique values) if the edge has multiple source
 vertex types (notation used in 3.0 and later versions). +
 Even if the source vertex types were defined as `"&#42;"`, the REST API will list them as
@@ -96,8 +97,9 @@ Returns the type(s) of the edge type's target vertex.
 - A single target vertex type name string if the edge has a single target vertex type.
 - "&#42;" if the edge can end in any vertex type (notation used in 2.6.1 and earlier
 versions).
+#creating-an-edge-from-or-to-any-vertex-type
  +
-See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema#creating-an-edge-from-or-to-any-vertex-type[this] for more details.
+See https://docs.tigergraph.com/v/2.6/dev/gsql-ref/ddl-and-loading/defining-a-graph-schema[this] for more details.
 - A set of vertex type name strings (unique values) if the edge has multiple target
 vertex types (notation used in 3.0 and later versions). +
 Even if the target vertex types were defined as "&#42;", the REST API will list them as
@@ -203,11 +205,13 @@ count of the given edge type after filtered by `where` condition.
 [discrete]
 ==== Endpoints:
 - `GET /graph/{graph_name}/edges/{source_vertex_type}/{source_vertex_id}`
+#_list_edges_of_a_vertex
  +
-See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_list_edges_of_a_vertex[this] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints[this] for more details.
 - `POST /builtins/{graph_name}`
+#_run_built_in_functions_on_graph
  +
-See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_run_built_in_functions_on_graph[this] for more details.
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints[this] for more details.
 
 
 == getEdgeCount()
@@ -266,7 +270,8 @@ Example:
         {"visits": (1482, "+"), "max_duration": (371, "max")}
 ----
 
-For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
+#operation-codes .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints[this]
 
 [discrete]
 ==== Returns:
@@ -281,7 +286,7 @@ See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to
 
 
 == upsertEdges()
-`upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str, edges: list, vertexMustExist = False) -> int`
+`upsertEdges(sourceVertexType: str, edgeType: str, targetVertexType: str, edges: list, vertexMustExist = False, atomic: bool = False) -> int`
 
 Upserts multiple edges (of the same type).
 
@@ -308,12 +313,19 @@ Example:
 [source,indent=0]
 ----
         [
-            (17, "home_page", {"visits": (35, "+"), "max_duration": (93, "max")}),
-            (42, "search", {"visits": (17, "+"), "max_duration": (41, "max")})
+            (17, "home_page", {"visits": (35, "+"),
+             "max_duration": (93, "max")}),
+            (42, "search", {"visits": (17, "+"),
+             "max_duration": (41, "max")})
         ]
 ----
 
-For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#operation-codes[this] .
+#operation-codes .
+For valid values of `<operator>` see https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints[this]
+* `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
+the database contained in the request are all-or-nothing: either all changes are
+successful, or none are successful. This uses the `gsql-atomic-level` header, and sets
+the value to `atomic` if `True`, and `nonatomic` if `False`. Default is `False`.
 
 [discrete]
 ==== Returns:
@@ -328,7 +340,7 @@ See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#upsert-data-to
 
 
 == upsertEdgeDataFrame()
-`upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str, targetVertexType: str, from_id: str = "", to_id: str = "", attributes: dict = None, vertexMustExist: bool = False) -> int`
+`upsertEdgeDataFrame(df: pd.DataFrame, sourceVertexType: str, edgeType: str, targetVertexType: str, from_id: str = "", to_id: str = "", attributes: dict = None, vertexMustExist: bool = False, atomic: bool = False) -> int`
 
 Upserts edges from a Pandas DataFrame.
 
@@ -346,6 +358,10 @@ dataframe index would be used instead.
 the dataframe and target is the attribute name on the edge. When omitted,
 all columns would be upserted with their current names. In this case column names
 must match the edges's attribute names.
+* `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
+the database contained in the request are all-or-nothing: either all changes are
+successful, or none are successful. This uses the `gsql-atomic-level` header, and sets
+the value to `atomic` if `True`, and `nonatomic` if `False`. Default is `False`.
 
 [discrete]
 ==== Returns:
@@ -433,7 +449,7 @@ Use `getEdgesDataFrame()` instead.
 
 
 == getEdgesByType()
-`getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True, withType: bool = False) -> Union[dict, str, pd.DataFrame]`
+`getEdgesByType(edgeType: str, fmt: str = "py", withId: bool = True, withType: bool = False, limit: int = None) -> Union[dict, str, pd.DataFrame]`
 
 Retrieves edges of the given edge type regardless the source vertex.
 
@@ -447,12 +463,13 @@ Retrieves edges of the given edge type regardless the source vertex.
 * `withId`: (When the output format is "df") Should the source and target vertex types and IDs
 be included in the dataframe?
 * `withType`: (When the output format is "df") should the edge type be included in the dataframe?
+* `limit`: Maximum number of edge instances to be returned. Default is None (no limit).
+**Note:** The limit is applied after retrieving the edges, so the load on the database is not reduced.
 
 [discrete]
 ==== Returns:
 The details of the edge instances of the given edge type as dictionary, JSON or pandas
 DataFrame.
-
 
 
 == getEdgeStats()
@@ -513,68 +530,16 @@ See https://docs.tigergraph.com/dev/restpp-api/built-in-endpoints#delete-an-edge
 == edgeSetToDataFrame()
 `edgeSetToDataFrame(edgeSet: list, withId: bool = True, withType: bool = False) -> pd.DataFrame`
 
-Converts an edge set to Pandas DataFrame
-
-Edge sets contain instances of the same edge type. Edge sets are not generated "naturally"
-like vertex sets. Instead, you need to collect edges in (global) accumulators, like when you
-want to visualize them in GraphStudio or by other tools.
-
-For example:
-
-[source,indent=0]
-----
-SetAccum<EDGE> @@edges;
-
-start = {country.*};
-
-result =
-    SELECT trg
-    FROM   start:src -(city_in_country:e)- city:trg
-    ACCUM  @@edges += e;
-
-PRINT start, result, @@edges;
-----
-
-
-The `@@edges` is an edge set.
-It contains, for each edge instance, the source and target vertex type and ID, the edge type,
-a directedness indicator and the (optional) attributes. +
-
-[NOTE]
-`start` and `result` are vertex sets.
-
-An edge set has this structure (when serialised as JSON):
-
-[source.wrap, json]
-----
-[
-{
-"e_type": <edge_type_name>,
-"from_type": <source_vertex_type_name>,
-"from_id": <source_vertex_id>,
-"to_type": <target_vertex_type_name>,
-"to_id": <targe_vertex_id>,
-"directed": <true_or_false>,
-"attributes":
-{
-"attr1": <value1>,
-"attr2": <value2>,
-⋮
-}
-},
-⋮
-]
-----
+Converts an edge set to a pandas DataFrame.
 
 [discrete]
 ==== Parameters:
-* `edgeSet`: A JSON array containing an edge set in the format returned by queries (see below).
-* `withId`: Whether to include the type and primary ID of source and target vertices as a column. Default is `True`.
-* `withType`: Whether to include edge type info as a column. Default is `False`.
+* `edgeSet`: The edge set to convert.
+* `withId`: Should the source and target vertex types and IDs be included in the dataframe?
+* `withType`: Should the edge type be included in the dataframe?
 
 [discrete]
 ==== Returns:
-A pandas DataFrame containing the edge attributes and optionally the type and primary
-ID or source and target vertices, and the edge type.
+The edge set as a pandas DataFrame.
 
 

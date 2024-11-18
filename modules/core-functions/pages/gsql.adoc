@@ -48,7 +48,7 @@ Status of the installation.
 
 
 == getUDF()
-`getUDF(ExprFunctions: bool = True, ExprUtil: bool = True, json_out: bool = False) -> Union[str, Tuple[str, str], Dict[str, str]]`
+`getUDF(ExprFunctions: bool = True, ExprUtil: bool = True, json_out = False) -> Union[str, Tuple[str, str], Dict[str, str]]`
 
 Get user defined functions (UDF) installed in the database.
  +
@@ -63,9 +63,8 @@ Only supported on version >=4.1
 
 [discrete]
 ==== Returns:
-- `str`: If only one of `ExprFunctions` or `ExprUtil` is True and json_out is False, return of the content of that file.
-- `Tuple[str, str]`: If both `ExprFunctions` and `ExprUtil` are True and json_out is False, return content of ExprFunctions and content of ExprUtil.
-- `Dict[str, str]`: If json_out is True, return dict with `ExprFunctions` and/or `ExprUtil` as keys and content of file as value.
+str: If only one of `ExprFunctions` or `ExprUtil` is True, return of the content of that file.
+Tuple[str, str]: content of ExprFunctions and content of ExprUtil.
 
 [discrete]
 ==== Endpoints:

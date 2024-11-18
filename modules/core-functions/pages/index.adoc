@@ -11,6 +11,8 @@ Core functions allow you to use the following core features of the TigerGraph da
 * Executing GSQL code
 * Retrieve version and license information
 
+You can use both the synchronous `TigerGraphConnection` and the asynchronous `AsyncTigerGraphConnection` classes to interact with the core functions.
+
 Core functions are divided into the following categories:
 
 * xref:auth.adoc[]
