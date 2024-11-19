@@ -1,6 +1,5 @@
 * xref:index.adoc[Core Functions]
 ** xref:base.adoc[TigerGraphConnection]
-** xref:async_base.adoc[AsyncTigerGraphConnection]
 ** xref:auth.adoc[Authentication Functions]
 ** xref:vertex.adoc[Vertex Functions]
 ** xref:edge.adoc[Edge Functions]

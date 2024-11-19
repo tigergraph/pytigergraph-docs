@@ -37,8 +37,7 @@ Upserts data (vertices and edges) from a JSON file or a file with equivalent obj
 * `data`: The data of vertex and edge instances, in a specific format.
 * `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
 the database contained in the request are all-or-nothing: either all changes are
-successful, or none are successful. This uses the `gsql-atomic-level` header, and sets
-the value to `atomic` if `True`, and `nonatomic` if `False`. Default is `False`.
+successful, or none are successful.
 * `ackAll`: If `True`, the request will return after all GPE instances have acknowledged the
 POST. Otherwise, the request will return immediately after RESTPP processes the POST.
 * `newVertexOnly`: If `True`, the request will only insert new vertices and not update existing ones.

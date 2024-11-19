@@ -141,7 +141,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Ups
 
 
 == upsertVertices()
-`upsertVertices(vertexType: str, vertices: list, atomic: bool = False) -> int`
+`upsertVertices(vertexType: str, vertices: list) -> int`
 
 Upserts multiple vertices (of the same type).
 
@@ -172,10 +172,6 @@ Example:
 ----
 
 For valid values of `<operator>` see xref:tigergraph-server:API:built-in-endpoints.adoc#_operation_codes[Operation codes].
-* `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
-the database contained in the request are all-or-nothing: either all changes are
-successful, or none are successful. This uses the `gsql-atomic-level` header, and sets
-the value to `atomic` if `True`, and `nonatomic` if `False`. Default is `False`.
 
 [discrete]
 ==== Returns:
@@ -188,7 +184,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Ups
 
 
 == upsertVertexDataFrame()
-`upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None, attributes: dict = None, atomic: bool = False) -> int`
+`upsertVertexDataFrame(df: pd.DataFrame, vertexType: str, v_id: bool = None, attributes: dict = None) -> int`
 
 Upserts vertices from a Pandas DataFrame.
 
@@ -202,10 +198,6 @@ would be used instead.
 the dataframe and target is the attribute name in the graph vertex. When omitted,
 all columns would be upserted with their current names. In this case column names
 must match the vertex's attribute names.
-* `atomic`: The request is an atomic transaction. An atomic transaction means that updates to
-the database contained in the request are all-or-nothing: either all changes are
-successful, or none are successful. This uses the `gsql-atomic-level` header, and sets
-the value to `atomic` if `True`, and `nonatomic` if `False`. Default is `False`.
 
 [discrete]
 ==== Returns:
@@ -430,47 +422,45 @@ A single number of vertices deleted.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_delete_a_vertex[Delete a vertex]
 
 
-== delVerticesByType()
-`delVerticesByType(vertexType: str, permanent: bool = False, ack: str = "none") -> int`
-
-Deletes all vertices of the specified type.
-
-[discrete]
-==== Parameters:
-* `vertexType`: The name of the vertex type.
-* `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
-dropped or the graph store is cleared.
-* `ack`: If the parameter is set to "none", the delete operation doesn’t need to get acknowledgment from any GPE.
-If it is set to "all" (default), the operation needs to get acknowledgment from all GPEs.
-Other values will raise an error.
-
-[discrete]
-==== Returns:
-A single number of vertices deleted.
-
-[discrete]
-==== Usage:
-
-[source,indent=0]
-----
-pyconn.delVerticesByType("Person")
-----
-
-
-
 == vertexSetToDataFrame()
-`vertexSetToDataFrame(vertexSet: dict, withId: bool = True, withType: bool = False) -> pd.DataFrame`
+`vertexSetToDataFrame(vertexSet: list, withId: bool = True, withType: bool = False) -> pd.DataFrame`
 
-Converts a vertex set (dictionary) to a pandas DataFrame.
+Converts a vertex set to Pandas DataFrame.
+
+Vertex sets are used for both the input and output of `SELECT` statements. They contain
+instances of vertices of the same type.
+For each vertex instance, the vertex ID, the vertex type and the (optional) attributes are
+present under the `v_id`, `v_type` and `attributes` keys, respectively. +
+See an example in `edgeSetToDataFrame()`.
+
+A vertex set has this structure (when serialised as JSON):
+[source.wrap,json]
+----
+[
+{
+"v_id": <vertex_id>,
+"v_type": <vertex_type_name>,
+"attributes":
+{
+"attr1": <value1>,
+"attr2": <value2>,
+⋮
+}
+},
+⋮
+]
+----
+For more information on vertex sets see xref:gsql-ref:querying:declaration-and-assignment-statements.adoc#_vertex_set_variables[Vertex set variables].
 
 [discrete]
 ==== Parameters:
-* `vertexSet`: The vertex set to convert.
-* `withId`: Should the vertex ID be included in the DataFrame?
-* `withType`: Should the vertex type be included in the DataFrame?
+* `vertexSet`: A JSON array containing a vertex set in the format returned by queries (see below).
+* `withId`: Whether to include vertex primary ID as a column.
+* `withType`: Whether to include vertex type info as a column.
 
 [discrete]
 ==== Returns:
-The vertex set as a pandas DataFrame.
+A pandas DataFrame containing the vertex attributes (and optionally the vertex primary
+ID and type).
 
 
