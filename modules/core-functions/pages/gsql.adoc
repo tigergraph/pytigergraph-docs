@@ -20,6 +20,11 @@ time of establishing the connection will be used.
 ==== Returns:
 The output of the statement(s) executed.
 
+[discrete]
+==== Endpoints:
+- `POST /gsqlserver/gsql/file` (In TigerGraph versions 3.x)
+- `POST /gsql/v1/statements` (In TigerGraph versions 4.x)
+
 
 == installUDF()
 `installUDF(ExprFunctions: str = "", ExprUtil: str = "") -> None`
@@ -37,6 +42,9 @@ See https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-define
 ==== Returns:
 Status of the installation.
 
+[discrete]
+==== Endpoints:
+- `PUT /gsqlserver/gsql/userdefinedfunction`
 
 == getUDF()
 `getUDF(ExprFunctions: bool = True, ExprUtil: bool = True) -> Union[str, Tuple[str, str]]`
@@ -49,10 +57,15 @@ See https://docs.tigergraph.com/gsql-ref/current/querying/func/query-user-define
 ==== Parameters:
 * `ExprFunctions (bool, optional)`: Whether to get ExprFunctions. Defaults to True.
 * `ExprUtil (bool, optional)`: Whether to get ExprUtil. Defaults to True.
+* `json_out (bool, optional)``: Whether to output as JSON. Defaults to False. Only supported on version >=4.1
 
 [discrete]
 ==== Returns:
-str: If only one of `ExprFunctions` or `ExprUtil` is True, return of the content of that file.
-Tuple[str, str]: content of ExprFunctions and content of ExprUtil.
+* `str`: If only one of `ExprFunctions` or `ExprUtil` is True and json_out is False, return of the content of that file.
+* `Tuple[str, str]`: If both `ExprFunctions` and `ExprUtil` are True and json_out is False, return content of ExprFunctions and content of ExprUtil.
+* `Dict[str, str]`: If json_out is True, return dict with `ExprFunctions` and/or `ExprUtil` as keys and content of file as value.
 
-
+[discrete]
+==== Endpoints:
+- `GET /gsqlserver/gsql/userdefinedfunction` (In TigerGraph versions 3.x)
+- `GET /gsql/v1/udt/files` (In TigerGraph versions 4.x)

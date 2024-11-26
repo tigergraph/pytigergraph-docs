@@ -25,6 +25,12 @@ and outputs `PRINT` statement syntax.
 ==== Parameter:
 * `queryName (str)`: Name of the query to get metadata of.
 
+[discrete]
+==== Endpoints:
+- `POST /gsqlserver/gsql/queryinfo` (In TigerGraph versions 3.x)
+    See xref:tigergraph-server:API:built-in-endpoints.adoc_get_query_metadata[query metadata]
+- `POST /gsql/v1/queries/signature` (In TigerGraph versions 4.x)
+
 
 == getInstalledQueries()
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
@@ -202,9 +208,10 @@ When specifying parameter values in a dictionary:
 
 
 [discrete]
-==== Endpoint:
-- `POST /gsqlserver/interpreted_query`
+==== Endpoints:
+- `POST /gsqlserver/interpreted_query` (In TigerGraph versions 3.x)
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_interpreted_query[Run an interpreted query]
+- `POST /gsql/v1/queries/interpret` (In TigerGraph versions 4.x)
 
 
 
@@ -293,6 +300,11 @@ Add a query description and parameter descriptions. Only supported on versions o
 ==== Returns:
 The response from the database.
 
+[discrete]
+==== Endpoints:
+- `PUT /gsqlserver/gsql/description` (In TigerGraph version 4.0)
+- `PUT /gsql/v1/description` (In TigerGraph versions >4.0)
+
 
 == getQueryDescription()
 `getQueryDescription(queryName = "all")`
@@ -308,6 +320,11 @@ If set to "all", returns the description of all queries.
 [discrete]
 ==== Returns:
 The description of the query(ies).
+
+[discrete]
+==== Endpoints:
+- `GET /gsqlserver/gsql/description` (In TigerGraph version 4.0)
+- `GET /gsql/v1/description` (In TigerGraph versions >4.0)
 
 
 == dropQueryDescription()
@@ -325,4 +342,7 @@ If set to "&#42;", drops the description of all queries.
 ==== Returns:
 The response from the database.
 
-
+[discrete]
+==== Endpoints:
+- `DELETE /gsqlserver/gsql/description` (In TigerGraph version 4.0)
+- `DELETE /gsql/v1/description` (In TigerGraph versions >4.0)

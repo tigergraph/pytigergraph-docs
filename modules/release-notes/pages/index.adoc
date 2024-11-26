@@ -6,6 +6,17 @@ Release of pyTigerGraph version 1.6.
 
 === Added:
 * xref:pytigergraph:ai:copilot.adoc[TigerGraph CoPilot]. Added a new submodule for interacting with TigerGraph CoPilot, a framework for integrating Generative AI with TigerGraph.
+* Support for TigerGraph versions 4.x
+* In 4.x getUDF() can output a JSON, explicitly indicating which file body is from ExprFunctions and ExprUtils
+
+=== Changed:
+* Various endpoints changed when using TG 4.x.
+* Output format for getSystemMetrics() has been changed and “servicestate” and “connection” metric categories and the “who” parameter have been removed when using TigerGraph versions 4.x.
+* All endpoint requests will have the header {‘X-User-Agent": "pyTigerGraph"}
+* getToken() will now only create JWT tokens when using TG 4.x.
+* refreshToken() has been disabled in TG 4.x since JWT tokens do not support refreshing.
+
+
 
 == [1.5] - 2023-09-25
 
