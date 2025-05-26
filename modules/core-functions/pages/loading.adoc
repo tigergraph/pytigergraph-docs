@@ -4,7 +4,10 @@
 The functions on this page run loading jobs on the TigerGraph server.
 All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
-== runLoadingJobWithDataFrame()
+[discrete]
+== Methods
+
+=== runLoadingJobWithDataFrame()
 `runLoadingJobWithDataFrame(df: pd.DataFrame, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000, columns: list = None) -> Union[dict, None]`
 
 Execute a loading job with the given pandas DataFrame with optional column list.
@@ -34,7 +37,7 @@ special case `\r\n`. The default value is `\n`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a loading job]
 
 
-== runLoadingJobWithFile()
+=== runLoadingJobWithFile()
 `runLoadingJobWithFile(filePath: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> Union[dict, None]`
 
 Execute a loading job with the referenced file.
@@ -63,7 +66,7 @@ special case `\r\n`. The default value is `\n`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a loading job]
 
 
-== runLoadingJobWithData()
+=== runLoadingJobWithData()
 `runLoadingJobWithData(data: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> Union[dict, None]`
 
 Execute a loading job with the given data string.
@@ -92,7 +95,7 @@ special case `\r\n`. The default value is `\n`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a loading job]
 
 
-== uploadFile()
+=== uploadFile()
 `uploadFile(filePath, fileTag, jobName = "", sep = None, eol = None, timeout = 16000, sizeLimit = 128000000) -> dict`
 
 DEPRECATED

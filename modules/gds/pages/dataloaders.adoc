@@ -24,7 +24,16 @@ The vertices sampled this way along with their edges form one subgraph and is co
 You can iterate on the instance until every vertex has been picked as seed.
 
 [discrete]
-==== Examples:
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
+
+
+[discrete]
+=== Examples:
 
 The following example iterates over a neighbor loader instance.
 [.wrap,python]
@@ -35,19 +44,10 @@ print(batch)
 ----
 
 
-
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_neighborloader.ipynb[the ML Workbench tutorial notebook]
 for examples.
 See more details about the specific sampling method in
 link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large Graphs].
-
-
-=== data
-`data -> Any`
-
-A property of the instance.
-The `data` property stores all data if all data is loaded in a single batch.
-If there are multiple batches of data, the `data` property returns the instance itself
 
 
 === fetch()
@@ -75,7 +75,16 @@ The boolean attribute provided to `filter_by` indicates which edges are included
 If you need random batches, set `shuffle` to True.
 
 [discrete]
-==== Examples:
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all edges if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself.
+
+
+[discrete]
+=== Examples:
 The following for loop prints every edge in batches.
 
 [tabs]
@@ -139,12 +148,6 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 for examples.
 
 
-=== data
-`data -> Any`
-
-A property of the instance.
-The `data` property stores all edges if all data is loaded in a single batch.
-If there are multiple batches of data, the `data` property returns the instance itself.
 
 
 == VertexLoader
@@ -159,7 +162,16 @@ The boolean attribute provided to `filter_by` indicates which vertices are inclu
 If you need random batches, set `shuffle` to True.
 
 [discrete]
-==== Examples:
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself.
+
+
+[discrete]
+=== Examples:
 The following for loop loads all vertices in the graph and prints one from each batch:
 
 [tabs]
@@ -227,14 +239,6 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 for more examples.
 
 
-=== data
-`data -> Any`
-
-A property of the instance.
-The `data` property stores all data if all data is loaded in a single batch.
-If there are multiple batches of data, the `data` property returns the instance itself.
-
-
 == GraphLoader
 
 Data loader that loads all edges from the graph in batches, along with the vertices that are connected with each edge.
@@ -253,7 +257,16 @@ of an iterator, which might make more sense in that case. If there are
 multiple batches of data to load, it will return the loader itself.
 
 [discrete]
-==== Examples:
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
+
+
+[discrete]
+=== Examples:
 The following for loop prints all edges and their connected vertices in batches.
 The output format is `PyG`:
 
@@ -315,14 +328,6 @@ See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/ba
 for examples.
 
 
-=== data
-`data -> Any`
-
-A property of the instance.
-The `data` property stores all data if all data is loaded in a single batch.
-If there are multiple batches of data, the `data` property returns the instance itself
-
-
 == EdgeNeighborLoader
 
 A data loader that performs neighbor sampling from seed edges.
@@ -341,7 +346,16 @@ The edges and vertices sampled this way form one subgraph and is contained in on
 You can iterate on the instance until every edge has been picked as seed.
 
 [discrete]
-==== Examples:
+=== data
+`data -> Any`
+
+A property of the instance.
+The `data` property stores all data if all data is loaded in a single batch.
+If there are multiple batches of data, the `data` property returns the instance itself
+
+
+[discrete]
+=== Examples:
 
 The following example iterates over an edge neighbor loader instance.
 [.wrap,python]
@@ -352,17 +366,8 @@ print(batch)
 ----
 
 
-
 See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeneighborloader.ipynb[the ML Workbench tutorial notebook]
 for examples.
-
-
-=== data
-`data -> Any`
-
-A property of the instance.
-The `data` property stores all data if all data is loaded in a single batch.
-If there are multiple batches of data, the `data` property returns the instance itself
 
 
 == NodePieceLoader
@@ -382,7 +387,7 @@ https://arxiv.org/abs/2106.12144[paper] are good places to start.
 You can iterate on the instance until every vertex has been picked as seed.
 
 [discrete]
-==== Examples:
+=== Examples:
 
 The following example iterates over an NodePiece loader instance.
 [.wrap,python]
@@ -411,7 +416,7 @@ Reinstall the dataloader query.
 ==== Returns:
 The name of the query installed (str)
 
-
+[discrete]
 === data
 `data -> Any`
 
@@ -457,7 +462,7 @@ The vertices sampled this way along with their edges form one subgraph and is co
 You can iterate on the instance until every vertex has been picked as seed.
 
 [discrete]
-==== Examples:
+=== Examples:
 
 The following example iterates over a HGT loader instance.
 [.wrap,python]
@@ -470,7 +475,7 @@ print(batch)
 See more details about the specific sampling method in
 link:https://arxiv.org/abs/2003.01332[Heterogeneous Graph Transformer].
 
-
+[discrete]
 === data
 `data -> Any`
 

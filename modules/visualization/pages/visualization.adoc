@@ -1,9 +1,12 @@
 = Visualization Functions
-
+:description: pyTigerGraph visualization functions
 
 Contains functions to visualize graphs.
 
-== drawSchema()
+[discrete]
+== Functions
+
+=== drawSchema()
 `drawSchema(schema: dict, style: list)`
 
 Visualize a graph schema.

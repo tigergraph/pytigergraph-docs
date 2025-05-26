@@ -4,7 +4,10 @@
 Stock datasets that can be ingested into a TigerGraph database through the `ingestDataset`
 function in pyTigerGraph.
 
-== \__init__()
+[discrete]
+== Methods
+
+=== \__init__()
 `__init__(name: str = None, tmp_dir: str = "./tmp") -> None`
 
 Stock datasets.
@@ -23,7 +26,7 @@ Defaults to None.
 * `tmp_dir (str, optional)`: Where to store the artifacts of this dataset. Defaults to "./tmp".
 
 
-== list()
+=== list()
 `list() -> None`
 
 List available stock datasets
