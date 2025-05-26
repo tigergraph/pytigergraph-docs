@@ -3,7 +3,7 @@
 
 Contains functions to visualize graphs.
 
-[discrete]
+
 == Functions
 
 === drawSchema()

@@ -27,7 +27,7 @@ conn.ai.query("How many servers are there?")
 
 For a more detailed and varied examples, see the demo notebooks in the (TigerGraph CoPilot GitHub repository)[https://github.com/tigergraph/CoPilot/tree/main/copilot/docs/notebooks].
 
-[discrete]
+
 == AI Module Methods
 
 === configureInquiryAIHost()

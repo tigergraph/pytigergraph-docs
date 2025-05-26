@@ -27,7 +27,7 @@ You can find the reference for those classes on the following pages:
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/metrics[Metrics]
 * link:https://docs.tigergraph.com/pytigergraph/current/gds/splitters[Splitters]
 
-[discrete]
+
 == Methods
 
 === configureKafka()

@@ -21,7 +21,7 @@ conn = TigerGraphConnection(
 print(conn.echo())
 ```
 
-[discrete]
+
 == Methods
 
 === \__init__()

@@ -3,7 +3,7 @@
 These classes contain perform data splitting.
 Make sure to create the appropriate attributes in the graph before using these splitters.
 
-[discrete]
+
 == Functions
 
 === RandomVertexSplitter
