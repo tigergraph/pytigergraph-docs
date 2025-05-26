@@ -1,9 +1,12 @@
-= Data Splitting Functions
+= Data Splitters
 
-This class contains functions for data splitting. 
-Make sure to create the appropriate attributes in the graph before using these functions.
+These classes contain perform data splitting.
+Make sure to create the appropriate attributes in the graph before using these splitters.
 
-== RandomVertexSplitter
+[discrete]
+== Functions
+
+=== RandomVertexSplitter
 
 The split results are stored in the provided vertex attributes. Each boolean attribute
 indicates which part a vertex belongs to.
@@ -54,7 +57,7 @@ splitter.run()
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
 
-=== run()
+==== run()
 `run() -> None`
 
 Perform the split.
@@ -72,7 +75,7 @@ splitter.run(attr_name=0.3)
 The spliter above uses the ratio 0.3 instead of 0.6.
 
 
-== RandomEdgeSplitter
+=== RandomEdgeSplitter
 
 The split results are stored in the provided edge attributes. Each boolean attribute
 indicates which part an edge belongs to.
@@ -121,7 +124,7 @@ splitter.run()
 * `timeout (int, optional)`: Timeout value for the operation. Defaults to 600000.
 
 
-=== run()
+==== run()
 `run() -> None`
 
 Perform the split.

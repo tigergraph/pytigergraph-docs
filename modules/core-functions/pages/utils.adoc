@@ -4,7 +4,10 @@
 Utility functions for pyTigerGraph.
 All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
-== echo()
+[discrete]
+== Methods
+
+=== echo()
 `echo(usePost: bool = False) -> str`
 
 Pings the database.
@@ -24,7 +27,7 @@ Pings the database.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_echo[Echo]
 
 
-== getLicenseInfo()
+=== getLicenseInfo()
 `getLicenseInfo() -> dict`
 
 Returns the expiration date and remaining days of the license.
@@ -34,7 +37,7 @@ Returns the expiration date and remaining days of the license.
 Returns license details. For an evaluation/trial deployment, returns an information message and -1 remaining days.
 
 
-== ping()
+=== ping()
 `ping() -> dict`
 
 Public health check endpoint.
@@ -44,7 +47,7 @@ Public health check endpoint.
 Returns a JSON object with a key of "message" and a value of "pong"
 
 
-== getSystemMetrics()
+=== getSystemMetrics()
 `getSystemMetrics(from_ts: int = None, to_ts: int = None, latest: int = None, what: str = None, who: str = None, where: str = None)`
 
 Monitor system usage metrics.
@@ -78,7 +81,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_monitor_system_metrics_t
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_monitor_system_metrics_by_category
 
 
-== getQueryPerformance()
+=== getQueryPerformance()
 `getQueryPerformance(seconds: int = 10)`
 
 Returns real-time query performance statistics over the given time period, as specified by the seconds parameter. 
@@ -89,7 +92,7 @@ Returns real-time query performance statistics over the given time period, as sp
 Defaults to 10.
 
 
-== getServiceStatus()
+=== getServiceStatus()
 `getServiceStatus(request_body: dict)`
 
 Returns the status of the TigerGraph services specified in the request.
@@ -100,7 +103,7 @@ Supported on databases versions 3.4 and above.
 * `request_body (dict)`: Must be formatted as specified here: https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_show_service_status
 
 
-== rebuildGraph()
+=== rebuildGraph()
 `rebuildGraph(threadnum: int = None, vertextype: str = "", segid: str = "", path: str = "", force: bool = False)`
 
 Rebuilds the graph engine immediately.  +

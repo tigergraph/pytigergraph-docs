@@ -4,7 +4,10 @@
 The functions on this page run installed or interpret queries in TigerGraph.
 All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
-== showQuery()
+[discrete]
+== Methods
+
+=== showQuery()
 `showQuery(queryName: str) -> str`
 
 Returns the string of the given GSQL query.
@@ -14,7 +17,7 @@ Returns the string of the given GSQL query.
 * `queryName (str)`: Name of the query to get metadata of.
 
 
-== getQueryMetadata()
+=== getQueryMetadata()
 `getQueryMetadata(queryName: str) -> dict`
 
 Returns metadata details about a query. 
@@ -32,7 +35,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc_get_query_metadata
 - `POST /gsql/v1/queries/signature` (In TigerGraph versions 4.x)
 
 
-== getInstalledQueries()
+=== getInstalledQueries()
 `getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
 
 Returns a list of installed queries.
@@ -50,7 +53,7 @@ The names of the installed queries.
 
 
 
-== runInstalledQuery()
+=== runInstalledQuery()
 `runInstalledQuery(queryName: str, params: Union[str, dict] = None, timeout: int = None, sizeLimit: int = None, usePost: bool = False, runAsync: bool = False, replica: int = None, threadLimit: int = None, memoryLimit: int = None) -> list`
 
 Runs an installed query.
@@ -123,7 +126,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_installed_query_g
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_installed_query_post[Run an installed query (POST)]
 
 
-== checkQueryStatus()
+=== checkQueryStatus()
 `checkQueryStatus(requestId: str = "")`
 
 Checks the status of the queries running on the graph specified in the connection.
@@ -139,7 +142,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_check_query_status_detac
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_check_query_status_detached_mode[Check query status (detached mode)]
 
 
-== getQueryResult()
+=== getQueryResult()
 `getQueryResult(requestId: str = "")`
 
 Gets the result of a detached query.
@@ -150,7 +153,7 @@ Gets the result of a detached query.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_check_query_results_detached_mode[Check query results (detached mode)]
 
 
-== runInterpretedQuery()
+=== runInterpretedQuery()
 `runInterpretedQuery(queryText: str, params: Union[str, dict] = None) -> list`
 
 Runs an interpreted query.
@@ -215,14 +218,14 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_an_interpreted_query
 
 
 
-== getRunningQueries()
+=== getRunningQueries()
 `getRunningQueries() -> dict`
 
 Reports the statistics of currently running queries on the graph.
 
 
 
-== abortQuery()
+=== abortQuery()
 `abortQuery(request_id: Union[str, list] = None, url: str = None)`
 
 This function safely abortsa a selected query by ID or all queries of an endpoint by endpoint URL of a graph.
@@ -234,7 +237,7 @@ If neither `request_id` or `url` are specified, all queries currently running on
 url
 
 
-== parseQueryOutput()
+=== parseQueryOutput()
 `parseQueryOutput(output: list, graphOnly: bool = True) -> dict`
 
 Parses query output and separates vertex and edge data (and optionally other output) for
@@ -265,7 +268,7 @@ The output of this function can be used e.g. with the `vertexSetToDataFrame()` a
 visualization component.
 
 
-== getStatistics()
+=== getStatistics()
 `getStatistics(seconds: int = 10, segments: int = 10) -> dict`
 
 Retrieves real-time query performance statistics over the given time period.
@@ -285,7 +288,7 @@ This argument must be an integer between 1 and 100.
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_query_performance[Show query performance]
 
 
-== describeQuery()
+=== describeQuery()
 `describeQuery(queryName: str, queryDescription: str, parameterDescriptions: dict)`
 
 Add a query description and parameter descriptions. Only supported on versions of TigerGraph >= 4.0.0.
@@ -306,7 +309,7 @@ The response from the database.
 - `PUT /gsql/v1/description?graph={graph_name}` (In TigerGraph versions >4.0)
 
 
-== getQueryDescription()
+=== getQueryDescription()
 `getQueryDescription(queryName = "all")`
 
 Get the description of a query. Only supported on versions of TigerGraph >= 4.0.0.
@@ -327,7 +330,7 @@ The description of the query(ies).
 - `GET /gsql/v1/description?graph={graph_name}` (In TigerGraph versions >4.0)
 
 
-== dropQueryDescription()
+=== dropQueryDescription()
 `dropQueryDescription(queryName: str, dropParamDescriptions: bool = True)`
 
 Drop the description of a query. Only supported on versions of TigerGraph >= 4.0.0.

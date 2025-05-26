@@ -4,7 +4,10 @@
 The functions in this page retrieve information about the graph schema.
 All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
-== getSchema()
+[discrete]
+== Methods
+
+=== getSchema()
 `getSchema(udts: bool = True, force: bool = False) -> dict`
 
 Retrieves the schema metadata (of all vertex and edge type and, if not disabled, the
@@ -27,7 +30,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_graph_schema_metada
 - `GET /gsql/v1/schema/graphs/{graph_name}` (In TigerGraph version 4.x)
 
 
-== upsertData()
+=== upsertData()
 `upsertData(data: Union[str, object], atomic: bool = False, ackAll: bool = False, newVertexOnly: bool = False, vertexMustExist: bool = False, updateVertexOnly: bool = False) -> dict`
 
 Upserts data (vertices and edges) from a JSON file or a file with equivalent object structure.
@@ -59,7 +62,7 @@ The result of upsert (number of vertices and edges accepted/upserted).
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_upsert_data_to_graph[Upsert data to graph]
 
 
-== getEndpoints()
+=== getEndpoints()
 `getEndpoints(builtin: bool = False, dynamic: bool = False, static: bool = False) -> dict`
 
 Lists the REST++ endpoints and their parameters.

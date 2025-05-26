@@ -4,7 +4,10 @@
 Use GSQL within pyTigerGraph.
 All functions in this module are called as methods on a link:https://docs.tigergraph.com/pytigergraph/current/core-functions/base[`TigerGraphConnection` object].
 
-== gsql()
+[discrete]
+== Methods
+
+=== gsql()
 `gsql(query: str, graphname: str = None, options = None) -> Union[str, dict]`
 
 Runs a GSQL query and processes the output.
@@ -26,7 +29,7 @@ The output of the statement(s) executed.
 - `POST /gsql/v1/statements` (In TigerGraph versions 4.x)
 
 
-== installUDF()
+=== installUDF()
 `installUDF(ExprFunctions: str = "", ExprUtil: str = "") -> None`
 
 Install user defined functions (UDF) to the database.
@@ -47,7 +50,7 @@ Status of the installation.
 - `PUT /gsqlserver/gsql/userdefinedfunction?filename={ExprFunctions or ExprUtil}"` (In TigerGraph versions 3.x)
 
 
-== getUDF()
+=== getUDF()
 `getUDF(ExprFunctions: bool = True, ExprUtil: bool = True, json_out = False) -> Union[str, Tuple[str, str], Dict[str, str]]`
 
 Get user defined functions (UDF) installed in the database.

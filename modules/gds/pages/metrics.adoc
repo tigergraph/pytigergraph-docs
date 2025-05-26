@@ -1,4 +1,5 @@
 = pyTigerGraph GDS Metrics
+:description: pyTigerGraph functions for metrics regarding GNN predictions
 
 :stem: latexmath
 
@@ -9,7 +10,7 @@ Utility for gathering metrics for GNN predictions.
 Accuracy = stem:[\sum_{i=1}^n (predictions_i == labels_i)/n]
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get accuracy score at any point by accessing the value property.
@@ -22,9 +23,9 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-preds (ndarray): 
+preds (ndarray):
 Array of predicted labels.
-labels (ndarray): 
+labels (ndarray):
 Array of true labels.
 
 
@@ -45,7 +46,7 @@ Recall = stem:[\sum(predictions * labels)/\sum(labels)]
 This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get recall score at any point by accessing the value property.
@@ -58,9 +59,9 @@ Add predictions and labels to be compared.
 
 [discrete]
 ==== Parameters:
-preds (ndarray): 
+preds (ndarray):
 Array of predicted labels.
-labels (ndarray): 
+labels (ndarray):
 Array of true labels.
 
 
@@ -75,10 +76,6 @@ Recall score (float).
 
 == ConfusionMatrix
 Updates a confusion matrix as new updates occur.
-
-[discrete]
-==== Parameters:
-* `num_classes (int)`: Number of classes in your classification task.
 
 
 === \__init__()
@@ -119,7 +116,7 @@ Recall = stem:[true positives/\sum(true positives + false negatives)}
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get recall score at any point by accessing the value property.
@@ -141,7 +138,7 @@ Precision = stem:[\sum(predictions * labels)/\sum(predictions)]
 This metric is for binary classifications, i.e., both predictions and labels are arrays of 0's and 1's.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get precision score at any point by accessing the value property.
@@ -176,7 +173,7 @@ Recall = stem:[true positives/\sum(true positives + false positives)
 This metric is for classification, i.e., both predictions and labels are arrays of multiple whole numbers.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get recall score at any point by accessing the value property.
@@ -198,7 +195,7 @@ MSE = stem:[\sum(predicted-actual)^2/n]
 This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get MSE value at any point by accessing the value property.
@@ -233,7 +230,7 @@ RMSE = stem:[\sqrt(\sum(predicted-actual)^2/n)]
 This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get RMSE score at any point by accessing the value property.
@@ -255,7 +252,7 @@ MAE = stem:[\sum(predicted-actual)/n]
 This metric is for regression tasks, i.e. predicting a n-dimensional vector of float values.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get MAE value at any point by accessing the value property.
@@ -288,7 +285,7 @@ This metric is used in link prediction tasks, i.e. determining if two vertices h
 Also known as Precsion@K.
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get Hits@K value at any point by accessing the value property.
@@ -333,7 +330,7 @@ Hits@K value (float).
 This metric is used in link prediction tasks, i.e. determining if two vertices have an edge between them
 
 [discrete]
-==== Usage:
+=== Usage:
 
 * Call the update function to add predictions and labels.
 * Get Recall@K value at any point by accessing the value property.
