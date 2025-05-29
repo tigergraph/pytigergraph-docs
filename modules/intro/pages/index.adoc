@@ -73,6 +73,8 @@ image:documentation-homecard.png[alt=admin,width=74,height=74]
 See xref:pytigergraph:release-notes:index.adoc[Release Notes]
 for the most up-to-date news on pyTigerGraph.
 
+¦ 
+
 |===
 
 == Peformance Notes
