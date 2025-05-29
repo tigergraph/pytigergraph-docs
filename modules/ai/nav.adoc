@@ -1,1 +1,0 @@
-* xref:copilot.adoc[TigerGraph CoPilot]
