@@ -30,11 +30,7 @@ image:TG_Icon_Library-216.png[alt=admin,width=74,height=74]
 
 Graph Data Science xref:pytigergraph:gds:index.adoc[(GDS) Functions] perform machine learning tasks.
 
-¦
-image:designdatbase-homecard.png[alt=co-pilot,width=74,height=74]
-*TigerGraph Co-Pilot*
 
-TigerGraph xref:pytigergraph:ai:copilot.adoc[Co-Pilot] is a natural language query service that allows users to ask questions about their graph data in plain English.
 
 ¦
 image:TG_Icon_Library-90.png[alt=admin,width=74,height=74]
