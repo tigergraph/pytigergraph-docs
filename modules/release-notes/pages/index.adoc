@@ -13,9 +13,8 @@ Release of pyTigerGraph version 1.7.
 Release of pyTigerGraph version 1.6.
 
 === Added:
-* Added a new submodule for interacting with TigerGraph CoPilot, a framework for integrating Generative AI with TigerGraph.
+* Added a new submodule for interacting with TigerGraph GraphRAG, a framework for integrating Generative AI with TigerGraph.
 
-NOTE: TigerGraph CoPilot is no longer available.
 
 == [1.5] - 2023-09-25
 
