@@ -73,9 +73,11 @@ image:documentation-homecard.png[alt=admin,width=74,height=74]
 See xref:pytigergraph:release-notes:index.adoc[Release Notes]
 for the most up-to-date news on pyTigerGraph.
 
+¦
+
 |===
 
-== Peformance Notes
+== Performance Notes
 pyTigerGraph is a feature-rich package that allows you to interact with TigerGraph databases using Python.
 It enhances TigerGraph’s REST API by adding extra features, such as URL setup, log creation, authentication, and error checks.
 Therefore, pyTigerGraph may perform slower than direct HTTP requests to the TigerGraph REST API.
