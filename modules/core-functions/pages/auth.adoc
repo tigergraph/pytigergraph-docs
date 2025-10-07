@@ -113,7 +113,7 @@ error occurred.
 ==== Endpoint:
 - `POST /requesttoken`
  +
-See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_request_a_token[this] for more details.
+See xref:3.11@tigergraph-server:API:built-in-endpoints.adoc#_request_a_token[this] for more details.
 
 
 == refreshToken()
@@ -158,7 +158,7 @@ Note:
 ==== Endpoint:
 - `PUT /requesttoken`
  +
-See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_refresh_a_token[this] for more details.
+See xref:3.11@tigergraph-server:API:built-in-endpoints.adoc#_refresh_a_token[this] for more details.
 
 
 == deleteToken()
@@ -194,6 +194,6 @@ occurred, for example if the specified token does not exist.
 ==== Endpoint:
 - `DELETE /requesttoken`
  +
-See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_delete_a_token[this] for more details.
+See xref:3.11@tigergraph-server:API:built-in-endpoints.adoc#_delete_a_token[this] for more details.
 
 
