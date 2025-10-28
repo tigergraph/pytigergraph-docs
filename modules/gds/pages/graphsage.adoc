@@ -1,7 +1,7 @@
 = GraphSAGE Models
 
 == GraphSAGEForVertexClassification
-Use a GraphSAGE model to classify vertices. By default, this model collects `ClassficiationMetrics`, and uses cross entropy as its loss function.
+Use a GraphSAGE model to classify vertices. By default, this model collects `ClassficationMetrics`, and uses cross entropy as its loss function.
 
 
 === \__init__()
