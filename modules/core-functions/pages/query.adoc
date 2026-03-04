@@ -225,7 +225,7 @@ Reports the statistics of currently running queries on the graph.
 == abortQuery()
 `abortQuery(request_id: Union[str, list] = None, url: str = None)`
 
-This function safely abortsa a selected query by ID or all queries of an endpoint by endpoint URL of a graph.
+This function safely aborts a selected query by ID or all queries of an endpoint by endpoint URL of a graph.
 If neither `request_id` or `url` are specified, all queries currently running on the graph are aborted.
 
 [discrete]
