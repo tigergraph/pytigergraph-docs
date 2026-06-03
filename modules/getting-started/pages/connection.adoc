@@ -33,7 +33,12 @@ conn = tg.TigerGraphConnection(host="<hostname>", graphname="<graph_name>", user
 conn.getToken(<secret>) <2>
 ----
 <1> The username and password are provided via the constructor of xref:core-functions:base.adoc[the `TigerGraphConnection` class].
-<2> Secrets are unique strings that serve as a user’s credentials when generating authentication tokens for REST API endpoints.
+<2> Secrets are unique strings that serve as a user’s credentials when generating authentication tokens for REST API endpoints. Calling getToken() is only required when RESTPP authentication is enabled.
+
+[NOTE]
+====
+`getToken()` is only required when RESTPP authentication is enabled. Otherwise, a username and password are sufficient to connect to the database.
+====
 
 The graph in this context is a logical container that consists of object type definitions (vertex and edge types, user-defined types (UDTs), data sources, etc.)  and the instances of these object types.
 A TigerGraph instance can contain multiple graphs, so you need to specify which one you want to use.
