@@ -36,7 +36,7 @@ print(batch)
 
 
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_neighborloader.ipynb[the ML Workbench tutorial notebook]
+Seehttps://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench tutorial notebook]
 for examples.
 See more details about the specific sampling method in
 link:https://arxiv.org/abs/1706.02216[Inductive Representation Learning on Large Graphs].
@@ -135,7 +135,7 @@ source    target  time  is_train
 ====
 
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeloader.ipynb[the ML Workbench edge loader tutorial notebook]
+See https://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench edge loader tutorial notebook]
 for examples.
 
 
@@ -223,7 +223,7 @@ source    target  time  is_train
 
 
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_vertexloader.ipynb[the ML Workbench tutorial notebook]
+See https://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench tutorial notebook]
 for more examples.
 
 
@@ -311,7 +311,7 @@ Data(edge_index=[2, 1032], edge_feat=[1032], is_train=[1032], is_val=[1032], x=[
 ====
 
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_graphloader.ipynb[the ML Workbench tutorial notebook for graph loaders]
+See https://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench tutorial notebook for graph loaders]
 for examples.
 
 
@@ -353,7 +353,7 @@ print(batch)
 
 
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeneighborloader.ipynb[the ML Workbench tutorial notebook]
+See https://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench tutorial notebook]
 for examples.
 
 
