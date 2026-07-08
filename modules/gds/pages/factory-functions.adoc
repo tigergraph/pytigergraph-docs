@@ -259,7 +259,7 @@ Defaults to "|".
 Defaults to False.
 * `distributed_query (bool, optional)`: Whether to install the query in distributed mode. Defaults to False.
 
-See https://github.com/TigerGraph-DevLabs/mlworkbench-docs/blob/1.0/tutorials/basics/3_edgeloader.ipynb[the ML Workbench edge loader tutorial notebook]
+See https://github.com/tigergraph/graph-ml-notebooks/blob/main/basics/data_loaders.ipynb[the ML Workbench edge loader tutorial notebook]
 for examples.
 
 
