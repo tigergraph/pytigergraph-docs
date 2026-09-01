@@ -15,6 +15,46 @@ You can declare a `NeighborLoader` instance with the factory function `neighborL
 A neighbor loader is an iterable.
 When you loop through a neighbor loader instance, it loads one batch of data from the graph to which you established a connection.
 
+[NOTE]
+====
+*HTTP vs. Kafka transfer behavior*
+
+The `NeighborLoader` can transfer data from the graph to the Python runtime
+over either **HTTP** (default) or **Kafka**, configured using the
+`kafka_address` parameter of
+xref:factory-functions.adoc#_neighborloader[`neighborLoader()`].
+
+The two transfer modes handle batches differently:
+
+* **HTTP:** All batches are transferred from the graph to the Python runtime
+  before they are iterated through locally. Because the entire result set is
+  transferred up front, the total number of vertices fetched should be kept
+  small. As a general guideline, keep the total number of fetched vertices
+  to approximately 10,000 or fewer.
+* **Kafka:** Data is transferred one batch at a time as the
+  `NeighborLoader` is iterated. This avoids transferring the entire result
+  set to the Python runtime at once.
+
+The total number of vertices fetched can increase rapidly with the number of
+hops and neighbors per hop. For example, with 10,000 seed vertices, 2 hops,
+and 10 neighbors sampled per hop:
+
+[stripes=none]
+|===
+| Seeds | Hops | Neighbors/hop | Approximate total vertices fetched
+
+| 10,000 | 2 | 10 | 10,000 + (10,000 x 10 x 10) = 1,010,000
+|===
+
+When using HTTP, reduce the total number of vertices fetched by reducing the
+number of seed vertices, the number of neighbors, or the number of hops, or
+by applying appropriate filters or graph downsampling.
+
+The amount of vertex attribute data also affects the total amount of data
+transferred. If a workload requires a large result set, Kafka can be used to
+transfer the data one batch at a time.
+====
+
 In every iteration, it first chooses a specified number of vertices as seeds,
 then picks a specified number of neighbors of each seed at random,
 then the same number of neighbors of each neighbor, and repeat for a specified number of hops.
