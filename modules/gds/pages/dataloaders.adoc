@@ -21,8 +21,7 @@ When you loop through a neighbor loader instance, it loads one batch of data fro
 
 The `NeighborLoader` can transfer data from the graph to the Python runtime
 over either **HTTP** (default) or **Kafka**, configured using the
-`kafka_address` parameter of
-xref:factory-functions.adoc#_neighborloader[`neighborLoader()`].
+`kafka_address` parameter of `neighborLoader()`.
 
 The two transfer modes handle batches differently:
 
