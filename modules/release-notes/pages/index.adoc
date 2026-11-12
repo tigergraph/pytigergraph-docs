@@ -1,5 +1,117 @@
 = pyTigerGraph Release Notes
 
+This page lists the changes in each pyTigerGraph release, newest first.
+For pyTigerGraph 1.9.0 and 1.9.1, see the summary in <<changes-in-1-9-x>>.
+For more details about each release, see link:https://github.com/tigergraph/pyTigerGraph/releases[pyTigerGraph releases on GitHub].
+
+== Upgrading from 1.8
+
+Review these changes before you upgrade:
+
+* Python 3.9 or later is required.
+* `showSecrets()` is removed. Use `getSecrets()` instead.
+* `runInstalledQuery()` chooses GET or POST based on the type of `params`: a `dict` uses POST and a `str` uses GET. Passing a query string with `usePost=True` raises `TigerGraphException`.
+* MCP tools are no longer part of pyTigerGraph. Install them with `pip install 'pyTigerGraph[mcp]'`, and don't import from `pyTigerGraph.mcp`.
+* The CoPilot methods `configureCoPilotHost()`, `coPilotHealth()`, and `configureInquiryAIHost()` are removed. Use the GraphRAG methods listed under <<changes-in-1-9-x>>.
+* On async connections, `installQueries()` returns the ID of the install request instead of a completion message.
+* Loading functions now default to the server-wide timeout instead of 16,000 ms.
+
+== [2.0.5] - 2026-10-05
+
+=== Added:
+* `AI.query()` accepts `mode` (`"agentic"` or `"classic"`), `rag_method`, and `include_fields` to select the GraphRAG chat engine and control which fields the response returns. Calls that pass only a question behave as before.
+
+=== Changed:
+* `installQueries()` submits the installation and no longer holds the connection open while queries compile, which prevents gateway timeouts on large installs. With `wait=True`, the default for sync connections, the call still returns after installation finishes. With `wait=False`, the default for async connections, the call returns the request ID.
+* The declared minimum Python version is now 3.9. Previously, installation on Python 3.8 succeeded but the import failed.
+
+=== Fixed:
+* `AsyncTigerGraphConnection` can be reused across event loops, such as across repeated `asyncio.run()` calls, and shared between threads without `RuntimeError: Event loop is closed`.
+* Async `runInterpretedQuery()` now passes string and vertex values with spaces, quotes, symbols, or non-ASCII characters exactly as given, matching the sync client.
+* `runInstalledQuery()` now handles vertex IDs that contain `&` or `#` in GET mode, and IDs that contain `%` in POST mode, for both sync and async clients.
+
+== [2.0.4] - 2026-05-18
+
+=== Fixed:
+* Connections that have only a username and password now work on instances with REST++ authentication enabled. The client obtains a token and retries automatically.
+* `getToken()` and `refreshToken()` now apply the token to the connection. Previously, later requests could fail authentication or keep using the old token.
+* Token requests try the TigerGraph 4.x endpoint first and fall back to the legacy endpoint.
+
+== [2.0.3] - 2026-04-09
+
+=== Added:
+* `dropGraph(graphName, cascade=True)` also removes the graph's queries and loading jobs.
+
+=== Fixed:
+* A port included in the host URL is now used correctly instead of producing a malformed URL. Conflicts with `restppPort` or `gsPort` are reported.
+* Malformed or empty hostnames and out-of-range ports raise `TigerGraphException`.
+* Large file uploads no longer time out during transmission.
+* Per-request headers, such as `timeout` in `runLoadingJobWithFile()`, now override headers set with `customizeHeader()`.
+* `runLoadingJobWithFile()`, `runLoadingJobWithData()`, `runLoadingJobWithDataFrame()`, and `uploadFile()` now default to the server-wide timeout.
+
+== [2.0.2] - 2026-04-07
+
+=== Added:
+* Schema change job management: `createSchemaChangeJob()`, `getSchemaChangeJobs()`, `runSchemaChangeJob()`, and `dropSchemaChangeJobs()`.
+* `createGraph()` accepts `vertexTypes` and `edgeTypes` to include existing global types. Pass `["*"]` to include all global types.
+* `runSchemaChange()` accepts a `force` parameter and, on TigerGraph 4.0 and later, `dict` input and global schema changes.
+* `useGraph()` and `useGlobal()` switch the graph context at runtime, like `USE GRAPH` and `USE GLOBAL` in GSQL. You can use `useGlobal()` as a context manager.
+* `getReservedKeywords()` and `isReservedKeyword()` return GSQL reserved keywords.
+* `installQueries()` accepts a `wait` parameter.
+* `customizeHeader()` accepts `threadLimit` and `memoryLimit` to set query resource limits for the connection.
+
+=== Changed:
+* GSQL endpoints use an API token or JWT when available instead of always requiring a username and password.
+* Tokens obtained with `getToken()` refresh automatically when the server returns 401. User-provided tokens raise an error instead.
+* TigerGraph Cloud instances are detected by a hostname that contains `tgcloud`.
+
+=== Fixed:
+* `installQueries()` handles responses without a `message` field and times out after one hour instead of hanging.
+* Boolean parameters such as `vertexMustExist`, `verbose`, and `force` are sent in the correct format.
+* `dropVertices()`, `dropAllDataSources()`, and `getVectorIndexStatus()` correctly fall back to the connection's graph name. `previewSampleData()` raises `TigerGraphException` when no graph name is available.
+
+== [2.0.1] - 2026-03-23
+
+=== Breaking changes:
+* `showSecrets()` is removed. Use `getSecrets()` instead.
+* `runInstalledQuery()` chooses GET or POST based on the type of `params`.
+* MCP tools moved to a separate package.
+
+=== Added:
+* A consistent vertex parameter syntax for `runInstalledQuery()`: `(id,)` for `VERTEX<T>`, `(id, "type")` for untyped `VERTEX`, and lists of tuples for sets. The syntax is the same for GET and POST.
+* Python `dict` values for `MAP` query parameters.
+* Data source management: `createDataSource()`, `updateDataSource()`, `getDataSource()`, `getDataSources()`, `dropDataSource()`, and `dropAllDataSources()`.
+* `runSchemaChange()` and `getVectorIndexStatus()`.
+* `listGraphs()`, `createGraph()`, `dropGraph()`, `dropVertices()`, `previewSampleData()`, and `close()`.
+* The same client code works with TigerGraph 3.x and 4.x.
+
+=== Changed:
+* Better performance for parallel workloads in sync and async connections.
+
+=== Fixed:
+* Edge upserts forward `vertexMustExist` correctly and serialize all attribute types correctly.
+
+=== Known issues:
+* A valid JWT can be reported as expired. To work around this, authenticate with `apiToken` instead of `jwtToken`.
+
+== [2.0.0] - 2026-03-04
+
+=== Added:
+* MCP (Model Context Protocol) tools. In 2.0.1, these tools moved to a separate package.
+
+[#changes-in-1-9-x]
+== Changes in 1.9.x
+
+pyTigerGraph 1.9.0 and 1.9.1 added the following:
+
+* *GraphRAG:* `configureGraphRAGHost()`, `configureServerHost()`, `healthCheck()`, `initializeGraphRAG()`, and `initializeServer()`. The CoPilot methods are removed. `runDocumentIngest()` accepts `data_source` and `load_job_info`.
+* *Query management:* `createQuery()`, `installQueries()`, `getQueryInstallationStatus()`, `checkQuerySemantic()`, `getQueryContent()`, `getQueryInfo()`, `listQueryNames()`, `updateQueryDescription()`, and `dropQueries()`.
+* *Loading job management:* `createLoadingJob()`, `updateLoadingJob()`, `dropLoadingJob()`, `getLoadingJobs()`, `getLoadingJobInfo()`, `runLoadingJob()`, `getLoadingJobStatus()`, `getLoadingJobsStatus()`, `abortLoadingJob()`, `abortLoadingJobs()`, and `resumeLoadingJob()`.
+* *Database administration:* `exportDatabase()`, `importDatabase()`, `recoverCatalog()`, `clearGraphStore()`, `dropAll()`, `getGSQLVersion()`, `getAsyncRequestStatus()`, and `cancelAsyncRequest()`.
+* *Schema:* `createGlobalVertices()`, `createGlobalVerticesJson()`, `addGlobalVerticesToGraph()`, `validateGraphSchema()`, and `getSchemaVer()`.
+* *Vectors:* `getVectorStatus()` and `getVertexVectors()`.
+* *Authentication:* `checkJwtToken()`. New parameters: `is_global` for `getToken()`; `value` and `userName` for `createSecret()`; `userName`, `alias`, and `createNew` for `getSecrets()`; and `userName` for `dropSecret()`.
+
 == [1.8] - 2024-11-04
 
 Release of pyTigerGraph version 1.8.
