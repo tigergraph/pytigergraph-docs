@@ -8,7 +8,7 @@ All functions in this module are called as methods on a link:https://docs.tigerg
 == Methods
 
 === runLoadingJobWithDataFrame()
-`runLoadingJobWithDataFrame(df: pd.DataFrame, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000, columns: list = None) -> Union[dict, None]`
+`runLoadingJobWithDataFrame(df: pd.DataFrame, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 0, sizeLimit: int = 128000000, columns: list = None) -> Union[dict, None]`
 
 Execute a loading job with the given pandas DataFrame with optional column list.
 
@@ -27,7 +27,7 @@ load the file correctly. Remove the header from the data file before using this 
 parameter. The default separator is a comma `,`.
 * `eol`: End-of-line character. Only one or two characters are allowed, except for the
 special case `\r\n`. The default value is `\n`
-* `timeout`: Timeout in seconds. If set to `0`, use the system-wide endpoint timeout setting.
+* `timeout`: Timeout in milliseconds. If set to `0`, use the system-wide endpoint timeout setting.
 * `sizeLimit`: Maximum size for input file in bytes.
 * `columns`: The ordered pandas DataFrame columns to be uploaded.
 
@@ -38,7 +38,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a 
 
 
 === runLoadingJobWithFile()
-`runLoadingJobWithFile(filePath: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> Union[dict, None]`
+`runLoadingJobWithFile(filePath: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 0, sizeLimit: int = 128000000) -> Union[dict, None]`
 
 Execute a loading job with the referenced file.
 
@@ -57,7 +57,7 @@ load the file correctly. Remove the header from the data file before using this 
 parameter. The default separator is a comma `,`.
 * `eol`: End-of-line character. Only one or two characters are allowed, except for the
 special case `\r\n`. The default value is `\n`
-* `timeout`: Timeout in seconds. If set to `0`, use the system-wide endpoint timeout setting.
+* `timeout`: Timeout in milliseconds. If set to `0`, use the system-wide endpoint timeout setting.
 * `sizeLimit`: Maximum size for input file in bytes.
 
 [discrete]
@@ -67,7 +67,7 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a 
 
 
 === runLoadingJobWithData()
-`runLoadingJobWithData(data: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 16000, sizeLimit: int = 128000000) -> Union[dict, None]`
+`runLoadingJobWithData(data: str, fileTag: str, jobName: str, sep: str = None, eol: str = None, timeout: int = 0, sizeLimit: int = 128000000) -> Union[dict, None]`
 
 Execute a loading job with the given data string.
 
@@ -86,7 +86,7 @@ load the file correctly. Remove the header from the data file before using this 
 parameter. The default separator is a comma `,`.
 * `eol`: End-of-line character. Only one or two characters are allowed, except for the
 special case `\r\n`. The default value is `\n`
-* `timeout`: Timeout in seconds. If set to `0`, use the system-wide endpoint timeout setting.
+* `timeout`: Timeout in milliseconds. If set to `0`, use the system-wide endpoint timeout setting.
 * `sizeLimit`: Maximum size for input file in bytes.
 
 [discrete]
@@ -96,10 +96,322 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_run_a_loading_job[Run a 
 
 
 === uploadFile()
-`uploadFile(filePath, fileTag, jobName = "", sep = None, eol = None, timeout = 16000, sizeLimit = 128000000) -> dict`
+`uploadFile(filePath, fileTag, jobName = "", sep = None, eol = None, timeout = 0, sizeLimit = 128000000) -> dict`
 
 DEPRECATED
 
 Use `runLoadingJobWithFile()` instead.
+
+
+=== getLoadingJobs()
+`getLoadingJobs() -> dict`
+
+Get a list of all loading jobs for the current graph.
+
+[discrete]
+==== Endpoint:
+- `GET /gsql/v1/loading-jobs?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_loading_job_names[Get loading jobs]
+
+
+=== createLoadingJob()
+`createLoadingJob(job_definition: str) -> dict`
+
+Create a new loading job with the given definition.
+
+[discrete]
+==== Parameter:
+* `job_definition`: The definition of the loading job in GSQL DDL format.
+
+[discrete]
+==== Endpoint:
+- `POST /gsql/v1/loading-jobs?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_create_loading_job[Create a loading job]
+
+
+=== updateLoadingJob()
+`updateLoadingJob(job_definition: str) -> dict`
+
+Update an existing loading job with the given definition.
+
+[discrete]
+==== Parameter:
+* `job_definition`: The definition of the loading job in GSQL DDL format.
+
+[discrete]
+==== Endpoint:
+- `PUT /gsql/v1/loading-jobs/<job_name>?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_upload_a_loading_job[Upload a loading job]
+
+
+=== getLoadingJobInfo()
+`getLoadingJobInfo(jobName: str, verbose: bool = False) -> dict`
+
+Get information about the specified loading job.
+
+[discrete]
+==== Parameters:
+* `jobName`: The name of the loading job.
+* `verbose`: If `True`, return verbose information about the job.
+
+[discrete]
+==== Endpoint:
+- `GET /gsql/v1/loading-jobs/<job_name>?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_loading_job_info[Get loading job info]
+
+
+=== runLoadingJob()
+`runLoadingJob(jobName: str, data_source_config: dict, sys_data_root: str = None, verbose: bool = False, dryrun: bool = False, interval: int = None, maxNumError: int = None, maxPercentError: float = None) -> dict`
+
+Run the specified loading job with the given data source configuration.
+
+[discrete]
+==== Parameters:
+* `jobName`: The name of the loading job.
+* `data_source_config`: The data source configuration in dictionary format.
+* `sys_data_root`: The system data root.
+* `verbose`: If `True`, return verbose information about the job.
+* `dryrun`: If `True`, run the job in dry-run mode.
+* `interval`: The interval in seconds between each batch of data.
+* `maxNumError`: The maximum number of errors allowed.
+* `maxPercentError`: The maximum percentage of errors allowed.
+
+[discrete]
+==== Endpoint:
+- `POST /gsql/v1/loading-jobs/run?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_run_loading_job[Run a loading job]
+
+
+=== dropLoadingJob()
+`dropLoadingJob(jobName: str) -> dict`
+
+Drop the specified loading job.
+
+[discrete]
+==== Parameter:
+* `jobName`: The name of the loading job.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoint:
+- `DELETE /gsql/v1/loading-jobs/<job_name>?graph=<graph_name>` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``DROP JOB`` for TigerGraph versions < 4.0
+
+
+=== abortLoadingJobs()
+`abortLoadingJobs(jobIds, pauseJob: bool = False) -> dict`
+
+Abort the specified loading jobs.
+
+[discrete]
+==== Parameters:
+* `jobIds`: A list of job IDs to abort.
+* `pauseJob`: If `True`, pause the job instead of aborting it.
+
+[discrete]
+==== Endpoint:
+- `POST /gsql/v1/loading-jobs/abort?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_abort_loading_jobs[Abort loading jobs]
+
+
+=== abortLoadingJob()
+`abortLoadingJob(jobId: str, pauseJob: bool = False) -> dict`
+
+Abort the specified loading job.
+
+[discrete]
+==== Parameters:
+* `jobId`: The ID of the job to abort.
+* `pauseJob`: If `True`, pause the job instead of aborting it.
+
+[discrete]
+==== Endpoint:
+- `POST /gsql/v1/loading-jobs/abort?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_abort_one_loading_job
+
+
+=== resumeLoadingJob()
+`resumeLoadingJob(jobId: str) -> dict`
+
+Resume the specified loading job.
+
+[discrete]
+==== Parameter:
+* `jobId`: The ID of the job to resume.
+
+[discrete]
+==== Endpoint:
+- `POST /gsql/v1/loading-jobs/resume?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_resume_loading_job
+
+
+=== getLoadingJobsStatus()
+`getLoadingJobsStatus(jobIds) -> dict`
+
+Get the status of the specified loading jobs.
+
+[discrete]
+==== Parameter:
+* `jobIds`: A list of job IDs to get the status of.
+
+[discrete]
+==== Endpoint:
+- `GET /gsql/v1/loading-jobs/status?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_loading_job_status[Get loading job status]
+
+
+=== getLoadingJobStatus()
+`getLoadingJobStatus(jobId: str) -> dict`
+
+Get the status of the specified loading job.
+
+[discrete]
+==== Parameter:
+* `jobId`: The ID of the job to get the status of.
+
+[discrete]
+==== Endpoint:
+- `GET /gsql/v1/loading-jobs/status/<job_id>?graph=<graph_name>`
+See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_one_loading_job_status[Get one loading job status]
+
+
+=== createDataSource()
+`createDataSource(dsName: str, config: dict, graphName: str = None) -> dict`
+
+Create a new data source.
+
+On TigerGraph 4.x uses REST API ``POST /gsql/v1/data-sources``.
+On 3.x falls back to ``CREATE DATA_SOURCE`` via GSQL console.
+
+[discrete]
+==== Parameters:
+dsName:  Name for the data source.
+config:  Configuration dict.  Must contain a ``"type"`` key
+(e.g. ``"s3"``, ``"gcs"``, ``"kafka"``).
+graphName:  Graph to associate the data source with.
+Defaults to the connection's current graph.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+
+=== updateDataSource()
+`updateDataSource(dsName: str, config: dict, graphName: str = None) -> dict`
+
+Update an existing data source.
+
+On TigerGraph 4.x uses REST API ``PUT /gsql/v1/data-sources/<name>``.
+On 3.x falls back to a DROP + CREATE sequence.
+
+[discrete]
+==== Parameters:
+dsName:   Name of the data source to update.
+config:   New configuration dict.
+graphName:  Graph context.  Defaults to the connection's current graph.
+
+
+=== getDataSource()
+`getDataSource(dsName: str) -> dict`
+
+Get information about a specific data source.
+
+On TigerGraph 4.x uses REST API ``GET /gsql/v1/data-sources/<name>``.
+On 3.x falls back to ``SHOW DATA_SOURCE <name>`` via GSQL console.
+
+[discrete]
+==== Parameter:
+dsName:  Name of the data source.
+
+[discrete]
+==== Returns:
+A dict.  On 4.x contains structured data source info.
+On 3.x contains ``{"message": "<GSQL output>"}``.
+
+
+=== getDataSources()
+`getDataSources() -> Union[list, dict]`
+
+List all data sources.
+
+On TigerGraph 4.x uses REST API ``GET /gsql/v1/data-sources``.
+On 3.x falls back to ``SHOW DATA_SOURCE *`` via GSQL console.
+
+[discrete]
+==== Returns:
+On 4.x: a list of data source dicts.
+On 3.x: ``{"message": "<GSQL output>"}``.
+
+
+=== dropDataSource()
+`dropDataSource(dsName: str, graphName: str = None) -> dict`
+
+Drop a data source.
+
+On TigerGraph 4.x uses REST API ``DELETE /gsql/v1/data-sources/<name>``.
+On 3.x falls back to ``DROP DATA_SOURCE <name>`` via GSQL console.
+
+[discrete]
+==== Parameters:
+dsName:     Name of the data source to drop.
+graphName:  Graph context.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+
+=== dropAllDataSources()
+`dropAllDataSources(graphName: str = None) -> dict`
+
+Drop all data sources.
+
+On TigerGraph 4.x uses REST API ``DELETE /gsql/v1/data-sources/dropAll``.
+On 3.x falls back to ``DROP DATA_SOURCE *`` via GSQL console.
+
+[discrete]
+==== Parameter:
+graphName:  If provided, drops data sources for that graph only.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+
+=== previewSampleData()
+`previewSampleData(dsName: str, path: str, size: int = 10, graphName: str = None) -> dict`
+
+Preview sample rows from a file in a data source.
+
+Available on TigerGraph 4.x only (``POST /gsql/v1/sample-data``).
+On 3.x raises ``NotImplementedError``.
+
+[discrete]
+==== Parameters:
+dsName:     Name of the data source.
+path:       Path to the file within the data source.
+size:       Number of rows to preview.
+graphName:  Graph context.
+
+
+=== getVectorIndexStatus()
+`getVectorIndexStatus(graphName: str = None, vertexType: str = None, vectorName: str = None) -> dict`
+
+Get the rebuild status of vector indexes.
+
+Uses REST++ endpoint
+``GET /vector/status[/<graph>[/<vertexType>[/<vectorName>]]]``.
+
+[discrete]
+==== Parameters:
+graphName:   Graph name. Defaults to the connection's current graph.
+If the connection has no graph set (global scope),
+returns status for all graphs.
+vertexType:  Optionally filter by vertex type (requires graphName).
+vectorName:  Optionally filter by vector attribute name
+(requires vertexType).
 
 

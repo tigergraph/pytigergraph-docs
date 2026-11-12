@@ -435,7 +435,7 @@ If ``targetVertexType`` is specified, then ``edgeType`` must also be specified.
 The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 * `sort`: Comma separated list of attributes the results should be sorted by.
 * `limit`: Maximum number of edge instances to be returned (after sorting).
-* `timeout`: Time allowed for successful execution (0 = no limit, default).
+* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
