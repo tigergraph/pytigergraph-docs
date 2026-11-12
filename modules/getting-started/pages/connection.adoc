@@ -40,6 +40,12 @@ conn.getToken(<secret>) <2>
 `getToken()` is only required when RESTPP authentication is enabled. Otherwise, a username and password are sufficient to connect to the database.
 ====
 
+[NOTE]
+====
+Starting in pyTigerGraph 2.0.4, you don't need to call `getToken()` when you connect with a username and password.
+If REST++ authentication is enabled, pyTigerGraph obtains a token automatically.
+====
+
 The graph in this context is a logical container that consists of object type definitions (vertex and edge types, user-defined types (UDTs), data sources, etc.)  and the instances of these object types.
 A TigerGraph instance can contain multiple graphs, so you need to specify which one you want to use.
 
