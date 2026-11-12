@@ -75,3 +75,194 @@ Tuple[str, str]: content of ExprFunctions and content of ExprUtil.
 - `GET /gsql/v1/udt/files/{ExprFunctions or ExprUtil}` (In TigerGraph versions 4.x)
 
 
+=== getAsyncRequestStatus()
+`getAsyncRequestStatus(requestId: str) -> dict`
+
+Check status of asynchronous request with requestId.
+
+[discrete]
+==== Parameter:
+* `requestId (str)`: The request ID of the asynchronous statement to check.
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the statement status.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/statements/{requestId}` (In TigerGraph versions >= 4.0)
+
+
+=== cancelAsyncRequest()
+`cancelAsyncRequest(requestId: str) -> dict`
+
+Cancel an asynchronous request with requestId.
+
+[discrete]
+==== Parameter:
+* `requestId (str)`: The request ID of the asynchronous statement to cancel.
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the cancellation result.
+
+[discrete]
+==== Endpoints:
+- `PUT /gsql/v1/statements/{requestId}/cancel` (In TigerGraph versions >= 4.0)
+
+
+=== recoverCatalog()
+`recoverCatalog() -> dict`
+
+Recover gdict catalog.
+
+[discrete]
+==== Parameter:
+None
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the recovery result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/recover` (In TigerGraph versions >= 4.0)
+
+
+=== clearGraphStore()
+`clearGraphStore() -> dict`
+
+Clear graph store.
+
+This endpoint permanently deletes all the data out of the graph store (database),
+for all graphs. It does not delete the database schema, nor does it delete queries
+or loading jobs. It is equivalent to the GSQL command CLEAR GRAPH STORE.
+
+WARNING: This operation is not reversible. The deleted data cannot be recovered.
+
+[discrete]
+==== Parameter:
+None
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the clear operation result.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/clear-store` (In TigerGraph versions >= 4.0)
+
+
+=== dropAll()
+`dropAll() -> dict`
+
+Drop all.
+
+This endpoint drops all graphs, vertices, edges, queries, and loading jobs
+from the database. This operation is equivalent to dropping everything
+and starting fresh.
+
+WARNING: This operation is not reversible. The deleted data cannot be recovered.
+
+[discrete]
+==== Parameter:
+None
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the drop operation result.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/drop-all` (In TigerGraph versions >= 4.0)
+
+
+=== exportDatabase()
+`exportDatabase(path: str, graphNames: list = None, schema: bool = False, template: bool = False, data: bool = False, users: bool = False, password: str = None, separator: str = "", eol: str = "") -> dict`
+
+Export database.
+
+[discrete]
+==== Parameters:
+* `path (str)`: The path where the database export will be saved.
+* `graphNames (list, optional)`: List of graph names to export. Defaults to ["&#42;"] for all graphs.
+* `schema (bool, optional)`: Whether to export schema. Defaults to False.
+* `template (bool, optional)`: Whether to export templates. Defaults to False.
+* `data (bool, optional)`: Whether to export data. Defaults to False.
+* `users (bool, optional)`: Whether to export users. Defaults to False.
+* `password (str, optional)`: Password for the export operation.
+* `separator (str, optional)`: Field separator character. Defaults to "".
+* `eol (str, optional)`: End of line character. Defaults to "".
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the export operation result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/db-export` (In TigerGraph versions >= 4.0)
+
+
+=== importDatabase()
+`importDatabase(path: str, graphNames: list = None, keepUsers: bool = False, password: str = None) -> dict`
+
+Import database.
+
+[discrete]
+==== Parameters:
+* `path (str)`: The path where the database import will be loaded from.
+* `graphNames (list, optional)`: List of graph names to import. Defaults to ["&#42;"] for all graphs.
+* `keepUsers (bool, optional)`: Whether to keep existing users. Defaults to False.
+* `password (str, optional)`: Password for the import operation.
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the import operation result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/db-import` (In TigerGraph versions >= 4.0)
+
+
+=== getGSQLVersion()
+`getGSQLVersion(verbose: bool = False) -> dict`
+
+Get GSQL version information.
+
+[discrete]
+==== Parameter:
+* `verbose (bool, optional)`: Whether to return detailed version information. Defaults to False.
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the GSQL version information.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/version` (In TigerGraph versions >= 4.0)
+
+
+=== getReservedKeywords()
+`getReservedKeywords() -> frozenset`
+
+Return the full set of GSQL reserved keywords.
+
+[discrete]
+==== Returns:
+A frozenset of uppercase keyword strings.
+
+
+=== isReservedKeyword()
+`isReservedKeyword(name: str) -> bool`
+
+Check whether *name* is a GSQL reserved keyword (case-insensitive).
+
+[discrete]
+==== Parameter:
+name: The identifier to check.
+
+[discrete]
+==== Returns:
+True if the name is reserved.
+
+

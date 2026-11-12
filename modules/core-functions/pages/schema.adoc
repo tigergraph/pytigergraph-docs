@@ -30,6 +30,21 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_graph_schema_metada
 - `GET /gsql/v1/schema/graphs/{graph_name}` (In TigerGraph version 4.x)
 
 
+=== getSchemaVer()
+`getSchemaVer() -> int`
+
+Retrieves the schema version of the graph by running an interpreted query.
+
+[discrete]
+==== Returns:
+The schema version as an integer.
+
+[discrete]
+==== Endpoint:
+- `POST /gsqlserver/interpreted_query` (In TigerGraph versions 3.x)
+- `POST /gsql/v1/queries/interpret` (In TigerGraph versions 4.x)
+
+
 === upsertData()
 `upsertData(data: Union[str, object], atomic: bool = False, ackAll: bool = False, newVertexOnly: bool = False, vertexMustExist: bool = False, updateVertexOnly: bool = False) -> dict`
 
@@ -79,5 +94,324 @@ If none of the above arguments are specified, all endpoints are listed.
 ==== Endpoint:
 - `GET /endpoints/{graph_name}`
 See xref:tigergraph-server:API:built-in-endpoints.adoc#_list_all_endpoints[List all endpoints]
+
+
+=== createGlobalVertices()
+`createGlobalVertices(gsql_commands: Union[str, list]) -> dict`
+
+Creates global vertices using GSQL commands.
+
+[discrete]
+==== Parameter:
+* `gsql_commands (str or list)`: GSQL CREATE VERTEX statement(s). Can be a single string or list of strings.
+
+[discrete]
+==== Returns:
+The response from the database containing the creation result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/vertices` (In TigerGraph versions >= 4.0)
+
+
+=== createGlobalVerticesJson()
+`createGlobalVerticesJson(vertices_config: Union[dict, list]) -> dict`
+
+Creates global vertices using JSON configuration.
+
+[discrete]
+==== Parameter:
+* `vertices_config (dict or list)`: JSON configuration for vertex creation. Can be a single vertex config dict
+or a list of vertex config dicts. Each vertex config should include: +
+- Name: Vertex type name
+- PrimaryId: Primary ID configuration with AttributeType and AttributeName
+- Attributes: List of attribute configurations
+- Config: Optional configuration (e.g., STATS)
+
+[discrete]
+==== Returns:
+The response from the database containing the creation result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/vertices` (In TigerGraph versions >= 4.0)
+
+
+=== addGlobalVerticesToGraph()
+`addGlobalVerticesToGraph(vertex_names: Union[str, list], target_graph: str = None) -> dict`
+
+Adds existing global vertices to a local graph.
+
+[discrete]
+==== Parameters:
+* `vertex_names (str or list)`: Name(s) of the global vertices to add to the graph. Can be a single
+vertex name string or a list of vertex names.
+* `target_graph (str, optional)`: The graph to which the global vertices should be added. If not provided,
+uses the current connection's graphname.
+
+[discrete]
+==== Returns:
+The response from the database containing the addition result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/vertices` (In TigerGraph versions >= 4.0)
+
+
+=== dropVertices()
+`dropVertices(vertex_names: Union[str, list], graph: str = None, ignoreErrors: bool = False) -> dict`
+
+Drops vertex types from a graph or drops global vertex types.
+
+[discrete]
+==== Parameters:
+* `vertex_names (str or list)`: Name(s) of the vertex types to drop. Can be a single string or a list
+of strings. Use ``"all"`` to drop all vertices.
+* `graph (str, optional)`: The graph from which vertex types should be dropped.
+If ``None`` and the connection has a ``graphname`` set,
+that graph is used.  If neither is set, drops global
+vertex types.
+* `ignoreErrors (bool)`: If ``True``, suppress exceptions (e.g. when some vertices do not exist)
+and return the error as a dict instead. Defaults to ``False``.
+
+[discrete]
+==== Returns:
+The response from the database containing the drop result.
+
+[discrete]
+==== Raises:
+`TigerGraphException` if the function is called on TigerGraph < 4.0,
+or if the drop fails and ``ignoreErrors`` is ``False``.
+
+[discrete]
+==== Endpoints:
+- ``DELETE /gsql/v1/schema/vertices`` (In TigerGraph versions >= 4.0)
+
+ +
+See https://docs.tigergraph.com/tigergraph-server/4.2/api/gsql-endpoints#_drop_vertices[this] for more details.
+
+
+=== validateGraphSchema()
+`validateGraphSchema() -> dict`
+
+Validate graph schema.
+
+Check that the current graph schema is valid.
+
+[discrete]
+==== Parameter:
+None
+
+[discrete]
+==== Returns:
+dict: The response from the database containing the schema validation result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/check` (In TigerGraph versions >= 4.0)
+
+
+=== createGraph()
+`createGraph(graphName: str, vertexTypes: list = None, edgeTypes: list = None) -> dict`
+
+Creates a graph, optionally including existing global vertex/edge types.
+
+[discrete]
+==== Parameters:
+* `graphName`: Name of the graph to create.
+* `vertexTypes`: Optional list of existing global vertex type names to include
+in the graph.  Pass ``["&#42;"]`` to include all global types.
+* `edgeTypes`: Optional list of existing global edge type names to include
+in the graph.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/schema/graphs` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``CREATE GRAPH`` for TigerGraph versions < 4.0
+
+
+=== dropGraph()
+`dropGraph(graphName: str, cascade: bool = False) -> dict`
+
+Drops a graph and all its data.
+
+[discrete]
+==== Parameters:
+* `graphName`: Name of the graph to drop.
+* `cascade`: When True, automatically removes associated queries and loading jobs.
+When False (default), the operation fails if related queries or loading
+jobs exist.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoints:
+- `DELETE /gsql/v1/schema/graphs/{graphName}` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``DROP GRAPH`` for TigerGraph versions < 4.0
+
+
+=== listGraphs()
+`listGraphs() -> list`
+
+Lists all graphs in the database.
+
+[discrete]
+==== Returns:
+A list of dicts, each with at least a ``"GraphName"`` key.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/schema/graphs` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``SHOW GRAPH *`` for TigerGraph versions < 4.0
+
+
+=== runSchemaChange()
+`runSchemaChange(gsqlStatements: Union[str, list, dict], graphName: str = None, force: bool = False) -> dict`
+
+Runs schema change statements directly (without creating a named job).
+
+Supports both local (graph-scoped) and global schema changes.
+
+[discrete]
+==== Parameters:
+* `gsqlStatements`: Schema change specification in one of two formats: +
+
+**dict (JSON format, TG >= 4.0 only)** — Sent directly to
+``POST /gsql/v1/schema/change`` as JSON.  Supports keys such as
+``addVertexTypes``, ``dropVertexTypes``, ``alterVertexTypes``,
+``addEdgeTypes``, ``dropEdgeTypes``, ``alterEdgeTypes``.
+
+**str or list (GSQL DDL)** — Wrapped in a GSQL schema change
+job and executed via ``gsql()``.  Works on all TigerGraph
+versions.
+
+* `graphName`: Target graph name for a local schema change.  If ``None`` and
+the connection has no ``graphname`` set, a **global** schema
+change is executed instead.
+
+* `force`: If ``True``, abort any loading jobs that conflict with the
+schema change.  Only applies to the JSON (dict) path.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoints:
+- ``POST /gsql/v1/schema/change`` with JSON body (TG >= 4.0)
+- GSQL schema change job via ``gsql()`` (all versions)
+
+
+=== createSchemaChangeJob()
+`createSchemaChangeJob(jobName: str, statements: Union[str, list, dict], graphName: str = None) -> dict`
+
+Creates a named schema change job without running it.
+
+[discrete]
+==== Parameters:
+* `jobName`: Name for the schema change job.
+
+* `statements`: Schema change specification in one of two formats: +
+
+**dict (JSON format)** — Sent as JSON to
+``POST /gsql/v1/schema/jobs/{jobName}``.
+For global jobs the dict should contain a ``"graphs"`` key;
+for local jobs it should contain keys such as
+``addVertexTypes``, ``dropVertexTypes``, etc.
+
+**str or list (GSQL DDL)** — Individual DDL statements
+(e.g. ``"ADD VERTEX Foo (...)"``).
+They are wrapped in a ``CREATE [GLOBAL] SCHEMA_CHANGE JOB``
+command and sent via the ``?gsql=true`` parameter.
+
+* `graphName`: Target graph for a local schema change job.  If ``None`` and
+the connection has no ``graphname`` set, a **global** job is
+created.
+
+[discrete]
+==== Returns:
+The server response dict.
+
+[discrete]
+==== Endpoint:
+- ``POST /gsql/v1/schema/jobs/{jobName}``
+
+
+=== getSchemaChangeJobs()
+`getSchemaChangeJobs(jobName: str = None, graphName: str = None, jsonFormat: bool = True) -> Union[dict, list]`
+
+Retrieves schema change jobs.
+
+[discrete]
+==== Parameters:
+* `jobName`: Name of a specific job to retrieve.  If ``None``, all schema
+change jobs are returned.
+
+* `graphName`: Graph whose local jobs to retrieve.  If ``None`` and the
+connection has no ``graphname`` set, global jobs are returned.
+
+* `jsonFormat`: If ``True`` (default), requests JSON-formatted output from the
+server.
+
+[discrete]
+==== Returns:
+A dict (single job) or list (all jobs) describing the schema
+change job(s).
+
+[discrete]
+==== Endpoints:
+- ``GET /gsql/v1/schema/jobs`` (all jobs)
+- ``GET /gsql/v1/schema/jobs/{jobName}`` (single job)
+
+
+=== runSchemaChangeJob()
+`runSchemaChangeJob(jobName: str, graphName: str = None, force: bool = False) -> dict`
+
+Runs an existing (already created) schema change job.
+
+[discrete]
+==== Parameters:
+* `jobName`: Name of the schema change job to run.
+
+* `graphName`: Graph on which to run the local job.  If ``None`` and the
+connection has no ``graphname`` set, runs a global job.
+
+* `force`: If ``True``, abort any loading jobs that conflict with the
+schema change.
+
+[discrete]
+==== Returns:
+The server response dict.
+
+[discrete]
+==== Endpoint:
+- ``PUT /gsql/v1/schema/jobs/{jobName}``
+
+
+=== dropSchemaChangeJobs()
+`dropSchemaChangeJobs(jobNames: Union[str, list], graphName: str = None) -> dict`
+
+Drops one or more schema change jobs.
+
+[discrete]
+==== Parameters:
+* `jobNames`: A single job name (str) or a list of job names to drop.
+
+* `graphName`: Graph whose local jobs to drop.  If ``None`` and the
+connection has no ``graphname`` set, drops global jobs.
+
+[discrete]
+==== Returns:
+The server response dict.
+
+[discrete]
+==== Endpoint:
+- ``DELETE /gsql/v1/schema/jobs``
 
 

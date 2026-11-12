@@ -35,26 +35,185 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc_get_query_metadata
 - `POST /gsql/v1/queries/signature` (In TigerGraph versions 4.x)
 
 
-=== getInstalledQueries()
-`getInstalledQueries(fmt: str = "py") -> Union[dict, str, pd.DataFrame]`
+=== getQueryContent()
+`getQueryContent(queryName: str) -> dict`
 
-Returns a list of installed queries.
+Returns the content/source code of a query.
+
+[discrete]
+==== Parameter:
+* `queryName (str)`: Name of the query to get content of.
+
+[discrete]
+==== Returns:
+The response from the database containing the query content.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/queries/{queryName}` (In TigerGraph versions >= 4.0)
+
+
+=== createQuery()
+`createQuery(queryText: str) -> dict`
+
+Creates a query in the graph.
+
+[discrete]
+==== Parameter:
+* `queryText (str)`: The text of the GSQL query to create. Must be in the format: +
+"create query queryName (...) FOR GRAPH graphName { ... }"
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/queries` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``CREATE QUERY`` for TigerGraph versions < 4.0
+
+
+=== dropQueries()
+`dropQueries(queryName: Union[str, list]) -> dict`
+
+Drops one or more queries from the graph.
+
+[discrete]
+==== Parameter:
+* `queryName (str or list)`: Name of the query to drop, or list of query names to drop.
+
+[discrete]
+==== Returns:
+A dict with at least a ``"message"`` key describing the outcome.
+
+[discrete]
+==== Endpoints:
+- `DELETE /gsql/v1/queries/{queryName}` (In TigerGraph versions >= 4.0)
+- Falls back to GSQL ``DROP QUERY`` for TigerGraph versions < 4.0
+
+
+=== checkQuerySemantic()
+`checkQuerySemantic(queryCode: str) -> dict`
+
+Performs a semantic check of a query.
+
+[discrete]
+==== Parameter:
+* `queryCode (str)`: The GSQL query code to check for semantic errors.
+
+[discrete]
+==== Returns:
+The response from the database containing the semantic check result.
+
+[discrete]
+==== Endpoints:
+- `POST /gsql/v1/internal/check/query` (In TigerGraph versions >= 4.0)
+
+
+=== getQueryInfo()
+`getQueryInfo(queryName: str = None, status: str = None) -> dict`
+
+Gets query information for the graph.
+
+[discrete]
+==== Parameters:
+* `queryName (str, optional)`: The specific query name to get information for. If None, returns info for all queries.
+* `status (str, optional)`: Filter queries by status (e.g., "VALID", "INVALID", "INSTALLING").
+
+[discrete]
+==== Returns:
+The response from the database containing query information.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/queries/info` (In TigerGraph versions >= 4.0)
+
+
+=== listQueryNames()
+`listQueryNames() -> list`
+
+Lists all query names of a graph.
+
+[discrete]
+==== Returns:
+The response from the database containing the list of query names.
+
+[discrete]
+==== Endpoints:
+- `GET /gsql/v1/queries` (In TigerGraph versions >= 4.0)
+
+
+=== getInstalledQueries()
+`getInstalledQueries(fmt: str = "py") -> Union[dict, str, list, pd.DataFrame]`
+
+Returns installed queries for the graph.
+
+Only queries that have been installed (i.e., have an active REST endpoint) are returned.
 
 [discrete]
 ==== Parameter:
 * `fmt`: Format of the results: +
-- "py":   Python objects (default)
+- "py":   Python dict keyed by REST endpoint string (default)
 - "json": JSON document
 - "df":   pandas DataFrame
+- "list": list of query name strings
 
 [discrete]
 ==== Returns:
-The names of the installed queries.
+The installed queries in the requested format.
 
+
+=== installQueries()
+`installQueries(queries: Union[str, list], flag: Union[str, list] = None, wait: bool = True) -> str`
+
+Installs one or more queries.
+
+[discrete]
+==== Parameters:
+* `queries`: A single query string or a list of query strings to install. Use '*' or 'all' to install all queries.
+* `flag`: Method to install queries.
+- '-single' Install the query in single gpr mode.
+- '-legacy' Install the query in UDF mode.
+- '-debug' Present results contains debug info.
+- '-cost' Present results contains performance consumption.
+- '-force' Install the query even if it already installed.
+* `wait`: If True, polls the installation status until the job completes before returning.
+If False, returns immediately with the server response containing the requestId.
+Defaults to True for sync connections.
+
+[discrete]
+==== Returns:
+The response from the server.
+
+[discrete]
+==== Endpoints:
+GET /gsql/v1/queries/install
+ +
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_install_a_query[this] for more details.
+
+
+=== getQueryInstallationStatus()
+`getQueryInstallationStatus(requestId: str) -> dict`
+
+Checks the status of query installation.
+
+[discrete]
+==== Parameter:
+* `requestId`: The request ID returned from installQueries.
+
+[discrete]
+==== Returns:
+A dictionary containing the installation status.
+
+[discrete]
+==== Endpoints:
+GET /gsql/queries/install/{request_id}
+ +
+See https://docs.tigergraph.com/tigergraph-server/current/api/built-in-endpoints#_check_query_installation_status[this] for more details.
 
 
 === runInstalledQuery()
-`runInstalledQuery(queryName: str, params: Union[str, dict] = None, timeout: int = None, sizeLimit: int = None, usePost: bool = False, runAsync: bool = False, replica: int = None, threadLimit: int = None, memoryLimit: int = None) -> list`
+`runInstalledQuery(queryName: str, params: Union[str, dict] = None, timeout: int = None, sizeLimit: int = None, usePost = None, runAsync: bool = False, replica: int = None, threadLimit: int = None, memoryLimit: int = None) -> list`
 
 Runs an installed query.
 
@@ -71,8 +230,11 @@ See below for special rules for dictionaries.
 See xref:tigergraph-server:API:index.adoc#_gsql_query_timeout[GSQL query timeout]
 * `sizeLimit`: Maximum size of response (in bytes).
 See xref:tigergraph-server:API:index.adoc#_response_size[Response size]
-* `usePost`: Defaults to False. The RESTPP accepts a maximum URL length of 8192 characters. Use POST if additional parameters cause
-you to exceed this limit, or if you choose to pass an empty set into a query for database versions >= 3.8
+* `usePost`: Controls whether query parameters are sent via POST body (True) or GET query string (False).
+Defaults to None (auto-detect): string params use GET, dict/None params use POST.
+POST is significantly faster than GET when params contain list values (e.g. vectors), avoids the
+8192-character URL length limit, and is required for passing empty sets in database versions >= 3.8.
+Passing a string with usePost=True raises an exception.
 * `runAsync`: Run the query in asynchronous mode. 
 See xref:gsql-ref:querying:query-operations#_detached_mode_async_option[Async operation]
 * `replica`: If your TigerGraph instance is an HA cluster, specify which replica to run the query on. Must be a 
@@ -91,32 +253,48 @@ accumulators, etc.
 
 [discrete]
 ==== Notes:
-When specifying parameter values in a dictionary:
+When specifying parameter values in a dictionary the same conventions
+apply regardless of ``usePost``:
 
-- For primitive parameter types use
+- Primitive types (INT, UINT, FLOAT, DOUBLE, BOOL, STRING):
  +
-`"key": value`
+``"key": value``
 +
-- For `SET` and `BAG` parameter types with primitive values, use
+- SET/BAG of primitives:
  +
-`"key": [value1, value2, ...]`
+``"key": [value1, value2, ...]``
 +
-- For `VERTEX<type>` use
+- VERTEX<T> (typed vertex):
+``"key": (primary_id,)``  ← 1-element tuple
+- VERTEX (untyped, type not pre-specified in query):
  +
-`"key": primary_id`
+``"key": (primary_id, "vertex_type")``
 +
-- For `VERTEX` (no vertex type specified) use
+- SET<VERTEX<T>> (typed vertex set):
  +
-`"key": (primary_id, "vertex_type")`
+``"key": [(id1,), (id2,), ...]``
 +
-- For `SET<VERTEX<type>>` use
+- SET<VERTEX> (untyped vertex set):
  +
-`"key": [primary_id1, primary_id2, ...]`
+``"key": [(id1, "type1"), (id2, "type2"), ...]``
 +
-- For `SET<VERTEX>` (no vertex type specified) use
+- DATETIME:
+``"key": datetime_object``  (auto-converted to "YYYY-MM-DD HH:MM:SS")
+- MAP:
  +
-`"key": [(primary_id1, "vertex_type1"), (primary_id2, "vertex_type2"), ...]`
+``"key": {"k1": v1, "k2": v2}``
 +
+Auto-converted to ``{"keylist": [...], "valuelist": [...]}`` in POST mode.
+
+Transport selection (``usePost``):
+- ``None`` (default): auto-detected. String params → GET;
+dict or no params → POST.
+- ``True``: always POST. String params raise ``TigerGraphException``.
+- ``False``: always GET. Dict params are URL-encoded.
+
+In POST mode ``%`` characters in string values are automatically
+encoded as ``%25`` (TigerGraph URL-decodes strings inside JSON
+bodies; the server decodes them back transparently).
 
 [discrete]
 ==== Endpoints:
@@ -290,6 +468,27 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_query_performance[S
 
 === describeQuery()
 `describeQuery(queryName: str, queryDescription: str, parameterDescriptions: dict)`
+
+DEPRECATED: Use updateQueryDescription() instead. Add a query description and parameter descriptions. Only supported on versions of TigerGraph >= 4.0.0.
+
+[discrete]
+==== Parameters:
+* `queryName`: The name of the query to describe.
+* `queryDescription`: A description of the query.
+* `parameterDescriptions (optional)`: A dictionary of parameter descriptions. The keys are the parameter names and the values are the descriptions.
+
+[discrete]
+==== Returns:
+The response from the database.
+
+[discrete]
+==== Endpoints:
+- `PUT /gsqlserver/gsql/description?graph={graph_name}` (In TigerGraph version 4.0)
+- `PUT /gsql/v1/description?graph={graph_name}` (In TigerGraph versions >4.0)
+
+
+=== updateQueryDescription()
+`updateQueryDescription(queryName: str, queryDescription: str, parameterDescriptions: dict)`
 
 Add a query description and parameter descriptions. Only supported on versions of TigerGraph >= 4.0.0.
 

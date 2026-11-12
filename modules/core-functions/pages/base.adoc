@@ -14,7 +14,7 @@ from pyTigerGraph import TigerGraphConnection
 
 conn = TigerGraphConnection(
     host="http://localhost",
-    graphname="MyGraph",
+    graphname="your_graph_name",
     username="tigergraph",
     password="tigergraph")
 
@@ -25,7 +25,7 @@ print(conn.echo())
 == Methods
 
 === \__init__()
-`__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", gsqlSecret: str = "", username: str = "tigergraph", password: str = "tigergraph", tgCloud: bool = False, restppPort: Union[int, str] = "9000", gsPort: Union[int, str] = "14240", gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = None, certPath: str = None, debug: bool = None, sslPort: Union[int, str] = "443", gcp: bool = False, jwtToken: str = "")`
+`__init__(host: str = "http://127.0.0.1", graphname: str = "MyGraph", gsqlSecret: str = "", username: str = "tigergraph", password: str = "tigergraph", tgCloud: bool = False, restppPort: Union[int, str] = None, gsPort: Union[int, str] = None, gsqlVersion: str = "", version: str = "", apiToken: str = "", useCert: bool = None, certPath: str = None, debug: bool = None, sslPort: Union[int, str] = "443", gcp: bool = False, jwtToken: str = "")`
 
 Initiate a connection object.
 
@@ -34,7 +34,7 @@ Initiate a connection object.
 * `host`: The host name or IP address of the TigerGraph server. Make sure to include the
 protocol (http:// or https://). If `certPath` is `None` and the protocol is https,
 a self-signed certificate will be used.
-* `graphname`: The default graph for running queries.
+* `graphname`: The graph name for running queries. **Required** - must be specified.
 * `gsqlSecret`: The secret key for GSQL.  +
 See https://docs.tigergraph.com/tigergraph-server/current/user-access/managing-credentials#_secrets.[this] for more details.
 * `username`: The username on the TigerGraph server.
@@ -57,6 +57,26 @@ being connected to.
 [discrete]
 ==== Raises:
 TigerGraphException: In case on invalid URL scheme.
+
+
+=== close()
+`close() -> None`
+
+Close this thread's HTTP session and release its sockets.
+
+Each thread maintains its own session, so only the calling thread's
+session is affected. Sessions in other threads are closed when those
+threads exit and are garbage-collected.
+
+Prefer using the connection as a context manager so cleanup is automatic:
+
+
+[source,indent=0]
+----
+with TigerGraphConnection(...) as conn:
+    conn.runInstalledQuery(...)
+----
+
 
 
 === getVersion()
@@ -102,14 +122,18 @@ Version info for specified component.
 
 
 === customizeHeader()
-`customizeHeader(timeout: int = 16000, responseSize: int = 32000000.0)`
+`customizeHeader(timeout: int = 16000, responseSize: int = 32000000.0, threadLimit: int = None, memoryLimit: int = None)`
 
 Method to configure the request header.
 
 [discrete]
 ==== Parameters:
-* `tiemout (int, optional)`: The timeout value desired in milliseconds. Defaults to 16,000 ms (16 sec)
+* `timeout (int, optional)`: The timeout value desired in milliseconds. Defaults to 16,000 ms (16 sec).
 * `responseSize`: The size of the response in bytes. Defaults to 3.2E7 bytes (32 MB).
+* `threadLimit (int, optional)`: Maximum number of threads to use per query. If not set, the server default is used.
+Ignored by TigerGraph versions that do not support this header.
+* `memoryLimit (int, optional)`: Maximum memory per query in MB. If not set, the server default is used.
+Ignored by TigerGraph versions that do not support this header.
 
 [discrete]
 ==== Returns:

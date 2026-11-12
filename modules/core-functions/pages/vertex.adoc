@@ -42,6 +42,44 @@ The format of attribute_type is one of
 and it is a string.
 
 
+=== getVertexVectors()
+`getVertexVectors(vertexType: str) -> list`
+
+Returns the names and types of the embedding attributes of the vertex type.
+
+[discrete]
+==== Parameter:
+* `vertexType`: The name of the vertex type.
+
+[discrete]
+==== Returns:
+A list of (vector_name, vector_type) tuples.
+The format of vector_type is one of
+- "scalar_type"
+- "complex_type(scalar_type)"
+- "map_type(key_type,value_type)"
+and it is a string.
+
+
+=== getVectorStatus()
+`getVectorStatus(vertexType: str, vectorName: str = "") -> bool`
+
+Check the rebuild status of the vertex type or the embedding attribute
+
+[discrete]
+==== Parameters:
+* `vertexType`: The name of the vertex type.
+* `vectorName`: The name of the vector attribute, optional.
+
+[discrete]
+==== Returns:
+a bool indicates whether vector rebuild is done or not
+
+[discrete]
+==== Endpoint:
+- `GET /vector/status/{graph_name}/{vertex_type}/[{vector_name}]`
+
+
 === getVertexType()
 `getVertexType(vertexType: str, force: bool = False) -> dict`
 
@@ -128,7 +166,7 @@ Example:
 +
 [source,indent=0]
 ----
-            {"name": "Thorin", points: (10, "+"), "bestScore": (67, "max")}
+            {"name": "Thorin", points: (10, "+"), "bestScore": (83, "max"), "embedding": [0.1, -0.2, 3.1e-2]}
 ----
 
 For valid values of `<operator>` see xref:tigergraph-server:API:built-in-endpoints.adoc#_operation_codes[Operation codes].
@@ -170,7 +208,8 @@ Example:
 ----
 [
 (2, {"name": "Balin", "points": (10, "+"), "bestScore": (67, "max")}),
-(3, {"name": "Dwalin", "points": (7, "+"), "bestScore": (35, "max")})
+(3, {"name": "Dwalin", "points": (7, "+"), "bestScore": (35, "max")}),
+(4, {"name": "Thorin", points: (10, "+"), "bestScore": (83, "max"), "embedding": [0.1, -0.2, 3.1e-2]})
 ]
 ----
 
@@ -242,7 +281,7 @@ Must be used with `sort`.
 - "df":   pandas DataFrame
 * `withId`: (When the output format is "df") should the vertex ID be included in the dataframe?
 * `withType`: (When the output format is "df") should the vertex type be included in the dataframe?
-* `timeout`: Time allowed for successful execution (0 = no limit, default).
+* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
@@ -278,7 +317,7 @@ The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 Must be used with 'limit'.
 * `limit`: Maximum number of vertex instances to be returned (after sorting).
 Must be used with `sort`.
-* `timeout`: Time allowed for successful execution (0 = no limit, default).
+* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
@@ -310,7 +349,7 @@ Retrieves vertices of the given vertex type, identified by their ID.
 "df":   pandas DataFrame
 * `withId`: (If the output format is "df") should the vertex ID be included in the dataframe?
 * `withType`: (If the output format is "df") should the vertex type be included in the dataframe?
-* `timeout`: Time allowed for successful execution (0 = no limit, default).
+* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
@@ -395,7 +434,7 @@ Must be used with `sort`.
 * `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
 timeout:
-Time allowed for successful execution (0 = no limit, default).
+Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
@@ -421,7 +460,7 @@ Deletes vertices from graph identified by their ID.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
-* `timeout`: Time allowed for successful execution (0 = no limit, default).
+* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
 
 [discrete]
 ==== Returns:
