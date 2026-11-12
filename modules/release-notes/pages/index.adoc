@@ -1,5 +1,7 @@
 = pyTigerGraph Release Notes
 
+IMPORTANT: The latest version of pyTigerGraph is 2.0.5. See the xref:2.0@pytigergraph:intro:index.adoc[pyTigerGraph 2.0 documentation] and the xref:2.0@pytigergraph:release-notes:index.adoc[2.0 release notes].
+
 == [1.8] - 2024-11-04
 
 Release of pyTigerGraph version 1.8.
