@@ -1,6 +1,8 @@
 = pyTigerGraph
 :description: Overview of pyTigerGraph.
 
+IMPORTANT: The latest version of pyTigerGraph is 2.0.5. See the xref:2.0@pytigergraph:intro:index.adoc[pyTigerGraph 2.0 documentation] and the xref:2.0@pytigergraph:release-notes:index.adoc[2.0 release notes].
+
 pyTigerGraph is a Python package for connecting to TigerGraph databases.
 
 *Already familiar with pyTigerGraph?* Join the xref:https://dev.tigergraph.com/forum/[community], else, get to know pyTigerGraph below.
