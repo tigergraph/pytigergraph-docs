@@ -33,11 +33,14 @@ See xref:tigergraph-server:API:built-in-endpoints.adoc#_show_graph_schema_metada
 === getSchemaVer()
 `getSchemaVer() -> int`
 
-Retrieves the schema version of the graph by running an interpreted query.
+Retrieves the schema version of the graph.
+
+To get the version, this function runs a minimal interpreted query that only prints `OK`, and reads the schema version from the query response.
+The query doesn't read any graph data.
 
 [discrete]
 ==== Returns:
-The schema version as an integer.
+The schema version as an integer, or `None` if the response doesn't contain a schema version.
 
 [discrete]
 ==== Endpoint:
@@ -107,7 +110,7 @@ Creates global vertices using GSQL commands.
 
 [discrete]
 ==== Returns:
-The response from the database containing the creation result.
+The server's complete JSON response, as a dict. Besides the result of the creation, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -130,7 +133,7 @@ or a list of vertex config dicts. Each vertex config should include: +
 
 [discrete]
 ==== Returns:
-The response from the database containing the creation result.
+The server's complete JSON response, as a dict. Besides the result of the creation, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -151,7 +154,7 @@ uses the current connection's graphname.
 
 [discrete]
 ==== Returns:
-The response from the database containing the addition result.
+The server's complete JSON response, as a dict. Besides the result of the addition, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -176,7 +179,7 @@ and return the error as a dict instead. Defaults to ``False``.
 
 [discrete]
 ==== Returns:
-The response from the database containing the drop result.
+The server's complete JSON response, as a dict. Besides the result of the drop, it includes status information from the server.
 
 [discrete]
 ==== Raises:
@@ -204,7 +207,7 @@ None
 
 [discrete]
 ==== Returns:
-dict: The response from the database containing the schema validation result.
+The server's complete JSON response, as a dict. Besides the validation result, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:

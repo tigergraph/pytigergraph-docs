@@ -46,7 +46,7 @@ Returns the content/source code of a query.
 
 [discrete]
 ==== Returns:
-The response from the database containing the query content.
+The server's complete JSON response, as a dict. Besides the query content, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -103,7 +103,7 @@ Performs a semantic check of a query.
 
 [discrete]
 ==== Returns:
-The response from the database containing the semantic check result.
+The server's complete JSON response, as a dict. Besides the result of the semantic check, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -122,7 +122,7 @@ Gets query information for the graph.
 
 [discrete]
 ==== Returns:
-The response from the database containing query information.
+The server's complete JSON response, as a dict. Besides the query information, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -136,7 +136,7 @@ Lists all query names of a graph.
 
 [discrete]
 ==== Returns:
-The response from the database containing the list of query names.
+The names of the queries on the graph, from the `results` field of the server response.
 
 [discrete]
 ==== Endpoints:
@@ -479,7 +479,7 @@ DEPRECATED: Use updateQueryDescription() instead. Add a query description and pa
 
 [discrete]
 ==== Returns:
-The response from the database.
+The server's complete JSON response, as a dict. Besides the result of the update, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -500,7 +500,7 @@ Add a query description and parameter descriptions. Only supported on versions o
 
 [discrete]
 ==== Returns:
-The response from the database.
+The server's complete JSON response, as a dict. Besides the result of the update, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:
@@ -542,7 +542,7 @@ If set to "&#42;", drops the description of all queries.
 
 [discrete]
 ==== Returns:
-The response from the database.
+The server's complete JSON response, as a dict. Besides the result of the drop, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:

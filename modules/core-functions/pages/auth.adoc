@@ -258,7 +258,7 @@ Check if a JWT token is valid or not.
 
 [discrete]
 ==== Returns:
-dict: The response from the database containing the token validation result.
+The server's complete JSON response, as a dict. Besides the token validation result, it includes status information from the server.
 
 [discrete]
 ==== Endpoints:

@@ -109,6 +109,10 @@ Use `runLoadingJobWithFile()` instead.
 Get a list of all loading jobs for the current graph.
 
 [discrete]
+==== Returns:
+The `jobNames` field of the server's JSON response, which lists the loading jobs on the graph.
+
+[discrete]
 ==== Endpoint:
 - `GET /gsql/v1/loading-jobs?graph=<graph_name>`
 See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_loading_job_names[Get loading jobs]
@@ -122,6 +126,10 @@ Create a new loading job with the given definition.
 [discrete]
 ==== Parameter:
 * `job_definition`: The definition of the loading job in GSQL DDL format.
+
+[discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the creation, it includes status information from the server.
 
 [discrete]
 ==== Endpoint:
@@ -139,6 +147,10 @@ Update an existing loading job with the given definition.
 * `job_definition`: The definition of the loading job in GSQL DDL format.
 
 [discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the update, it includes status information from the server.
+
+[discrete]
 ==== Endpoint:
 - `PUT /gsql/v1/loading-jobs/<job_name>?graph=<graph_name>`
 See xref:tigergraph-server:API:gsql-endpoints.adoc#_upload_a_loading_job[Upload a loading job]
@@ -153,6 +165,10 @@ Get information about the specified loading job.
 ==== Parameters:
 * `jobName`: The name of the loading job.
 * `verbose`: If `True`, return verbose information about the job.
+
+[discrete]
+==== Returns:
+The `results` field of the server's JSON response, which contains information about the loading job.
 
 [discrete]
 ==== Endpoint:
@@ -175,6 +191,10 @@ Run the specified loading job with the given data source configuration.
 * `interval`: The interval in seconds between each batch of data.
 * `maxNumError`: The maximum number of errors allowed.
 * `maxPercentError`: The maximum percentage of errors allowed.
+
+[discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the run, it includes status information from the server.
 
 [discrete]
 ==== Endpoint:
@@ -212,6 +232,10 @@ Abort the specified loading jobs.
 * `pauseJob`: If `True`, pause the job instead of aborting it.
 
 [discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the abort, it includes status information from the server.
+
+[discrete]
 ==== Endpoint:
 - `POST /gsql/v1/loading-jobs/abort?graph=<graph_name>`
 See xref:tigergraph-server:API:gsql-endpoints.adoc#_abort_loading_jobs[Abort loading jobs]
@@ -226,6 +250,10 @@ Abort the specified loading job.
 ==== Parameters:
 * `jobId`: The ID of the job to abort.
 * `pauseJob`: If `True`, pause the job instead of aborting it.
+
+[discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the abort, it includes status information from the server.
 
 [discrete]
 ==== Endpoint:
@@ -243,6 +271,10 @@ Resume the specified loading job.
 * `jobId`: The ID of the job to resume.
 
 [discrete]
+==== Returns:
+The server's complete JSON response, as a dict. Besides the result of the resume request, it includes status information from the server.
+
+[discrete]
 ==== Endpoint:
 - `POST /gsql/v1/loading-jobs/resume?graph=<graph_name>`
 See xref:tigergraph-server:API:gsql-endpoints.adoc#_resume_loading_job
@@ -258,6 +290,10 @@ Get the status of the specified loading jobs.
 * `jobIds`: A list of job IDs to get the status of.
 
 [discrete]
+==== Returns:
+The `results` field of the server's JSON response, which contains the status of the loading jobs.
+
+[discrete]
 ==== Endpoint:
 - `GET /gsql/v1/loading-jobs/status?graph=<graph_name>`
 See xref:tigergraph-server:API:gsql-endpoints.adoc#_get_loading_job_status[Get loading job status]
@@ -271,6 +307,10 @@ Get the status of the specified loading job.
 [discrete]
 ==== Parameter:
 * `jobId`: The ID of the job to get the status of.
+
+[discrete]
+==== Returns:
+The `results` field of the server's JSON response, which contains the status of the loading job.
 
 [discrete]
 ==== Endpoint:
@@ -312,6 +352,11 @@ On 3.x falls back to a DROP + CREATE sequence.
 dsName:   Name of the data source to update.
 config:   New configuration dict.
 graphName:  Graph context.  Defaults to the connection's current graph.
+
+[discrete]
+==== Returns:
+The result of the update, as a dict.
+
 
 
 === getDataSource()
@@ -396,6 +441,11 @@ path:       Path to the file within the data source.
 size:       Number of rows to preview.
 graphName:  Graph context.
 
+[discrete]
+==== Returns:
+The `results` field of the server's JSON response, which contains the sample data.
+
+
 
 === getVectorIndexStatus()
 `getVectorIndexStatus(graphName: str = None, vertexType: str = None, vectorName: str = None) -> dict`
@@ -413,5 +463,9 @@ returns status for all graphs.
 vertexType:  Optionally filter by vertex type (requires graphName).
 vectorName:  Optionally filter by vector attribute name
 (requires vertexType).
+
+[discrete]
+==== Returns:
+The `results` field of the server's JSON response, which contains the rebuild status of the vector indexes.
 
 

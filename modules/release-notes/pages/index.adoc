@@ -4,17 +4,52 @@ This page lists the changes in each pyTigerGraph release, newest first.
 For pyTigerGraph 1.9.0 and 1.9.1, see the summary in <<changes-in-1-9-x>>.
 For more details about each release, see link:https://github.com/tigergraph/pyTigerGraph/releases[pyTigerGraph releases on GitHub].
 
-== Upgrading from 1.8
+== Compatibility issues
 
-Review these changes before you upgrade:
+These changes can affect code written for an earlier version of pyTigerGraph.
 
-* Python 3.9 or later is required.
-* `showSecrets()` is removed. Use `getSecrets()` instead.
-* `runInstalledQuery()` chooses GET or POST based on the type of `params`: a `dict` uses POST and a `str` uses GET. Passing a query string with `usePost=True` raises `TigerGraphException`.
-* MCP tools are no longer part of pyTigerGraph. Install them with `pip install 'pyTigerGraph[mcp]'`, and don't import from `pyTigerGraph.mcp`.
-* The CoPilot methods `configureCoPilotHost()`, `coPilotHealth()`, and `configureInquiryAIHost()` are removed. Use the GraphRAG methods listed under <<changes-in-1-9-x>>.
-* On async connections, `installQueries()` returns the ID of the install request instead of a completion message.
-* Loading functions now default to the server-wide timeout instead of 16,000 ms.
+[cols="3,1",options="header"]
+|===
+| Description | Version introduced
+
+| `runInstalledQuery()` chooses GET or POST based on the type of `params`: a `dict` uses POST and a `str` uses GET. Passing a query string with `usePost=True` raises `TigerGraphException`.
+| 2.0.1
+
+| MCP tools are no longer part of pyTigerGraph. Install them with `pip install 'pyTigerGraph[mcp]'`, and don't import from `pyTigerGraph.mcp`.
+| 2.0.1
+
+| TigerGraph Cloud instances are detected only by a hostname that contains `tgcloud`.
+| 2.0.2
+
+| Loading functions use the system-wide endpoint timeout by default. Previously, the default timeout was 16,000 milliseconds.
+| 2.0.3
+
+| pyTigerGraph requires Python 3.9 or later, and installation fails on earlier versions. Earlier 2.0.x releases installed on Python 3.8 but failed on import.
+| 2.0.5
+
+| On async connections, `installQueries()` returns the ID of the installation request instead of a completion message.
+| 2.0.5
+|===
+
+== Deprecations and removals
+
+[cols="3,1",options="header"]
+|===
+| Description | Removed in
+
+| The CoPilot methods `configureCoPilotHost()`, `coPilotHealth()`, and `configureInquiryAIHost()` are removed. Use the GraphRAG methods listed in <<changes-in-1-9-x>>.
+| 1.9.0
+
+| `showSecrets()` is removed. Use `getSecrets()` instead.
+| 2.0.1
+|===
+
+== Documentation corrections
+
+These corrections also apply to the documentation for earlier versions.
+
+* The `timeout` parameter of `runLoadingJobWithFile()`, `runLoadingJobWithData()`, and `runLoadingJobWithDataFrame()` is in milliseconds, not seconds.
+* The `timeout` parameter of `RandomVertexSplitter` and `RandomEdgeSplitter` is in milliseconds. The default, 600000, is 10 minutes.
 
 == [2.0.5] - 2026-10-05
 

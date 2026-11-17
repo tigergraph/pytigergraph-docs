@@ -281,7 +281,7 @@ Must be used with `sort`.
 - "df":   pandas DataFrame
 * `withId`: (When the output format is "df") should the vertex ID be included in the dataframe?
 * `withType`: (When the output format is "df") should the vertex type be included in the dataframe?
-* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
+* `timeout`: Time allowed for successful execution in seconds. If 0 or omitted, the system-wide endpoint timeout value is used.
 
 [discrete]
 ==== Returns:
@@ -317,7 +317,7 @@ The conditions are in logical conjunction (i.e. they are "AND'ed" together).
 Must be used with 'limit'.
 * `limit`: Maximum number of vertex instances to be returned (after sorting).
 Must be used with `sort`.
-* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
+* `timeout`: Time allowed for successful execution in seconds. If 0 or omitted, the system-wide endpoint timeout value is used.
 
 [discrete]
 ==== Returns:
@@ -349,7 +349,7 @@ Retrieves vertices of the given vertex type, identified by their ID.
 "df":   pandas DataFrame
 * `withId`: (If the output format is "df") should the vertex ID be included in the dataframe?
 * `withType`: (If the output format is "df") should the vertex type be included in the dataframe?
-* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
+* `timeout`: Time allowed for successful execution in seconds. If 0 or omitted, the system-wide endpoint timeout value is used.
 
 [discrete]
 ==== Returns:
@@ -434,7 +434,7 @@ Must be used with `sort`.
 * `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
 timeout:
-Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
+Time allowed for successful execution in seconds. If 0 or omitted, the system-wide endpoint timeout value is used.
 
 [discrete]
 ==== Returns:
@@ -460,7 +460,7 @@ Deletes vertices from graph identified by their ID.
 * `vertexIds`: A single vertex ID or a list of vertex IDs.
 * `permanent`: If true, the deleted vertex IDs can never be inserted back, unless the graph is
 dropped or the graph store is cleared.
-* `timeout`: Time allowed for successful execution in seconds. 0 or omitted applies the system-wide endpoint timeout.
+* `timeout`: Time allowed for successful execution in seconds. If 0 or omitted, the system-wide endpoint timeout value is used.
 
 [discrete]
 ==== Returns:
