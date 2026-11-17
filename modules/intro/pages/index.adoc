@@ -1,6 +1,8 @@
 = pyTigerGraph
 :description: Overview of pyTigerGraph.
 
+IMPORTANT: This is documentation for an older version of pyTigerGraph. See the link:https://www.tigergraph.com/docs/pytigergraph/current/intro/[latest pyTigerGraph documentation] and the link:https://www.tigergraph.com/docs/pytigergraph/current/release-notes/[latest release notes].
+
 pyTigerGraph is a Python package for connecting to TigerGraph databases.
 
 *Already familiar with pyTigerGraph?* Join the xref:https://dev.tigergraph.com/forum/[community], else, get to know pyTigerGraph below.
