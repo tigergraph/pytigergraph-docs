@@ -2,7 +2,8 @@
 
 This page lists the previous versions of pyTigerGraph.
 
-* **xref:1.6@pytigergraph:intro:index.adoc[1.7]**
+* **xref:1.8@pytigergraph:intro:index.adoc[1.8]**
+* **xref:1.7@pytigergraph:intro:index.adoc[1.7]**
 * **xref:1.6@pytigergraph:intro:index.adoc[1.6]**
 * 1.5
 * 1.4

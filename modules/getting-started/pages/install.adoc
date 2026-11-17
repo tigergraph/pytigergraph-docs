@@ -4,7 +4,7 @@
 This page walks you through installing pyTigerGraph on your machine.
 
 == Prerequisites
-* Python 3.0 or higher.
+* Python 3.9 or higher.
 * If you are installing `pyTigerGraph[gds]`, make sure https://pytorch.org/get-started/locally/[`torch` is installed] in your Python environment.
 
 == Install _pyTigerGraph_
@@ -34,7 +34,14 @@ To support those formats, you need to have installed the respective packages in 
 It is optional to install either of the aforementioned packages.
 If you don't install either of the packages, you can still use the GDS functions, and output results in panda frames.
 
+== Install _pyTigerGraph[mcp]_
 
+To use the TigerGraph MCP (Model Context Protocol) tools, run the following command. It installs the separate `pyTigerGraph-mcp` package.
+
+[source,console]
+----
+pip3 install 'pyTigerGraph[mcp]'
+----
 
 == Import `pyTigerGraph`
 
